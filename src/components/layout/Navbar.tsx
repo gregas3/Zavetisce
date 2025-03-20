@@ -45,17 +45,17 @@ export default function Navbar() {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled 
-          ? "py-2 bg-[#0f2a2d]/95 backdrop-blur-md shadow-lg" 
-          : "py-4 bg-[#0f2a2d]/90 backdrop-blur-sm"
+          ? "py-2 bg-teal-50/95 backdrop-blur-md shadow-md border-b border-teal-100" 
+          : "py-4 bg-gradient-to-b from-teal-50/95 to-teal-50/80 backdrop-blur-sm"
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           <Link 
             to="/" 
-            className="text-2xl font-display font-bold text-teal-400 flex items-center gap-2 transition-normal hover-scale" 
+            className="text-2xl font-display font-bold text-teal-600 flex items-center gap-2 transition-normal hover-scale" 
             onClick={closeMenu}
           >
             <span className="sr-only">Zavetišče za živali Maribor</span>
@@ -73,26 +73,26 @@ export default function Navbar() {
                 <NavigationMenuItem>
                   <NavigationMenuLink 
                     asChild 
-                    className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-800/70 hover:text-teal-300")}
+                    className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-teal-800 hover:bg-teal-100 hover:text-teal-700")}
                   >
                     <Link to="/">Domov</Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
                 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="bg-transparent font-medium text-white hover:bg-teal-800/70 hover:text-teal-300">
+                  <NavigationMenuTrigger className="bg-transparent font-medium text-teal-800 hover:bg-teal-100 hover:text-teal-700">
                     Posvojitev
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <ul className="grid gap-3 p-4 w-[200px] bg-[#164942] border border-teal-700/50">
+                    <ul className="grid gap-3 p-4 w-[200px] bg-white border border-teal-100 shadow-lg rounded-lg">
                       <li>
                         <NavigationMenuLink asChild>
                           <Link
                             to="/posvojitev/psi"
-                            className="flex items-center gap-2 p-2 text-white hover:bg-teal-800/50 rounded-md transition-normal hover:text-teal-300"
+                            className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal"
                             onClick={closeMenu}
                           >
-                            <PawPrint size={16} className="text-teal-400" />
+                            <PawPrint size={16} className="text-teal-500" />
                             <span>Psi</span>
                           </Link>
                         </NavigationMenuLink>
@@ -101,10 +101,10 @@ export default function Navbar() {
                         <NavigationMenuLink asChild>
                           <Link
                             to="/posvojitev/mačke"
-                            className="flex items-center gap-2 p-2 text-white hover:bg-teal-800/50 rounded-md transition-normal hover:text-teal-300"
+                            className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal"
                             onClick={closeMenu}
                           >
-                            <PawPrint size={16} className="text-teal-400" />
+                            <PawPrint size={16} className="text-teal-500" />
                             <span>Mačke</span>
                           </Link>
                         </NavigationMenuLink>
@@ -113,10 +113,10 @@ export default function Navbar() {
                         <NavigationMenuLink asChild>
                           <Link
                             to="/posvojitev/postopek"
-                            className="flex items-center gap-2 p-2 text-white hover:bg-teal-800/50 rounded-md transition-normal hover:text-teal-300"
+                            className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal"
                             onClick={closeMenu}
                           >
-                            <Heart size={16} className="text-teal-400" />
+                            <Heart size={16} className="text-teal-500" />
                             <span>Postopek posvojitve</span>
                           </Link>
                         </NavigationMenuLink>
@@ -128,7 +128,7 @@ export default function Navbar() {
                 <NavigationMenuItem>
                   <NavigationMenuLink 
                     asChild 
-                    className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-800/70 hover:text-teal-300")}
+                    className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-teal-800 hover:bg-teal-100 hover:text-teal-700")}
                   >
                     <Link to="/izgubljeni-najdeni">Izgubljeni in Najdeni</Link>
                   </NavigationMenuLink>
@@ -137,7 +137,7 @@ export default function Navbar() {
                 <NavigationMenuItem>
                   <NavigationMenuLink 
                     asChild 
-                    className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-800/70 hover:text-teal-300")}
+                    className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-teal-800 hover:bg-teal-100 hover:text-teal-700")}
                   >
                     <Link to="/prostovoljstvo">Prostovoljstvo</Link>
                   </NavigationMenuLink>
@@ -146,7 +146,7 @@ export default function Navbar() {
                 <NavigationMenuItem>
                   <NavigationMenuLink 
                     asChild 
-                    className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-800/70 hover:text-teal-300")}
+                    className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-teal-800 hover:bg-teal-100 hover:text-teal-700")}
                   >
                     <Link to="/prosto-zivece-macke">Prosto živeče mačke</Link>
                   </NavigationMenuLink>
@@ -155,7 +155,7 @@ export default function Navbar() {
                 <NavigationMenuItem>
                   <NavigationMenuLink 
                     asChild 
-                    className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-800/70 hover:text-teal-300")}
+                    className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-teal-800 hover:bg-teal-100 hover:text-teal-700")}
                   >
                     <Link to="/termini">Termini</Link>
                   </NavigationMenuLink>
@@ -164,7 +164,7 @@ export default function Navbar() {
                 <NavigationMenuItem>
                   <NavigationMenuLink 
                     asChild 
-                    className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-800/70 hover:text-teal-300")}
+                    className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-teal-800 hover:bg-teal-100 hover:text-teal-700")}
                   >
                     <Link to="/o-nas">O nas</Link>
                   </NavigationMenuLink>
@@ -175,7 +175,7 @@ export default function Navbar() {
             <div className="flex items-center gap-3 ml-3">
               <button 
                 onClick={toggleSearch} 
-                className="p-2 text-teal-400 rounded-full transition-colors hover:bg-teal-800/80 hover:text-teal-300"
+                className="p-2 text-teal-600 rounded-full transition-colors hover:bg-teal-100 hover:text-teal-800"
                 aria-label="Search"
               >
                 <Search size={20} />
@@ -185,7 +185,7 @@ export default function Navbar() {
                 size="sm" 
                 asChild 
                 variant="teal"
-                className="shadow-lg hover:shadow-teal-500/20 transition-all duration-300 hover:-translate-y-0.5"
+                className="shadow-md hover:shadow-teal-200/50 transition-all duration-300 hover:-translate-y-0.5"
               >
                 <Link to="/donacije">Doniraj</Link>
               </Button>
@@ -196,13 +196,13 @@ export default function Navbar() {
           <div className="lg:hidden flex items-center gap-2">
             <button 
               onClick={toggleSearch} 
-              className="p-2 text-teal-400 rounded-full transition-colors hover:bg-teal-800/70"
+              className="p-2 text-teal-600 rounded-full transition-colors hover:bg-teal-100"
               aria-label="Search"
             >
               <Search size={20} />
             </button>
             <button 
-              className="text-teal-400 p-2 rounded-full hover:bg-teal-800/70 transition-normal" 
+              className="text-teal-600 p-2 rounded-full hover:bg-teal-100 transition-normal" 
               onClick={toggleMenu} 
               aria-label={isOpen ? "Zapri meni" : "Odpri meni"}
             >
@@ -222,61 +222,61 @@ export default function Navbar() {
           <input 
             type="text" 
             placeholder="Išči..." 
-            className="w-full py-2 px-4 pl-10 rounded-lg border border-teal-700 bg-teal-900/60 text-white placeholder-teal-300/60 focus:border-teal-400 focus:ring-1 focus:ring-teal-400 outline-none transition-normal"
+            className="w-full py-2 px-4 pl-10 rounded-lg border border-teal-200 bg-white text-teal-800 placeholder-teal-400 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none transition-normal"
           />
           <Search 
             size={18} 
-            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-teal-400"
+            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-teal-500"
           />
         </div>
       </div>
 
       {/* Mobile Navigation */}
       <div 
-        className={`lg:hidden fixed inset-0 bg-[#0f2a2d]/95 backdrop-blur-md z-40 transition-transform duration-300 ease-in-out ${
+        className={`lg:hidden fixed inset-0 bg-white/95 backdrop-blur-md z-40 transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`} 
         style={{ top: "60px" }}
       >
         <nav className="container mx-auto px-6 py-8 flex flex-col space-y-4">
-          <Link to="/" className="text-lg py-3 block font-medium border-b border-teal-800 text-white hover:text-teal-300 transition-normal" onClick={closeMenu}>
+          <Link to="/" className="text-lg py-3 block font-medium border-b border-teal-100 text-teal-800 hover:text-teal-600 transition-normal" onClick={closeMenu}>
             Domov
           </Link>
           
-          <div className="border-b border-teal-800">
-            <button className="flex items-center justify-between w-full text-lg py-3 font-medium text-left text-white hover:text-teal-300" onClick={(e) => {
+          <div className="border-b border-teal-100">
+            <button className="flex items-center justify-between w-full text-lg py-3 font-medium text-left text-teal-800 hover:text-teal-600" onClick={(e) => {
               const el = e.currentTarget.nextElementSibling;
               if (el) el.classList.toggle('hidden');
             }}>
               <span>Posvojitev</span> 
-              <ChevronDown size={18} className="text-teal-400" />
+              <ChevronDown size={18} className="text-teal-500" />
             </button>
             <div className="hidden pl-4 pb-3 space-y-2">
-              <Link to="/posvojitev/psi" onClick={closeMenu} className="block py-2 transition-normal text-teal-100 hover:text-teal-300">
+              <Link to="/posvojitev/psi" onClick={closeMenu} className="block py-2 transition-normal text-teal-700 hover:text-teal-500">
                 Psi
               </Link>
-              <Link to="/posvojitev/mačke" onClick={closeMenu} className="block py-2 transition-normal text-teal-100 hover:text-teal-300">
+              <Link to="/posvojitev/mačke" onClick={closeMenu} className="block py-2 transition-normal text-teal-700 hover:text-teal-500">
                 Mačke
               </Link>
-              <Link to="/posvojitev/postopek" onClick={closeMenu} className="block py-2 transition-normal text-teal-100 hover:text-teal-300">
+              <Link to="/posvojitev/postopek" onClick={closeMenu} className="block py-2 transition-normal text-teal-700 hover:text-teal-500">
                 Postopek posvojitve
               </Link>
             </div>
           </div>
           
-          <Link to="/izgubljeni-najdeni" className="text-lg py-3 block font-medium border-b border-teal-800 text-white hover:text-teal-300 transition-normal" onClick={closeMenu}>
+          <Link to="/izgubljeni-najdeni" className="text-lg py-3 block font-medium border-b border-teal-100 text-teal-800 hover:text-teal-600 transition-normal" onClick={closeMenu}>
             Izgubljeni in Najdeni
           </Link>
-          <Link to="/prostovoljstvo" className="text-lg py-3 block font-medium border-b border-teal-800 text-white hover:text-teal-300 transition-normal" onClick={closeMenu}>
+          <Link to="/prostovoljstvo" className="text-lg py-3 block font-medium border-b border-teal-100 text-teal-800 hover:text-teal-600 transition-normal" onClick={closeMenu}>
             Prostovoljstvo
           </Link>
-          <Link to="/prosto-zivece-macke" className="text-lg py-3 block font-medium border-b border-teal-800 text-white hover:text-teal-300 transition-normal" onClick={closeMenu}>
+          <Link to="/prosto-zivece-macke" className="text-lg py-3 block font-medium border-b border-teal-100 text-teal-800 hover:text-teal-600 transition-normal" onClick={closeMenu}>
             Prosto živeče mačke
           </Link>
-          <Link to="/termini" className="text-lg py-3 block font-medium border-b border-teal-800 text-white hover:text-teal-300 transition-normal" onClick={closeMenu}>
+          <Link to="/termini" className="text-lg py-3 block font-medium border-b border-teal-100 text-teal-800 hover:text-teal-600 transition-normal" onClick={closeMenu}>
             Termini
           </Link>
-          <Link to="/o-nas" className="text-lg py-3 block font-medium border-b border-teal-800 text-white hover:text-teal-300 transition-normal" onClick={closeMenu}>
+          <Link to="/o-nas" className="text-lg py-3 block font-medium border-b border-teal-100 text-teal-800 hover:text-teal-600 transition-normal" onClick={closeMenu}>
             O nas
           </Link>
           
