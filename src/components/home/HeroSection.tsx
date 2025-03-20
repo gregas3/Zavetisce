@@ -33,16 +33,19 @@ export default function HeroSection() {
             </p>
             
             <div className="flex flex-row items-center gap-4">
-              <Button 
-                size="lg" 
-                variant="teal"
-                asChild 
-                className="rounded-full font-medium text-base animate-fade-in delay-100 h-12"
-              >
-                <Link to="/posvojitev/psi">
-                  Posvoji zdaj <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+              <AnimatedWrapper animation="slide-up" delay={200}>
+                <Button 
+                  size="lg" 
+                  variant="teal"
+                  asChild 
+                  className="rounded-full font-medium text-base h-12 transition-all hover:shadow-md hover:shadow-teal-600/20 hover:-translate-y-1"
+                >
+                  <Link to="/posvojitev/psi" className="flex items-center">
+                    Posvoji zdaj <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </AnimatedWrapper>
+              
               <AnimatedWrapper animation="slide-up" delay={300}>
                 <Button 
                   size="lg" 
