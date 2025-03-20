@@ -49,7 +49,7 @@ export default function TestimonialsSection() {
           </div>
         </AnimatedWrapper>
 
-        <div className="relative bg-card rounded-xl p-8 md:p-10 shadow-md glass">
+        <div className="relative bg-[#f3fbef]/90 rounded-xl p-8 md:p-10 shadow-md border border-[#e4f4df]">
           <Quote 
             size={70} 
             className="absolute top-8 left-8 text-primary/10 -z-10" 

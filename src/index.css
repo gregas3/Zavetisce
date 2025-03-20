@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -9,10 +10,10 @@
     --background: 100 50% 98%;
     --foreground: 100 20% 12%;
 
-    --card: 0 0% 100%;
+    --card: 90 40% 97%;
     --card-foreground: 100 20% 12%;
 
-    --popover: 0 0% 100%;
+    --popover: 90 40% 97%;
     --popover-foreground: 100 20% 12%;
 
     --primary: 90 80% 45%;
@@ -30,7 +31,7 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 20% 98%;
 
-    --border: 100 20% 90%;
+    --border: 90 30% 90%;
     --input: 100 20% 90%;
     --ring: 90 80% 45%;
 
@@ -95,7 +96,7 @@
     @apply font-sans text-foreground;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: linear-gradient(135deg, hsl(100, 70%, 95%) 0%, hsl(90, 70%, 91%) 100%);
+    background: linear-gradient(135deg, hsl(90, 60%, 96%) 0%, hsl(100, 60%, 94%) 100%);
     background-attachment: fixed;
     background-size: cover;
     position: relative;
@@ -126,7 +127,7 @@
   }
   
   .glass {
-    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-sm;
+    @apply bg-[#f4fcf0]/80 backdrop-blur-md border border-white/30 shadow-sm;
   }
   
   .glass-dark {
@@ -176,7 +177,7 @@
   }
   
   .modern-card {
-    @apply bg-white/80 backdrop-blur-md border border-white/40 shadow-lg rounded-xl transition-normal hover:shadow-xl;
+    @apply bg-[#f3fbef]/90 backdrop-blur-md border border-[#e4f4df] shadow-sm rounded-xl transition-normal hover:shadow-md;
   }
   
   .bg-gradient-soft-blue {
