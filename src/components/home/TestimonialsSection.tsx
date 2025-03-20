@@ -38,7 +38,7 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <Section className="bg-muted">
+    <Section className="bg-gradient-soft-purple">
       <div className="max-w-4xl mx-auto">
         <AnimatedWrapper animation="fade-in">
           <div className="text-center mb-10">
@@ -49,7 +49,7 @@ export default function TestimonialsSection() {
           </div>
         </AnimatedWrapper>
 
-        <div className="relative bg-card rounded-xl p-8 md:p-10 shadow-md">
+        <div className="relative bg-card rounded-xl p-8 md:p-10 shadow-md glass">
           <Quote 
             size={70} 
             className="absolute top-8 left-8 text-primary/10 -z-10" 
