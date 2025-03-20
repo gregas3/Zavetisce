@@ -1,6 +1,7 @@
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, ChevronDown, Search, Heart, PawPrint } from "lucide-react";
+import { Menu, X, ChevronDown, Search, Heart, Dog, Cat } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { 
   NavigationMenu,
@@ -119,7 +120,7 @@ export default function Navbar() {
                             className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal"
                             onClick={closeMenu}
                           >
-                            <PawPrint size={16} className="text-teal-500" />
+                            <Dog size={16} className="text-teal-500" />
                             <span>Psi</span>
                           </Link>
                         </NavigationMenuLink>
@@ -131,7 +132,7 @@ export default function Navbar() {
                             className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal"
                             onClick={closeMenu}
                           >
-                            <PawPrint size={16} className="text-teal-500" />
+                            <Cat size={16} className="text-teal-500" />
                             <span>Mačke</span>
                           </Link>
                         </NavigationMenuLink>
@@ -279,13 +280,16 @@ export default function Navbar() {
               <ChevronDown size={18} className="text-teal-500" />
             </button>
             <div className="hidden pl-4 pb-3 space-y-2">
-              <Link to="/posvojitev/psi" onClick={closeMenu} className="block py-2 transition-normal text-teal-700 hover:text-teal-500">
+              <Link to="/posvojitev/psi" onClick={closeMenu} className="flex items-center gap-2 py-2 transition-normal text-teal-700 hover:text-teal-500">
+                <Dog size={16} className="text-teal-500" />
                 Psi
               </Link>
-              <Link to="/posvojitev/mačke" onClick={closeMenu} className="block py-2 transition-normal text-teal-700 hover:text-teal-500">
+              <Link to="/posvojitev/mačke" onClick={closeMenu} className="flex items-center gap-2 py-2 transition-normal text-teal-700 hover:text-teal-500">
+                <Cat size={16} className="text-teal-500" />
                 Mačke
               </Link>
-              <Link to="/posvojitev/postopek" onClick={closeMenu} className="block py-2 transition-normal text-teal-700 hover:text-teal-500">
+              <Link to="/posvojitev/postopek" onClick={closeMenu} className="flex items-center gap-2 py-2 transition-normal text-teal-700 hover:text-teal-500">
+                <Heart size={16} className="text-teal-500" />
                 Postopek posvojitve
               </Link>
             </div>
