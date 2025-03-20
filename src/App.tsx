@@ -12,6 +12,7 @@ import DogProfile from "./pages/DogProfile";
 import CatsAdoption from "./pages/CatsAdoption";
 import Appointments from "./pages/Appointments";
 import Questionnaire from "./pages/Questionnaire";
+import AdoptionProcess from "./pages/AdoptionProcess";
 
 const queryClient = new QueryClient();
 
@@ -32,12 +33,12 @@ const App = () => (
           <Route path="/posvojitev/psi/:id" element={<DogProfile />} />
           <Route path="/posvojitev/mačke" element={<CatsAdoption />} />
           <Route path="/posvojitev/vprašalnik" element={<Questionnaire />} />
+          <Route path="/posvojitev/postopek" element={<AdoptionProcess />} />
           
           {/* Appointments route */}
           <Route path="/termini" element={<Appointments />} />
           
           {/* Routes for future implementation */}
-          <Route path="/posvojitev/postopek" element={<NotFound />} />
           <Route path="/izgubljeni-najdeni" element={<NotFound />} />
           <Route path="/prostovoljstvo" element={<NotFound />} />
           <Route path="/donacije" element={<NotFound />} />
