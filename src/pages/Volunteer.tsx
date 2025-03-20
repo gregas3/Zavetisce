@@ -8,16 +8,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import Section from "@/components/shared/Section";
-
 const Volunteer = () => {
-  return (
-    <>
+  return <>
       <Helmet>
         <title>Prostovoljstvo | Zavetišče za živali Maribor</title>
-        <meta 
-          name="description" 
-          content="Postanite prostovoljec v Zavetišču za živali Maribor in pomagajte živalim do boljšega življenja. Sprehajanje psov, pomoč pri oskrbi, sodelovanje na dogodkih in druge možnosti prostovoljstva." 
-        />
+        <meta name="description" content="Postanite prostovoljec v Zavetišču za živali Maribor in pomagajte živalim do boljšega življenja. Sprehajanje psov, pomoč pri oskrbi, sodelovanje na dogodkih in druge možnosti prostovoljstva." />
       </Helmet>
       
       <Navbar />
@@ -102,11 +97,7 @@ const Volunteer = () => {
               <AnimatedWrapper animation="fade-in" delay={300}>
                 <Card className="overflow-hidden h-full">
                   <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src="/lovable-uploads/d217c1de-f33c-4077-a739-ce288aadeef1.png" 
-                      alt="Prostovoljec sprehaja psa" 
-                      className="w-full h-full object-cover"
-                    />
+                    
                   </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-semibold text-teal-800 mb-4">Kako se prijavim?</h3>
@@ -217,34 +208,19 @@ const Volunteer = () => {
                 <form className="max-w-xl mx-auto space-y-4 bg-white/10 backdrop-blur-sm p-6 rounded-lg">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <input 
-                        type="text" 
-                        placeholder="Ime in priimek" 
-                        className="w-full p-3 rounded-md border border-teal-400/30 bg-white/90 focus:border-white focus:ring-1 focus:ring-white"
-                      />
+                      <input type="text" placeholder="Ime in priimek" className="w-full p-3 rounded-md border border-teal-400/30 bg-white/90 focus:border-white focus:ring-1 focus:ring-white" />
                     </div>
                     <div>
-                      <input 
-                        type="email" 
-                        placeholder="E-poštni naslov" 
-                        className="w-full p-3 rounded-md border border-teal-400/30 bg-white/90 focus:border-white focus:ring-1 focus:ring-white"
-                      />
+                      <input type="email" placeholder="E-poštni naslov" className="w-full p-3 rounded-md border border-teal-400/30 bg-white/90 focus:border-white focus:ring-1 focus:ring-white" />
                     </div>
                   </div>
                   
                   <div>
-                    <input 
-                      type="tel" 
-                      placeholder="Telefonska številka" 
-                      className="w-full p-3 rounded-md border border-teal-400/30 bg-white/90 focus:border-white focus:ring-1 focus:ring-white"
-                    />
+                    <input type="tel" placeholder="Telefonska številka" className="w-full p-3 rounded-md border border-teal-400/30 bg-white/90 focus:border-white focus:ring-1 focus:ring-white" />
                   </div>
                   
                   <div>
-                    <Textarea 
-                      placeholder="Kako bi želeli pomagati? Povejte nam nekaj o sebi in svojih izkušnjah."
-                      className="w-full p-3 rounded-md border border-teal-400/30 bg-white/90 focus:border-white focus:ring-1 focus:ring-white min-h-[120px]"
-                    />
+                    <Textarea placeholder="Kako bi želeli pomagati? Povejte nam nekaj o sebi in svojih izkušnjah." className="w-full p-3 rounded-md border border-teal-400/30 bg-white/90 focus:border-white focus:ring-1 focus:ring-white min-h-[120px]" />
                   </div>
                   
                   <div>
@@ -260,8 +236,6 @@ const Volunteer = () => {
       </main>
       
       <Footer />
-    </>
-  );
+    </>;
 };
-
 export default Volunteer;
