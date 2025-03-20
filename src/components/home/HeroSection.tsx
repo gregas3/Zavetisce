@@ -32,7 +32,7 @@ export default function HeroSection() {
               Vsaka žival si zasluži ljubeč dom in z vašo pomočjo lahko to uresničimo.
             </p>
             
-            <div className="flex flex-wrap gap-4">
+            <div className="flex items-center gap-4">
               <Button 
                 size="lg" 
                 variant="teal"
