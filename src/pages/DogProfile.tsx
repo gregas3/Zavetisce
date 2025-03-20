@@ -97,11 +97,15 @@ const DogProfile = () => {
         <div className="container mx-auto px-4 py-8">
           <Breadcrumb className="mb-6">
             <BreadcrumbItem>
-              <BreadcrumbLink as={Link} to="/">Domov</BreadcrumbLink>
+              <BreadcrumbLink asChild>
+                <Link to="/">Domov</Link>
+              </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink as={Link} to="/posvojitev/psi">Posvojitev psov</BreadcrumbLink>
+              <BreadcrumbLink asChild>
+                <Link to="/posvojitev/psi">Posvojitev psov</Link>
+              </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
