@@ -3,7 +3,6 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
-import { getOptimizedImage } from "@/lib/utils";
 
 export default function HeroSection() {
   return (
@@ -12,7 +11,7 @@ export default function HeroSection() {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ 
-          backgroundImage: `url('${getOptimizedImage("https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80")}')`
+          backgroundImage: "url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80')" 
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-[#0f2a2d]/90 via-[#0f2a2d]/70 to-[#0f2a2d]/50"></div>
@@ -20,7 +19,7 @@ export default function HeroSection() {
       
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div className="max-w-3xl">
           <div className="animate-fade-in">
             <span className="inline-block bg-teal-500/20 text-teal-100 px-4 py-1.5 rounded-full text-sm font-medium mb-6">
               Zavetišče za živali Maribor
@@ -60,17 +59,6 @@ export default function HeroSection() {
                 </Button>
               </AnimatedWrapper>
             </div>
-          </div>
-          
-          {/* Logo on the right side */}
-          <div className="hidden md:flex justify-end items-center">
-            <AnimatedWrapper animation="fade-in" delay={350}>
-              <img 
-                src="/lovable-uploads/3206d7a5-d3fa-4ab0-b901-207b3526730f.png" 
-                alt="Zavetišče za živali Maribor logo" 
-                className="w-72 h-auto object-contain drop-shadow-lg"
-              />
-            </AnimatedWrapper>
           </div>
         </div>
       </div>
