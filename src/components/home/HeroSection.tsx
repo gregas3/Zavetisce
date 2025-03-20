@@ -2,6 +2,7 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 
 export default function HeroSection() {
   return (
@@ -42,16 +43,18 @@ export default function HeroSection() {
                   Posvoji zdaj <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Button 
-                size="lg" 
-                variant="darkTeal" 
-                asChild 
-                className="rounded-full font-medium text-base animate-fade-in delay-200"
-              >
-                <Link to="/donacije">
-                  Podpri zavetišče
-                </Link>
-              </Button>
+              <AnimatedWrapper animation="slide-up" delay={300}>
+                <Button 
+                  size="lg" 
+                  variant="darkTeal" 
+                  asChild 
+                  className="rounded-full font-medium text-base btn-pulse transition-all hover:shadow-md hover:shadow-teal-700/20 hover:-translate-y-1"
+                >
+                  <Link to="/donacije">
+                    Podpri zavetišče
+                  </Link>
+                </Button>
+              </AnimatedWrapper>
             </div>
           </div>
         </div>
