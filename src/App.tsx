@@ -18,6 +18,7 @@ import Donations from "./pages/Donations";
 import Volunteer from "./pages/Volunteer";
 import Kontakt from "./pages/Kontakt";
 import AboutUs from "./pages/AboutUs";
+import LostAndFound from "./pages/LostAndFound";
 
 const queryClient = new QueryClient();
 
@@ -56,8 +57,8 @@ const App = () => (
           {/* About us route */}
           <Route path="/o-nas" element={<AboutUs />} />
           
-          {/* Routes for future implementation */}
-          <Route path="/izgubljeni-najdeni" element={<NotFound />} />
+          {/* Lost and Found route */}
+          <Route path="/izgubljeni-najdeni" element={<LostAndFound />} />
           
           {/* Catch-all route */}
           <Route path="*" element={<NotFound />} />
