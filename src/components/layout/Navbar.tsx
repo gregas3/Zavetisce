@@ -17,19 +17,34 @@ import { cn } from "@/lib/utils";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [scrollingUp, setScrollingUp] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
+      const currentScrollY = window.scrollY;
+      
+      // Determine scroll direction
+      if (currentScrollY < lastScrollY) {
+        setScrollingUp(true);
+      } else {
+        setScrollingUp(false);
+      }
+      
+      // Determine if page is scrolled
+      if (currentScrollY > 10) {
         setScrolled(true);
       } else {
         setScrolled(false);
       }
+      
+      setLastScrollY(currentScrollY);
     };
+    
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -47,8 +62,10 @@ export default function Navbar() {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled 
-          ? "py-2 bg-transparent" 
-          : "py-4 bg-gradient-to-b from-teal-50/95 to-teal-50/80 backdrop-blur-[2px]"
+          ? scrollingUp
+            ? "py-3 bg-gradient-to-b from-teal-50/95 to-teal-50/80 backdrop-blur-[2px]" // Scrolling up - more visible
+            : "py-2 bg-transparent" // Scrolling down - transparent
+          : "py-4 bg-gradient-to-b from-teal-50/95 to-teal-50/80 backdrop-blur-[2px]" // At top - fully visible
       }`}
       style={{ borderBottom: 'none' }}
     >
