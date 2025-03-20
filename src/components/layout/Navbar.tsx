@@ -47,10 +47,10 @@ export default function Navbar() {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled 
-          ? "py-2 bg-teal-50/95 backdrop-blur-md shadow-md" 
+          ? "py-2 bg-transparent backdrop-blur-sm" 
           : "py-4 bg-gradient-to-b from-teal-50/95 to-teal-50/80 backdrop-blur-sm"
       }`}
-      style={{ borderBottom: 'none' }} // Explicitly remove any border
+      style={{ borderBottom: 'none' }}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
