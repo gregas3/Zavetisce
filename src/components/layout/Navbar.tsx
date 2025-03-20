@@ -18,12 +18,15 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [scrollingUp, setScrollingUp] = useState(false);
+  const [atBottom, setAtBottom] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
       
       // Determine scroll direction
       if (currentScrollY < lastScrollY) {
@@ -37,6 +40,13 @@ export default function Navbar() {
         setScrolled(true);
       } else {
         setScrolled(false);
+      }
+      
+      // Check if at bottom of page (within 50px threshold)
+      if ((windowHeight + currentScrollY) >= documentHeight - 50) {
+        setAtBottom(true);
+      } else {
+        setAtBottom(false);
       }
       
       setLastScrollY(currentScrollY);
@@ -62,8 +72,8 @@ export default function Navbar() {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled 
-          ? scrollingUp
-            ? "py-3 bg-gradient-to-b from-teal-50/95 to-teal-50/80 backdrop-blur-[2px]" // Scrolling up - more visible
+          ? (scrollingUp || atBottom)
+            ? "py-3 bg-gradient-to-b from-teal-50/95 to-teal-50/80 backdrop-blur-[2px]" // Scrolling up or at bottom - visible
             : "py-2 bg-transparent" // Scrolling down - transparent
           : "py-4 bg-gradient-to-b from-teal-50/95 to-teal-50/80 backdrop-blur-[2px]" // At top - fully visible
       }`}
