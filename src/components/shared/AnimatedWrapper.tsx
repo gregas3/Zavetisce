@@ -37,7 +37,7 @@ export default function AnimatedWrapper({
           }
         });
       },
-      { threshold }
+      { threshold, rootMargin: '10px' }
     );
 
     if (ref.current) {

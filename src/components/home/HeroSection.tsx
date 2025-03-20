@@ -1,7 +1,16 @@
+
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+
 export default function HeroSection() {
+  const scrollToNextSection = () => {
+    const nextSection = document.querySelector('.section-padding');
+    if (nextSection) {
+      nextSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return <div className="relative min-h-[90vh] flex items-center overflow-hidden">
       {/* Background image with overlay */}
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
@@ -41,9 +50,13 @@ export default function HeroSection() {
         </div>
       </div>
       
-      {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-float">
-        <div className="w-8 h-14 rounded-full border-2 border-teal-400/30 flex justify-center">
+      {/* Scroll indicator - improved with onClick handler */}
+      <div 
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-float cursor-pointer" 
+        onClick={scrollToNextSection}
+        aria-label="Scroll down"
+      >
+        <div className="w-8 h-14 rounded-full border-2 border-teal-400/30 flex justify-center hover:border-teal-400/60 transition-normal">
           <div className="w-1.5 h-3 bg-teal-400/60 rounded-full mt-2 animate-[bounce_1.5s_infinite]"></div>
         </div>
       </div>
