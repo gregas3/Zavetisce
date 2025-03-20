@@ -14,6 +14,7 @@ import CatsAdoption from "./pages/CatsAdoption";
 import Appointments from "./pages/Appointments";
 import Questionnaire from "./pages/Questionnaire";
 import AdoptionProcess from "./pages/AdoptionProcess";
+import Donations from "./pages/Donations";
 
 const queryClient = new QueryClient();
 
@@ -40,10 +41,12 @@ const App = () => (
           {/* Appointments route */}
           <Route path="/termini" element={<Appointments />} />
           
+          {/* Donations route */}
+          <Route path="/donacije" element={<Donations />} />
+          
           {/* Routes for future implementation */}
           <Route path="/izgubljeni-najdeni" element={<NotFound />} />
           <Route path="/prostovoljstvo" element={<NotFound />} />
-          <Route path="/donacije" element={<NotFound />} />
           <Route path="/kontakt" element={<NotFound />} />
           <Route path="/o-nas" element={<NotFound />} />
           

@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { PawPrint, Search, Heart, Calendar, DollarSign, Cat } from "lucide-react";
+import { PawPrint, Search, Heart, Calendar, DollarSign, Mail } from "lucide-react";
 import AnimatedWrapper from "../shared/AnimatedWrapper";
 
 const links = [
@@ -45,10 +45,10 @@ const links = [
     delay: 400,
   },
   {
-    title: "Prosto živeče mačke",
-    description: "Informacije o TNR in sterilizacijah",
-    icon: Cat,
-    link: "/prosto-zivece-macke",
+    title: "Kontakt",
+    description: "Kontaktirajte nas za več informacij",
+    icon: Mail,
+    link: "/kontakt",
     color: "bg-teal-50 text-teal-600",
     delay: 500,
   },
