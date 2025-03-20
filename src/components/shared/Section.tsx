@@ -6,13 +6,14 @@ interface SectionProps {
   id?: string;
   title?: string;
   description?: string;
-  subtitle?: string; // Added subtitle prop
+  subtitle?: string;
   className?: string;
   titleClassName?: string;
   descriptionClassName?: string;
   children: ReactNode;
   centered?: boolean;
   animate?: boolean;
+  animation?: 'fade-in' | 'zoom-in' | 'slide-up' | 'slide-in-right' | 'fade-in-up' | 'none' | 'float' | 'bounce-slow' | 'shake';
 }
 
 export default function Section({
@@ -26,6 +27,7 @@ export default function Section({
   children,
   centered = false,
   animate = true,
+  animation = 'fade-in',
 }: SectionProps) {
   const content = (
     <section id={id} className={`section-padding relative ${className}`} tabIndex={-1}>
@@ -55,7 +57,7 @@ export default function Section({
   );
 
   return animate ? (
-    <AnimatedWrapper animation="fade-in">
+    <AnimatedWrapper animation={animation}>
       {content}
     </AnimatedWrapper>
   ) : content;

@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -113,6 +114,21 @@ export default {
 					'0%, 100%': { transform: 'translateY(0)' },
 					'50%': { transform: 'translateY(-10px)' }
 				},
+				'bounce-slow': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-20px)' }
+				},
+				'shake': {
+					'0%, 100%': { transform: 'rotate(0)' },
+					'20%': { transform: 'rotate(8deg)' },
+					'40%': { transform: 'rotate(-8deg)' },
+					'60%': { transform: 'rotate(8deg)' },
+					'80%': { transform: 'rotate(-8deg)' }
+				},
+				'spin-slow': {
+					'from': { transform: 'rotate(0deg)' },
+					'to': { transform: 'rotate(360deg)' }
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -123,6 +139,9 @@ export default {
 				'slide-out-right': 'slide-out-right 0.3s ease-out',
 				'zoom-in': 'zoom-in 0.3s ease-out',
 				'float': 'float 6s ease-in-out infinite',
+				'bounce-slow': 'bounce-slow 3s ease-in-out infinite',
+				'shake': 'shake 2.5s ease-in-out infinite',
+				'spin-slow': 'spin-slow 10s linear infinite',
 			},
 			fontFamily: {
 				sans: ['Inter', 'system-ui', 'sans-serif'],

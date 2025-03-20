@@ -4,7 +4,7 @@ import { ReactNode, useEffect, useRef } from 'react';
 interface AnimatedWrapperProps {
   children: ReactNode;
   className?: string;
-  animation?: 'fade-in' | 'zoom-in' | 'slide-up' | 'slide-in-right' | 'fade-in-up' | 'none';
+  animation?: 'fade-in' | 'zoom-in' | 'slide-up' | 'slide-in-right' | 'fade-in-up' | 'none' | 'float' | 'bounce-slow' | 'shake';
   delay?: number;
   threshold?: number;
 }
@@ -31,6 +31,8 @@ export default function AnimatedWrapper({
                 entry.target.classList.add('translate-y-0');
               } else if (animation === 'slide-in-right') {
                 entry.target.classList.add('translate-x-0');
+              } else if (animation === 'float' || animation === 'bounce-slow' || animation === 'shake') {
+                // These animations are handled by CSS animation classes
               }
             }, delay);
             observer.unobserve(entry.target);
@@ -63,6 +65,12 @@ export default function AnimatedWrapper({
     animationClasses = 'opacity-0 translate-y-10 transition-all duration-700 ease-out';
   } else if (animation === 'slide-in-right') {
     animationClasses = 'opacity-0 translate-x-10 transition-all duration-700 ease-out';
+  } else if (animation === 'float') {
+    animationClasses = 'animate-float';
+  } else if (animation === 'bounce-slow') {
+    animationClasses = 'animate-bounce-slow';
+  } else if (animation === 'shake') {
+    animationClasses = 'animate-shake';
   }
 
   return (
