@@ -99,10 +99,14 @@
     background-attachment: fixed;
     background-size: cover;
     position: relative;
+    margin: 0;
+    padding: 0;
   }
   
   html {
     scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
   }
 
   ::selection {

@@ -44,7 +44,7 @@ const stats = [
 
 export default function StatsSection() {
   return (
-    <Section className="bg-gradient-to-r from-teal-50 to-teal-100/60">
+    <Section className="bg-gradient-to-r from-teal-50/90 to-teal-100/60">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat, index) => (
           <AnimatedWrapper
