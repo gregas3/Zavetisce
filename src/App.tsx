@@ -7,6 +7,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Helmet } from 'react-helmet';
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import DogsAdoption from "./pages/DogsAdoption";
+import DogProfile from "./pages/DogProfile";
+import CatsAdoption from "./pages/CatsAdoption";
 
 const queryClient = new QueryClient();
 
@@ -21,9 +24,13 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          
+          {/* Adoption routes */}
+          <Route path="/posvojitev/psi" element={<DogsAdoption />} />
+          <Route path="/posvojitev/psi/:id" element={<DogProfile />} />
+          <Route path="/posvojitev/mačke" element={<CatsAdoption />} />
+          
           {/* Routes for future implementation */}
-          <Route path="/posvojitev/psi" element={<NotFound />} />
-          <Route path="/posvojitev/mačke" element={<NotFound />} />
           <Route path="/posvojitev/postopek" element={<NotFound />} />
           <Route path="/izgubljeni-najdeni" element={<NotFound />} />
           <Route path="/prostovoljstvo" element={<NotFound />} />
