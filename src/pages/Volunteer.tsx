@@ -37,11 +37,14 @@ const Volunteer = () => {
         </section>
         
         {/* Dog Walking Section */}
-        <Section title="Sprehajanje psov" subtitle="Našim kosmatincem omogočite gibanje in socializacijo">
+        <Section title="Sprehajanje psov">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2">
               <AnimatedWrapper animation="fade-in" delay={100}>
                 <div className="prose prose-lg max-w-none">
+                  <p className="text-lg text-muted-foreground mb-6">
+                    Našim kosmatincem omogočite gibanje in socializacijo
+                  </p>
                   <p>
                     Zavetišče omogoča prostovoljcem, da prihajajo sprehajat zavetiške pse, s čimer psom nudijo prepotrebno dnevno gibanje in socializacijo. 
                     To je izjemno pomembno za dobro počutje naših varovancev in njihovo pripravo na nov dom.
@@ -158,9 +161,10 @@ const Volunteer = () => {
         </Section>
         
         {/* Other Ways to Help Section */}
-        <Section className="bg-teal-50/50" title="Druge oblike prostovoljstva" subtitle="Pomagajte na različne načine">
+        <Section className="bg-teal-50/50" title="Druge oblike prostovoljstva">
+          <div className="text-lg text-muted-foreground mb-6">Pomagajte na različne načine</div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <AnimatedWrapper animation="fade-in-up" delay={100}>
+            <AnimatedWrapper animation="slide-up" delay={100}>
               <Card className="h-full">
                 <div className="p-6">
                   <div className="bg-teal-100 rounded-full w-12 h-12 flex items-center justify-center mb-4">
@@ -174,7 +178,7 @@ const Volunteer = () => {
               </Card>
             </AnimatedWrapper>
             
-            <AnimatedWrapper animation="fade-in-up" delay={200}>
+            <AnimatedWrapper animation="slide-up" delay={200}>
               <Card className="h-full">
                 <div className="p-6">
                   <div className="bg-teal-100 rounded-full w-12 h-12 flex items-center justify-center mb-4">
@@ -188,7 +192,7 @@ const Volunteer = () => {
               </Card>
             </AnimatedWrapper>
             
-            <AnimatedWrapper animation="fade-in-up" delay={300}>
+            <AnimatedWrapper animation="slide-up" delay={300}>
               <Card className="h-full">
                 <div className="p-6">
                   <div className="bg-teal-100 rounded-full w-12 h-12 flex items-center justify-center mb-4">
