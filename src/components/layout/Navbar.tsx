@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, ChevronDown, Search, Heart, Dog, Cat, Mail } from "lucide-react";
+import { Menu, X, ChevronDown, Search, Heart, Dog, Cat, Mail, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
@@ -65,7 +65,9 @@ export default function Navbar() {
               <NavigationMenuList>
                 <NavigationMenuItem>
                   <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-teal-800 hover:bg-teal-100 hover:text-teal-700")}>
-                    <Link to="/">Domov</Link>
+                    <Link to="/" className="flex items-center">
+                      <Home size={20} className="mr-1" />
+                    </Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
                 
@@ -177,8 +179,9 @@ export default function Navbar() {
       top: "60px"
     }}>
         <nav className="container mx-auto px-6 py-8 flex flex-col space-y-4">
-          <Link to="/" className="text-lg py-3 block font-medium border-b border-teal-100 text-teal-800 hover:text-teal-600 transition-normal" onClick={closeMenu}>
-            Domov
+          <Link to="/" className="flex items-center gap-2 text-lg py-3 block font-medium border-b border-teal-100 text-teal-800 hover:text-teal-600 transition-normal" onClick={closeMenu}>
+            <Home size={20} className="text-teal-500" />
+            <span>Domov</span>
           </Link>
           
           <div className="border-b border-teal-100">
