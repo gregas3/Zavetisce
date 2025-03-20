@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -92,9 +93,24 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply font-sans text-foreground;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(135deg, hsl(216, 50%, 97%) 0%, hsl(220, 30%, 94%) 100%);
+    background-attachment: fixed;
+    background-size: cover;
+    position: relative;
+  }
+  
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239DB4D9' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
 
   html {
@@ -172,5 +188,23 @@
   
   .hover-scale {
     @apply transition-normal hover:scale-[1.02];
+  }
+  
+  /* Modern card styling */
+  .modern-card {
+    @apply bg-white/80 backdrop-blur-md border border-white/40 shadow-lg rounded-xl transition-normal hover:shadow-xl;
+  }
+  
+  /* Soft gradients for section backgrounds */
+  .bg-gradient-soft-blue {
+    background: linear-gradient(135deg, hsl(210, 50%, 98%) 0%, hsl(220, 60%, 94%) 100%);
+  }
+  
+  .bg-gradient-soft-amber {
+    background: linear-gradient(135deg, hsl(43, 100%, 96%) 0%, hsl(36, 100%, 90%) 100%);
+  }
+  
+  .bg-gradient-soft-purple {
+    background: linear-gradient(135deg, hsl(270, 50%, 98%) 0%, hsl(260, 60%, 94%) 100%);
   }
 }
