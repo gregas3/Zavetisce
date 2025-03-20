@@ -32,12 +32,12 @@ export default function HeroSection() {
               Vsaka žival si zasluži ljubeč dom in z vašo pomočjo lahko to uresničimo.
             </p>
             
-            <div className="flex items-center gap-4">
+            <div className="flex flex-row items-center gap-4">
               <Button 
                 size="lg" 
                 variant="teal"
                 asChild 
-                className="rounded-full font-medium text-base animate-fade-in delay-100"
+                className="rounded-full font-medium text-base animate-fade-in delay-100 h-12"
               >
                 <Link to="/posvojitev/psi">
                   Posvoji zdaj <ArrowRight className="ml-2 h-4 w-4" />
@@ -48,7 +48,7 @@ export default function HeroSection() {
                   size="lg" 
                   variant="darkTeal" 
                   asChild 
-                  className="rounded-full font-medium text-base btn-pulse transition-all hover:shadow-md hover:shadow-teal-700/20 hover:-translate-y-1"
+                  className="rounded-full font-medium text-base btn-pulse transition-all hover:shadow-md hover:shadow-teal-700/20 hover:-translate-y-1 h-12"
                 >
                   <Link to="/donacije">
                     Podpri zavetišče
