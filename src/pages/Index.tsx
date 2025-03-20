@@ -1,13 +1,35 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { Helmet } from 'react-helmet';
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import HeroSection from "@/components/home/HeroSection";
+import QuickLinks from "@/components/home/QuickLinks";
+import FeaturedAnimals from "@/components/home/FeaturedAnimals";
+import TestimonialsSection from "@/components/home/TestimonialsSection";
+import StatsSection from "@/components/home/StatsSection";
+import CtaSection from "@/components/home/CtaSection";
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <>
+      <Helmet>
+        <title>Zavetišče za živali Maribor</title>
+        <meta name="description" content="Zavetišče za zapuščene živali v Mariboru nudi dom izgubljenim, zapuščenim in odvzetim živalim. Posvojitev psov in mačk, prijava izgubljene ali najdene živali." />
+      </Helmet>
+      
+      <Navbar />
+      
+      <main className="min-h-screen pt-16">
+        <HeroSection />
+        <QuickLinks />
+        <FeaturedAnimals />
+        <StatsSection />
+        <TestimonialsSection />
+        <CtaSection />
+      </main>
+      
+      <Footer />
+    </>
   );
 };
 
