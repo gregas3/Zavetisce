@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, ChevronDown, Search, Heart, PawPrint } from "lucide-react";
@@ -108,7 +107,7 @@ export default function Navbar() {
                 </NavigationMenuItem>
                 
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="bg-transparent font-medium text-teal-800 hover:bg-teal-100 hover:text-teal-700">
+                  <NavigationMenuTrigger className="bg-transparent font-medium text-teal-800 hover:bg-teal-100 hover:text-teal-700 data-[state=open]:bg-teal-100">
                     Posvojitev
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
