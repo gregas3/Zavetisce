@@ -1,3 +1,4 @@
+
 import { Helmet } from 'react-helmet';
 import { ArrowRight, Clock, CalendarDays, Map, CheckCircle, Info, Pencil } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -8,6 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import Section from "@/components/shared/Section";
+
 const Volunteer = () => {
   return <>
       <Helmet>
@@ -151,7 +153,7 @@ const Volunteer = () => {
         {/* Other Ways to Help Section */}
         <Section className="bg-teal-50/50" title="Druge oblike prostovoljstva" subtitle="Pomagajte na različne načine">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <AnimatedWrapper animation="fade-in-up" delay={100}>
+            <AnimatedWrapper animation="fade-in" delay={100}>
               <Card className="h-full">
                 <div className="p-6">
                   <div className="bg-teal-100 rounded-full w-12 h-12 flex items-center justify-center mb-4">
@@ -165,7 +167,7 @@ const Volunteer = () => {
               </Card>
             </AnimatedWrapper>
             
-            <AnimatedWrapper animation="fade-in-up" delay={200}>
+            <AnimatedWrapper animation="fade-in" delay={200}>
               <Card className="h-full">
                 <div className="p-6">
                   <div className="bg-teal-100 rounded-full w-12 h-12 flex items-center justify-center mb-4">
@@ -179,7 +181,7 @@ const Volunteer = () => {
               </Card>
             </AnimatedWrapper>
             
-            <AnimatedWrapper animation="fade-in-up" delay={300}>
+            <AnimatedWrapper animation="fade-in" delay={300}>
               <Card className="h-full">
                 <div className="p-6">
                   <div className="bg-teal-100 rounded-full w-12 h-12 flex items-center justify-center mb-4">
