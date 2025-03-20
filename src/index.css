@@ -191,4 +191,52 @@
   .bg-gradient-soft-purple {
     background: linear-gradient(135deg, hsl(90, 60%, 96%) 0%, hsl(80, 70%, 92%) 100%);
   }
+  
+  /* Header animations */
+  .nav-item-hover {
+    @apply relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all after:duration-300;
+  }
+  
+  .nav-item-hover:hover::after {
+    @apply w-full;
+  }
+  
+  /* Subtle hover effects */
+  .subtle-hover {
+    @apply transition-all duration-300 hover:bg-accent/50 rounded-md;
+  }
+  
+  /* Button pulse animation */
+  .btn-pulse {
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(116, 196, 84, 0.7);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(116, 196, 84, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(116, 196, 84, 0);
+    }
+  }
+  
+  /* Mobile menu animations */
+  .mobile-menu-enter {
+    @apply transform translate-x-full;
+  }
+  
+  .mobile-menu-enter-active {
+    @apply transform translate-x-0 transition-transform duration-300 ease-out;
+  }
+  
+  .mobile-menu-exit {
+    @apply transform translate-x-0;
+  }
+  
+  .mobile-menu-exit-active {
+    @apply transform translate-x-full transition-transform duration-300 ease-in;
+  }
 }
