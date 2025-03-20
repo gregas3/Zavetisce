@@ -44,9 +44,9 @@ export default function HeroSection() {
               </Button>
               <Button 
                 size="lg" 
-                variant="outline" 
+                variant="darkTeal" 
                 asChild 
-                className="rounded-full font-medium text-base animate-fade-in delay-200 border-teal-400/30 text-teal-100 hover:bg-teal-500/20 hover:text-white"
+                className="rounded-full font-medium text-base animate-fade-in delay-200"
               >
                 <Link to="/donacije">
                   Podpri zavetišče
