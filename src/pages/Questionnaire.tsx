@@ -1,4 +1,3 @@
-
 import { useState, useRef } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
@@ -6,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import { FileText, ArrowLeft, Check, Send, Download, Printer } from "lucide-react";
-import { toPDF } from 'react-to-pdf';
+import { usePDF } from 'react-to-pdf';
 
 import { Button } from "@/components/ui/button";
 import {
@@ -102,6 +101,14 @@ const Questionnaire = () => {
   const [isPdfReady, setIsPdfReady] = useState(false);
   
   const pdfRef = useRef<HTMLDivElement>(null);
+  const { toPDF, targetRef } = usePDF({
+    filename: `Posvojitveni_vprašalnik_${formData.fullName?.replace(/\s+/g, '_') || 'uporabnik'}_${new Date().toISOString().split('T')[0]}.pdf`,
+    page: { 
+      margin: 20,
+      format: 'A4', 
+      orientation: 'portrait' 
+    },
+  });
   
   const personalInfoForm = useForm<z.infer<typeof personalInfoSchema>>({
     resolver: zodResolver(personalInfoSchema),
@@ -163,7 +170,6 @@ const Questionnaire = () => {
   const handleYesNoQuestionsSubmit = (data: z.infer<typeof yesNoQuestionsSchema>) => {
     console.log("Yes/No Questions:", data);
     
-    // Combine all form data
     const completeFormData = {
       ...personalInfoForm.getValues(),
       ...openQuestionsForm.getValues(),
@@ -176,8 +182,6 @@ const Questionnaire = () => {
     console.log("Complete Form Data:", completeFormData);
     setFormData(completeFormData);
     
-    // Here you would typically send the data to your backend
-    // For now, we'll just simulate a successful submission
     setTimeout(() => {
       setSubmissionComplete(true);
       setIsPdfReady(true);
@@ -185,22 +189,8 @@ const Questionnaire = () => {
   };
 
   const handleDownloadPdf = async () => {
-    if (!pdfRef.current) return;
-    
     try {
-      const fileName = `Posvojitveni_vprašalnik_${formData.fullName?.replace(/\s+/g, '_') || 'uporabnik'}_${new Date().toISOString().split('T')[0]}.pdf`;
-      
-      await toPDF(pdfRef.current, {
-        filename: fileName,
-        page: { 
-          margin: 20,
-          format: 'A4', 
-          orientation: 'portrait' 
-        },
-        footer: {
-          title: 'Zavetišče za živali Maribor - Posvojitveni vprašalnik',
-        }
-      });
+      await toPDF();
       
       toast({
         title: "PDF uspešno prenesen",
@@ -895,7 +885,7 @@ const Questionnaire = () => {
               Želite shraniti kopijo vprašalnika za lastno evidenco?
             </p>
             
-            <div className="flex justify-center gap-4">
+            <div className="flex justify-between gap-4">
               <Button 
                 variant="outline" 
                 className="w-full"
@@ -904,6 +894,16 @@ const Questionnaire = () => {
               >
                 <Download className="mr-2 h-4 w-4" />
                 Prenesi PDF
+              </Button>
+              
+              <Button 
+                variant="outline" 
+                className="w-full"
+                onClick={() => window.print()}
+                disabled={!isPdfReady}
+              >
+                <Printer className="mr-2 h-4 w-4" />
+                Natisni
               </Button>
               
               <Button variant="default" asChild className="w-full">
@@ -917,9 +917,8 @@ const Questionnaire = () => {
         </DialogContent>
       </Dialog>
 
-      {/* Hidden PDF container - used for generating the PDF */}
       <div className="hidden">
-        <div ref={pdfRef} className="p-8 min-h-[297mm] w-[210mm] bg-white">
+        <div ref={targetRef} className="p-8 min-h-[297mm] w-[210mm] bg-white">
           <div className="mb-8 text-center">
             <h1 className="text-2xl font-bold">Zavetišče za živali Maribor</h1>
             <h2 className="text-xl font-semibold mt-2">Posvojitveni vprašalnik</h2>
@@ -1084,3 +1083,4 @@ const Questionnaire = () => {
 };
 
 export default Questionnaire;
+
