@@ -103,8 +103,8 @@ const Volunteer = () => {
                 <Card className="overflow-hidden h-full">
                   <div className="relative h-48 overflow-hidden">
                     <img 
-                      src="/lovable-uploads/d217c1de-f33c-4077-a739-ce288aadeef1.png" 
-                      alt="Prostovoljec sprehaja psa" 
+                      src="/lovable-uploads/fc093f6e-e6ea-4ac7-bb9f-755468edeed0.png" 
+                      alt="Prostovoljec sprehaja psa v gozdu" 
                       className="w-full h-full object-cover"
                     />
                   </div>
