@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
+import { getOptimizedImage } from "@/lib/utils";
 
 export default function HeroSection() {
   return (
@@ -11,7 +12,7 @@ export default function HeroSection() {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ 
-          backgroundImage: "url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80')" 
+          backgroundImage: `url('${getOptimizedImage("https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80")}')`
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-[#0f2a2d]/90 via-[#0f2a2d]/70 to-[#0f2a2d]/50"></div>
@@ -62,12 +63,12 @@ export default function HeroSection() {
           </div>
           
           {/* Logo on the right side */}
-          <div className="hidden md:flex justify-start items-center">
+          <div className="hidden md:flex justify-end items-center">
             <AnimatedWrapper animation="fade-in" delay={350}>
               <img 
                 src="/lovable-uploads/3206d7a5-d3fa-4ab0-b901-207b3526730f.png" 
                 alt="Zavetišče za živali Maribor logo" 
-                className="w-64 h-auto"
+                className="w-72 h-auto object-contain drop-shadow-lg"
               />
             </AnimatedWrapper>
           </div>
