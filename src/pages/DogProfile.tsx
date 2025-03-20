@@ -1,378 +1,383 @@
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { PawPrint, Heart, Calendar, ArrowLeft, ArrowRight, CheckCircle, Info, Phone, Mail } from "lucide-react";
+import { format } from "date-fns";
+import { Helmet } from "react-helmet";
 
-import { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
-import { 
-  ChevronLeft, 
-  Calendar, 
-  Heart, 
-  Share2, 
-  Check, 
-  Info, 
-  MessageCircle,
-  PawPrint,
-  Syringe,
-  Scissors
-} from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { 
-  Breadcrumb, 
-  BreadcrumbItem, 
-  BreadcrumbLink,
-  BreadcrumbSeparator
-} from "@/components/ui/breadcrumb";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-// This would typically come from an API
-const getDogById = (id: number) => {
-  const dogs = [
-    {
-      id: 1,
-      name: "Reks",
-      breed: "Mešanec",
-      age: "2 leti",
-      gender: "samec",
-      size: "srednje velik",
-      image: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-      images: [
-        "https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-        "https://images.unsplash.com/photo-1546527868-ccb7ee7dfa6a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-        "https://images.unsplash.com/photo-1588943211346-0908a1fb0b01?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
-      ],
-      video: null,
-      description: "Reks je prijazen in energičen pes z veliko ljubezni. Rad ima dolge sprehode in igranje. Išče aktivno družino, ki mu bo nudila dovolj gibanja in pozornosti.",
-      story: "Reks je bil najden v okolici Maribora, kjer je taval sam in brez ovratnice. Ko so ga pripeljali v zavetišče, je bil nekoliko prestrašen, a se je hitro navadil na novo okolje in začel kazati svojo prijazno naravo. Reks je izredno prijazen do ljudi in se dobro razume z večino drugih psov.",
-      characteristics: ["prijazen", "energičen", "igriv", "družaben", "radoveden", "zvest"],
-      vaccinated: true,
-      neutered: true,
-      microchipped: true,
-      healthStatus: "Zdrav, brez posebnosti",
-      goodWith: ["otroci", "drugi psi"],
-      notGoodWith: ["mačke"],
-      requiresExperience: false,
-      arrivalDate: "15.04.2023",
-    },
-    // ... add more dogs with same structure as needed
-  ];
-  
-  return dogs.find(dog => dog.id === id) || null;
+const fetchDogById = async (id: string) => {
+  await new Promise((resolve) => setTimeout(resolve, 500));
+
+  return {
+    id,
+    name: "Rex",
+    images: [
+      "/placeholder.svg",
+      "/placeholder.svg",
+      "/placeholder.svg"
+    ],
+    age: "2 leti",
+    breed: "Mešanec",
+    gender: "Samec",
+    size: "Srednje velik",
+    color: "Rjava",
+    status: "Na voljo za posvojitev",
+    microchipped: true,
+    neutered: true,
+    vaccinated: true,
+    description: "Rex je prijazni in energičen pes, ki obožuje igro in sprehode. Je zelo inteligenten in se hitro uči. Išče aktiven dom z veliko ljubezni in prostora za igro.",
+    suitableFor: "Aktivna družina, dom z vrtom",
+    notSuitableFor: "Stanovanje, družine z majhnimi otroki",
+    additionalInfo: "Rex je bil najden zapuščen ob cesti. Potreboval je nekaj časa, da se je navadil na zavetišče, vendar je zdaj zelo družaben in prijateljski.",
+    dateArrived: "2023-06-15",
+    adoptionRequirements: "- Predhodne izkušnje s psi\n- Ograjen vrt\n- Redni sprehodi in aktivnosti\n- Potrpežljivost in čas za urjenje",
+    contactInfo: {
+      phone: "+386 (0)2 480 16 60",
+      email: "info@zavetisce-mb.si"
+    }
+  };
 };
 
 const DogProfile = () => {
   const { id } = useParams<{ id: string }>();
-  const [activeImage, setActiveImage] = useState(0);
-  
-  // In a real app, this would fetch data from an API
-  const dog = id ? getDogById(Number(id)) : null;
-  
-  if (!dog) {
+  const navigate = useNavigate();
+
+  const { data: dog, isLoading, error } = useQuery({
+    queryKey: ["dog", id],
+    queryFn: () => fetchDogById(id || ""),
+    enabled: !!id,
+  });
+
+  const handleScheduleAppointment = () => {
+    navigate(`/termini?animalId=${dog?.id}&animalName=${dog?.name}&animalType=Pes`);
+  };
+
+  if (isLoading) {
     return (
       <>
         <Navbar />
-        <div className="container mx-auto px-4 py-16 min-h-[60vh] flex flex-col items-center justify-center">
-          <h2 className="text-2xl font-bold mb-4">Pes ni bil najden</h2>
-          <p className="text-muted-foreground mb-6">Žal nismo našli psa s to identifikacijsko številko.</p>
-          <Button asChild>
-            <Link to="/posvojitev/psi">Nazaj na seznam psov</Link>
-          </Button>
-        </div>
+        <main className="pt-20 pb-10">
+          <div className="container">
+            <div className="animate-pulse space-y-6">
+              <div className="h-4 bg-gray-200 rounded w-1/4"></div>
+              <div className="h-8 bg-gray-200 rounded w-1/2"></div>
+              <div className="h-64 bg-gray-200 rounded"></div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="h-48 bg-gray-200 rounded"></div>
+                <div className="h-48 bg-gray-200 rounded"></div>
+              </div>
+            </div>
+          </div>
+        </main>
         <Footer />
       </>
     );
   }
-  
+
+  if (error || !dog) {
+    return (
+      <>
+        <Navbar />
+        <main className="pt-20 pb-10">
+          <div className="container text-center py-10">
+            <h1 className="text-2xl font-bold mb-4">Pes ni bil najden</h1>
+            <p className="mb-6">Oprostite, iskani pes ne obstaja ali pa je bil odstranjen.</p>
+            <Button asChild>
+              <Link to="/posvojitev/psi">Nazaj na seznam psov</Link>
+            </Button>
+          </div>
+        </main>
+        <Footer />
+      </>
+    );
+  }
+
   return (
     <>
       <Helmet>
-        <title>{dog.name} | Posvojitev psa | Zavetišče za živali Maribor</title>
-        <meta name="description" content={`Spoznajte ${dog.name}, ${dog.age} ${dog.breed} ${dog.gender}, ki išče nov dom. ${dog.description.substring(0, 100)}...`} />
+        <title>{dog.name} | Zavetišče za živali Maribor</title>
+        <meta name="description" content={`Spoznajte ${dog.name} - ${dog.breed}, ${dog.age}. ${dog.description}`} />
       </Helmet>
-      
+
       <Navbar />
-      
-      <main className="min-h-screen pt-16">
-        <div className="container mx-auto px-4 py-8">
+
+      <main className="pt-20 pb-10">
+        <div className="container">
           <Breadcrumb className="mb-6">
-            <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link to="/">Domov</Link>
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link to="/posvojitev/psi">Posvojitev psov</Link>
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbLink>{dog.name}</BreadcrumbLink>
-            </BreadcrumbItem>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link to="/">Domov</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link to="/posvojitev/psi">Psi</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>{dog.name}</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
           </Breadcrumb>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
-            <div className="flex flex-col">
-              <div className="aspect-video bg-accent rounded-xl overflow-hidden mb-3">
-                <img 
-                  src={dog.images[activeImage]} 
-                  alt={`${dog.name} - ${activeImage + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              
-              <div className="flex gap-2 overflow-x-auto pb-2">
-                {dog.images.map((img, index) => (
-                  <button
-                    key={index}
-                    className={`rounded-lg overflow-hidden flex-shrink-0 transition-all ${activeImage === index ? 'ring-2 ring-primary' : 'opacity-70 hover:opacity-100'}`}
-                    onClick={() => setActiveImage(index)}
-                  >
-                    <img 
-                      src={img} 
-                      alt={`${dog.name} thumbnail ${index + 1}`} 
-                      className="w-20 h-20 object-cover"
-                    />
-                  </button>
-                ))}
-                
-                {/* If there's a video, show it as last thumbnail */}
-                {dog.video && (
-                  <button
-                    className={`rounded-lg overflow-hidden flex-shrink-0 relative transition-all ${activeImage === dog.images.length ? 'ring-2 ring-primary' : 'opacity-70 hover:opacity-100'}`}
-                    onClick={() => setActiveImage(dog.images.length)}
-                  >
-                    <img 
-                      src={dog.images[0]} 
-                      alt={`${dog.name} video thumbnail`} 
-                      className="w-20 h-20 object-cover opacity-50"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="bg-background/80 rounded-full p-1">
-                        <svg className="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
-                      </div>
-                    </div>
-                  </button>
-                )}
-              </div>
-            </div>
-            
-            <div>
-              <div className="flex flex-wrap gap-3 items-center mb-4">
-                <h1 className="text-3xl sm:text-4xl font-bold">{dog.name}</h1>
-                <Badge variant={dog.gender === 'samec' ? 'default' : 'secondary'} className="text-sm">
-                  {dog.gender}
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2">
+              <h1 className="text-3xl font-bold mb-6 flex items-center gap-2">
+                <PawPrint className="text-primary" size={28} />
+                {dog.name}
+                <Badge variant="outline" className="ml-2 bg-green-50 text-green-700 border-green-200">
+                  {dog.status}
                 </Badge>
-              </div>
-              
-              <div className="flex flex-wrap gap-6 mb-6 text-muted-foreground">
-                <div>
-                  <span className="font-medium text-foreground">Pasma:</span> {dog.breed}
-                </div>
-                <div>
-                  <span className="font-medium text-foreground">Starost:</span> {dog.age}
-                </div>
-                <div>
-                  <span className="font-medium text-foreground">Velikost:</span> {dog.size}
-                </div>
-                <div>
-                  <span className="font-medium text-foreground">Datum prihoda:</span> {dog.arrivalDate}
-                </div>
-              </div>
-              
-              <p className="text-lg mb-6">{dog.description}</p>
-              
-              <div className="flex flex-wrap gap-2 mb-8">
-                {dog.characteristics.map((char, i) => (
-                  <Badge key={i} className="bg-primary/10 text-primary hover:bg-primary/20 border-0">
-                    {char}
-                  </Badge>
-                ))}
-              </div>
-              
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
-                <div className="flex items-center gap-2">
-                  <div className="bg-green-50 text-green-500 p-2 rounded-full">
-                    <Syringe size={16} />
-                  </div>
-                  <span className={dog.vaccinated ? "text-green-700" : "text-muted-foreground line-through"}>
-                    Cepljen
-                  </span>
-                </div>
-                
-                <div className="flex items-center gap-2">
-                  <div className="bg-green-50 text-green-500 p-2 rounded-full">
-                    <Scissors size={16} />
-                  </div>
-                  <span className={dog.neutered ? "text-green-700" : "text-muted-foreground line-through"}>
-                    Steriliziran/Kastriran
-                  </span>
-                </div>
-                
-                <div className="flex items-center gap-2">
-                  <div className="bg-green-50 text-green-500 p-2 rounded-full">
-                    <Check size={16} />
-                  </div>
-                  <span className={dog.microchipped ? "text-green-700" : "text-muted-foreground line-through"}>
-                    Čipiran
-                  </span>
-                </div>
-              </div>
-              
-              <div className="flex flex-col sm:flex-row gap-3">
-                <Button size="lg" asChild className="flex-1">
-                  <Link to="/termini">
-                    <Calendar className="mr-2 h-5 w-5" />
-                    Rezerviraj termin za obisk
-                  </Link>
-                </Button>
-                
-                <div className="flex gap-2">
-                  <Button variant="outline" size="icon">
-                    <Heart className="h-5 w-5" />
-                  </Button>
-                  <Button variant="outline" size="icon">
-                    <Share2 className="h-5 w-5" />
-                  </Button>
-                </div>
-              </div>
+              </h1>
+
+              <Carousel className="mb-8">
+                <CarouselContent>
+                  {dog.images.map((image, index) => (
+                    <CarouselItem key={index}>
+                      <div className="aspect-video w-full overflow-hidden rounded-xl">
+                        <img
+                          src={image}
+                          alt={`${dog.name} - slika ${index + 1}`}
+                          className="object-cover w-full h-full"
+                        />
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
+
+              <Tabs defaultValue="about" className="mt-6">
+                <TabsList className="grid w-full grid-cols-3">
+                  <TabsTrigger value="about">O psu</TabsTrigger>
+                  <TabsTrigger value="requirements">Posvojitev</TabsTrigger>
+                  <TabsTrigger value="health">Zdravje</TabsTrigger>
+                </TabsList>
+                <TabsContent value="about" className="mt-4">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>O {dog.name}</CardTitle>
+                      <CardDescription>
+                        Spoznajte {dog.name} in ugotovite, ali je pravi pes za vas.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <p>{dog.description}</p>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div>
+                          <h3 className="font-semibold mb-2">Primeren za:</h3>
+                          <p className="text-sm">{dog.suitableFor}</p>
+                        </div>
+                        <div>
+                          <h3 className="font-semibold mb-2">Ni primeren za:</h3>
+                          <p className="text-sm">{dog.notSuitableFor}</p>
+                        </div>
+                      </div>
+                      
+                      <div className="mt-4">
+                        <h3 className="font-semibold mb-2">Dodatne informacije:</h3>
+                        <p className="text-sm">{dog.additionalInfo}</p>
+                      </div>
+                      
+                      <div className="mt-4">
+                        <h3 className="font-semibold mb-2">V zavetišču od:</h3>
+                        <p className="text-sm">{format(new Date(dog.dateArrived), "d. MMMM yyyy")}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+                <TabsContent value="requirements" className="mt-4">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Zahteve za posvojitev</CardTitle>
+                      <CardDescription>
+                        Pred posvojitvijo {dog.name} morate izpolnjevati naslednje pogoje.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <pre className="whitespace-pre-line font-sans text-sm">
+                        {dog.adoptionRequirements}
+                      </pre>
+                      
+                      <div className="mt-6 p-4 bg-amber-50 rounded-lg border border-amber-200">
+                        <h3 className="font-semibold flex items-center gap-2 text-amber-800">
+                          <Info size={18} />
+                          Postopek posvojitve
+                        </h3>
+                        <ol className="mt-2 space-y-2 text-sm text-amber-800 list-decimal pl-5">
+                          <li>Rezervirajte termin za obisk in spoznavanje psa</li>
+                          <li>Ob obisku se pogovorite z osebjem o vaših pogojih za psa</li>
+                          <li>Izpolnite vlogo za posvojitev</li>
+                          <li>Po odobritvi vloge sledi podpis pogodbe o posvojitvi</li>
+                          <li>Plačilo stroškov posvojitve (cepljenje, čipiranje, sterilizacija)</li>
+                          <li>Odpeljete novega družinskega člana domov</li>
+                        </ol>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+                <TabsContent value="health" className="mt-4">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Zdravstveno stanje</CardTitle>
+                      <CardDescription>
+                        Zdravstvene informacije in oskrba, ki jo je {dog.name} že prejel.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-2">
+                          <CheckCircle size={18} className={dog.microchipped ? "text-green-500" : "text-gray-300"} />
+                          <span className={dog.microchipped ? "text-green-700" : "text-gray-500"}>
+                            {dog.microchipped ? "Čipiran" : "Ni čipiran"}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <CheckCircle size={18} className={dog.neutered ? "text-green-500" : "text-gray-300"} />
+                          <span className={dog.neutered ? "text-green-700" : "text-gray-500"}>
+                            {dog.neutered ? "Kastriran/Steriliziran" : "Ni kastriran/steriliziran"}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <CheckCircle size={18} className={dog.vaccinated ? "text-green-500" : "text-gray-300"} />
+                          <span className={dog.vaccinated ? "text-green-700" : "text-gray-500"}>
+                            {dog.vaccinated ? "Cepljen" : "Ni cepljen"}
+                          </span>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+              </Tabs>
             </div>
-          </div>
-          
-          <Tabs defaultValue="info" className="mb-10">
-            <TabsList className="mb-6">
-              <TabsTrigger value="info">Podrobnosti</TabsTrigger>
-              <TabsTrigger value="story">Zgodba</TabsTrigger>
-              <TabsTrigger value="adoption">Posvojitev</TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="info" className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="bg-card rounded-xl border border-border p-6">
-                  <h3 className="text-xl font-bold mb-4 flex items-center">
-                    <Check className="mr-2 h-5 w-5 text-green-500" />
-                    Se dobro razume z
-                  </h3>
+
+            <div className="lg:col-span-1">
+              <Card className="mb-6">
+                <CardHeader>
+                  <CardTitle>Osnovne informacije</CardTitle>
+                </CardHeader>
+                <CardContent>
                   <ul className="space-y-2">
-                    {dog.goodWith.map((item, i) => (
-                      <li key={i} className="flex items-center gap-2">
-                        <Check className="h-4 w-4 text-green-500" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                {dog.notGoodWith && dog.notGoodWith.length > 0 && (
-                  <div className="bg-card rounded-xl border border-border p-6">
-                    <h3 className="text-xl font-bold mb-4 flex items-center">
-                      <Info className="mr-2 h-5 w-5 text-amber-500" />
-                      Ni primeren za
-                    </h3>
-                    <ul className="space-y-2">
-                      {dog.notGoodWith.map((item, i) => (
-                        <li key={i} className="flex items-center gap-2">
-                          <Info className="h-4 w-4 text-amber-500" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-              
-              <div className="bg-card rounded-xl border border-border p-6">
-                <h3 className="text-xl font-bold mb-4">Zdravstveno stanje</h3>
-                <p>{dog.healthStatus}</p>
-                
-                {dog.requiresExperience && (
-                  <div className="mt-4 bg-amber-50 text-amber-800 p-4 rounded-lg">
-                    <div className="font-medium mb-1">Opomba:</div>
-                    <p>Ta pes potrebuje izkušenega lastnika z znanjem o psih.</p>
-                  </div>
-                )}
-              </div>
-            </TabsContent>
-            
-            <TabsContent value="story">
-              <div className="bg-card rounded-xl border border-border p-6">
-                <h3 className="text-xl font-bold mb-4">Zgodba {dog.name}</h3>
-                <p className="whitespace-pre-line">{dog.story}</p>
-              </div>
-            </TabsContent>
-            
-            <TabsContent value="adoption">
-              <div className="bg-card rounded-xl border border-border p-6">
-                <h3 className="text-xl font-bold mb-4">Postopek posvojitve</h3>
-                <ol className="list-decimal pl-5 space-y-3">
-                  <li>Rezervirajte termin za obisk in spoznavanje psa.</li>
-                  <li>Obiščite zavetišče ob dogovorjenem terminu in spoznajte psa.</li>
-                  <li>Izpolnite vprašalnik za posvojitev in opravite pogovor z našim osebjem.</li>
-                  <li>Po odobritvi posvojitve in plačilu pristojbine lahko odpeljete svojega novega družinskega člana domov.</li>
-                </ol>
-                
-                <div className="mt-6 p-4 bg-primary/5 rounded-lg">
-                  <h4 className="font-semibold mb-2">Pristojbina za posvojitev</h4>
-                  <p>Pristojbina za posvojitev psa znaša 90€ in vključuje:</p>
-                  <ul className="mt-2 space-y-1">
-                    <li className="flex items-center gap-2">
-                      <PawPrint className="h-4 w-4 text-primary" />
-                      Mikročipiranje in vpis v centralni register
+                    <li className="flex justify-between items-center pb-2 border-b">
+                      <span className="text-gray-600">Pasma:</span>
+                      <span className="font-medium">{dog.breed}</span>
                     </li>
-                    <li className="flex items-center gap-2">
-                      <Syringe className="h-4 w-4 text-primary" />
-                      Cepljenje proti steklini
+                    <li className="flex justify-between items-center pb-2 border-b">
+                      <span className="text-gray-600">Starost:</span>
+                      <span className="font-medium">{dog.age}</span>
                     </li>
-                    <li className="flex items-center gap-2">
-                      <Check className="h-4 w-4 text-primary" />
-                      Razparazitenje
+                    <li className="flex justify-between items-center pb-2 border-b">
+                      <span className="text-gray-600">Spol:</span>
+                      <span className="font-medium">{dog.gender}</span>
                     </li>
-                    <li className="flex items-center gap-2">
-                      <Scissors className="h-4 w-4 text-primary" />
-                      Sterilizacijo/kastracijo (ali bon za storitev)
+                    <li className="flex justify-between items-center pb-2 border-b">
+                      <span className="text-gray-600">Velikost:</span>
+                      <span className="font-medium">{dog.size}</span>
+                    </li>
+                    <li className="flex justify-between items-center">
+                      <span className="text-gray-600">Barva:</span>
+                      <span className="font-medium">{dog.color}</span>
                     </li>
                   </ul>
-                </div>
-                
-                <div className="mt-6 flex flex-col sm:flex-row gap-4">
-                  <Button size="lg" asChild className="flex-1">
-                    <Link to="/termini">
-                      <Calendar className="mr-2 h-5 w-5" />
-                      Rezerviraj termin za obisk
+                </CardContent>
+              </Card>
+
+              <Card className="mb-6">
+                <CardHeader>
+                  <CardTitle>Posvojite {dog.name}</CardTitle>
+                  <CardDescription>Pomagajte {dog.name} najti nov dom za vedno.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <Button onClick={handleScheduleAppointment} className="w-full" size="lg">
+                    <Calendar className="mr-2" size={18} />
+                    Rezerviraj termin za ogled
+                  </Button>
+                  <Button variant="outline" className="w-full">
+                    <Heart className="mr-2" size={18} />
+                    Dodaj med priljubljene
+                  </Button>
+                </CardContent>
+                <CardFooter className="flex flex-col items-start">
+                  <p className="text-sm text-muted-foreground mb-2">Za več informacij:</p>
+                  <div className="space-y-1 text-sm">
+                    <p className="flex items-center gap-2">
+                      <Phone />
+                      {dog.contactInfo.phone}
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <Mail />
+                      {dog.contactInfo.email}
+                    </p>
+                  </div>
+                </CardFooter>
+              </Card>
+
+              <Card>
+                <CardHeader>
+                  <CardTitle>Drugi psi</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="flex justify-between">
+                    <Button variant="outline" asChild>
+                      <Link to={`/posvojitev/psi/${Number(id) - 1}`} className="flex items-center">
+                        <ArrowLeft size={16} className="mr-2" />
+                        Prejšnji pes
+                      </Link>
+                    </Button>
+                    <Button variant="outline" asChild>
+                      <Link to={`/posvojitev/psi/${Number(id) + 1}`} className="flex items-center">
+                        Naslednji pes
+                        <ArrowRight size={16} className="ml-2" />
+                      </Link>
+                    </Button>
+                  </div>
+                  <Button variant="secondary" asChild className="w-full">
+                    <Link to="/posvojitev/psi">
+                      Nazaj na seznam psov
                     </Link>
                   </Button>
-                  
-                  <Button variant="outline" size="lg" asChild className="flex-1">
-                    <Link to="/posvojitev/postopek">
-                      <Info className="mr-2 h-5 w-5" />
-                      Več o posvojitvi
-                    </Link>
-                  </Button>
-                </div>
-              </div>
-            </TabsContent>
-          </Tabs>
-          
-          <div className="mt-8 flex justify-between items-center">
-            <Button variant="outline" asChild>
-              <Link to="/posvojitev/psi">
-                <ChevronLeft className="mr-2 h-4 w-4" />
-                Nazaj na seznam psov
-              </Link>
-            </Button>
-            
-            <Button variant="default" className="gap-2">
-              <MessageCircle className="h-4 w-4" />
-              Kontaktirajte nas
-            </Button>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </main>
-      
+
       <Footer />
     </>
   );
