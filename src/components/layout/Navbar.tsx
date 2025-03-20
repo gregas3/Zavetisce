@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, ChevronDown, Search, Heart, Dog, Cat, Mail } from "lucide-react";
@@ -13,6 +12,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,6 +21,7 @@ export default function Navbar() {
   const [atBottom, setAtBottom] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,21 +29,18 @@ export default function Navbar() {
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
       
-      // Determine scroll direction
       if (currentScrollY < lastScrollY) {
         setScrollingUp(true);
       } else {
         setScrollingUp(false);
       }
       
-      // Determine if page is scrolled
       if (currentScrollY > 10) {
         setScrolled(true);
       } else {
         setScrolled(false);
       }
       
-      // Check if at bottom of page (within 50px threshold)
       if ((windowHeight + currentScrollY) >= documentHeight - 50) {
         setAtBottom(true);
       } else {
@@ -89,13 +87,12 @@ export default function Navbar() {
             <span className="sr-only">Zavetišče za živali Maribor</span>
             <img 
               alt="Logo" 
-              className="h-20 transition-normal drop-shadow-md" 
+              className="h-16 md:h-20 transition-normal drop-shadow-md" 
               src="/lovable-uploads/4538ce4d-c476-48c3-ad21-89aa38c7c769.png" 
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-2">
+          <div className="hidden lg:flex items-center gap-3">
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
@@ -217,11 +214,36 @@ export default function Navbar() {
               >
                 <Link to="/donacije">Doniraj</Link>
               </Button>
+              
+              <Link 
+                to="https://www.maribor.si/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="ml-4"
+              >
+                <img 
+                  src="/lovable-uploads/072fa08a-6143-4c19-8c93-afd108144826.png" 
+                  alt="Skupina JHMB" 
+                  className="h-12 lg:h-14 object-contain" 
+                />
+              </Link>
             </div>
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center gap-2">
+            <Link 
+              to="https://www.maribor.si/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="mr-2"
+            >
+              <img 
+                src="/lovable-uploads/072fa08a-6143-4c19-8c93-afd108144826.png" 
+                alt="Skupina JHMB" 
+                className="h-10 object-contain" 
+              />
+            </Link>
+            
             <button 
               onClick={toggleSearch} 
               className="p-2 text-teal-600 rounded-full transition-colors hover:bg-teal-100"
@@ -240,7 +262,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Search Bar - Shows when active */}
       <div 
         className={`container mx-auto px-4 overflow-hidden transition-all duration-300 ${
           searchActive ? "max-h-16 opacity-100 py-4" : "max-h-0 opacity-0"
@@ -259,7 +280,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       <div 
         className={`lg:hidden fixed inset-0 bg-white/95 backdrop-blur-[2px] z-40 transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
