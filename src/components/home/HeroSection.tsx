@@ -33,12 +33,12 @@ export default function HeroSection() {
             </p>
             
             <div className="flex flex-row items-center gap-4">
-              <AnimatedWrapper animation="slide-up" delay={200}>
+              <AnimatedWrapper animation="slide-up" delay={150}>
                 <Button 
                   size="lg" 
-                  variant="darkTeal" 
+                  variant="primary" 
                   asChild 
-                  className="rounded-full font-medium text-base btn-pulse transition-all hover:shadow-md hover:shadow-teal-700/20 hover:-translate-y-1 h-12"
+                  className="rounded-full font-medium text-base transition-all duration-300 hover:shadow-lg hover:shadow-teal-600/30 hover:-translate-y-1 h-12 bg-gradient-to-r from-teal-500 to-teal-400"
                 >
                   <Link to="/donacije">
                     Podpri zavetišče
@@ -46,12 +46,12 @@ export default function HeroSection() {
                 </Button>
               </AnimatedWrapper>
               
-              <AnimatedWrapper animation="slide-up" delay={300}>
+              <AnimatedWrapper animation="slide-up" delay={250}>
                 <Button 
                   size="lg" 
-                  variant="teal"
+                  variant="secondary"
                   asChild 
-                  className="rounded-full font-medium text-base h-12 transition-all hover:shadow-md hover:shadow-teal-600/20 hover:-translate-y-1"
+                  className="rounded-full font-medium text-base h-12 transition-all duration-300 hover:shadow-lg hover:shadow-teal-800/20 hover:-translate-y-1 bg-gradient-to-r from-teal-800 to-teal-700 text-white border border-teal-600/30"
                 >
                   <Link to="/posvojitev/psi" className="flex items-center">
                     Posvoji zdaj <ArrowRight className="ml-2 h-4 w-4" />
