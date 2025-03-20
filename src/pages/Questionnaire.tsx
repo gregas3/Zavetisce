@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { FileText, ArrowLeft, Check, Send, Download, Printer } from "lucide-react";
+import { FileText, ArrowLeft, Check, Send, Download, Printer, ArrowRight } from "lucide-react";
 import { usePDF } from 'react-to-pdf';
 
 import { Button } from "@/components/ui/button";
@@ -869,50 +869,59 @@ const Questionnaire = () => {
       </main>
 
       <Dialog open={submissionComplete} onOpenChange={setSubmissionComplete}>
-        <DialogContent className="max-w-md">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <Check className="text-green-500" />
-              Vprašalnik uspešno poslan
-            </DialogTitle>
-            <DialogDescription>
+        <DialogContent className="max-w-md p-0 overflow-hidden bg-white">
+          <div className="p-6">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="bg-green-100 rounded-full p-1">
+                <Check className="h-5 w-5 text-green-600" />
+              </div>
+              <DialogTitle className="text-lg font-medium">
+                Vprašalnik uspešno poslan
+              </DialogTitle>
+            </div>
+            
+            <DialogDescription className="text-sm text-gray-600 mb-6">
               Hvala za izpolnitev vprašalnika. Vaše podatke bomo pregledali in vas kontaktirali v roku 3 delovnih dni, če bomo menili, da ste primeren posvojitelj.
             </DialogDescription>
-          </DialogHeader>
-          
-          <div className="flex flex-col gap-4">
-            <p className="text-sm text-muted-foreground">
-              Želite shraniti kopijo vprašalnika za lastno evidenco?
-            </p>
             
-            <div className="flex justify-between gap-4">
-              <Button 
-                variant="outline" 
-                className="w-full"
-                onClick={handleDownloadPdf}
-                disabled={!isPdfReady}
-              >
-                <Download className="mr-2 h-4 w-4" />
-                Prenesi PDF
-              </Button>
+            <div className="mb-4">
+              <h3 className="text-sm font-medium mb-2">Želite shraniti kopijo vprašalnika za lastno evidenco?</h3>
               
-              <Button 
-                variant="outline" 
-                className="w-full"
-                onClick={() => window.print()}
-                disabled={!isPdfReady}
-              >
-                <Printer className="mr-2 h-4 w-4" />
-                Natisni
-              </Button>
-              
-              <Button variant="default" asChild className="w-full">
-                <Link to="/">
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  Nazaj na domačo stran
-                </Link>
-              </Button>
+              <div className="grid grid-cols-2 gap-3 mb-3">
+                <Button 
+                  variant="outline" 
+                  className="w-full flex items-center justify-center"
+                  onClick={handleDownloadPdf}
+                  disabled={!isPdfReady}
+                >
+                  <Download className="mr-2 h-4 w-4" />
+                  Prenesi PDF
+                </Button>
+                
+                <Button 
+                  variant="outline" 
+                  className="w-full flex items-center justify-center"
+                  onClick={() => window.print()}
+                  disabled={!isPdfReady}
+                >
+                  <Printer className="mr-2 h-4 w-4" />
+                  Natisni
+                </Button>
+              </div>
             </div>
+          </div>
+          
+          <div className="border-t">
+            <Button 
+              variant="blue" 
+              className="w-full rounded-none h-12 flex items-center justify-center text-sm font-medium"
+              asChild
+            >
+              <Link to="/">
+                <ArrowRight className="ml-2 h-4 w-4" />
+                Nazaj na domačo stran
+              </Link>
+            </Button>
           </div>
         </DialogContent>
       </Dialog>
