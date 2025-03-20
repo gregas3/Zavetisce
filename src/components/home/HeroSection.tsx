@@ -51,7 +51,7 @@ export default function HeroSection() {
                   size="lg" 
                   variant="secondary"
                   asChild 
-                  className="rounded-full font-medium text-base h-12 transition-all duration-300 hover:shadow-lg hover:shadow-teal-800/20 hover:-translate-y-1 bg-gradient-to-r from-teal-800 to-teal-700 text-white border border-teal-600/30"
+                  className="rounded-full font-medium text-base h-12 transition-all duration-300 hover:shadow-lg hover:shadow-teal-800/20 hover:-translate-y-1 bg-gradient-to-r from-teal-800 to-teal-700 text-white border border-teal-600/30 btn-pulse"
                 >
                   <Link to="/posvojitev/psi" className="flex items-center">
                     Posvoji zdaj <ArrowRight className="ml-2 h-4 w-4" />
