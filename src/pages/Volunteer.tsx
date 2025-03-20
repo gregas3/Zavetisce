@@ -32,7 +32,67 @@ const Volunteer = () => {
           </div>
         </section>
         
-        {/* Information Card Section - Moved to top */}
+        {/* Dog Walking Section - Now moved to top */}
+        <Section title="Sprehajanje psov" description="Našim kosmatincem omogočite gibanje in socializacijo">
+          <div className="prose prose-lg max-w-none">
+            <AnimatedWrapper animation="slide-up" delay={100}>
+              <p>
+                Zavetišče omogoča prostovoljcem, da prihajajo sprehajat zavetiške pse, s čimer psom nudijo prepotrebno dnevno gibanje in socializacijo. 
+                To je izjemno pomembno za dobro počutje naših varovancev in njihovo pripravo na nov dom.
+              </p>
+              
+              <h3 className="text-teal-700 font-semibold text-xl mt-6">Kdo lahko postane prostovoljec sprehajalec?</h3>
+              <ul className="space-y-2 mt-2">
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
+                  <span>Prostovoljec mora biti <strong>polnoleten</strong> in mora v zavetišču podpisati pristopno izjavo, da sprehaja pse na lastno odgovornost.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
+                  <span>Zaželeno je, da ima vsaj nekaj izkušenj z ravnanjem psov.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
+                  <span>Dobrodošli so prostovoljci, ki lahko prihajajo med tednom dopoldne, ker je takrat največja potreba po sprehajalcih (med vikendi jih imamo dovolj).</span>
+                </li>
+              </ul>
+              
+              <h3 className="text-teal-700 font-semibold text-xl mt-6">Kako poteka sprehajanje?</h3>
+              <ul className="space-y-2 mt-2">
+                <li className="flex items-start gap-2">
+                  <Clock className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
+                  <span>Sprehajanje poteka vsak delovnik med 7.00 in 13.00, ob sobotah, nedeljah in praznikih med 8.00 in 12.00.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <ArrowRight className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
+                  <span>Prostovoljec ob prihodu javi svojo prisotnost osebju, nato mu skrbnik živali preda psa v sprehod in da morebitna posebna navodila.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <ArrowRight className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
+                  <span>Med sprehodom prostovoljec skrbi za varnost, omogoči psu, da opravi potrebe in se razgiba, nato pa z njim izvaja nekaj vaj poslušnosti.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <ArrowRight className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
+                  <span>Po sprehodu psa vrne in poroča osebju o počutju psa.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <Info className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
+                  <span>V vročih poletjih ali ob močnem deževju sprehajanje ne poteka, oziroma se prilagodi razmeram.</span>
+                </li>
+              </ul>
+            </AnimatedWrapper>
+            
+            <AnimatedWrapper animation="slide-up" delay={200} className="mt-8">
+              <Link to="/termini">
+                <Button variant="primary" size="lg" className="gap-2">
+                  Rezerviraj termin za sprehod <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
+            </AnimatedWrapper>
+          </div>
+        </Section>
+        
+        {/* Information Card Section - Now moved below dog walking */}
         <Section className="bg-teal-50/50 py-10">
           <div className="max-w-4xl mx-auto">
             <AnimatedWrapper animation="slide-up" delay={100}>
@@ -109,66 +169,6 @@ const Volunteer = () => {
                   </div>
                 </CardContent>
               </Card>
-            </AnimatedWrapper>
-          </div>
-        </Section>
-        
-        {/* Dog Walking Section */}
-        <Section title="Sprehajanje psov" description="Našim kosmatincem omogočite gibanje in socializacijo">
-          <div className="prose prose-lg max-w-none">
-            <AnimatedWrapper animation="slide-up" delay={100}>
-              <p>
-                Zavetišče omogoča prostovoljcem, da prihajajo sprehajat zavetiške pse, s čimer psom nudijo prepotrebno dnevno gibanje in socializacijo. 
-                To je izjemno pomembno za dobro počutje naših varovancev in njihovo pripravo na nov dom.
-              </p>
-              
-              <h3 className="text-teal-700 font-semibold text-xl mt-6">Kdo lahko postane prostovoljec sprehajalec?</h3>
-              <ul className="space-y-2 mt-2">
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
-                  <span>Prostovoljec mora biti <strong>polnoleten</strong> in mora v zavetišču podpisati pristopno izjavo, da sprehaja pse na lastno odgovornost.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
-                  <span>Zaželeno je, da ima vsaj nekaj izkušenj z ravnanjem psov.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
-                  <span>Dobrodošli so prostovoljci, ki lahko prihajajo med tednom dopoldne, ker je takrat največja potreba po sprehajalcih (med vikendi jih imamo dovolj).</span>
-                </li>
-              </ul>
-              
-              <h3 className="text-teal-700 font-semibold text-xl mt-6">Kako poteka sprehajanje?</h3>
-              <ul className="space-y-2 mt-2">
-                <li className="flex items-start gap-2">
-                  <Clock className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
-                  <span>Sprehajanje poteka vsak delovnik med 7.00 in 13.00, ob sobotah, nedeljah in praznikih med 8.00 in 12.00.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <ArrowRight className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
-                  <span>Prostovoljec ob prihodu javi svojo prisotnost osebju, nato mu skrbnik živali preda psa v sprehod in da morebitna posebna navodila.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <ArrowRight className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
-                  <span>Med sprehodom prostovoljec skrbi za varnost, omogoči psu, da opravi potrebe in se razgiba, nato pa z njim izvaja nekaj vaj poslušnosti.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <ArrowRight className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
-                  <span>Po sprehodu psa vrne in poroča osebju o počutju psa.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Info className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
-                  <span>V vročih poletjih ali ob močnem deževju sprehajanje ne poteka, oziroma se prilagodi razmeram.</span>
-                </li>
-              </ul>
-            </AnimatedWrapper>
-            
-            <AnimatedWrapper animation="slide-up" delay={200} className="mt-8">
-              <Link to="/termini">
-                <Button variant="primary" size="lg" className="gap-2">
-                  Rezerviraj termin za sprehod <ArrowRight className="h-4 w-4" />
-                </Button>
-              </Link>
             </AnimatedWrapper>
           </div>
         </Section>
