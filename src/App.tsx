@@ -44,7 +44,7 @@ const App = () => (
           <Route path="/izgubljeni-najdeni" element={<NotFound />} />
           <Route path="/prostovoljstvo" element={<NotFound />} />
           <Route path="/donacije" element={<NotFound />} />
-          <Route path="/prosto-zivece-macke" element={<NotFound />} />
+          <Route path="/kontakt" element={<NotFound />} />
           <Route path="/o-nas" element={<NotFound />} />
           
           {/* Catch-all route */}

@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, ChevronDown, Search, Heart, Dog, Cat } from "lucide-react";
+import { Menu, X, ChevronDown, Search, Heart, Dog, Cat, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { 
   NavigationMenu,
@@ -176,7 +176,7 @@ export default function Navbar() {
                     asChild 
                     className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-teal-800 hover:bg-teal-100 hover:text-teal-700")}
                   >
-                    <Link to="/prosto-zivece-macke">Prosto živeče mačke</Link>
+                    <Link to="/kontakt">Kontakt</Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
                 
@@ -301,8 +301,8 @@ export default function Navbar() {
           <Link to="/prostovoljstvo" className="text-lg py-3 block font-medium border-b border-teal-100 text-teal-800 hover:text-teal-600 transition-normal" onClick={closeMenu}>
             Prostovoljstvo
           </Link>
-          <Link to="/prosto-zivece-macke" className="text-lg py-3 block font-medium border-b border-teal-100 text-teal-800 hover:text-teal-600 transition-normal" onClick={closeMenu}>
-            Prosto živeče mačke
+          <Link to="/kontakt" className="text-lg py-3 block font-medium border-b border-teal-100 text-teal-800 hover:text-teal-600 transition-normal" onClick={closeMenu}>
+            Kontakt
           </Link>
           <Link to="/termini" className="text-lg py-3 block font-medium border-b border-teal-100 text-teal-800 hover:text-teal-600 transition-normal" onClick={closeMenu}>
             Termini
