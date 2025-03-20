@@ -1,11 +1,10 @@
-
 import { useState } from "react";
 import { Helmet } from 'react-helmet';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Heart, SmartphoneNfc, ShoppingBag, AlertCircle, Copy, Check } from "lucide-react";
+import { Heart, SmartphoneNfc, ShoppingBag, AlertCircle, Copy, Check, Bitcoin, Wallet } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Section from "@/components/shared/Section";
@@ -54,6 +53,19 @@ const DonationNeeds = [
   }
 ];
 
+const CryptoAddresses = [
+  {
+    currency: "Bitcoin (BTC)",
+    address: "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+    icon: Bitcoin
+  },
+  {
+    currency: "Ethereum (ETH)",
+    address: "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
+    icon: Wallet
+  }
+];
+
 const Donations = () => {
   const [copied, setCopied] = useState<string | null>(null);
   
@@ -95,6 +107,10 @@ const Donations = () => {
               <TabsTrigger value="sms" className="flex-1 py-3">
                 <SmartphoneNfc className="mr-2 h-4 w-4" />
                 SMS donacije
+              </TabsTrigger>
+              <TabsTrigger value="crypto" className="flex-1 py-3">
+                <Bitcoin className="mr-2 h-4 w-4" />
+                Kripto donacije
               </TabsTrigger>
               <TabsTrigger value="material" className="flex-1 py-3">
                 <ShoppingBag className="mr-2 h-4 w-4" />
@@ -200,6 +216,72 @@ const Donations = () => {
                           </p>
                           <p className="text-sm text-blue-700 mt-1">
                             Cena sporočila je 5 EUR. Davek je vključen v ceno.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+              
+              <TabsContent value="crypto" className="mt-0">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Kripto donacije</CardTitle>
+                    <CardDescription>
+                      Podprite naše zavetišče z donacijami v kriptovalutah. Preprosto skenirajte QR kodo ali kopirajte naslov denarnice.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {CryptoAddresses.map((crypto, index) => (
+                        <div key={index} className="bg-[#f3fbef] p-6 rounded-lg border border-[#e4f4df]">
+                          <div className="flex items-center gap-2 mb-4">
+                            <div className="p-2 rounded-full bg-teal-100">
+                              <crypto.icon className="h-6 w-6 text-teal-700" />
+                            </div>
+                            <h3 className="font-semibold text-lg">{crypto.currency}</h3>
+                          </div>
+                          
+                          <div className="flex flex-col space-y-4">
+                            <div className="flex flex-col space-y-1">
+                              <p className="text-sm text-muted-foreground">Naslov denarnice:</p>
+                              <div className="flex items-center gap-2">
+                                <p className="font-mono text-xs md:text-sm break-all bg-white p-2 rounded border">{crypto.address}</p>
+                                <Button 
+                                  variant="ghost" 
+                                  size="sm" 
+                                  className="h-8 p-2 flex-shrink-0"
+                                  onClick={() => handleCopy(crypto.address, crypto.currency)}
+                                >
+                                  {copied === crypto.currency ? <Check size={16} /> : <Copy size={16} />}
+                                </Button>
+                              </div>
+                            </div>
+                            
+                            <div className="flex justify-center mt-4">
+                              <div className="bg-white p-4 rounded-lg border">
+                                <img 
+                                  src={`https://chart.googleapis.com/chart?cht=qr&chl=${crypto.address}&chs=200x200&choe=UTF-8&chld=L|2`} 
+                                  alt={`QR koda za ${crypto.currency}`}
+                                  className="w-32 h-32"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    <div className="rounded-lg border p-4 bg-amber-50 border-amber-100 mt-6">
+                      <div className="flex gap-3">
+                        <div className="mt-0.5">
+                          <AlertCircle className="h-5 w-5 text-amber-600" />
+                        </div>
+                        <div>
+                          <h3 className="font-medium text-amber-800">Pomembno obvestilo</h3>
+                          <p className="text-sm text-amber-700 mt-1">
+                            Pred izvedbo kripto donacije preverite, ali je naslov pravilen. Za več informacij o donacijah v kriptovalutah nas lahko kontaktirate.
                           </p>
                         </div>
                       </div>
