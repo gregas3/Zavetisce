@@ -9,11 +9,14 @@ export default function ScrollToTop() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    // Scroll to top of the page when route changes
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    // Small timeout to ensure navigation completes first
+    setTimeout(() => {
+      // Scroll to top of the page when route changes
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }, 100);
   }, [pathname]);
 
   return null; // This component doesn't render anything

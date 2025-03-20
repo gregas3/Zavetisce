@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, ChevronDown, Search, Heart, Dog, Cat, Mail, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
@@ -15,6 +15,8 @@ export default function Navbar() {
   const [searchActive, setSearchActive] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const isMobile = useIsMobile();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,12 +56,25 @@ export default function Navbar() {
     setSearchActive(!searchActive);
   };
   
-  const scrollToTop = (e) => {
+  const handleHomeClick = (e) => {
     e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    if (location.pathname === '/') {
+      // If already on home page, just scroll to top
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    } else {
+      // Navigate to home page and then scroll to top
+      navigate('/');
+      // Small timeout to ensure navigation completes first
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }, 100);
+    }
   };
 
   return <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? scrollingUp || atBottom ? "py-3 bg-gradient-to-b from-teal-50/95 to-teal-50/80 backdrop-blur-[2px]" // Scrolling up or at bottom - visible
@@ -147,7 +162,7 @@ export default function Navbar() {
             
             <div className="flex items-center gap-3 ml-3">
               <button 
-                onClick={scrollToTop}
+                onClick={handleHomeClick}
                 className="p-2 text-teal-600 rounded-full transition-colors hover:bg-teal-100 hover:text-teal-800"
                 aria-label="Domov"
               >
@@ -174,7 +189,7 @@ export default function Navbar() {
             </Link>
             
             <button
-              onClick={scrollToTop}
+              onClick={handleHomeClick}
               className="p-2 text-teal-600 rounded-full transition-colors hover:bg-teal-100" 
               aria-label="Domov"
             >
