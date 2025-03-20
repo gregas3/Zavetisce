@@ -233,8 +233,6 @@ const Volunteer = () => {
           </div>
         </section>
       </main>
-      
-      <Footer />
     </Layout>
   );
 };
