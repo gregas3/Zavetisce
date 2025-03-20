@@ -1,4 +1,3 @@
-
 import { Helmet } from 'react-helmet';
 import { BookOpen, Calendar, Target, Flag, Users, Download } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -7,10 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import Section from "@/components/shared/Section";
-
 const AboutUs = () => {
-  return (
-    <Layout>
+  return <Layout>
       <Helmet>
         <title>O nas | Zavetišče za živali Maribor</title>
         <meta name="description" content="Informacije o zavetišču za živali Maribor, našem poslanstvu, viziji in ciljih. Spoznajte našo zgodovino in delovanje zavetišča za zapuščene živali." />
@@ -49,11 +46,7 @@ const AboutUs = () => {
               <AnimatedWrapper animation="fade-in" delay={200}>
                 <Card className="h-full overflow-hidden">
                   <div className="h-48 overflow-hidden">
-                    <img 
-                      src="/lovable-uploads/673ed8ab-0773-4bd3-bfa4-7ecd1fe63215.png" 
-                      alt="Slika zavetišča za živali" 
-                      className="w-full h-full object-cover"
-                    />
+                    <img alt="Slika zavetišča za živali" className="w-full h-full object-cover" src="/lovable-uploads/69eaa918-00b6-41e4-9410-12c9ec80b03a.jpg" />
                   </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-semibold text-teal-800 mb-4">Uradne ure</h3>
@@ -294,8 +287,6 @@ const AboutUs = () => {
           </div>
         </section>
       </main>
-    </Layout>
-  );
+    </Layout>;
 };
-
 export default AboutUs;
