@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Helmet } from 'react-helmet';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -98,8 +99,12 @@ const Donations = () => {
           centered
           className="pt-12 pb-8"
         >
-          <Tabs defaultValue="financial" className="w-full max-w-4xl mx-auto">
+          <Tabs defaultValue="material" className="w-full max-w-4xl mx-auto">
             <TabsList className="w-full mb-8 h-auto p-1 flex flex-wrap">
+              <TabsTrigger value="material" className="flex-1 py-3">
+                <ShoppingBag className="mr-2 h-4 w-4" />
+                Materialne donacije
+              </TabsTrigger>
               <TabsTrigger value="financial" className="flex-1 py-3">
                 <Heart className="mr-2 h-4 w-4" />
                 Finančne donacije
@@ -112,13 +117,57 @@ const Donations = () => {
                 <Bitcoin className="mr-2 h-4 w-4" />
                 Kripto donacije
               </TabsTrigger>
-              <TabsTrigger value="material" className="flex-1 py-3">
-                <ShoppingBag className="mr-2 h-4 w-4" />
-                Materialne donacije
-              </TabsTrigger>
             </TabsList>
             
             <AnimatedWrapper animation="fade-in">
+              <TabsContent value="material" className="mt-0">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Materialne donacije</CardTitle>
+                    <CardDescription>
+                      Materialne donacije lahko kadarkoli predate v košaro pred vhodnimi vrati zavetišča. Tekstil sprejemamo samo po potrebi tako, da predhodno pokličite.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <h3 className="text-lg font-semibold">Trenutne potrebe</h3>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {DonationNeeds.map((category, index) => (
+                        <div key={index} className="border rounded-lg p-4 bg-white">
+                          <h4 className="font-medium text-lg mb-3 flex items-center">
+                            <Badge variant="outline" className="mr-2 bg-teal-50 text-teal-800 hover:bg-teal-100 border-teal-200">
+                              {category.category}
+                            </Badge>
+                          </h4>
+                          <ul className="space-y-2">
+                            {category.items.map((item, idx) => (
+                              <li key={idx} className="flex items-start gap-2">
+                                <span className="h-5 w-5 flex-shrink-0 text-teal-500">•</span>
+                                <span>{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    <div className="rounded-lg border p-4 bg-amber-50 border-amber-100 mt-6">
+                      <div className="flex gap-3">
+                        <div className="mt-0.5">
+                          <AlertCircle className="h-5 w-5 text-amber-600" />
+                        </div>
+                        <div>
+                          <h3 className="font-medium text-amber-800">Opomba o tekstilnih donacijah</h3>
+                          <p className="text-sm text-amber-700 mt-1">
+                            Tekstil sprejemamo samo po potrebi. Pred donacijo tekstila nas prosimo kontaktirajte preko telefona ali elektronske pošte.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+              
               <TabsContent value="financial" className="mt-0">
                 <Card>
                   <CardHeader>
@@ -282,54 +331,6 @@ const Donations = () => {
                           <h3 className="font-medium text-amber-800">Pomembno obvestilo</h3>
                           <p className="text-sm text-amber-700 mt-1">
                             Pred izvedbo kripto donacije preverite, ali je naslov pravilen. Za več informacij o donacijah v kriptovalutah nas lahko kontaktirate.
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-              
-              <TabsContent value="material" className="mt-0">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Materialne donacije</CardTitle>
-                    <CardDescription>
-                      Materialne donacije lahko kadarkoli predate v košaro pred vhodnimi vrati zavetišča. Tekstil sprejemamo samo po potrebi tako, da predhodno pokličite.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
-                    <h3 className="text-lg font-semibold">Trenutne potrebe</h3>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {DonationNeeds.map((category, index) => (
-                        <div key={index} className="border rounded-lg p-4 bg-white">
-                          <h4 className="font-medium text-lg mb-3 flex items-center">
-                            <Badge variant="outline" className="mr-2 bg-teal-50 text-teal-800 hover:bg-teal-100 border-teal-200">
-                              {category.category}
-                            </Badge>
-                          </h4>
-                          <ul className="space-y-2">
-                            {category.items.map((item, idx) => (
-                              <li key={idx} className="flex items-start gap-2">
-                                <span className="h-5 w-5 flex-shrink-0 text-teal-500">•</span>
-                                <span>{item}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-                    
-                    <div className="rounded-lg border p-4 bg-amber-50 border-amber-100 mt-6">
-                      <div className="flex gap-3">
-                        <div className="mt-0.5">
-                          <AlertCircle className="h-5 w-5 text-amber-600" />
-                        </div>
-                        <div>
-                          <h3 className="font-medium text-amber-800">Opomba o tekstilnih donacijah</h3>
-                          <p className="text-sm text-amber-700 mt-1">
-                            Tekstil sprejemamo samo po potrebi. Pred donacijo tekstila nas prosimo kontaktirajte preko telefona ali elektronske pošte.
                           </p>
                         </div>
                       </div>
