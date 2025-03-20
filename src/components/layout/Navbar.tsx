@@ -28,7 +28,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           <Link to="/" className="text-2xl font-display font-bold text-primary flex items-center gap-2" onClick={closeMenu}>
             <span className="sr-only">Zavetišče za živali Maribor</span>
-            <img alt="Logo" className="h-10" src="/lovable-uploads/cabb90c5-b919-46c0-a22a-d076a2a0e34b.png" />
+            <img alt="Logo" className="h-10" src="/lovable-uploads/4538ce4d-c476-48c3-ad21-89aa38c7c769.png" />
           </Link>
 
           {/* Desktop Navigation */}
