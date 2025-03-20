@@ -1,13 +1,20 @@
+
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
+
 export default function HeroSection() {
-  return <div className="relative min-h-[90vh] flex items-center overflow-hidden">
+  return (
+    <div className="relative min-h-[90vh] flex items-center overflow-hidden">
       {/* Background image with overlay */}
-      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
-      backgroundImage: "url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80')"
-    }}>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0f2a2d]/90 via-[#0f2a2d]/70 to-[#0f2a2d]/50 mx-0 my-[20px]"></div>
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ 
+          backgroundImage: "url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80')" 
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0f2a2d]/90 via-[#0f2a2d]/70 to-[#0f2a2d]/50"></div>
       </div>
       
       {/* Content */}
@@ -25,17 +32,32 @@ export default function HeroSection() {
               Vsaka žival si zasluži ljubeč dom in z vašo pomočjo lahko to uresničimo.
             </p>
             
-            <div className="flex flex-wrap gap-4">
-              <Button size="lg" variant="teal" asChild className="rounded-full font-medium text-base animate-fade-in delay-100">
-                <Link to="/posvojitev/psi">
-                  Posvoji zdaj <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" asChild className="rounded-full font-medium text-base animate-fade-in delay-200 border-teal-400/30 text-teal-100 hover:bg-teal-500/20 hover:text-white">
-                <Link to="/donacije">
-                  Podpri zavetišče
-                </Link>
-              </Button>
+            <div className="flex flex-row items-center gap-4">
+              <AnimatedWrapper animation="slide-up" delay={150}>
+                <Button 
+                  size="lg" 
+                  variant="primary" 
+                  asChild 
+                  className="rounded-full font-medium text-base transition-all duration-300 hover:shadow-lg hover:shadow-teal-600/30 hover:-translate-y-1 h-12 bg-gradient-to-r from-teal-500 to-teal-400"
+                >
+                  <Link to="/donacije">
+                    Podpri zavetišče
+                  </Link>
+                </Button>
+              </AnimatedWrapper>
+              
+              <AnimatedWrapper animation="slide-up" delay={250}>
+                <Button 
+                  size="lg" 
+                  variant="secondary"
+                  asChild 
+                  className="rounded-full font-medium text-base h-12 transition-all duration-300 hover:shadow-lg hover:shadow-teal-800/20 hover:-translate-y-1 bg-gradient-to-r from-teal-800 to-teal-700 text-white border border-teal-600/30 btn-pulse"
+                >
+                  <Link to="/posvojitev/psi" className="flex items-center">
+                    Posvoji zdaj <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </AnimatedWrapper>
             </div>
           </div>
         </div>
@@ -47,5 +69,6 @@ export default function HeroSection() {
           <div className="w-1.5 h-3 bg-teal-400/60 rounded-full mt-2 animate-[bounce_1.5s_infinite]"></div>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 }
