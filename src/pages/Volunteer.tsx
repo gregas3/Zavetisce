@@ -39,7 +39,7 @@ const Volunteer = () => {
         {/* Dog Walking Section */}
         <Section title="Sprehajanje psov">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-3">
               <AnimatedWrapper animation="fade-in" delay={100}>
                 <div className="prose prose-lg max-w-none">
                   <p className="text-lg text-muted-foreground mb-6">
@@ -50,112 +50,71 @@ const Volunteer = () => {
                     To je izjemno pomembno za dobro počutje naših varovancev in njihovo pripravo na nov dom.
                   </p>
                   
-                  <h3 className="text-teal-700 font-semibold text-xl mt-6">Kdo lahko postane prostovoljec sprehajalec?</h3>
-                  <ul className="space-y-2 mt-2">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
-                      <span>Prostovoljec mora biti <strong>polnoleten</strong> in mora v zavetišču podpisati pristopno izjavo, da sprehaja pse na lastno odgovornost.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
-                      <span>Zaželeno je, da ima vsaj nekaj izkušenj z ravnanjem psov.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
-                      <span>Dobrodošli so prostovoljci, ki lahko prihajajo med tednom dopoldne, ker je takrat največja potreba po sprehajalcih (med vikendi jih imamo dovolj).</span>
-                    </li>
-                  </ul>
-                  
-                  <h3 className="text-teal-700 font-semibold text-xl mt-6">Kako poteka sprehajanje?</h3>
-                  <ul className="space-y-2 mt-2">
-                    <li className="flex items-start gap-2">
-                      <Clock className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
-                      <span>Sprehajanje poteka vsak delovnik med 7.00 in 13.00, ob sobotah, nedeljah in praznikih med 8.00 in 12.00.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <ArrowRight className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
-                      <span>Prostovoljec ob prihodu javi svojo prisotnost osebju, nato mu skrbnik živali preda psa v sprehod in da morebitna posebna navodila.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <ArrowRight className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
-                      <span>Med sprehodom prostovoljec skrbi za varnost, omogoči psu, da opravi potrebe in se razgiba, nato pa z njim izvaja nekaj vaj poslušnosti.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <ArrowRight className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
-                      <span>Po sprehodu psa vrne in poroča osebju o počutju psa.</span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <Info className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
-                      <span>V vročih poletjih ali ob močnem deževju sprehajanje ne poteka, oziroma se prilagodi razmeram.</span>
-                    </li>
-                  </ul>
+                  <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div>
+                      <h3 className="text-teal-700 font-semibold text-xl mb-6">Kdo lahko postane prostovoljec sprehajalec?</h3>
+                      <ul className="space-y-2 mt-2">
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
+                          <span>Prostovoljec mora biti <strong>polnoleten</strong> in mora v zavetišču podpisati pristopno izjavo, da sprehaja pse na lastno odgovornost.</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
+                          <span>Zaželeno je, da ima vsaj nekaj izkušenj z ravnanjem psov.</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <CheckCircle className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
+                          <span>Dobrodošli so prostovoljci, ki lahko prihajajo med tednom dopoldne, ker je takrat največja potreba po sprehajalcih (med vikendi jih imamo dovolj).</span>
+                        </li>
+                      </ul>
+                    </div>
+                    
+                    <div>
+                      <h3 className="text-teal-700 font-semibold text-xl mb-6">Kako poteka sprehajanje?</h3>
+                      <ul className="space-y-2 mt-2">
+                        <li className="flex items-start gap-2">
+                          <Clock className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
+                          <span>Sprehajanje poteka vsak delovnik med 7.00 in 13.00, ob sobotah, nedeljah in praznikih med 8.00 in 12.00.</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <ArrowRight className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
+                          <span>Prostovoljec ob prihodu javi svojo prisotnost osebju, nato mu skrbnik živali preda psa v sprehod in da morebitna posebna navodila.</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <ArrowRight className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
+                          <span>Med sprehodom prostovoljec skrbi za varnost, omogoči psu, da opravi potrebe in se razgiba, nato pa z njim izvaja nekaj vaj poslušnosti.</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <ArrowRight className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
+                          <span>Po sprehodu psa vrne in poroča osebju o počutju psa.</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <Info className="h-5 w-5 text-teal-500 shrink-0 mt-0.5" />
+                          <span>V vročih poletjih ali ob močnem deževju sprehajanje ne poteka, oziroma se prilagodi razmeram.</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </AnimatedWrapper>
               
               <AnimatedWrapper animation="fade-in" delay={200} className="mt-8">
-                <Link to="/termini">
-                  <Button variant="primary" size="lg" className="gap-2">
-                    Rezerviraj termin za sprehod <ArrowRight className="h-4 w-4" />
-                  </Button>
-                </Link>
+                <div className="flex justify-center md:justify-start">
+                  <Link to="/termini">
+                    <Button variant="primary" size="lg" className="gap-2">
+                      Rezerviraj termin za sprehod <ArrowRight className="h-4 w-4" />
+                    </Button>
+                  </Link>
+                </div>
               </AnimatedWrapper>
-            </div>
-            
-            <div className="lg:col-span-1">
-              <AnimatedWrapper animation="fade-in" delay={300}>
-                <Card className="overflow-hidden h-full">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src="/lovable-uploads/fc093f6e-e6ea-4ac7-bb9f-755468edeed0.png" 
-                      alt="Prostovoljec sprehaja psa v gozdu" 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold text-teal-800 mb-4">Kako se prijavim?</h3>
-                    
-                    <div className="space-y-4">
-                      <div className="flex items-start gap-3">
-                        <div className="bg-teal-100 p-2 rounded-full">
-                          <Pencil className="h-5 w-5 text-teal-600" />
-                        </div>
-                        <div>
-                          <h4 className="font-medium">Podpis pristopne izjave</h4>
-                          <p className="text-sm text-gray-600">Podpis opravi v sprejemni pisarni zavetišča v času uradnih ur.</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start gap-3">
-                        <div className="bg-teal-100 p-2 rounded-full">
-                          <CalendarDays className="h-5 w-5 text-teal-600" />
-                        </div>
-                        <div>
-                          <h4 className="font-medium">Urnik sprehajanja</h4>
-                          <p className="text-sm text-gray-600">Delovniki: 7.00 - 13.00<br />Vikendi in prazniki: 8.00 - 12.00</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start gap-3">
-                        <div className="bg-teal-100 p-2 rounded-full">
-                          <Map className="h-5 w-5 text-teal-600" />
-                        </div>
-                        <div>
-                          <h4 className="font-medium">Lokacija</h4>
-                          <p className="text-sm text-gray-600">Avtobusna postaja 030, Tezno</p>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="mt-6">
-                      <Button asChild variant="lightTeal" className="w-full">
-                        <Link to="/kontakt">
-                          Kontaktirajte nas za več informacij
-                        </Link>
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </AnimatedWrapper>
+              
+              <div className="mt-12">
+                <img 
+                  src="/lovable-uploads/fc093f6e-e6ea-4ac7-bb9f-755468edeed0.png" 
+                  alt="Prostovoljec sprehaja psa v gozdu" 
+                  className="w-full h-64 object-cover rounded-lg shadow-md"
+                />
+              </div>
             </div>
           </div>
         </Section>
