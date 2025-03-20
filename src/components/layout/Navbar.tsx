@@ -111,15 +111,15 @@ export default function Navbar() {
                     Posvojitev
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <ul className="grid gap-3 p-4 w-[220px] bg-white border-0 shadow-none rounded-lg">
+                    <ul className="grid gap-3 p-4 w-[200px] bg-white border border-teal-100 shadow-lg rounded-lg">
                       <li>
                         <NavigationMenuLink asChild>
                           <Link
                             to="/posvojitev/psi"
-                            className="flex items-center gap-3 p-2 pl-4 text-teal-800 hover:bg-teal-50 rounded-md transition-normal"
+                            className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal"
                             onClick={closeMenu}
                           >
-                            <span className="text-xl">🐕</span>
+                            <PawPrint size={16} className="text-teal-500" />
                             <span>Psi</span>
                           </Link>
                         </NavigationMenuLink>
@@ -128,10 +128,10 @@ export default function Navbar() {
                         <NavigationMenuLink asChild>
                           <Link
                             to="/posvojitev/mačke"
-                            className="flex items-center gap-3 p-2 pl-4 text-teal-800 hover:bg-teal-50 rounded-md transition-normal"
+                            className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal"
                             onClick={closeMenu}
                           >
-                            <span className="text-xl">🐈</span>
+                            <PawPrint size={16} className="text-teal-500" />
                             <span>Mačke</span>
                           </Link>
                         </NavigationMenuLink>
@@ -140,7 +140,7 @@ export default function Navbar() {
                         <NavigationMenuLink asChild>
                           <Link
                             to="/posvojitev/postopek"
-                            className="flex items-center gap-3 p-2 pl-4 text-teal-800 hover:bg-teal-50 rounded-md transition-normal"
+                            className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal"
                             onClick={closeMenu}
                           >
                             <Heart size={16} className="text-teal-500" />
@@ -280,22 +280,13 @@ export default function Navbar() {
             </button>
             <div className="hidden pl-4 pb-3 space-y-2">
               <Link to="/posvojitev/psi" onClick={closeMenu} className="block py-2 transition-normal text-teal-700 hover:text-teal-500">
-                <div className="flex items-center gap-2">
-                  <span className="text-xl">🐕</span>
-                  <span>Psi</span>
-                </div>
+                Psi
               </Link>
               <Link to="/posvojitev/mačke" onClick={closeMenu} className="block py-2 transition-normal text-teal-700 hover:text-teal-500">
-                <div className="flex items-center gap-2">
-                  <span className="text-xl">🐈</span>
-                  <span>Mačke</span>
-                </div>
+                Mačke
               </Link>
               <Link to="/posvojitev/postopek" onClick={closeMenu} className="block py-2 transition-normal text-teal-700 hover:text-teal-500">
-                <div className="flex items-center gap-2">
-                  <Heart size={16} className="text-teal-500" />
-                  <span>Postopek posvojitve</span>
-                </div>
+                Postopek posvojitve
               </Link>
             </div>
           </div>
