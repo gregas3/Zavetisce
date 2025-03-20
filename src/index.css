@@ -6,14 +6,14 @@
 
 @layer base {
   :root {
-    --background: 180 30% 98%;
-    --foreground: 180 40% 20%;
+    --background: 187 40% 12%;
+    --foreground: 0 0% 98%;
 
-    --card: 180 30% 95%;
-    --card-foreground: 180 40% 20%;
+    --card: 187 35% 15%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 180 30% 95%;
-    --popover-foreground: 180 40% 20%;
+    --popover: 187 35% 15%;
+    --popover-foreground: 0 0% 98%;
 
     --primary: 174 60% 42%;
     --primary-foreground: 0 0% 100%;
@@ -21,28 +21,28 @@
     --secondary: 171 45% 86%;
     --secondary-foreground: 180 40% 20%;
 
-    --muted: 180 20% 90%;
-    --muted-foreground: 180 10% 40%;
+    --muted: 187 20% 20%;
+    --muted-foreground: 187 10% 70%;
 
-    --accent: 174 30% 85%;
-    --accent-foreground: 180 40% 20%;
+    --accent: 174 30% 25%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 20% 98%;
 
-    --border: 180 20% 85%;
-    --input: 180 20% 85%;
+    --border: 187 20% 25%;
+    --input: 187 20% 25%;
     --ring: 174 60% 42%;
 
     --radius: 0.75rem;
 
-    --sidebar-background: 180 30% 95%;
-    --sidebar-foreground: 180 40% 20%;
+    --sidebar-background: 187 35% 15%;
+    --sidebar-foreground: 180 4.8% 95.9%;
     --sidebar-primary: 174 60% 42%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 180 20% 90%;
-    --sidebar-accent-foreground: 180 40% 20%;
-    --sidebar-border: 180 20% 85%;
+    --sidebar-accent: 187 20% 20%;
+    --sidebar-accent-foreground: 180 4.8% 95.9%;
+    --sidebar-border: 187 20% 25%;
     --sidebar-ring: 174 60% 42%;
   }
 
@@ -95,7 +95,7 @@
     @apply font-sans text-foreground;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: linear-gradient(135deg, hsl(180, 30%, 98%) 0%, hsl(180, 30%, 95%) 100%);
+    background: linear-gradient(135deg, hsl(187, 40%, 10%) 0%, hsl(187, 40%, 15%) 100%);
     background-attachment: fixed;
     background-size: cover;
     position: relative;
@@ -126,11 +126,7 @@
   }
   
   .glass {
-    @apply bg-white/90 backdrop-blur-md border border-teal-100 shadow-sm;
-  }
-  
-  .glass-light {
-    @apply bg-white/80 backdrop-blur-sm border border-teal-100 shadow-sm;
+    @apply bg-[#1a3e41]/80 backdrop-blur-md border border-white/10 shadow-sm;
   }
   
   .glass-dark {
@@ -184,15 +180,15 @@
   }
   
   .bg-gradient-soft-blue {
-    background: linear-gradient(135deg, hsl(180, 30%, 95%) 0%, hsl(180, 30%, 90%) 100%);
+    background: linear-gradient(135deg, hsl(187, 40%, 15%) 0%, hsl(187, 40%, 20%) 100%);
   }
   
   .bg-gradient-soft-amber {
-    background: linear-gradient(135deg, hsl(180, 30%, 95%) 0%, hsl(174, 30%, 90%) 100%);
+    background: linear-gradient(135deg, hsl(187, 35%, 18%) 0%, hsl(174, 40%, 25%) 100%);
   }
   
   .bg-gradient-soft-purple {
-    background: linear-gradient(135deg, hsl(180, 30%, 95%) 0%, hsl(180, 30%, 90%) 100%);
+    background: linear-gradient(135deg, hsl(187, 40%, 15%) 0%, hsl(180, 40%, 20%) 100%);
   }
   
   .nav-item-hover {

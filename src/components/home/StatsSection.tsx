@@ -8,43 +8,43 @@ const stats = [
     icon: Home,
     value: "250+",
     label: "Živali najde svoj dom vsako leto",
-    color: "text-teal-600",
-    bgColor: "bg-teal-50",
-    borderColor: "border-teal-200",
+    color: "text-teal-400",
+    bgColor: "bg-teal-900/40",
+    borderColor: "border-teal-700",
     delay: 0,
   },
   {
     icon: Heart,
     value: "15+",
     label: "Let skrbi za zapuščene živali",
-    color: "text-teal-600",
-    bgColor: "bg-teal-50",
-    borderColor: "border-teal-200",
+    color: "text-teal-400",
+    bgColor: "bg-teal-900/40",
+    borderColor: "border-teal-700",
     delay: 150,
   },
   {
     icon: Users,
     value: "30+",
     label: "Aktivnih prostovoljcev",
-    color: "text-teal-600",
-    bgColor: "bg-teal-50",
-    borderColor: "border-teal-200",
+    color: "text-teal-400",
+    bgColor: "bg-teal-900/40",
+    borderColor: "border-teal-700",
     delay: 300,
   },
   {
     icon: Gift,
     value: "100+",
     label: "Mesečnih donatorjev",
-    color: "text-teal-600",
-    bgColor: "bg-teal-50",
-    borderColor: "border-teal-200",
+    color: "text-teal-400",
+    bgColor: "bg-teal-900/40",
+    borderColor: "border-teal-700",
     delay: 450,
   },
 ];
 
 export default function StatsSection() {
   return (
-    <Section className="bg-gradient-to-r from-teal-100 to-teal-50">
+    <Section className="bg-gradient-to-r from-[#0f2a2d] to-[#164942]">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat, index) => (
           <AnimatedWrapper
@@ -52,12 +52,12 @@ export default function StatsSection() {
             animation="zoom-in"
             delay={stat.delay}
           >
-            <div className={`rounded-xl p-6 border ${stat.borderColor} ${stat.bgColor} flex flex-col items-center text-center glass-light shadow-md hover:shadow-lg hover:border-teal-300 transition-all duration-300`}>
-              <div className={`p-3 rounded-full ${stat.color} bg-teal-100 mb-4 shadow-md`}>
+            <div className={`rounded-xl p-6 border ${stat.borderColor} ${stat.bgColor} flex flex-col items-center text-center glass shadow-md hover:shadow-lg hover:border-teal-600 transition-all duration-300`}>
+              <div className={`p-3 rounded-full ${stat.color} bg-teal-900/60 mb-4 shadow-lg`}>
                 <stat.icon size={24} />
               </div>
-              <span className="text-3xl font-bold mb-2 font-display text-teal-800">{stat.value}</span>
-              <p className="text-teal-700">{stat.label}</p>
+              <span className="text-3xl font-bold mb-2 font-display text-white">{stat.value}</span>
+              <p className="text-teal-100/80">{stat.label}</p>
             </div>
           </AnimatedWrapper>
         ))}
