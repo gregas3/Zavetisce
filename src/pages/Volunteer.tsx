@@ -10,16 +10,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import Section from "@/components/shared/Section";
-
 const Volunteer = () => {
-  return (
-    <>
+  return <>
       <Helmet>
         <title>Prostovoljstvo | Zavetišče za živali Maribor</title>
-        <meta 
-          name="description" 
-          content="Postanite prostovoljec v Zavetišču za živali Maribor in pomagajte živalim do boljšega življenja. Sprehajanje psov, pomoč pri oskrbi, sodelovanje na dogodkih in druge možnosti prostovoljstva." 
-        />
+        <meta name="description" content="Postanite prostovoljec v Zavetišču za živali Maribor in pomagajte živalim do boljšega življenja. Sprehajanje psov, pomoč pri oskrbi, sodelovanje na dogodkih in druge možnosti prostovoljstva." />
       </Helmet>
       
       <Navbar />
@@ -110,11 +105,7 @@ const Volunteer = () => {
             </AnimatedWrapper>
             
             <div className="mt-12">
-              <img 
-                src="/lovable-uploads/fc093f6e-e6ea-4ac7-bb9f-755468edeed0.png" 
-                alt="Prostovoljec sprehaja psa v gozdu" 
-                className="w-full h-64 object-cover rounded-lg shadow-md"
-              />
+              
             </div>
           </div>
         </Section>
@@ -181,41 +172,22 @@ const Volunteer = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="name" className="text-white">Ime in priimek</Label>
-                      <Input 
-                        id="name"
-                        type="text" 
-                        placeholder="Ime in priimek" 
-                        className="w-full p-3 rounded-md border border-teal-400/30 bg-white/90 focus:border-white focus:ring-1 focus:ring-white"
-                      />
+                      <Input id="name" type="text" placeholder="Ime in priimek" className="w-full p-3 rounded-md border border-teal-400/30 bg-white/90 focus:border-white focus:ring-1 focus:ring-white" />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="email" className="text-white">E-poštni naslov</Label>
-                      <Input 
-                        id="email"
-                        type="email" 
-                        placeholder="E-poštni naslov" 
-                        className="w-full p-3 rounded-md border border-teal-400/30 bg-white/90 focus:border-white focus:ring-1 focus:ring-white"
-                      />
+                      <Input id="email" type="email" placeholder="E-poštni naslov" className="w-full p-3 rounded-md border border-teal-400/30 bg-white/90 focus:border-white focus:ring-1 focus:ring-white" />
                     </div>
                   </div>
                   
                   <div className="space-y-2">
                     <Label htmlFor="phone" className="text-white">Telefonska številka</Label>
-                    <Input 
-                      id="phone"
-                      type="tel" 
-                      placeholder="Telefonska številka" 
-                      className="w-full p-3 rounded-md border border-teal-400/30 bg-white/90 focus:border-white focus:ring-1 focus:ring-white"
-                    />
+                    <Input id="phone" type="tel" placeholder="Telefonska številka" className="w-full p-3 rounded-md border border-teal-400/30 bg-white/90 focus:border-white focus:ring-1 focus:ring-white" />
                   </div>
                   
                   <div className="space-y-2">
                     <Label htmlFor="message" className="text-white">Sporočilo</Label>
-                    <Textarea 
-                      id="message"
-                      placeholder="Kako bi želeli pomagati? Povejte nam nekaj o sebi in svojih izkušnjah."
-                      className="w-full p-3 rounded-md border border-teal-400/30 bg-white/90 focus:border-white focus:ring-1 focus:ring-white min-h-[120px]"
-                    />
+                    <Textarea id="message" placeholder="Kako bi želeli pomagati? Povejte nam nekaj o sebi in svojih izkušnjah." className="w-full p-3 rounded-md border border-teal-400/30 bg-white/90 focus:border-white focus:ring-1 focus:ring-white min-h-[120px]" />
                   </div>
                   
                   <div>
@@ -231,8 +203,6 @@ const Volunteer = () => {
       </main>
       
       <Footer />
-    </>
-  );
+    </>;
 };
-
 export default Volunteer;
