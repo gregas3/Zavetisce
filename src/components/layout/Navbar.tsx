@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -17,14 +19,17 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
   const closeMenu = () => {
     setIsOpen(false);
   };
+
   return <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/80 backdrop-blur-md shadow-sm" : "bg-transparent"}`}>
-      <div className="container mx-auto px-4 py-3">
+      <div className="container mx-auto px-4 py-5">
         <div className="flex items-center justify-between">
           <Link to="/" className="text-2xl font-display font-bold text-primary flex items-center gap-2" onClick={closeMenu}>
             <span className="sr-only">Zavetišče za živali Maribor</span>
@@ -48,7 +53,7 @@ export default function Navbar() {
 
       {/* Mobile Navigation */}
       <div className={`md:hidden fixed inset-0 bg-background z-40 transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"}`} style={{
-      top: "60px"
+      top: "84px"
     }}>
         <nav className="container mx-auto px-6 py-8 flex flex-col space-y-6">
           <NavLinks closeMenu={closeMenu} isMobile={true} />
@@ -59,10 +64,12 @@ export default function Navbar() {
       </div>
     </header>;
 }
+
 interface NavLinksProps {
   closeMenu: () => void;
   isMobile?: boolean;
 }
+
 function NavLinks({
   closeMenu,
   isMobile = false
