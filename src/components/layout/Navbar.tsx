@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -13,6 +14,7 @@ export default function Navbar() {
   const [searchActive, setSearchActive] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const isMobile = useIsMobile();
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -38,15 +40,19 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
   const closeMenu = () => {
     setIsOpen(false);
   };
+
   const toggleSearch = () => {
     setSearchActive(!searchActive);
   };
+
   return <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? scrollingUp || atBottom ? "py-3 bg-gradient-to-b from-teal-50/95 to-teal-50/80 backdrop-blur-[2px]" // Scrolling up or at bottom - visible
   : "py-2 bg-transparent" // Scrolling down - transparent
   : "py-4 bg-gradient-to-b from-teal-50/95 to-teal-50/80 backdrop-blur-[2px]" // At top - fully visible
@@ -63,14 +69,6 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-3">
             <NavigationMenu>
               <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-teal-800 hover:bg-teal-100 hover:text-teal-700")}>
-                    <Link to="/" className="flex items-center">
-                      <Home size={20} className="mr-1" />
-                    </Link>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-                
                 <NavigationMenuItem>
                   <NavigationMenuTrigger className="bg-transparent font-medium text-teal-800 hover:bg-teal-100 hover:text-teal-700 data-[state=open]:bg-teal-100">
                     Posvojitev
@@ -139,6 +137,14 @@ export default function Navbar() {
             </NavigationMenu>
             
             <div className="flex items-center gap-3 ml-3">
+              <Link 
+                to="/" 
+                className="p-2 text-teal-600 rounded-full transition-colors hover:bg-teal-100 hover:text-teal-800"
+                aria-label="Domov"
+              >
+                <Home size={20} />
+              </Link>
+              
               <button onClick={toggleSearch} className="p-2 text-teal-600 rounded-full transition-colors hover:bg-teal-100 hover:text-teal-800" aria-label="Search">
                 <Search size={20} />
               </button>
@@ -156,6 +162,14 @@ export default function Navbar() {
           <div className="lg:hidden flex items-center gap-2">
             <Link to="https://snaga-mb.si/" target="_blank" rel="noopener noreferrer" className="mr-2">
               <img src="/lovable-uploads/072fa08a-6143-4c19-8c93-afd108144826.png" alt="Skupina JHMB" className="h-10 object-contain" />
+            </Link>
+            
+            <Link 
+              to="/" 
+              className="p-2 text-teal-600 rounded-full transition-colors hover:bg-teal-100" 
+              aria-label="Domov"
+            >
+              <Home size={20} />
             </Link>
             
             <button onClick={toggleSearch} className="p-2 text-teal-600 rounded-full transition-colors hover:bg-teal-100" aria-label="Search">
@@ -179,11 +193,6 @@ export default function Navbar() {
       top: "60px"
     }}>
         <nav className="container mx-auto px-6 py-8 flex flex-col space-y-4">
-          <Link to="/" className="flex items-center gap-2 text-lg py-3 block font-medium border-b border-teal-100 text-teal-800 hover:text-teal-600 transition-normal" onClick={closeMenu}>
-            <Home size={20} className="text-teal-500" />
-            <span>Domov</span>
-          </Link>
-          
           <div className="border-b border-teal-100">
             <button className="flex items-center justify-between w-full text-lg py-3 font-medium text-left text-teal-800 hover:text-teal-600" onClick={e => {
             const el = e.currentTarget.nextElementSibling;
