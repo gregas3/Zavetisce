@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, ChevronDown, Search, Heart, Dog, Cat, Mail } from "lucide-react";
@@ -216,7 +217,7 @@ export default function Navbar() {
               </Button>
               
               <Link 
-                to="https://www.maribor.si/" 
+                to="https://snaga-mb.si/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="ml-4"
@@ -232,7 +233,7 @@ export default function Navbar() {
 
           <div className="lg:hidden flex items-center gap-2">
             <Link 
-              to="https://www.maribor.si/" 
+              to="https://snaga-mb.si/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="mr-2"
