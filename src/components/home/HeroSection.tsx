@@ -36,12 +36,12 @@ export default function HeroSection() {
               <AnimatedWrapper animation="slide-up" delay={200}>
                 <Button 
                   size="lg" 
-                  variant="teal"
+                  variant="darkTeal" 
                   asChild 
-                  className="rounded-full font-medium text-base h-12 transition-all hover:shadow-md hover:shadow-teal-600/20 hover:-translate-y-1"
+                  className="rounded-full font-medium text-base btn-pulse transition-all hover:shadow-md hover:shadow-teal-700/20 hover:-translate-y-1 h-12"
                 >
-                  <Link to="/posvojitev/psi" className="flex items-center">
-                    Posvoji zdaj <ArrowRight className="ml-2 h-4 w-4" />
+                  <Link to="/donacije">
+                    Podpri zavetišče
                   </Link>
                 </Button>
               </AnimatedWrapper>
@@ -49,12 +49,12 @@ export default function HeroSection() {
               <AnimatedWrapper animation="slide-up" delay={300}>
                 <Button 
                   size="lg" 
-                  variant="darkTeal" 
+                  variant="teal"
                   asChild 
-                  className="rounded-full font-medium text-base btn-pulse transition-all hover:shadow-md hover:shadow-teal-700/20 hover:-translate-y-1 h-12"
+                  className="rounded-full font-medium text-base h-12 transition-all hover:shadow-md hover:shadow-teal-600/20 hover:-translate-y-1"
                 >
-                  <Link to="/donacije">
-                    Podpri zavetišče
+                  <Link to="/posvojitev/psi" className="flex items-center">
+                    Posvoji zdaj <ArrowRight className="ml-2 h-4 w-4" />
                   </Link>
                 </Button>
               </AnimatedWrapper>
