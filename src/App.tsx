@@ -11,6 +11,7 @@ import DogsAdoption from "./pages/DogsAdoption";
 import DogProfile from "./pages/DogProfile";
 import CatsAdoption from "./pages/CatsAdoption";
 import Appointments from "./pages/Appointments";
+import Questionnaire from "./pages/Questionnaire";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/posvojitev/psi" element={<DogsAdoption />} />
           <Route path="/posvojitev/psi/:id" element={<DogProfile />} />
           <Route path="/posvojitev/mačke" element={<CatsAdoption />} />
+          <Route path="/posvojitev/vprašalnik" element={<Questionnaire />} />
           
           {/* Appointments route */}
           <Route path="/termini" element={<Appointments />} />

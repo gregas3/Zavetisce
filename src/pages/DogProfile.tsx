@@ -1,6 +1,7 @@
+
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { PawPrint, Heart, Calendar, ArrowLeft, ArrowRight, CheckCircle, Info, Phone, Mail } from "lucide-react";
+import { PawPrint, Heart, Calendar, ArrowLeft, ArrowRight, CheckCircle, Info, Phone, Mail, FileText } from "lucide-react";
 import { format } from "date-fns";
 import { Helmet } from "react-helmet";
 
@@ -80,6 +81,10 @@ const DogProfile = () => {
 
   const handleScheduleAppointment = () => {
     navigate(`/termini?animalId=${dog?.id}&animalName=${dog?.name}&animalType=Pes`);
+  };
+  
+  const handleFillQuestionnaire = () => {
+    navigate(`/posvojitev/vprašalnik?animalName=${dog?.name}&animalType=Pes`);
   };
 
   if (isLoading) {
@@ -326,6 +331,10 @@ const DogProfile = () => {
                   <Button onClick={handleScheduleAppointment} className="w-full" size="lg">
                     <Calendar className="mr-2" size={18} />
                     Rezerviraj termin za ogled
+                  </Button>
+                  <Button onClick={handleFillQuestionnaire} variant="secondary" className="w-full" size="lg">
+                    <FileText className="mr-2" size={18} />
+                    Izpolni posvojitveni vprašalnik
                   </Button>
                   <Button variant="outline" className="w-full">
                     <Heart className="mr-2" size={18} />
