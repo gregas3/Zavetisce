@@ -111,7 +111,7 @@ export default function Navbar() {
                     Posvojitev
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <ul className="grid gap-3 p-4 w-[220px] bg-white border border-teal-100 shadow-lg rounded-lg">
+                    <ul className="grid gap-3 p-4 w-[220px] bg-white border-0 shadow-none rounded-lg">
                       <li>
                         <NavigationMenuLink asChild>
                           <Link

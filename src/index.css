@@ -156,6 +156,19 @@
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-muted-foreground/30;
   }
+  
+  [data-radix-navigation-menu-content] {
+    background-color: white !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid rgba(226, 232, 240, 1) !important;
+    border-radius: 0 0 0.5rem 0.5rem !important;
+  }
+  
+  [data-radix-navigation-menu-viewport] {
+    background-color: white !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+    border: 1px solid rgba(226, 232, 240, 1) !important;
+  }
 }
 
 @layer utilities {
