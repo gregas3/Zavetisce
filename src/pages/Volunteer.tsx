@@ -1,9 +1,7 @@
-
 import { Helmet } from 'react-helmet';
 import { ArrowRight, Clock, CalendarDays, Map, CheckCircle, Info, Pencil } from "lucide-react";
 import { Link } from "react-router-dom";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,13 +9,12 @@ import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import Section from "@/components/shared/Section";
 
 const Volunteer = () => {
-  return <>
+  return (
+    <Layout>
       <Helmet>
         <title>Prostovoljstvo | Zavetišče za živali Maribor</title>
         <meta name="description" content="Postanite prostovoljec v Zavetišču za živali Maribor in pomagajte živalim do boljšega življenja. Sprehajanje psov, pomoč pri oskrbi, sodelovanje na dogodkih in druge možnosti prostovoljstva." />
       </Helmet>
-      
-      <Navbar />
       
       <main className="min-h-screen pt-24">
         {/* Hero Section */}
@@ -102,7 +99,7 @@ const Volunteer = () => {
                     
                   </div>
                   <CardContent className="p-6">
-                    <h3 className="text-xl font-semibold text-teal-800 mb-4">Kako se prijavim?</h3>
+                    <h3 className="text-xl font-semibold text-teal-800 mb-4 text-center">Kako se prijavim?</h3>
                     
                     <div className="space-y-4">
                       <div className="flex items-start gap-3">
@@ -238,6 +235,8 @@ const Volunteer = () => {
       </main>
       
       <Footer />
-    </>;
+    </Layout>
+  );
 };
+
 export default Volunteer;
