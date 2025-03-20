@@ -1,13 +1,13 @@
 
 import { Link } from "react-router-dom";
-import { Paw, Search, Heart, Calendar, DollarSign, Cat } from "lucide-react";
+import { PawPrint, Search, Heart, Calendar, DollarSign, Cat } from "lucide-react";
 import AnimatedWrapper from "../shared/AnimatedWrapper";
 
 const links = [
   {
     title: "Posvojitev",
     description: "Posvoji psa ali mačko iz našega zavetišča",
-    icon: Paw,
+    icon: PawPrint,
     link: "/posvojitev/psi",
     color: "bg-blue-50 text-blue-600",
     delay: 0,
