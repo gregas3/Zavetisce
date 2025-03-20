@@ -47,8 +47,8 @@ export default function Navbar() {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled 
-          ? "py-2 bg-transparent backdrop-blur-sm" 
-          : "py-4 bg-gradient-to-b from-teal-50/95 to-teal-50/80 backdrop-blur-sm"
+          ? "py-2 bg-transparent" 
+          : "py-4 bg-gradient-to-b from-teal-50/95 to-teal-50/80 backdrop-blur-[2px]"
       }`}
       style={{ borderBottom: 'none' }}
     >
@@ -234,7 +234,7 @@ export default function Navbar() {
 
       {/* Mobile Navigation */}
       <div 
-        className={`lg:hidden fixed inset-0 bg-white/95 backdrop-blur-md z-40 transition-transform duration-300 ease-in-out ${
+        className={`lg:hidden fixed inset-0 bg-white/95 backdrop-blur-[2px] z-40 transition-transform duration-300 ease-in-out ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`} 
         style={{ top: "60px" }}
