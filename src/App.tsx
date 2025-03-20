@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import DogsAdoption from "./pages/DogsAdoption";
 import DogProfile from "./pages/DogProfile";
 import CatsAdoption from "./pages/CatsAdoption";
+import Appointments from "./pages/Appointments";
 
 const queryClient = new QueryClient();
 
@@ -30,13 +31,15 @@ const App = () => (
           <Route path="/posvojitev/psi/:id" element={<DogProfile />} />
           <Route path="/posvojitev/mačke" element={<CatsAdoption />} />
           
+          {/* Appointments route */}
+          <Route path="/termini" element={<Appointments />} />
+          
           {/* Routes for future implementation */}
           <Route path="/posvojitev/postopek" element={<NotFound />} />
           <Route path="/izgubljeni-najdeni" element={<NotFound />} />
           <Route path="/prostovoljstvo" element={<NotFound />} />
           <Route path="/donacije" element={<NotFound />} />
           <Route path="/prosto-zivece-macke" element={<NotFound />} />
-          <Route path="/termini" element={<NotFound />} />
           <Route path="/o-nas" element={<NotFound />} />
           
           {/* Catch-all route */}
