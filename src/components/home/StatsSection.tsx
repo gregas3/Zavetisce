@@ -44,7 +44,7 @@ const stats = [
 
 export default function StatsSection() {
   return (
-    <Section className="bg-gradient-soft-blue">
+    <Section className="bg-gradient-to-r from-[#0f2a2d] to-[#164942]">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat, index) => (
           <AnimatedWrapper
@@ -52,8 +52,8 @@ export default function StatsSection() {
             animation="zoom-in"
             delay={stat.delay}
           >
-            <div className={`rounded-xl p-6 border ${stat.borderColor} ${stat.bgColor} flex flex-col items-center text-center glass`}>
-              <div className={`p-3 rounded-full ${stat.color} bg-teal-900/60 mb-4 shadow-sm`}>
+            <div className={`rounded-xl p-6 border ${stat.borderColor} ${stat.bgColor} flex flex-col items-center text-center glass shadow-md hover:shadow-lg hover:border-teal-600 transition-all duration-300`}>
+              <div className={`p-3 rounded-full ${stat.color} bg-teal-900/60 mb-4 shadow-lg`}>
                 <stat.icon size={24} />
               </div>
               <span className="text-3xl font-bold mb-2 font-display text-white">{stat.value}</span>
