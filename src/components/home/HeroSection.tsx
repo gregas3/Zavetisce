@@ -19,7 +19,7 @@ export default function HeroSection() {
       
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-3xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="animate-fade-in">
             <span className="inline-block bg-teal-500/20 text-teal-100 px-4 py-1.5 rounded-full text-sm font-medium mb-6">
               Zavetišče za živali Maribor
@@ -59,6 +59,17 @@ export default function HeroSection() {
                 </Button>
               </AnimatedWrapper>
             </div>
+          </div>
+          
+          {/* Logo on the right side */}
+          <div className="hidden md:flex justify-start items-center">
+            <AnimatedWrapper animation="fade-in" delay={350}>
+              <img 
+                src="/lovable-uploads/3206d7a5-d3fa-4ab0-b901-207b3526730f.png" 
+                alt="Zavetišče za živali Maribor logo" 
+                className="w-64 h-auto"
+              />
+            </AnimatedWrapper>
           </div>
         </div>
       </div>
