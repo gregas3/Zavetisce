@@ -1,11 +1,12 @@
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { FileText, ArrowLeft, Check, Send } from "lucide-react";
+import { FileText, ArrowLeft, Check, Send, Download, Printer } from "lucide-react";
+import { toPDF } from 'react-to-pdf';
 
 import { Button } from "@/components/ui/button";
 import {
@@ -44,6 +45,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { toast } from "@/hooks/use-toast";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -96,6 +98,10 @@ const Questionnaire = () => {
   
   const [currentStep, setCurrentStep] = useState(1);
   const [submissionComplete, setSubmissionComplete] = useState(false);
+  const [formData, setFormData] = useState<Partial<FormData>>({});
+  const [isPdfReady, setIsPdfReady] = useState(false);
+  
+  const pdfRef = useRef<HTMLDivElement>(null);
   
   const personalInfoForm = useForm<z.infer<typeof personalInfoSchema>>({
     resolver: zodResolver(personalInfoSchema),
@@ -144,11 +150,13 @@ const Questionnaire = () => {
 
   const handlePersonalInfoSubmit = (data: z.infer<typeof personalInfoSchema>) => {
     console.log("Personal Info:", data);
+    setFormData(prevData => ({...prevData, ...data}));
     setCurrentStep(2);
   };
 
   const handleOpenQuestionsSubmit = (data: z.infer<typeof openQuestionsSchema>) => {
     console.log("Open Questions:", data);
+    setFormData(prevData => ({...prevData, ...data}));
     setCurrentStep(3);
   };
 
@@ -166,12 +174,46 @@ const Questionnaire = () => {
     };
     
     console.log("Complete Form Data:", completeFormData);
+    setFormData(completeFormData);
     
     // Here you would typically send the data to your backend
     // For now, we'll just simulate a successful submission
     setTimeout(() => {
       setSubmissionComplete(true);
+      setIsPdfReady(true);
     }, 1000);
+  };
+
+  const handleDownloadPdf = async () => {
+    if (!pdfRef.current) return;
+    
+    try {
+      const fileName = `Posvojitveni_vprašalnik_${formData.fullName?.replace(/\s+/g, '_') || 'uporabnik'}_${new Date().toISOString().split('T')[0]}.pdf`;
+      
+      await toPDF(pdfRef.current, {
+        filename: fileName,
+        page: { 
+          margin: 20,
+          format: 'A4', 
+          orientation: 'portrait' 
+        },
+        footer: {
+          title: 'Zavetišče za živali Maribor - Posvojitveni vprašalnik',
+        }
+      });
+      
+      toast({
+        title: "PDF uspešno prenesen",
+        description: "Vprašalnik je bil uspešno shranjen kot PDF dokument.",
+      });
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+      toast({
+        title: "Napaka pri prenosu PDF",
+        description: "Prišlo je do napake pri ustvarjanju PDF dokumenta. Poskusite znova.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -837,7 +879,7 @@ const Questionnaire = () => {
       </main>
 
       <Dialog open={submissionComplete} onOpenChange={setSubmissionComplete}>
-        <DialogContent>
+        <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <Check className="text-green-500" />
@@ -847,13 +889,194 @@ const Questionnaire = () => {
               Hvala za izpolnitev vprašalnika. Vaše podatke bomo pregledali in vas kontaktirali v roku 3 delovnih dni, če bomo menili, da ste primeren posvojitelj.
             </DialogDescription>
           </DialogHeader>
-          <DialogFooter>
-            <Button asChild onClick={() => setSubmissionComplete(false)}>
-              <Link to="/">Nazaj na domačo stran</Link>
-            </Button>
-          </DialogFooter>
+          
+          <div className="flex flex-col gap-4">
+            <p className="text-sm text-muted-foreground">
+              Želite shraniti kopijo vprašalnika za lastno evidenco?
+            </p>
+            
+            <div className="flex justify-center gap-4">
+              <Button 
+                variant="outline" 
+                className="w-full"
+                onClick={handleDownloadPdf}
+                disabled={!isPdfReady}
+              >
+                <Download className="mr-2 h-4 w-4" />
+                Prenesi PDF
+              </Button>
+              
+              <Button variant="default" asChild className="w-full">
+                <Link to="/">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Nazaj na domačo stran
+                </Link>
+              </Button>
+            </div>
+          </div>
         </DialogContent>
       </Dialog>
+
+      {/* Hidden PDF container - used for generating the PDF */}
+      <div className="hidden">
+        <div ref={pdfRef} className="p-8 min-h-[297mm] w-[210mm] bg-white">
+          <div className="mb-8 text-center">
+            <h1 className="text-2xl font-bold">Zavetišče za živali Maribor</h1>
+            <h2 className="text-xl font-semibold mt-2">Posvojitveni vprašalnik</h2>
+            <p className="text-gray-500 mt-1">
+              Datum izpolnitve: {new Date().toLocaleDateString('sl-SI')}
+            </p>
+            {animalName && <p className="mt-1">Žival: {animalName} ({animalType})</p>}
+          </div>
+
+          {isPdfReady && (
+            <>
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold border-b pb-2 mb-4">Osebni podatki</h3>
+                <table className="w-full border-collapse">
+                  <tbody>
+                    <tr className="border-b">
+                      <td className="py-2 font-medium">Ime in priimek:</td>
+                      <td className="py-2">{formData.fullName}</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2 font-medium">Datum rojstva:</td>
+                      <td className="py-2">{formData.dateOfBirth}</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2 font-medium">Stalni naslov:</td>
+                      <td className="py-2">{formData.permanentAddress}</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2 font-medium">Naslov kjer bo bivala žival:</td>
+                      <td className="py-2">{formData.animalAddress}</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2 font-medium">Telefon:</td>
+                      <td className="py-2">{formData.phone}</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2 font-medium">E-mail:</td>
+                      <td className="py-2">{formData.email}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold border-b pb-2 mb-4">Vprašanja o posvojitvi</h3>
+                <div className="space-y-4">
+                  <div>
+                    <p className="font-medium">1. Kakšno žival želite (spol, starost, velikost, dlaka, barva, karakter...)?</p>
+                    <p className="mt-1 pl-4">{formData.desiredAnimal}</p>
+                  </div>
+                  <div>
+                    <p className="font-medium">2. Koliko časa dnevno boste namenili živali?</p>
+                    <p className="mt-1 pl-4">{formData.dailyTime}</p>
+                  </div>
+                  <div>
+                    <p className="font-medium">3. Živite v hiši, stanovanju...? Je prostor kjer živite lastniški ali v najemu?</p>
+                    <p className="mt-1 pl-4">{formData.livingConditions}</p>
+                  </div>
+                  <div>
+                    <p className="font-medium">4. Opišite kakšne pogoje bivanja lahko nudite živali?</p>
+                    <p className="mt-1 pl-4">{formData.livingConditionsDetails}</p>
+                  </div>
+                  <div>
+                    <p className="font-medium">5. Ali trenutno z vami bivajo še katere druge živali? Če da, katere?</p>
+                    <p className="mt-1 pl-4">{formData.otherAnimals}</p>
+                  </div>
+                  <div>
+                    <p className="font-medium">6. Če ste že imeli žival, kaj se je z njo zgodilo?</p>
+                    <p className="mt-1 pl-4">{formData.previousPets}</p>
+                  </div>
+                  <div>
+                    <p className="font-medium">7. S kom sobivate? Ali je vaša odločitev o posvojitvi živali enotna?</p>
+                    <p className="mt-1 pl-4">{formData.cohabitants}</p>
+                  </div>
+                  <div>
+                    <p className="font-medium">8. Kdo bo poskrbel za žival v primeru vaše bolezni, daljše nenapovedane odsotnosti, vaše nezmožnosti, selitve...?</p>
+                    <p className="mt-1 pl-4">{formData.backup}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mb-6">
+                <h3 className="text-lg font-semibold border-b pb-2 mb-4">Vprašanja DA/NE</h3>
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr className="border-b">
+                      <th className="text-left py-2">Vprašanje</th>
+                      <th className="w-24 text-center py-2">Odgovor</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b">
+                      <td className="py-2">Ste pripravljeni vlagati svoj čas, trud in denar v žival, ki jo posvajate?</td>
+                      <td className="py-2 text-center">{formData.timeAndEffort ? "DA" : "NE"}</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2">Ali boste zagotavljali živali ustrezno prehrano, ki mora vsebovati vse potrebne snovi za njen zdrav razvoj?</td>
+                      <td className="py-2 text-center">{formData.properNutrition ? "DA" : "NE"}</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2">Se vam zdi pomembno redno negovati žival in odstranjevati zajedavce kot so bolhe, klopi, gliste in trakulje?</td>
+                      <td className="py-2 text-center">{formData.regularGrooming ? "DA" : "NE"}</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2">Ali lahko živali zagotovite svobodo gibanja primerno vrsti, starosti, stopnji razvoja?</td>
+                      <td className="py-2 text-center">{formData.movementFreedom ? "DA" : "NE"}</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2">Če bo žival bivala v notranjih prostorih, ali ima zagotovljeno naravno svetlobo, zadostno zračenje in pogled na neposredno okolico?</td>
+                      <td className="py-2 text-center">{formData.naturalLight ? "DA" : "NE"}</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2">Če bo pes bival zunaj, ali imate ograjeno dvorišče ali del dvorišča, ki onemogoča pobeg? (IZPOLNITE LE V PRIMERU, DA ŽELITE POSVOJITI PSA)</td>
+                      <td className="py-2 text-center">{formData.fencedYard ? "DA" : "NE"}</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2">Če bo žival bivala zunaj, ali ima na voljo ustrezen prostor, ki ji zagotavlja zaščito pred padavinami, vetrom, mrazom in sončno pripeko?</td>
+                      <td className="py-2 text-center">{formData.outdoorShelter ? "DA" : "NE"}</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2">Če z vami že biva kakšna žival, ali lahko zagotovite ločeno nastanitev živali, če bi bilo to potrebno?</td>
+                      <td className="py-2 text-center">{formData.separateAccommodation ? "DA" : "NE"}</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2">Ali že imate izbrano veterinarsko ambulanto?</td>
+                      <td className="py-2 text-center">{formData.chosenVet ? "DA" : "NE"}</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2">Ali boste zmožni poskrbeti za žival v primeru bolezni, poškodbe, onemoglosti... in ji zagotovili takojšnjo veterinarsko oskrbo?</td>
+                      <td className="py-2 text-center">{formData.provideVetCare ? "DA" : "NE"}</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2">Ali boste z ustrezno vzgojo in šolanjem oziroma z drugimi ukrepi zagotovili, da pes ne bo nevaren okolici? (IZPOLNITE LE V PRIMERU, DA ŽELITE POSVOJITI PSA)</td>
+                      <td className="py-2 text-center">{formData.trainingToPreventHarm ? "DA" : "NE"}</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2">V kolikor bivate v najetem stanovanju ali je najemodajalec seznanjen z vašo namero o posvojitvi živali in bivanju le te v stanovanju?</td>
+                      <td className="py-2 text-center">{formData.landlordAware ? "DA" : "NE"}</td>
+                    </tr>
+                    <tr className="border-b">
+                      <td className="py-2">Soglašate, da predstavniki zavetišča občasno preverijo, ali za žival ustrezno skrbite?</td>
+                      <td className="py-2 text-center">{formData.permitInspection ? "DA" : "NE"}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="mt-10 pt-6 border-t text-sm">
+                <p>Datum in podpis: _______________________________</p>
+                <p className="mt-6 text-gray-600">
+                  Izpolnjen vprašalnik lahko osebno prinesete v zavetišče v času uradnih ur od ponedeljka do petka med 8:00 in 12:00, ga pošljete na naslov Zavetišče za živali Maribor, Avtomobilska ulica 25, 2000 Maribor ali posredujete po elektronski pošti zavetisce.mb@snaga-mb.si. Upoštevali bomo le v celoti izpolnjen vprašalnik.
+                </p>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
 
       <Footer />
     </>
