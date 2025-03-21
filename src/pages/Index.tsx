@@ -1,7 +1,5 @@
 
 import { Helmet } from 'react-helmet';
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 import HeroSection from "@/components/home/HeroSection";
 import QuickLinks from "@/components/home/QuickLinks";
 import FeaturedAnimals from "@/components/home/FeaturedAnimals";
@@ -17,8 +15,6 @@ const Index = () => {
         <meta name="description" content="Zavetišče za zapuščene živali v Mariboru nudi dom izgubljenim, zapuščenim in odvzetim živalim. Posvojitev psov in mačk, prijava izgubljene ali najdene živali." />
       </Helmet>
       
-      <Navbar />
-      
       <main className="min-h-screen pt-24 bg-gradient-to-b from-[#e2efed]/80 to-[#dfecea]/80">
         <HeroSection />
         <div className="bg-gradient-to-b from-[#e2efed]/80 to-[#dfecea]/80 py-8">
@@ -29,8 +25,6 @@ const Index = () => {
         <CtaSection />
         <TestimonialsSection />
       </main>
-      
-      <Footer />
     </>
   );
 };
