@@ -7,9 +7,15 @@ import { DogData } from "@/data/dogDatabase";
 
 interface DogProfileNavigationProps {
   dog: DogData;
+  onNavigate?: (navigationInfo: {
+    prevDogId?: string;
+    nextDogId?: string;
+    handleScheduleAppointment: () => void;
+    handleFillQuestionnaire: () => void;
+  }) => void;
 }
 
-const DogProfileNavigation: React.FC<DogProfileNavigationProps> = ({ dog }) => {
+const DogProfileNavigation: React.FC<DogProfileNavigationProps> = ({ dog, onNavigate }) => {
   const navigate = useNavigate();
   const { prevDogId, nextDogId } = findAdjacentDogIds(dog.id);
   
@@ -29,12 +35,20 @@ const DogProfileNavigation: React.FC<DogProfileNavigationProps> = ({ dog }) => {
     });
   };
   
-  return {
-    handleScheduleAppointment,
-    handleFillQuestionnaire,
-    prevDogId,
-    nextDogId
-  };
+  // Use the callback if provided, otherwise this component doesn't render anything visible
+  React.useEffect(() => {
+    if (onNavigate) {
+      onNavigate({
+        prevDogId,
+        nextDogId,
+        handleScheduleAppointment,
+        handleFillQuestionnaire
+      });
+    }
+  }, [dog.id, onNavigate]);
+  
+  // This component doesn't render anything visible - it just provides functionality
+  return null;
 };
 
 export default DogProfileNavigation;

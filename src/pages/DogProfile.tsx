@@ -19,10 +19,19 @@ import DogContactInfo from "@/components/dogs/DogContactInfo";
 import { FileText } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import DogProfileNavigation from "@/components/dogs/DogProfileNavigation";
+import { useState } from "react";
 
 const DogProfile = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  
+  // State to store navigation information
+  const [navigationInfo, setNavigationInfo] = useState<{
+    prevDogId?: string;
+    nextDogId?: string;
+    handleScheduleAppointment: () => void;
+    handleFillQuestionnaire: () => void;
+  } | null>(null);
   
   const { data: dog, isLoading, error } = useQuery({
     queryKey: ["dog", id],
@@ -30,6 +39,7 @@ const DogProfile = () => {
     enabled: !!id,
   });
 
+  // Fallback handlers if navigation component hasn't set them yet
   const handleScheduleAppointment = () => {
     if (!dog) return;
     
@@ -63,9 +73,18 @@ const DogProfile = () => {
     syncDogData(parseInt(dog.id), dog.images[0]);
   }
 
-  // Get navigation data
-  const navigation = DogProfileNavigation({ dog });
-  const { prevDogId, nextDogId } = navigation;
+  // Use navigation info if available, otherwise use fallback handlers
+  const {
+    prevDogId,
+    nextDogId,
+    handleScheduleAppointment: scheduleAppointment,
+    handleFillQuestionnaire: fillQuestionnaire
+  } = navigationInfo || {
+    prevDogId: undefined,
+    nextDogId: undefined,
+    handleScheduleAppointment,
+    handleFillQuestionnaire
+  };
 
   return (
     <>
@@ -73,6 +92,12 @@ const DogProfile = () => {
         <title>{dog.name} | Zavetišče za živali Maribor</title>
         <meta name="description" content={`Spoznajte ${dog.name} - ${dog.breed}, ${dog.age}. ${dog.description}`} />
       </Helmet>
+
+      {/* Navigation component to handle routing and callbacks */}
+      <DogProfileNavigation 
+        dog={dog} 
+        onNavigate={setNavigationInfo}
+      />
 
       <main className="pt-20 pb-10">
         <div className="container">
@@ -109,7 +134,7 @@ const DogProfile = () => {
                   <DogRequirementsTab 
                     name={dog.name}
                     adoptionRequirements={dog.adoptionRequirements}
-                    handleFillQuestionnaire={handleFillQuestionnaire}
+                    handleFillQuestionnaire={fillQuestionnaire}
                   />
                 </TabsContent>
                 
@@ -125,10 +150,10 @@ const DogProfile = () => {
               </Tabs>
               
               <div className="flex flex-col mt-6 space-y-4">
-                <Button className="w-full text-black" onClick={handleScheduleAppointment}>
+                <Button className="w-full text-black" onClick={scheduleAppointment}>
                   Rezerviraj termin za obisk
                 </Button>
-                <Button variant="teal" className="w-full text-black" onClick={handleFillQuestionnaire}>
+                <Button variant="teal" className="w-full text-black" onClick={fillQuestionnaire}>
                   <FileText className="mr-2 h-5 w-5" />
                   Izpolni vprašalnik
                 </Button>
@@ -153,7 +178,7 @@ const DogProfile = () => {
               <DogContactInfo 
                 name={dog.name}
                 contactInfo={dog.contactInfo}
-                handleScheduleAppointment={handleScheduleAppointment}
+                handleScheduleAppointment={scheduleAppointment}
                 prevDogId={prevDogId}
                 nextDogId={nextDogId}
               />
