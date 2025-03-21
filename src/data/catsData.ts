@@ -65,7 +65,7 @@ export const cats: Cat[] = [
     age: "2 leti",
     gender: "samec",
     size: "srednji",
-    image: "https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e",
+    image: "/lovable-uploads/e65f84fb-fb7c-4a55-bbb4-9d89d93ae2df.png",
     description: "Črnko je eleganten črn maček, ki je samostojen, a hkrati ljubeč do ljudi.",
     characteristics: ["eleganten", "samostojen", "ljubeč", "miren"],
     vaccinated: true,
