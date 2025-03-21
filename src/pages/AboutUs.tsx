@@ -2,7 +2,6 @@
 import { Helmet } from 'react-helmet';
 import Layout from "@/components/layout/Layout";
 import Section from "@/components/shared/Section";
-import Footer from "@/components/layout/Footer";
 import AboutHero from "@/components/about/AboutHero";
 import AboutShelter from "@/components/about/AboutShelter";
 import HistorySection from "@/components/about/HistorySection";
@@ -51,8 +50,6 @@ const AboutUs = () => {
         {/* CTA Section */}
         <SupportCta />
       </main>
-      
-      <Footer />
     </Layout>
   );
 };
