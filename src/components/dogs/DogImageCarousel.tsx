@@ -50,24 +50,21 @@ const DogImageCarousel = ({
     }
   };
 
-  // If there's only one image and no videos, don't show navigation arrows
-  const showNavigation = images.length > 1 || (videos && videos.length > 0);
-
   return (
-    <Carousel className="w-full h-full" opts={{ loop: true }}>
-      <CarouselContent className="h-full">
+    <Carousel className="mb-8 w-full" opts={{ loop: true }}>
+      <CarouselContent>
         {images.map((image, index) => (
-          <CarouselItem key={`image-${index}`} className="h-full">
-            <div className="overflow-hidden rounded-xl h-full">
+          <CarouselItem key={`image-${index}`}>
+            <div className="overflow-hidden rounded-xl">
               {isDetailPage ? (
                 <Dialog>
                   <DialogTrigger asChild>
                     <button className="w-full h-full p-0 m-0 bg-transparent border-0 cursor-pointer">
-                      <AspectRatio ratio={1} className="bg-muted">
+                      <AspectRatio ratio={16 / 9} className="bg-muted">
                         <img
                           src={image}
                           alt={`${dogName} - slika ${index + 1}`}
-                          className="object-cover w-full h-full hover:opacity-95 transition-opacity"
+                          className="object-contain w-full h-full hover:opacity-95 transition-opacity"
                         />
                       </AspectRatio>
                     </button>
@@ -90,11 +87,11 @@ const DogImageCarousel = ({
                   className="w-full h-full p-0 m-0 bg-transparent border-0 cursor-pointer"
                   onClick={handleImageClick}
                 >
-                  <AspectRatio ratio={1} className="bg-muted">
+                  <AspectRatio ratio={16 / 9} className="bg-muted">
                     <img
                       src={image}
                       alt={`${dogName} - slika ${index + 1}`}
-                      className="object-cover w-full h-full hover:opacity-95 transition-opacity"
+                      className="object-contain w-full h-full hover:opacity-95 transition-opacity"
                     />
                   </AspectRatio>
                 </button>
@@ -106,11 +103,11 @@ const DogImageCarousel = ({
         {videos && videos.map((video, index) => (
           <CarouselItem key={`video-${index}`}>
             <div className="overflow-hidden rounded-xl relative group">
-              <AspectRatio ratio={1} className="bg-muted">
+              <AspectRatio ratio={16 / 9} className="bg-muted">
                 <img
                   src={video.thumbnail}
                   alt={`${dogName} - ${video.title}`}
-                  className="object-cover w-full h-full"
+                  className="object-contain w-full h-full"
                 />
                 {isDetailPage ? (
                   <Dialog>
@@ -157,13 +154,8 @@ const DogImageCarousel = ({
           </CarouselItem>
         ))}
       </CarouselContent>
-      
-      {showNavigation && (
-        <>
-          <CarouselPrevious className="left-2 -translate-y-1/2 h-8 w-8 sm:h-10 sm:w-10" />
-          <CarouselNext className="right-2 -translate-y-1/2 h-8 w-8 sm:h-10 sm:w-10" />
-        </>
-      )}
+      <CarouselPrevious className="left-2" />
+      <CarouselNext className="right-2" />
     </Carousel>
   );
 };
