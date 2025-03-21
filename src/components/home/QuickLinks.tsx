@@ -56,7 +56,7 @@ const links = [
 
 export default function QuickLinks() {
   return (
-    <div className="py-8 bg-gradient-to-b from-[#e8f9f8]/70 to-[#e5f6f5]/70 backdrop-blur-sm">
+    <div className="py-8 bg-gradient-to-b from-[#dfecea]/80 to-[#dcebe9]/80 backdrop-blur-sm">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {links.map((link, index) => (
@@ -68,7 +68,7 @@ export default function QuickLinks() {
             >
               <Link
                 to={link.link}
-                className="group p-6 md:p-8 rounded-xl border border-teal-200/40 bg-white/80 backdrop-blur-sm flex flex-col h-full hover-lift overflow-hidden relative shadow-sm hover:shadow-md transition-all duration-300"
+                className="group p-6 md:p-8 rounded-xl border border-teal-500/20 bg-white/80 backdrop-blur-sm flex flex-col h-full hover-lift overflow-hidden relative shadow-sm hover:shadow-md transition-all duration-300"
               >
                 <div className={`p-3 rounded-lg w-fit ${link.color} mb-4 transition-normal group-hover:scale-110`}>
                   <link.icon size={24} />

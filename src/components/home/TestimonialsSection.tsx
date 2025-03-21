@@ -38,7 +38,7 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <Section className="bg-gradient-to-b from-[#e0f1f0]/60 to-[#ddeeed]/60">
+    <Section className="bg-gradient-to-b from-[#d6e7e5]/80 to-[#d3e5e3]/80">
       <div className="max-w-4xl mx-auto">
         <AnimatedWrapper animation="fade-in">
           <div className="text-center mb-10">
