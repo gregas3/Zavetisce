@@ -46,7 +46,7 @@ const AboutUs = () => {
           <ReportsSection />
         </Section>
         
-        {/* CTA Section - Removed Footer from this component */}
+        {/* CTA Section - No Footer */}
         <SupportCta />
       </main>
     </>
