@@ -1,7 +1,5 @@
 
 import { Helmet } from 'react-helmet';
-import Layout from "@/components/layout/Layout";
-import Section from "@/components/shared/Section";
 import AboutHero from "@/components/about/AboutHero";
 import AboutShelter from "@/components/about/AboutShelter";
 import HistorySection from "@/components/about/HistorySection";
@@ -9,10 +7,11 @@ import MissionVision from "@/components/about/MissionVision";
 import GoalsSection from "@/components/about/GoalsSection";
 import ReportsSection from "@/components/about/ReportsSection";
 import SupportCta from "@/components/about/SupportCta";
+import Section from "@/components/shared/Section";
 
 const AboutUs = () => {
   return (
-    <Layout>
+    <>
       <Helmet>
         <title>O nas | Zavetišče za živali Maribor</title>
         <meta name="description" content="Informacije o zavetišču za živali Maribor, našem poslanstvu, viziji in ciljih. Spoznajte našo zgodovino in delovanje zavetišča za zapuščene živali." />
@@ -47,10 +46,10 @@ const AboutUs = () => {
           <ReportsSection />
         </Section>
         
-        {/* CTA Section */}
+        {/* CTA Section - Removed Footer from this component */}
         <SupportCta />
       </main>
-    </Layout>
+    </>
   );
 };
 
