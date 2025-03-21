@@ -6,16 +6,17 @@ import FeaturedAnimals from "@/components/home/FeaturedAnimals";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import StatsSection from "@/components/home/StatsSection";
 import CtaSection from "@/components/home/CtaSection";
+import Layout from "@/components/layout/Layout";
 
 const Index = () => {
   return (
-    <>
+    <Layout>
       <Helmet>
         <title>Zavetišče za živali Maribor</title>
         <meta name="description" content="Zavetišče za zapuščene živali v Mariboru nudi dom izgubljenim, zapuščenim in odvzetim živalim. Posvojitev psov in mačk, prijava izgubljene ali najdene živali." />
       </Helmet>
       
-      <main className="min-h-screen bg-gradient-to-b from-[#e2efed]/80 to-[#dfecea]/80">
+      <div className="min-h-screen bg-gradient-to-b from-[#e2efed]/80 to-[#dfecea]/80">
         <HeroSection />
         <div className="bg-gradient-to-b from-[#e2efed]/80 to-[#dfecea]/80 py-8">
           <FeaturedAnimals />
@@ -24,8 +25,8 @@ const Index = () => {
         <StatsSection />
         <CtaSection />
         <TestimonialsSection />
-      </main>
-    </>
+      </div>
+    </Layout>
   );
 };
 

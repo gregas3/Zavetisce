@@ -1,3 +1,4 @@
+
 import { Helmet } from 'react-helmet';
 import { ArrowRight, Clock, CalendarDays, Map, CheckCircle, Info, Pencil } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -6,10 +7,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import Section from "@/components/shared/Section";
+import Layout from "@/components/layout/Layout";
 
 const Volunteer = () => {
   return (
-    <>
+    <Layout>
       <Helmet>
         <title>Prostovoljstvo | Zavetišče za živali Maribor</title>
         <meta name="description" content="Postanite prostovoljec v Zavetišču za živali Maribor in pomagajte živalim do boljšega življenja. Sprehajanje psov, pomoč pri oskrbi, sodelovanje na dogodkih in druge možnosti prostovoljstva." />
@@ -232,7 +234,7 @@ const Volunteer = () => {
           </div>
         </section>
       </main>
-    </>
+    </Layout>
   );
 };
 

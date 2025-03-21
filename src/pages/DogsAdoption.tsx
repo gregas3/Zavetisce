@@ -2,8 +2,7 @@ import { Helmet } from 'react-helmet';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Search } from 'lucide-react';
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import Layout from "@/components/layout/Layout";
 import Section from "@/components/shared/Section";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -37,13 +36,11 @@ const DogsAdoption = () => {
   };
 
   return (
-    <>
+    <Layout>
       <Helmet>
         <title>Posvojitev psov | Zavetišče za živali Maribor</title>
         <meta name="description" content="Spoznajte pse, ki so na voljo za posvojitev v Zavetišču za živali Maribor. Najdite svojega novega štirinožnega prijatelja." />
       </Helmet>
-      
-      <Navbar />
       
       <main className="min-h-screen pt-16">
         <Section
@@ -130,9 +127,7 @@ const DogsAdoption = () => {
           </div>
         </Section>
       </main>
-      
-      <Footer />
-    </>
+    </Layout>
   );
 };
 

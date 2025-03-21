@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Helmet } from 'react-helmet';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -6,8 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Heart, SmartphoneNfc, ShoppingBag, AlertCircle, Copy, Check, Bitcoin, Wallet } from "lucide-react";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+import Layout from "@/components/layout/Layout";
 import Section from "@/components/shared/Section";
 import { toast } from "@/components/ui/use-toast";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
@@ -84,13 +82,11 @@ const Donations = () => {
   };
 
   return (
-    <>
+    <Layout>
       <Helmet>
         <title>Donacije | Zavetišče za živali Maribor</title>
         <meta name="description" content="Podprite zavetišče za živali Maribor z denarnimi in materialnimi donacijami. Vsak prispevek pomaga živalim v stiski." />
       </Helmet>
-      
-      <Navbar />
       
       <main className="min-h-screen pt-24 pb-16">
         <Section 
@@ -342,9 +338,7 @@ const Donations = () => {
           </Tabs>
         </Section>
       </main>
-      
-      <Footer />
-    </>
+    </Layout>
   );
 };
 

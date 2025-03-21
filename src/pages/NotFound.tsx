@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Layout from "@/components/layout/Layout";
-import Footer from "@/components/layout/Footer";
 
 const NotFound = () => {
   const location = useLocation();
@@ -42,7 +41,6 @@ const NotFound = () => {
           </Button>
         </div>
       </div>
-      <Footer />
     </Layout>
   );
 };
