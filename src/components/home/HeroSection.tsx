@@ -32,7 +32,7 @@ export default function HeroSection() {
               <img 
                 src="/lovable-uploads/48b0f5a4-0bee-4f96-af30-5157149e0517.png" 
                 alt="Zavetišče za živali Maribor Logo" 
-                className="h-8 w-auto" 
+                className="h-10 w-auto" 
               />
             </div>
 
