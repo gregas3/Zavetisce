@@ -7,7 +7,9 @@ export default function HeroSection() {
   const scrollToNextSection = () => {
     const nextSection = document.querySelector('.section-padding');
     if (nextSection) {
-      nextSection.scrollIntoView({
+      const topPosition = nextSection.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: topPosition,
         behavior: 'smooth'
       });
     }
@@ -27,7 +29,7 @@ export default function HeroSection() {
           <div className="animate-fade-in">
             {/* Logo and text in a flex container */}
             <div className="flex flex-col md:flex-row items-center gap-4 mb-8">
-              <Link to="/">
+              <Link to="/" onClick={() => window.scrollTo(0, 0)}>
                 <img 
                   alt="Zavetišče za živali Maribor" 
                   className="h-28 md:h-36 object-contain transition-transform hover:scale-105" 
@@ -49,12 +51,12 @@ export default function HeroSection() {
             
             <div className="flex flex-wrap gap-4 mb-16 md:mb-0">
               <Button size="lg" variant="darkTeal" asChild className="rounded-full font-medium text-base">
-                <Link to="/donacije">
+                <Link to="/donacije" onClick={() => window.scrollTo(0, 0)}>
                   Podpri zavetišče
                 </Link>
               </Button>
               <Button size="lg" variant="teal" asChild className="rounded-full font-medium text-base animate-fade-in delay-100 button-pulse">
-                <Link to="/posvojitev/psi">
+                <Link to="/posvojitev/psi" onClick={() => window.scrollTo(0, 0)}>
                   Posvoji zdaj <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>

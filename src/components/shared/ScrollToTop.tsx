@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -6,12 +5,21 @@ import { useLocation } from "react-router-dom";
  * ScrollToTop component that scrolls to the top of the page when navigating between routes
  */
 export default function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    // Scroll to top of the page immediately when route changes
+    // If there's a hash in the URL (anchor link), scroll to that element
+    if (hash) {
+      const element = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+    }
+    
+    // Otherwise scroll to top of the page immediately when route changes
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname, hash]);
 
   return null; // This component doesn't render anything
 }

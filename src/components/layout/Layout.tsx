@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
@@ -18,10 +18,15 @@ const Layout = ({ children }: LayoutProps) => {
     child => React.isValidElement(child) && child.type === Footer
   );
   
+  // Ensure page scrolls to top when route changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+  
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main className="flex-grow">
+      <main className="flex-grow" id="top">
         {children}
       </main>
       {isHomePage && <FloatingContactButton />}
