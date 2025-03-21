@@ -17,7 +17,7 @@ const FloatingContactButton = () => {
         <Button
           variant="primary"
           size="icon"
-          className="fixed right-4 bottom-16 z-50 rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-all duration-700"
+          className="fixed right-4 bottom-16 z-50 rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-all duration-700 animate-pulse"
           aria-label="Contact Us"
         >
           <Phone className="w-6 h-6" />
@@ -26,7 +26,7 @@ const FloatingContactButton = () => {
       
       <PopoverContent 
         side="left" 
-        sideOffset={16} 
+        sideOffset={30} 
         className="w-80 p-0 bg-[#f5fcfb] border-teal-200 shadow-md rounded-xl"
       >
         <div className="p-4">
