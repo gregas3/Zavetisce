@@ -5,14 +5,13 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Search, PawPrint, Calendar, Info, Plus, Cat, Dog, ArrowUpRight } from "lucide-react";
+import { MapPin, Search, PawPrint, Calendar, Info, Plus, Cat, Dog, ArrowUpRight, ExternalLink } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import Section from "@/components/shared/Section";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import LostAnimalForm from "@/components/forms/LostAnimalForm";
 import FoundAnimalForm from "@/components/forms/FoundAnimalForm";
 
-// Sample data for lost pets
 const lostPets = [
   {
     id: 1,
@@ -61,7 +60,6 @@ const lostPets = [
   },
 ];
 
-// Sample data for found pets
 const foundPets = [
   {
     id: 4,
@@ -97,7 +95,6 @@ export default function LostAndFound() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterType, setFilterType] = useState("all");
   const [activeTab, setActiveTab] = useState("listings");
-  const [formType, setFormType] = useState<"lost" | "found" | null>(null);
   
   const filteredLostPets = lostPets.filter(pet => {
     const matchesQuery = pet.name?.toLowerCase().includes(searchQuery.toLowerCase()) || 
@@ -122,11 +119,34 @@ export default function LostAndFound() {
     return matchesQuery;
   });
 
-  const handleReportButtonClick = (type: "lost" | "found") => {
-    setFormType(type);
-    setActiveTab("report");
-    window.scrollTo(0, 0);
+  const openFormInNewWindow = (formType: "lost" | "found") => {
+    const url = `/izgubljeni-najdeni?form=${formType}`;
+    window.open(url, '_blank', 'width=800,height=900');
   };
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const formParam = urlParams.get('form');
+  
+  if (formParam === 'lost' || formParam === 'found') {
+    return (
+      <Layout>
+        <Helmet>
+          <title>
+            {formParam === 'lost' ? 'Prijava izgubljene živali' : 'Prijava najdene živali'} | Zavetišče za živali Maribor
+          </title>
+        </Helmet>
+        <div className="pt-24 md:pt-32 pb-12">
+          <Section className="py-4">
+            <AnimatedWrapper animation="fade-in">
+              <div className="max-w-3xl mx-auto">
+                {formParam === 'lost' ? <LostAnimalForm /> : <FoundAnimalForm />}
+              </div>
+            </AnimatedWrapper>
+          </Section>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
@@ -151,25 +171,27 @@ export default function LostAndFound() {
                   variant="teal" 
                   size="lg" 
                   className="flex-1 py-8 flex-col h-auto"
-                  onClick={() => handleReportButtonClick("lost")}
+                  onClick={() => openFormInNewWindow("lost")}
                 >
                   <PawPrint size={32} className="mb-2" />
                   <span className="text-lg font-medium">Prijavi izgubljeno žival</span>
+                  <ExternalLink size={16} className="ml-1" />
                 </Button>
                 <Button 
                   variant="lightTeal" 
                   size="lg" 
                   className="flex-1 py-8 flex-col h-auto"
-                  onClick={() => handleReportButtonClick("found")}
+                  onClick={() => openFormInNewWindow("found")}
                 >
                   <Search size={32} className="mb-2" />
                   <span className="text-lg font-medium">Prijavi najdeno žival</span>
+                  <ExternalLink size={16} className="ml-1" />
                 </Button>
               </div>
               
               <p className="text-gray-600 text-center mb-6">
                 Izberite vrsto prijave, ki jo želite oddati. 
-                Nato vas bomo vodili skozi preprost obrazec.
+                Obrazec se bo odprl v novem oknu.
               </p>
               
               <div className="text-sm text-gray-500 border-t border-teal-100 pt-4">
@@ -221,12 +243,6 @@ export default function LostAndFound() {
               className="flex-1 data-[state=active]:bg-teal-100 data-[state=active]:text-teal-800"
             >
               Seznam izgubljenih in najdenih
-            </TabsTrigger>
-            <TabsTrigger 
-              value="report" 
-              className="flex-1 data-[state=active]:bg-teal-100 data-[state=active]:text-teal-800"
-            >
-              Oddaj prijavo
             </TabsTrigger>
           </TabsList>
           
@@ -436,76 +452,26 @@ export default function LostAndFound() {
             </AnimatedWrapper>
             
             <div className="flex justify-center mt-12">
-              <Button 
-                variant="primary" 
-                size="lg"
-                className="gap-2 shadow-md"
-                onClick={() => setActiveTab("report")}
-              >
-                <Plus size={18} />
-                Oddaj novo prijavo
-              </Button>
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="report">
-            <div className="max-w-3xl mx-auto">
-              {!formType ? (
-                <div className="bg-white p-8 rounded-xl shadow-sm border border-teal-100 text-center mb-8">
-                  <h3 className="text-xl font-semibold text-teal-800 mb-6">Izberite vrsto prijave</h3>
-                  
-                  <div className="flex flex-col sm:flex-row gap-4 mb-6">
-                    <Button 
-                      variant="teal" 
-                      size="lg" 
-                      className="flex-1 py-6 flex-col h-auto"
-                      onClick={() => setFormType("lost")}
-                    >
-                      <PawPrint size={28} className="mb-2" />
-                      <span className="font-medium">Prijavi izgubljeno žival</span>
-                    </Button>
-                    <Button 
-                      variant="lightTeal" 
-                      size="lg" 
-                      className="flex-1 py-6 flex-col h-auto"
-                      onClick={() => setFormType("found")}
-                    >
-                      <Search size={28} className="mb-2" />
-                      <span className="font-medium">Prijavi najdeno žival</span>
-                    </Button>
-                  </div>
-                  
-                  <Button 
-                    variant="outline" 
-                    onClick={() => setActiveTab("listings")}
-                    className="mt-4"
-                  >
-                    Nazaj na seznam
-                  </Button>
-                </div>
-              ) : (
-                <>
-                  <div className="flex justify-between items-center mb-4">
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      onClick={() => setFormType(null)}
-                    >
-                      Izberi drugo vrsto prijave
-                    </Button>
-                    
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      onClick={() => setActiveTab("listings")}
-                    >
-                      Nazaj na seznam
-                    </Button>
-                  </div>
-                  
-                  {formType === "lost" ? <LostAnimalForm /> : <FoundAnimalForm />}
-                </>
-              )}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button 
+                  variant="primary" 
+                  size="lg"
+                  className="gap-2 shadow-md"
+                  onClick={() => openFormInNewWindow("lost")}
+                >
+                  <PawPrint size={18} />
+                  Prijavi izgubljeno žival
+                </Button>
+                <Button 
+                  variant="lightTeal" 
+                  size="lg"
+                  className="gap-2 shadow-md"
+                  onClick={() => openFormInNewWindow("found")}
+                >
+                  <Search size={18} />
+                  Prijavi najdeno žival
+                </Button>
+              </div>
             </div>
           </TabsContent>
         </Tabs>
@@ -574,7 +540,7 @@ export default function LostAndFound() {
                 <div className="mt-1 bg-teal-100 rounded-full p-1 shrink-0">
                   <Info size={14} className="text-teal-600" />
                 </div>
-                <span>Obvestite vsa lokalna zavetišča, veterinarske postaje in trgovine za hišne ljubljenčke.</span>
+                <span>Obvestite vsa lokalna zavetišca, veterinarske postaje in trgovine za hišne ljubljenčke.</span>
               </li>
               <li className="flex items-start gap-2">
                 <div className="mt-1 bg-teal-100 rounded-full p-1 shrink-0">
