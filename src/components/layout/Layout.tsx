@@ -2,7 +2,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
-import Footer from './Footer';
 import FloatingContactButton from '../shared/FloatingContactButton';
 
 type LayoutProps = {
@@ -12,11 +11,6 @@ type LayoutProps = {
 const Layout = ({ children }: LayoutProps) => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
-  
-  // Check if the children already have a Footer component
-  const hasNestedFooter = React.Children.toArray(children).some(
-    child => React.isValidElement(child) && child.type === Footer
-  );
   
   // Ensure page scrolls to top when route changes
   useEffect(() => {
@@ -30,7 +24,6 @@ const Layout = ({ children }: LayoutProps) => {
         {children}
       </main>
       {isHomePage && <FloatingContactButton />}
-      {!hasNestedFooter && <Footer />}
     </div>
   );
 };

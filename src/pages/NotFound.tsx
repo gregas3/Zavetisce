@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
-import Navbar from "@/components/layout/Navbar";
+import Layout from "@/components/layout/Layout";
 import Footer from "@/components/layout/Footer";
 
 const NotFound = () => {
@@ -18,8 +18,7 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <>
-      <Navbar />
+    <Layout>
       <div className="min-h-screen flex items-center justify-center bg-muted/30 px-4 py-32">
         <div className="text-center max-w-md animate-fade-in">
           <div className="mb-6">
@@ -44,7 +43,7 @@ const NotFound = () => {
         </div>
       </div>
       <Footer />
-    </>
+    </Layout>
   );
 };
 

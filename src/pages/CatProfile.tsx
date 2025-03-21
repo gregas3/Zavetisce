@@ -6,7 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Calendar, Mail, Phone } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
-import Navbar from "@/components/layout/Navbar";
+import Layout from "@/components/layout/Layout";
 import Footer from "@/components/layout/Footer";
 import Section from "@/components/shared/Section";
 import CatProfileBreadcrumb from "@/components/cats/CatProfileBreadcrumb";
@@ -82,104 +82,122 @@ const CatProfile = () => {
   if (error || !cat) return <CatProfileError />;
 
   return (
-    <>
+    <Layout>
       <Helmet>
-        <title>{cat.name} | Zavetišče za živali Maribor</title>
-        <meta name="description" content={`Spoznajte ${cat.name}, ${cat.gender} mačka, ki išče nov dom.`} />
+        <title>{cat?.name || 'Loading...'} | Zavetišče za živali Maribor</title>
+        <meta name="description" content={`Spoznajte ${cat?.name || 'mačko'}, ${cat?.gender || ''} mačka, ki išče nov dom.`} />
       </Helmet>
 
-      <Navbar />
+      {loading ? (
+        <CatProfileSkeleton />
+      ) : error || !cat ? (
+        <CatProfileError />
+      ) : (
+        <main className="pt-20 pb-10">
+          <Section>
+            <CatProfileBreadcrumb catName={cat.name} />
+            <CatProfileHeader name={cat.name} status="Na voljo za posvojitev" />
 
-      <main className="pt-20 pb-10">
-        <Section>
-          <CatProfileBreadcrumb catName={cat.name} />
-          <CatProfileHeader name={cat.name} status="Na voljo za posvojitev" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+              <div className="md:col-span-2">
+                <CatImageCarousel images={[cat.image]} />
+              </div>
+              <div className="space-y-6">
+                <CatBasicInfo
+                  age={cat.age}
+                  color={cat.color}
+                  gender={cat.gender}
+                  size={cat.size}
+                  dateArrived="2023-06-15"
+                />
+                
+                <CatContactInfo
+                  name={cat.name}
+                  contactInfo={{
+                    phone: "+386 2 480 1660",
+                    email: "info@zavetisce-maribor.si",
+                  }}
+                  handleScheduleAppointment={() => {
+                    navigate("/termini", { state: { petName: cat.name, petType: "mačka" } });
+                    toast({
+                      title: "Termin za ogled",
+                      description: `Ustvarjanje termina za ogled mačke ${cat.name}`,
+                    });
+                  }}
+                />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <div className="md:col-span-2">
-              <CatImageCarousel images={[cat.image]} />
-            </div>
-            <div className="space-y-6">
-              <CatBasicInfo
-                age={cat.age}
-                color={cat.color}
-                gender={cat.gender}
-                size={cat.size}
-                dateArrived="2023-06-15"
-              />
-              
-              <CatContactInfo
-                name={cat.name}
-                contactInfo={contactInfo}
-                handleScheduleAppointment={handleScheduleAppointment}
-              />
-
-              <div className="flex flex-wrap gap-2 mt-4">
-                {cat.characteristics.map((trait, i) => (
-                  <span
-                    key={i}
-                    className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
-                  >
-                    {trait}
-                  </span>
-                ))}
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {cat.characteristics.map((trait, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
+                    >
+                      {trait}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
 
-          <Tabs defaultValue="about" className="mt-8">
-            <TabsList className="grid w-full grid-cols-2 mb-8">
-              <TabsTrigger value="about">O mački</TabsTrigger>
-              <TabsTrigger value="health">Zdravstveno stanje</TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="about" className="mt-0">
-              <CatAboutTab
-                name={cat.name}
-                description={cat.description}
-                suitableFor={additionalInfo.suitableFor}
-                notSuitableFor={additionalInfo.notSuitableFor}
-                additionalInfo={additionalInfo.additionalInfo}
-              />
-            </TabsContent>
-            
-            <TabsContent value="health" className="mt-0">
-              <CatHealthTab
-                name={cat.name}
-                vaccinated={cat.vaccinated}
-                neutered={cat.neutered}
-                microchipped={true}
-                gender={cat.gender}
-              />
-            </TabsContent>
-          </Tabs>
+            <Tabs defaultValue="about" className="mt-8">
+              <TabsList className="grid w-full grid-cols-2 mb-8">
+                <TabsTrigger value="about">O mački</TabsTrigger>
+                <TabsTrigger value="health">Zdravstveno stanje</TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="about" className="mt-0">
+                <CatAboutTab
+                  name={cat.name}
+                  description={cat.description}
+                  suitableFor={cat.goodWith.join(", ") || ""}
+                  notSuitableFor={cat.gender === "samec" ? "nervozna okolja, majhni otroci brez nadzora" : "hrupna okolja, zelo aktivne družine"}
+                  additionalInfo="Mačka je bila najdena kot zapuščena in ima za seboj težko preteklost, vendar je zdaj pripravljena na nov začetek v ljubečem domu."
+                />
+              </TabsContent>
+              
+              <TabsContent value="health" className="mt-0">
+                <CatHealthTab
+                  name={cat.name}
+                  vaccinated={cat.vaccinated}
+                  neutered={cat.neutered}
+                  microchipped={true}
+                  gender={cat.gender}
+                />
+              </TabsContent>
+            </Tabs>
 
-          <div className="mt-8 text-center">
-            <Button size="lg" onClick={handleScheduleAppointment}>
-              <Calendar className="mr-2 h-5 w-5" />
-              Rezerviraj termin za obisk
-            </Button>
-            
-            <div className="mt-6 flex justify-center gap-4">
-              <Button variant="outline" size="sm" asChild>
-                <a href={`tel:${contactInfo.phone}`}>
-                  <Phone className="mr-2 h-4 w-4" />
-                  {contactInfo.phone}
-                </a>
+            <div className="mt-8 text-center">
+              <Button size="lg" onClick={() => {
+                navigate("/termini", { state: { petName: cat.name, petType: "mačka" } });
+                toast({
+                  title: "Termin za ogled",
+                  description: `Ustvarjanje termina za ogled mačke ${cat.name}`,
+                });
+              }}>
+                <Calendar className="mr-2 h-5 w-5" />
+                Rezerviraj termin za obisk
               </Button>
-              <Button variant="outline" size="sm" asChild>
-                <a href={`mailto:${contactInfo.email}`}>
-                  <Mail className="mr-2 h-4 w-4" />
-                  {contactInfo.email}
-                </a>
-              </Button>
+              
+              <div className="mt-6 flex justify-center gap-4">
+                <Button variant="outline" size="sm" asChild>
+                  <a href="tel:+38624801660">
+                    <Phone className="mr-2 h-4 w-4" />
+                    +386 2 480 1660
+                  </a>
+                </Button>
+                <Button variant="outline" size="sm" asChild>
+                  <a href="mailto:info@zavetisce-maribor.si">
+                    <Mail className="mr-2 h-4 w-4" />
+                    info@zavetisce-maribor.si
+                  </a>
+                </Button>
+              </div>
             </div>
-          </div>
-        </Section>
-      </main>
-
+          </Section>
+        </main>
+      )}
       <Footer />
-    </>
+    </Layout>
   );
 };
 

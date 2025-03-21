@@ -1,9 +1,8 @@
-
 import { Helmet } from 'react-helmet';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Heart } from 'lucide-react';
-import Navbar from "@/components/layout/Navbar";
+import Layout from "@/components/layout/Layout";
 import Footer from "@/components/layout/Footer";
 import Section from "@/components/shared/Section";
 import { Input } from "@/components/ui/input";
@@ -38,13 +37,11 @@ const CatsAdoption = () => {
   };
 
   return (
-    <>
+    <Layout>
       <Helmet>
         <title>Posvojitev mačk | Zavetišče za živali Maribor</title>
         <meta name="description" content="Spoznajte mačke, ki so na voljo za posvojitev v Zavetišču za živali Maribor. Najdite svojega novega mucka ali muco." />
       </Helmet>
-      
-      <Navbar />
       
       <main className="min-h-screen pt-16">
         <Section
@@ -133,7 +130,7 @@ const CatsAdoption = () => {
       </main>
       
       <Footer />
-    </>
+    </Layout>
   );
 };
 
@@ -141,7 +138,7 @@ interface CatCardProps {
   cat: {
     id: number;
     name: string;
-    color: string; // Updated from breed to color
+    color: string;
     age: string;
     gender: string;
     image: string;
