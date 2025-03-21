@@ -1,4 +1,3 @@
-
 import { Helmet } from 'react-helmet';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -14,6 +13,20 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 
 // Mock data for dogs
 const dogs = [
+  {
+    id: 7,
+    name: "Ajša",
+    breed: "Mešanec",
+    age: "6 mesecev",
+    gender: "samica",
+    size: "srednja",
+    image: "/lovable-uploads/99f635b5-3797-485c-be8f-e76012c87d6f.png",
+    description: "Ajša je 6 mesecev stara psička, izredno igriva, čuječa in ljubezniva, seveda zaradi let tudi nagajiva, kar je popolnoma normalno za njeno starost. Trenutno tehta 20 kg, bo še zrasla in postala večja psička. Išče odgovoren in ljubeč dom, kjer ji bodo nudili dovolj pozornosti, sprehodov in igre.",
+    characteristics: ["igriva", "čuječa", "ljubezniva", "nagajiva"],
+    vaccinated: true,
+    neutered: true,
+    goodWith: ["otroci", "drugi psi"]
+  },
   {
     id: 1,
     name: "Reks",
