@@ -58,10 +58,8 @@ export default function Navbar() {
   const handleHomeClick = (e) => {
     e.preventDefault();
     if (location.pathname === '/') {
-      // If already on home page, just scroll to top immediately
       window.scrollTo(0, 0);
     } else {
-      // Navigate to home page and let ScrollToTop handle the scrolling
       navigate('/');
     }
   };
@@ -87,7 +85,7 @@ export default function Navbar() {
                     Posvojitev
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <ul className="grid gap-3 p-4 w-[200px] bg-white border border-teal-100 shadow-lg rounded-lg">
+                    <ul className="grid gap-3 p-4 md:w-[200px] bg-white border border-teal-100 shadow-lg rounded-lg">
                       <li>
                         <NavigationMenuLink asChild>
                           <Link to="/posvojitev/psi" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
