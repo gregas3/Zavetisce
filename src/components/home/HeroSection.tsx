@@ -29,16 +29,6 @@ export default function HeroSection() {
               Zavetišče za živali Maribor
             </span>
 
-            {/* Logo and shelter name side by side */}
-            <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8">
-              <img alt="Zavetišče za živali Maribor" className="h-28 md:h-36 object-contain" src="/lovable-uploads/57b6cf18-7b1a-48a3-9341-5bd8d46dc3f4.png" />
-              <img 
-                src="/lovable-uploads/451a16f6-98b7-4c2b-b754-addedaf770a6.png" 
-                alt="Zavetišče za živali Maribor" 
-                className="h-10 md:h-12 object-contain self-center" 
-              />
-            </div>
-
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white">
               Pomagajte nam ustvariti srečne zgodbe za zapuščene živali
             </h1>
