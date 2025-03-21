@@ -11,7 +11,13 @@ const FloatingContactButton = () => {
 
   return <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <Button variant="primary" size="icon" className="fixed right-4 bottom-16 z-50 rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-all duration-700 animate-pulse" aria-label="Contact Us">
+        <Button 
+          variant="outline" 
+          size="icon" 
+          className="fixed right-4 bottom-16 z-50 rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-all duration-700 
+                    bg-white border-2 border-teal-400 text-teal-600 hover:bg-teal-50 hover:text-teal-700 hover:border-teal-500" 
+          aria-label="Contact Us"
+        >
           <Phone className="w-6 h-6" />
         </Button>
       </PopoverTrigger>
