@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, ChevronDown, Search, Heart, Dog, Cat, Mail, Home } from "lucide-react";
@@ -59,21 +58,11 @@ export default function Navbar() {
   const handleHomeClick = (e) => {
     e.preventDefault();
     if (location.pathname === '/') {
-      // If already on home page, just scroll to top
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+      // If already on home page, just scroll to top immediately
+      window.scrollTo(0, 0);
     } else {
-      // Navigate to home page and then scroll to top
+      // Navigate to home page and let ScrollToTop handle the scrolling
       navigate('/');
-      // Small timeout to ensure navigation completes first
-      setTimeout(() => {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-      }, 100);
     }
   };
 
