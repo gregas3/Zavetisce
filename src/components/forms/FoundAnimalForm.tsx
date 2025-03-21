@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -41,7 +40,7 @@ const formSchema = z.object({
   location: z.object({
     lat: z.number(),
     lng: z.number()
-  }, { message: 'Lokacija je obvezna' }).nullable(),
+  }).nullable(),
   currentLocation: z.string().optional(),
   additionalInfo: z.string().optional(),
 });
@@ -364,7 +363,14 @@ const FoundAnimalForm = () => {
                 <FormControl>
                   <LocationPicker
                     value={field.value}
-                    onChange={field.onChange}
+                    onChange={(location) => {
+                      // Ensure we're passing a valid location object or null
+                      if (location && typeof location.lat === 'number' && typeof location.lng === 'number') {
+                        field.onChange(location);
+                      } else {
+                        field.onChange(null);
+                      }
+                    }}
                     error={form.formState.errors.location?.message}
                   />
                 </FormControl>

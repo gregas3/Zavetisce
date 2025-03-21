@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -41,7 +40,7 @@ const formSchema = z.object({
   location: z.object({
     lat: z.number(),
     lng: z.number()
-  }, { message: 'Lokacija je obvezna' }).nullable(),
+  }).nullable(),
   additionalInfo: z.string().optional(),
 });
 
@@ -75,10 +74,8 @@ const LostAnimalForm = () => {
     setSubmitStatus('idle');
     
     try {
-      // Create form data for sending files
       const formData = new FormData();
       
-      // Add form fields to formData
       Object.entries(data).forEach(([key, value]) => {
         if (key === 'location' && value) {
           formData.append(key, JSON.stringify(value));
@@ -87,25 +84,18 @@ const LostAnimalForm = () => {
         }
       });
       
-      // Add files
       files.forEach((file, index) => {
         formData.append(`file-${index}`, file);
       });
       
-      // Add form type
       formData.append('formType', 'lost-animal');
       
-      // In a real application, you would send this to your API endpoint
-      // For now, we'll simulate a successful response after a delay
       console.log("Form data would be sent:", Object.fromEntries(formData));
       
-      // Simulate API delay
       await new Promise(r => setTimeout(r, 1500));
       
-      // Simulated successful submission
       setSubmitStatus('success');
       
-      // Reset form
       form.reset();
       setFiles([]);
     } catch (error) {
@@ -362,7 +352,13 @@ const LostAnimalForm = () => {
                 <FormControl>
                   <LocationPicker
                     value={field.value}
-                    onChange={field.onChange}
+                    onChange={(location) => {
+                      if (location && typeof location.lat === 'number' && typeof location.lng === 'number') {
+                        field.onChange(location);
+                      } else {
+                        field.onChange(null);
+                      }
+                    }}
                     error={form.formState.errors.location?.message}
                   />
                 </FormControl>

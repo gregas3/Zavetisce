@@ -8,7 +8,7 @@ import { Label } from '@/components/ui/label';
 // Add the google maps types declaration to handle TypeScript errors
 declare global {
   interface Window {
-    google: typeof google;
+    google: any;
     initMap: () => void;
   }
 }
@@ -22,8 +22,8 @@ interface LocationPickerProps {
 const LocationPicker = ({ value, onChange, error }: LocationPickerProps) => {
   const mapRef = useRef<HTMLDivElement | null>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
-  const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
-  const [marker, setMarker] = useState<google.maps.Marker | null>(null);
+  const [mapInstance, setMapInstance] = useState<any | null>(null);
+  const [marker, setMarker] = useState<any | null>(null);
   const [address, setAddress] = useState("");
 
   // Load Google Maps script
@@ -84,7 +84,7 @@ const LocationPicker = ({ value, onChange, error }: LocationPickerProps) => {
     }
 
     // Set up click event to place marker
-    map.addListener('click', (event: google.maps.MapMouseEvent) => {
+    map.addListener('click', (event: any) => {
       const position = event.latLng;
       
       if (!position) return;
@@ -169,7 +169,7 @@ const LocationPicker = ({ value, onChange, error }: LocationPickerProps) => {
     if (!mapLoaded) return;
     
     const geocoder = new window.google.maps.Geocoder();
-    geocoder.geocode({ location: { lat, lng } }, (results, status) => {
+    geocoder.geocode({ location: { lat, lng } }, (results: any, status: string) => {
       if (status === 'OK' && results && results[0]) {
         setAddress(results[0].formatted_address);
       } else {
