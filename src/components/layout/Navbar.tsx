@@ -58,22 +58,21 @@ export default function Navbar() {
   const handleHomeClick = (e) => {
     e.preventDefault();
     if (location.pathname === '/') {
+      // If already on home page, just scroll to top immediately
       window.scrollTo(0, 0);
     } else {
+      // Navigate to home page and let ScrollToTop handle the scrolling
       navigate('/');
     }
   };
 
-  return <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 w-full ${
-    scrolled 
-      ? scrollingUp || atBottom 
-        ? "py-3 bg-gradient-to-b from-teal-50/95 to-teal-50/80 backdrop-blur-[2px]" // Scrolling up or at bottom - visible
-        : "py-2 bg-transparent" // Scrolling down - transparent
-      : "py-4 bg-gradient-to-b from-teal-50/95 to-teal-50/80 backdrop-blur-[2px]" // At top - fully visible
-    }`} 
-    style={{ borderBottom: 'none' }}
-  >
-      <div className="container mx-auto px-4 md:px-6 max-w-7xl">
+  return <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? scrollingUp || atBottom ? "py-3 bg-gradient-to-b from-teal-50/95 to-teal-50/80 backdrop-blur-[2px]" // Scrolling up or at bottom - visible
+  : "py-2 bg-transparent" // Scrolling down - transparent
+  : "py-4 bg-gradient-to-b from-teal-50/95 to-teal-50/80 backdrop-blur-[2px]" // At top - fully visible
+  }`} style={{
+    borderBottom: 'none'
+  }}>
+      <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="text-2xl font-display font-bold text-teal-600 flex items-center gap-2 transition-normal hover-scale" onClick={closeMenu}>
             <span className="sr-only">Zavetišče za živali Maribor</span>
@@ -196,7 +195,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      <div className={`container mx-auto px-4 md:px-6 max-w-7xl overflow-hidden transition-all duration-300 ${searchActive ? "max-h-16 opacity-100 py-4" : "max-h-0 opacity-0"}`}>
+      <div className={`container mx-auto px-4 overflow-hidden transition-all duration-300 ${searchActive ? "max-h-16 opacity-100 py-4" : "max-h-0 opacity-0"}`}>
         <div className="relative">
           <input type="text" placeholder="Išči..." className="w-full py-2 px-4 pl-10 rounded-lg border border-teal-200 bg-white text-teal-800 placeholder-teal-400 focus:border-teal-500 focus:ring-1 focus:ring-teal-500 outline-none transition-normal" />
           <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-teal-500" />
