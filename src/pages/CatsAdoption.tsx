@@ -2,7 +2,7 @@
 import { Helmet } from 'react-helmet';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Filter, Heart } from 'lucide-react';
+import { Search, Heart } from 'lucide-react';
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Section from "@/components/shared/Section";
@@ -11,88 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-
-// Mock data for cats
-const cats = [
-  {
-    id: 1,
-    name: "Muri",
-    breed: "Evropska kratka dlaka",
-    age: "1 leto",
-    gender: "samec",
-    image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1473&q=80",
-    description: "Muri je igriv in radoveden mlad maček, ki se rad stiska in prede. Išče dom, kjer bo dobil veliko ljubezni in pozornosti.",
-    characteristics: ["igriv", "prijazen", "radoveden", "družaben"],
-    vaccinated: true,
-    neutered: true,
-    goodWith: ["otroci", "drugi mački"]
-  },
-  {
-    id: 2,
-    name: "Črnko",
-    breed: "Evropska kratka dlaka",
-    age: "2 leti",
-    gender: "samec",
-    image: "https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80",
-    description: "Črnko je eleganten črn maček, ki je samostojen, a hkrati ljubeč do ljudi. Rad opazuje okolico iz mirnega kotička.",
-    characteristics: ["samostojen", "miren", "nežen", "ljubeč"],
-    vaccinated: true,
-    neutered: true,
-    goodWith: ["odrasli", "mirno okolje"]
-  },
-  {
-    id: 3,
-    name: "Liza",
-    breed: "Evropska kratka dlaka",
-    age: "5 let",
-    gender: "samica",
-    image: "https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1458&q=80",
-    description: "Liza je umirjena odrasla mačka, ki išče miren dom, kjer bo lahko kraljevala. Rada se crklja in uživa v mirnem okolju.",
-    characteristics: ["mirna", "ljubeča", "samostojna", "dostojanstvena"],
-    vaccinated: true,
-    neutered: true,
-    goodWith: ["odrasli", "starejši", "mirno okolje"]
-  },
-  {
-    id: 4,
-    name: "Puhko",
-    breed: "Perzijska mačka",
-    age: "3 leta",
-    gender: "samec",
-    image: "https://images.unsplash.com/photo-1608848461950-0fe51dfc41cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
-    description: "Puhko je puhast in eleganten maček, ki obožuje crkljanje in mirno življenje. Potrebuje redno nego zaradi dolge dlake.",
-    characteristics: ["puhast", "miren", "ljubeč", "razvajen"],
-    vaccinated: true,
-    neutered: true,
-    goodWith: ["odrasli", "mirno okolje", "izkušeni lastniki"]
-  },
-  {
-    id: 5,
-    name: "Miša",
-    breed: "Evropska kratka dlaka",
-    age: "8 mesecev",
-    gender: "samica",
-    image: "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1336&q=80",
-    description: "Miša je živahna mlada mačka, polna energije in radovednosti. Zelo rada se igra in raziskuje. Išče aktivno družino.",
-    characteristics: ["živahna", "igriva", "radovedna", "prijazna"],
-    vaccinated: true,
-    neutered: false,
-    goodWith: ["družine", "otroci", "drugi mački"]
-  },
-  {
-    id: 6,
-    name: "Tiger",
-    breed: "Evropska kratka dlaka",
-    age: "1 leto",
-    gender: "samec",
-    image: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-    description: "Tiger je energičen mlad maček s čudovitim tigrasto obarvanim kožuhom. Je zelo igriv in rad skače ter pleza.",
-    characteristics: ["energičen", "igriv", "radoveden", "atletski"],
-    vaccinated: true,
-    neutered: true,
-    goodWith: ["aktivni ljudje", "drugi mački", "otroci"]
-  }
-];
+import { cats } from "@/data/catsData";
 
 const CatsAdoption = () => {
   const [searchQuery, setSearchQuery] = useState('');

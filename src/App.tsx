@@ -12,6 +12,7 @@ import NotFound from "./pages/NotFound";
 import DogsAdoption from "./pages/DogsAdoption";
 import DogProfile from "./pages/DogProfile";
 import CatsAdoption from "./pages/CatsAdoption";
+import CatProfile from "./pages/CatProfile";
 import Appointments from "./pages/Appointments";
 import Questionnaire from "./pages/Questionnaire";
 import AdoptionProcess from "./pages/AdoptionProcess";
@@ -41,6 +42,7 @@ const App = () => (
             <Route path="/posvojitev/psi" element={<DogsAdoption />} />
             <Route path="/posvojitev/psi/:id" element={<DogProfile />} />
             <Route path="/posvojitev/mačke" element={<CatsAdoption />} />
+            <Route path="/posvojitev/mačke/:id" element={<CatProfile />} />
             <Route path="/posvojitev/vprašalnik" element={<Questionnaire />} />
             <Route path="/posvojitev/postopek" element={<AdoptionProcess />} />
             
