@@ -1,22 +1,20 @@
-
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-
 export default function HeroSection() {
   const scrollToNextSection = () => {
     const nextSection = document.querySelector('.section-padding');
     if (nextSection) {
-      nextSection.scrollIntoView({ behavior: 'smooth' });
+      nextSection.scrollIntoView({
+        behavior: 'smooth'
+      });
     }
   };
-
-  return (
-    <div className="relative pt-24 min-h-[100vh] flex items-center overflow-hidden">
+  return <div className="relative pt-24 min-h-[100vh] flex items-center overflow-hidden">
       {/* Background image with overlay */}
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
-        backgroundImage: "url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80')"
-      }}>
+      backgroundImage: "url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80')"
+    }}>
         <div className="absolute inset-0 bg-gradient-to-r from-[#0f2a2d]/90 via-[#0f2a2d]/70 to-[#0f2a2d]/50"></div>
       </div>
       
@@ -30,11 +28,7 @@ export default function HeroSection() {
 
             {/* Logo added above the headline */}
             <div className="mb-8">
-              <img 
-                src="/lovable-uploads/9ff960c2-c2fe-4dad-a2cc-928dcbea7e4a.png" 
-                alt="Zavetišče za živali Maribor" 
-                className="h-28 md:h-36 object-contain mb-2"
-              />
+              <img alt="Zavetišče za živali Maribor" className="h-28 md:h-36 object-contain mb-2" src="/lovable-uploads/fdabfdde-e503-4a4c-a27c-5e64f0975a3d.png" />
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white">
@@ -62,15 +56,10 @@ export default function HeroSection() {
       </div>
       
       {/* Animated arrow replacing scroll indicator */}
-      <div 
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer" 
-        onClick={scrollToNextSection}
-        aria-label="Scroll down"
-      >
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer" onClick={scrollToNextSection} aria-label="Scroll down">
         <div className="w-16 h-16 rounded-full bg-teal-400/20 flex items-center justify-center border border-teal-400/30 shadow-lg backdrop-blur-sm">
           <ChevronDown className="h-12 w-12 text-teal-300 animate-bounce" />
         </div>
       </div>
-    </div>
-  );
+    </div>;
 }
