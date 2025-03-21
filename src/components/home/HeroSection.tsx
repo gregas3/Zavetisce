@@ -28,7 +28,7 @@ export default function HeroSection() {
             {/* Logo and text in a flex container */}
             <div className="flex flex-col md:flex-row items-center gap-4 mb-8">
               <img alt="Zavetišče za živali Maribor" className="h-28 md:h-36 object-contain" src="/lovable-uploads/57b6cf18-7b1a-48a3-9341-5bd8d46dc3f4.png" />
-              <span className="text-teal-100 text-xl md:text-2xl lg:text-3xl font-semibold px-4 py-2 bg-teal-500/20 rounded-lg">
+              <span className="text-teal-100 text-lg md:text-xl lg:text-2xl font-semibold px-4 py-2 bg-teal-500/20 rounded-lg">
                 Zavetišče za živali Maribor
               </span>
             </div>
