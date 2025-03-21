@@ -91,17 +91,6 @@
     @apply border-border;
   }
 
-  html {
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-    touch-action: manipulation;
-    scroll-behavior: smooth;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    width: 100%;
-  }
-
   body {
     @apply font-sans text-foreground;
     -webkit-font-smoothing: antialiased;
@@ -112,8 +101,12 @@
     position: relative;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
-    width: 100%;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    margin: 0;
+    padding: 0;
   }
 
   ::selection {
@@ -145,7 +138,7 @@
   }
   
   .section-padding {
-    @apply py-12 md:py-20;
+    @apply py-16 md:py-24;
   }
   
   ::-webkit-scrollbar {
@@ -162,18 +155,6 @@
   
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-muted-foreground/30;
-  }
-
-  /* Mobile-specific adjustments */
-  @media (max-width: 640px) {
-    input, button, select, textarea {
-      font-size: 16px; /* Prevents auto-zoom on iOS */
-    }
-    
-    .container {
-      padding-left: 16px;
-      padding-right: 16px;
-    }
   }
 }
 

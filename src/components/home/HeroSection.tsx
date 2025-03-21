@@ -13,7 +13,7 @@ export default function HeroSection() {
       });
     }
   };
-  return <div className="relative pt-16 sm:pt-20 min-h-[90vh] flex items-start sm:items-center overflow-hidden">
+  return <div className="relative pt-24 min-h-[100vh] flex items-center overflow-hidden">
       {/* Background image with overlay */}
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
       backgroundImage: "url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80')"
@@ -22,7 +22,7 @@ export default function HeroSection() {
       </div>
       
       {/* Content */}
-      <div className="container mx-auto px-4 relative z-10 mt-16 sm:mt-0 sm:my-auto">
+      <div className="container mx-auto px-4 relative z-10 my-auto">
         <div className="max-w-3xl">
           <div className="animate-fade-in">
             <div className="flex items-center gap-3 mb-6">
@@ -61,9 +61,9 @@ export default function HeroSection() {
       </div>
       
       {/* Animated arrow replacing scroll indicator */}
-      <div className="absolute bottom-24 sm:bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer" onClick={scrollToNextSection} aria-label="Scroll down">
-        <div className="w-14 h-14 rounded-full bg-teal-400/30 flex items-center justify-center border border-teal-400/40 shadow-lg backdrop-blur-sm">
-          <ChevronDown className="h-10 w-10 text-teal-300 animate-bounce" />
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer" onClick={scrollToNextSection} aria-label="Scroll down">
+        <div className="w-16 h-16 rounded-full bg-teal-400/20 flex items-center justify-center border border-teal-400/30 shadow-lg backdrop-blur-sm">
+          <ChevronDown className="h-12 w-12 text-teal-300 animate-bounce" />
         </div>
       </div>
     </div>;
