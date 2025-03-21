@@ -15,8 +15,8 @@ const Layout = ({ children }: LayoutProps) => {
       <main className="flex-grow">
         {children}
       </main>
-      <Footer />
       <FloatingContactButton />
+      <Footer />
     </div>
   );
 };

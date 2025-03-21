@@ -1,116 +1,100 @@
 
-import React from "react";
-import { Phone } from "lucide-react";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
+import React, { useState } from 'react';
+import { Phone, X, MapPin, Mail } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogClose,
+} from '@/components/ui/dialog';
 
 const FloatingContactButton = () => {
+  const [open, setOpen] = useState(false);
+
   return (
-    <div className="fixed bottom-6 right-6 z-50">
-      <Popover>
-        <PopoverTrigger asChild>
-          <Button 
-            size="icon" 
-            variant="darkTeal" 
-            className="h-14 w-14 rounded-full shadow-lg hover:scale-105 transition-all duration-300 button-pulse"
-            aria-label="Contact Shelter"
-          >
-            <Phone className="h-6 w-6" />
-          </Button>
-        </PopoverTrigger>
-        <PopoverContent 
-          className="w-80 p-0 bg-white border border-teal-100 shadow-xl rounded-xl overflow-hidden"
-          sideOffset={16}
-          align="end"
-        >
-          <div className="bg-teal-500 text-white p-4">
-            <h3 className="font-medium text-lg">Zavetišče za živali Maribor</h3>
+    <>
+      <Button
+        onClick={() => setOpen(true)}
+        variant="primary"
+        size="icon"
+        className="fixed right-4 bottom-16 z-50 rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-all duration-300 animate-bounce-slow"
+        aria-label="Contact Us"
+      >
+        <Phone className="w-6 h-6" />
+      </Button>
+
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="max-w-md glass border-teal-200 shadow-lg">
+          <DialogHeader>
+            <DialogTitle className="text-xl font-semibold text-teal-800">
+              Kontaktne informacije
+            </DialogTitle>
+          </DialogHeader>
+          <DialogClose className="absolute right-4 top-4 rounded-full p-1.5 bg-teal-50 text-teal-700 hover:bg-teal-100 transition-colors">
+            <X className="h-4 w-4" />
+            <span className="sr-only">Zapri</span>
+          </DialogClose>
+
+          <div className="space-y-4 py-2">
+            <div className="font-semibold text-lg text-teal-700">
+              Zavetišče za živali Maribor
+            </div>
+
+            <div className="space-y-3 text-sm">
+              <a 
+                href="https://www.google.com/maps/place/Avtomobilska+ulica+25,+Maribor" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-2 rounded-md hover:bg-teal-50 transition-colors"
+              >
+                <div className="bg-teal-100 p-2 rounded-full">
+                  <MapPin className="w-5 h-5 text-teal-600" />
+                </div>
+                <span>Avtomobilska ulica 25, Maribor</span>
+              </a>
+
+              <a 
+                href="tel:024801660" 
+                className="flex items-center gap-3 p-2 rounded-md hover:bg-teal-50 transition-colors"
+              >
+                <div className="bg-teal-100 p-2 rounded-full">
+                  <Phone className="w-5 h-5 text-teal-600" />
+                </div>
+                <div className="flex flex-col">
+                  <span>02 480 16 60</span>
+                  <span className="text-xs text-muted-foreground">Telefonska številka</span>
+                </div>
+              </a>
+
+              <a 
+                href="tel:031788822" 
+                className="flex items-center gap-3 p-2 rounded-md hover:bg-teal-50 transition-colors"
+              >
+                <div className="bg-teal-100 p-2 rounded-full">
+                  <Phone className="w-5 h-5 text-teal-600" />
+                </div>
+                <div className="flex flex-col">
+                  <span>031-788-822</span>
+                  <span className="text-xs text-muted-foreground">Številka za nujne primere</span>
+                </div>
+              </a>
+
+              <a 
+                href="mailto:zavetisce.mb@snaga-mb.si" 
+                className="flex items-center gap-3 p-2 rounded-md hover:bg-teal-50 transition-colors"
+              >
+                <div className="bg-teal-100 p-2 rounded-full">
+                  <Mail className="w-5 h-5 text-teal-600" />
+                </div>
+                <span>zavetisce.mb@snaga-mb.si</span>
+              </a>
+            </div>
           </div>
-          
-          <div className="p-4 space-y-3 text-teal-900">
-            <a 
-              href="https://maps.google.com/?q=Avtomobilska+ulica+25,+Maribor" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-start hover:text-teal-600 transition-colors"
-            >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                className="h-5 w-5 mr-2 mt-0.5 flex-shrink-0" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              >
-                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              <span>Avtomobilska ulica 25, Maribor</span>
-            </a>
-            
-            <a 
-              href="tel:+38624801660" 
-              className="flex items-center hover:text-teal-600 transition-colors"
-            >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                className="h-5 w-5 mr-2 flex-shrink-0" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              >
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg>
-              <span>02 480 16 60</span>
-            </a>
-            
-            <a 
-              href="tel:+38631788822" 
-              className="flex items-center hover:text-teal-600 transition-colors"
-            >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                className="h-5 w-5 mr-2 flex-shrink-0" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              >
-                <path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg>
-              <span className="font-medium">Nujni klic: 031-788-822</span>
-            </a>
-            
-            <a 
-              href="mailto:zavetisce.mb@snaga-mb.si" 
-              className="flex items-center hover:text-teal-600 transition-colors"
-            >
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                className="h-5 w-5 mr-2 flex-shrink-0" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              >
-                <rect width="20" height="16" x="2" y="4" rx="2" />
-                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-              </svg>
-              <span>zavetisce.mb@snaga-mb.si</span>
-            </a>
-          </div>
-        </PopoverContent>
-      </Popover>
-    </div>
+        </DialogContent>
+      </Dialog>
+    </>
   );
 };
 
