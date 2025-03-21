@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
@@ -7,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Calendar, Mail, Phone, FileText } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import Layout from "@/components/layout/Layout";
-import Footer from "@/components/layout/Footer";
 import Section from "@/components/shared/Section";
 import CatProfileBreadcrumb from "@/components/cats/CatProfileBreadcrumb";
 import CatProfileHeader from "@/components/cats/CatProfileHeader";
@@ -199,7 +197,6 @@ const CatProfile = () => {
           </Section>
         </main>
       )}
-      <Footer />
     </Layout>
   );
 };
