@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Helmet } from 'react-helmet';
 import { Link } from "react-router-dom";
@@ -7,19 +6,11 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Section from "@/components/shared/Section";
 import { Button } from "@/components/ui/button";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card, CardContent } from "@/components/ui/card";
-
 const AdoptionProcess = () => {
   const [activeSection, setActiveSection] = useState("browse");
-
-  return (
-    <>
+  return <>
       <Helmet>
         <title>Postopek posvojitve | Zavetišče za živali Maribor</title>
         <meta name="description" content="Spoznajte celoten postopek posvojitve živali iz Zavetišča za živali Maribor - od izbire živali do odhoda v nov dom." />
@@ -28,61 +19,21 @@ const AdoptionProcess = () => {
       <Navbar />
 
       <main className="min-h-screen pt-16">
-        <Section
-          title="Postopek posvojitve"
-          description="Posvojitev živali iz zavetišča je pomembna odločitev in odgovornost. Tukaj vam predstavljamo celoten postopek posvojitve, da boste vedeli, kaj pričakovati."
-          className="bg-[url('/paw-pattern-light.svg')] bg-fixed bg-opacity-5"
-        >
+        <Section title="Postopek posvojitve" description="Posvojitev živali iz zavetišča je pomembna odločitev in odgovornost. Tukaj vam predstavljamo celoten postopek posvojitve, da boste vedeli, kaj pričakovati." className="bg-[url('/paw-pattern-light.svg')] bg-fixed bg-opacity-5">
           {/* Process Timeline */}
           <div className="mb-12">
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-12">
-              <ProcessStep
-                icon={<FileText className="h-6 w-6" />}
-                title="Pregled živali"
-                description="Oglejte si profile živali, ki iščejo dom"
-                isActive={activeSection === "browse"}
-                onClick={() => setActiveSection("browse")}
-                step={1}
-              />
-              <ProcessStep
-                icon={<Calendar className="h-6 w-6" />}
-                title="Rezervacija termina"
-                description="Dogovorite se za obisk izbrane živali"
-                isActive={activeSection === "visit"}
-                onClick={() => setActiveSection("visit")}
-                step={2}
-              />
-              <ProcessStep
-                icon={<MessageCircle className="h-6 w-6" />}
-                title="Spoznavanje"
-                description="Spoznajte žival v živo"
-                isActive={activeSection === "meet"}
-                onClick={() => setActiveSection("meet")}
-                step={3}
-              />
-              <ProcessStep
-                icon={<ClipboardCheck className="h-6 w-6" />}
-                title="Vprašalnik in odobritev"
-                description="Izpolnite vprašalnik in opravite pogovor"
-                isActive={activeSection === "approval"}
-                onClick={() => setActiveSection("approval")}
-                step={4}
-              />
-              <ProcessStep
-                icon={<Home className="h-6 w-6" />}
-                title="Posvojitev"
-                description="Odpeljite novega člana družine domov"
-                isActive={activeSection === "adoption"}
-                onClick={() => setActiveSection("adoption")}
-                step={5}
-              />
+              <ProcessStep icon={<FileText className="h-6 w-6" />} title="Pregled živali" description="Oglejte si profile živali, ki iščejo dom" isActive={activeSection === "browse"} onClick={() => setActiveSection("browse")} step={1} />
+              <ProcessStep icon={<Calendar className="h-6 w-6" />} title="Rezervacija termina" description="Dogovorite se za obisk izbrane živali" isActive={activeSection === "visit"} onClick={() => setActiveSection("visit")} step={2} />
+              <ProcessStep icon={<MessageCircle className="h-6 w-6" />} title="Spoznavanje" description="Spoznajte žival v živo" isActive={activeSection === "meet"} onClick={() => setActiveSection("meet")} step={3} />
+              <ProcessStep icon={<ClipboardCheck className="h-6 w-6" />} title="Vprašalnik in odobritev" description="Izpolnite vprašalnik in opravite pogovor" isActive={activeSection === "approval"} onClick={() => setActiveSection("approval")} step={4} />
+              <ProcessStep icon={<Home className="h-6 w-6" />} title="Posvojitev" description="Odpeljite novega člana družine domov" isActive={activeSection === "adoption"} onClick={() => setActiveSection("adoption")} step={5} />
             </div>
 
             {/* Detailed section content */}
             <Card className="border bg-card/50 backdrop-blur-sm">
               <CardContent className="p-6">
-                {activeSection === "browse" && (
-                  <div>
+                {activeSection === "browse" && <div>
                     <h3 className="text-2xl font-bold mb-4 flex items-center gap-2 text-primary">
                       <FileText className="h-6 w-6" /> Korak 1: Pregled živali
                     </h3>
@@ -104,11 +55,7 @@ const AdoptionProcess = () => {
                       </div>
                       <div className="space-y-4">
                         <div className="rounded-xl overflow-hidden">
-                          <img 
-                            src="/lovable-uploads/a50de29e-bf9e-4b67-9219-a22baab9cb3c.png" 
-                            alt="Pregled profilov živali" 
-                            className="w-full h-auto rounded-xl object-cover"
-                          />
+                          
                         </div>
                         <div className="flex justify-center gap-8 mt-6">
                           <Link to="/posvojitev/psi" className="flex flex-col items-center group transition-transform hover:scale-105">
@@ -126,11 +73,9 @@ const AdoptionProcess = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  </div>}
 
-                {activeSection === "visit" && (
-                  <div>
+                {activeSection === "visit" && <div>
                     <h3 className="text-2xl font-bold mb-4 flex items-center gap-2 text-primary">
                       <Calendar className="h-6 w-6" /> Korak 2: Rezervacija termina
                     </h3>
@@ -174,11 +119,9 @@ const AdoptionProcess = () => {
                         </Button>
                       </div>
                     </div>
-                  </div>
-                )}
+                  </div>}
 
-                {activeSection === "meet" && (
-                  <div>
+                {activeSection === "meet" && <div>
                     <h3 className="text-2xl font-bold mb-4 flex items-center gap-2 text-primary">
                       <MessageCircle className="h-6 w-6" /> Korak 3: Spoznavanje
                     </h3>
@@ -202,11 +145,7 @@ const AdoptionProcess = () => {
                       </div>
                       <div className="space-y-4">
                         <div className="rounded-xl overflow-hidden">
-                          <img 
-                            src="/lovable-uploads/0e7e3534-b460-499c-9caa-9d12dbfd38e8.png" 
-                            alt="Spoznavanje živali" 
-                            className="w-full h-auto rounded-xl object-cover"
-                          />
+                          <img src="/lovable-uploads/0e7e3534-b460-499c-9caa-9d12dbfd38e8.png" alt="Spoznavanje živali" className="w-full h-auto rounded-xl object-cover" />
                         </div>
                         <div className="bg-primary/5 rounded-xl p-4 border border-primary/20">
                           <h4 className="font-bold flex items-center gap-2 mb-2">
@@ -218,11 +157,9 @@ const AdoptionProcess = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  </div>}
 
-                {activeSection === "approval" && (
-                  <div>
+                {activeSection === "approval" && <div>
                     <h3 className="text-2xl font-bold mb-4 flex items-center gap-2 text-primary">
                       <ClipboardCheck className="h-6 w-6" /> Korak 4: Vprašalnik in odobritev
                     </h3>
@@ -275,11 +212,9 @@ const AdoptionProcess = () => {
                         </Button>
                       </div>
                     </div>
-                  </div>
-                )}
+                  </div>}
 
-                {activeSection === "adoption" && (
-                  <div>
+                {activeSection === "adoption" && <div>
                     <h3 className="text-2xl font-bold mb-4 flex items-center gap-2 text-primary">
                       <Home className="h-6 w-6" /> Korak 5: Posvojitev
                     </h3>
@@ -340,8 +275,7 @@ const AdoptionProcess = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  </div>}
               </CardContent>
             </Card>
           </div>
@@ -414,10 +348,8 @@ const AdoptionProcess = () => {
       </main>
 
       <Footer />
-    </>
-  );
+    </>;
 };
-
 interface ProcessStepProps {
   icon: React.ReactNode;
   title: string;
@@ -426,22 +358,16 @@ interface ProcessStepProps {
   onClick: () => void;
   step: number;
 }
-
-const ProcessStep = ({ icon, title, description, isActive, onClick, step }: ProcessStepProps) => {
-  return (
-    <div
-      className={`relative flex flex-col items-center text-center p-4 rounded-lg cursor-pointer transition-all duration-300 ${
-        isActive
-          ? "bg-primary/10 border border-primary/30"
-          : "hover:bg-accent"
-      }`}
-      onClick={onClick}
-    >
-      <div
-        className={`w-14 h-14 rounded-full flex items-center justify-center mb-3 transition-colors ${
-          isActive ? "bg-primary text-primary-foreground" : "bg-muted"
-        }`}
-      >
+const ProcessStep = ({
+  icon,
+  title,
+  description,
+  isActive,
+  onClick,
+  step
+}: ProcessStepProps) => {
+  return <div className={`relative flex flex-col items-center text-center p-4 rounded-lg cursor-pointer transition-all duration-300 ${isActive ? "bg-primary/10 border border-primary/30" : "hover:bg-accent"}`} onClick={onClick}>
+      <div className={`w-14 h-14 rounded-full flex items-center justify-center mb-3 transition-colors ${isActive ? "bg-primary text-primary-foreground" : "bg-muted"}`}>
         {icon}
       </div>
       <h3 className="font-bold">{title}</h3>
@@ -453,13 +379,9 @@ const ProcessStep = ({ icon, title, description, isActive, onClick, step }: Proc
       </div>
       
       {/* Connection line (hidden on mobile) */}
-      {step < 5 && (
-        <div className="hidden md:block absolute top-1/2 -right-2 transform -translate-y-1/2">
+      {step < 5 && <div className="hidden md:block absolute top-1/2 -right-2 transform -translate-y-1/2">
           <ArrowRight className="text-muted-foreground" size={16} />
-        </div>
-      )}
-    </div>
-  );
+        </div>}
+    </div>;
 };
-
 export default AdoptionProcess;
