@@ -71,7 +71,7 @@ export const DesktopNavigation = ({
           
           <NavigationMenuItem>
             <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
-              <Link to="/termini">Rezerviraj Termin</Link>
+              <Link to="/termini">Ogledi</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           
