@@ -1,8 +1,6 @@
-
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-
 export default function HeroSection() {
   const scrollToNextSection = () => {
     const nextSection = document.querySelector('.section-padding');
@@ -12,7 +10,6 @@ export default function HeroSection() {
       });
     }
   };
-
   return <div className="relative pt-24 min-h-[100vh] flex items-center overflow-hidden">
       {/* Background image with overlay */}
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
@@ -25,15 +22,11 @@ export default function HeroSection() {
       <div className="container mx-auto px-4 relative z-10 my-auto">
         <div className="max-w-3xl">
           <div className="animate-fade-in">
-            {/* Moved logo and span to be in one container and aligned */}
-            <div className="flex items-center gap-3 mb-6">
-              <img alt="Logo" className="h-16 object-contain" src="/lovable-uploads/f5be76bf-a903-4ab8-bce6-71e62a2cdfd3.png" />
-              <span className="inline-block bg-teal-500/20 text-teal-100 px-4 py-1.5 rounded-full text-sm font-medium">
-                Zavetišče za živali Maribor
-              </span>
-            </div>
+            <span className="inline-block bg-teal-500/20 text-teal-100 px-4 py-1.5 rounded-full text-sm font-medium mb-6">
+              Zavetišče za živali Maribor
+            </span>
 
-            {/* Logo section moved to be with the span above */}
+            {/* Logo added above the headline */}
             <div className="mb-8">
               <img alt="Zavetišče za živali Maribor" className="h-28 md:h-36 object-contain mb-2" src="/lovable-uploads/57b6cf18-7b1a-48a3-9341-5bd8d46dc3f4.png" />
             </div>
