@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, ChevronDown, Dog, Cat, Heart, Calendar, Users, Phone, HelpCircle } from "lucide-react";
@@ -5,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { NavbarActions } from "./NavbarActions";
 import { NavbarBranding } from "./NavbarBranding";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
+
 type MobileNavigationProps = {
   isOpen: boolean;
   toggleMenu: () => void;
@@ -12,6 +14,7 @@ type MobileNavigationProps = {
   toggleSearch: () => void;
   handleHomeClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
+
 export const MobileNavigation = ({
   isOpen,
   toggleMenu,
@@ -93,19 +96,24 @@ export const MobileNavigation = ({
             </div>
             
             <AnimatedWrapper animation="fade-in" delay={350}>
-              
+              {/* This is the section that was missing children */}
+              <div className="p-3">
+                {/* Footer content here if needed */}
+              </div>
             </AnimatedWrapper>
           </nav>
         </div>
       </div>
     </>;
 };
+
 type MobileNavItemProps = {
   title: string;
   hasSubmenu?: boolean;
   children?: React.ReactNode;
   icon?: React.ReactNode;
 };
+
 export const MobileNavItem = ({
   title,
   hasSubmenu = false,
@@ -113,12 +121,14 @@ export const MobileNavItem = ({
   icon
 }: MobileNavItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  
   const toggleSubmenu = (e: React.MouseEvent) => {
     if (hasSubmenu) {
       e.preventDefault();
       setIsOpen(!isOpen);
     }
   };
+  
   return <div className="rounded-lg overflow-hidden hover:bg-teal-50/80 transition-normal">
       <button className="flex items-center justify-between w-full text-sm py-2.5 px-3 font-medium text-left text-teal-800 hover:text-teal-600 transition-normal" onClick={toggleSubmenu}>
         <span className="flex items-center gap-2">
