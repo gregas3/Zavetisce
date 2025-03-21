@@ -1,3 +1,4 @@
+
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -10,11 +11,13 @@ export default function ScrollToTop() {
   useEffect(() => {
     // If there's a hash in the URL (anchor link), scroll to that element
     if (hash) {
-      const element = document.querySelector(hash);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-        return;
-      }
+      setTimeout(() => {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100); // Small timeout to ensure DOM is ready
+      return;
     }
     
     // Otherwise scroll to top of the page immediately when route changes

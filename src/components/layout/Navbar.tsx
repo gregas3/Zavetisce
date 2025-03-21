@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { NavbarLogo } from "./navbar/NavbarLogo";
@@ -13,7 +13,10 @@ export default function Navbar() {
   const [scrollingUp, setScrollingUp] = useState(false);
   const [atBottom, setAtBottom] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  
   const isMobile = useIsMobile();
   const location = useLocation();
   const navigate = useNavigate();
@@ -23,25 +26,48 @@ export default function Navbar() {
       const currentScrollY = window.scrollY;
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
+      
+      // Determine scroll direction
       if (currentScrollY < lastScrollY) {
         setScrollingUp(true);
-      } else {
+        setIsVisible(true); // Show when scrolling up
+      } else if (currentScrollY > lastScrollY) {
         setScrollingUp(false);
+        setIsVisible(false); // Hide when scrolling down
       }
+      
       if (currentScrollY > 10) {
         setScrolled(true);
       } else {
         setScrolled(false);
       }
+      
       if (windowHeight + currentScrollY >= documentHeight - 50) {
         setAtBottom(true);
       } else {
         setAtBottom(false);
       }
+      
       setLastScrollY(currentScrollY);
+      
+      // Reset the timeout on every scroll event
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      
+      // Set a timeout to detect when scrolling stops
+      scrollTimeoutRef.current = setTimeout(() => {
+        setIsVisible(true); // Show navbar when scrolling stops
+      }, 1000); // Adjust timeout as needed (1 second here)
     };
+    
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
   }, [lastScrollY]);
 
   const toggleMenu = () => {
@@ -73,6 +99,8 @@ export default function Navbar() {
             ? "py-3 bg-gradient-to-b from-teal-700/80 to-teal-800/70 backdrop-blur-[4px]" // Scrolling up or at bottom - visible, but lighter
             : "py-2 bg-transparent" // Scrolling down - transparent
           : "py-4 bg-gradient-to-b from-teal-700/70 to-teal-800/60 backdrop-blur-[4px]" // At top - fully visible, but lighter
+      } ${
+        isVisible ? 'translate-y-0' : '-translate-y-full'
       }`} 
       style={{ borderBottom: 'none' }}
     >
