@@ -1,7 +1,7 @@
 
 import { Helmet } from 'react-helmet';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Search, Heart } from 'lucide-react';
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -142,8 +142,22 @@ interface DogCardProps {
 }
 
 const DogCard = ({ dog }: DogCardProps) => {
+  const navigate = useNavigate();
+  
+  const handleCardClick = () => {
+    navigate(`/posvojitev/psi/${dog.id}`);
+  };
+  
+  const handleFavoriteClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent card click when clicking the favorite button
+    // Add favorite functionality here
+  };
+  
   return (
-    <Card className="overflow-hidden group hover-lift transition-normal h-full">
+    <Card 
+      className="overflow-hidden group hover-lift transition-normal h-full cursor-pointer"
+      onClick={handleCardClick}
+    >
       <div className="aspect-square relative overflow-hidden">
         <img
           src={dog.image}
@@ -156,6 +170,7 @@ const DogCard = ({ dog }: DogCardProps) => {
           size="icon"
           className="absolute top-3 right-3 bg-background/80 backdrop-blur-sm hover:bg-background/90 hover:text-primary"
           aria-label="Dodaj med priljubljene"
+          onClick={handleFavoriteClick}
         >
           <Heart size={18} />
         </Button>
@@ -188,7 +203,7 @@ const DogCard = ({ dog }: DogCardProps) => {
           )}
         </div>
         <Button asChild className="w-full">
-          <Link to={`/posvojitev/psi/${dog.id}`}>
+          <Link to={`/posvojitev/psi/${dog.id}`} onClick={(e) => e.stopPropagation()}>
             Več informacij
           </Link>
         </Button>
