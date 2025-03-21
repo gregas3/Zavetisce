@@ -2,6 +2,7 @@
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 
 export default function HeroSection() {
   const scrollToNextSection = () => {
@@ -35,12 +36,14 @@ export default function HeroSection() {
             </p>
             
             <div className="flex flex-wrap gap-4">
-              {/* Swapped button positions and added button-pulse class */}
-              <Button size="lg" variant="outline" asChild className="rounded-full font-medium text-base animate-fade-in delay-200 border-teal-400/30 text-teal-100 hover:bg-teal-500/20 hover:text-white">
-                <Link to="/donacije">
-                  Podpri zavetišče
-                </Link>
-              </Button>
+              {/* Updated button with darkTeal variant and pulse animation */}
+              <AnimatedWrapper animation="shake" className="inline-block">
+                <Button size="lg" variant="darkTeal" asChild className="rounded-full font-medium text-base">
+                  <Link to="/donacije">
+                    Podpri zavetišče
+                  </Link>
+                </Button>
+              </AnimatedWrapper>
               <Button size="lg" variant="teal" asChild className="rounded-full font-medium text-base animate-fade-in delay-100 button-pulse">
                 <Link to="/posvojitev/psi">
                   Posvoji zdaj <ArrowRight className="ml-2 h-4 w-4" />

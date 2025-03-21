@@ -21,7 +21,7 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
         blue: "bg-blue-500 text-white hover:bg-blue-600",
         teal: "bg-teal-400 text-teal-900 hover:bg-teal-300 font-semibold shadow-sm",
-        darkTeal: "bg-[#0f2a2d] text-white hover:bg-[#0f2a2d]/90 border border-teal-700/30 font-medium",
+        darkTeal: "bg-teal-800 text-white hover:bg-teal-700 border border-teal-700/30 font-medium shadow-md transition-all duration-300",
         lightTeal: "bg-teal-50 text-teal-800 hover:bg-teal-100 border border-teal-200 font-medium",
         primary: "bg-teal-500 text-white hover:bg-teal-400 transition-all duration-300",
       },
