@@ -1,6 +1,9 @@
+
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import AnimatedWrapper from "../shared/AnimatedWrapper";
+
 export default function HeroSection() {
   const scrollToNextSection = () => {
     const nextSection = document.querySelector('.section-padding');
@@ -26,9 +29,10 @@ export default function HeroSection() {
               Zavetišče za živali Maribor
             </span>
 
-            {/* Logo added above the headline */}
-            <div className="mb-8">
-              <img alt="Zavetišče za živali Maribor" className="h-28 md:h-36 object-contain mb-2" src="/lovable-uploads/57b6cf18-7b1a-48a3-9341-5bd8d46dc3f4.png" />
+            {/* Logo and shelter name side by side */}
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-6 mb-8">
+              <img alt="Zavetišče za živali Maribor" className="h-28 md:h-36 object-contain" src="/lovable-uploads/57b6cf18-7b1a-48a3-9341-5bd8d46dc3f4.png" />
+              <h2 className="text-3xl md:text-4xl font-bold text-white self-center">Zavetišče za živali Maribor</h2>
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white">
