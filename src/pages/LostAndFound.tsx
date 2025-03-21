@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
@@ -136,6 +135,33 @@ export default function LostAndFound() {
         >
           <AnimatedWrapper animation="fade-in" className="max-w-3xl mx-auto mt-8">
             <div className="bg-white/70 backdrop-blur-sm rounded-xl p-6 md:p-10 shadow-lg border border-teal-100">
+              <h3 className="text-xl font-semibold text-teal-800 mb-6">Prijavite izgubljeno ali najdeno žival</h3>
+              
+              <div className="flex flex-col sm:flex-row gap-4 mb-6">
+                <Button variant="teal" size="lg" className="flex-1 py-8 flex-col h-auto">
+                  <PawPrint size={32} className="mb-2" />
+                  <span className="text-lg font-medium">Prijavi izgubljeno žival</span>
+                </Button>
+                <Button variant="lightTeal" size="lg" className="flex-1 py-8 flex-col h-auto">
+                  <Search size={32} className="mb-2" />
+                  <span className="text-lg font-medium">Prijavi najdeno žival</span>
+                </Button>
+              </div>
+              
+              <p className="text-gray-600 text-center mb-6">
+                Izberite vrsto prijave, ki jo želite oddati. 
+                Nato vas bomo vodili skozi preprost obrazec.
+              </p>
+              
+              <div className="text-sm text-gray-500 border-t border-teal-100 pt-4">
+                <p className="mb-2">Za nujne primere pokličite našo telefonsko številko: <a href="tel:+38623211040" className="text-teal-600 font-medium">02 321 10 40</a></p>
+                <p>Pridite do nas na naslovu: <strong>Tržaška cesta 65, 2000 Maribor</strong></p>
+              </div>
+            </div>
+          </AnimatedWrapper>
+
+          <AnimatedWrapper animation="fade-in" className="max-w-3xl mx-auto mt-8">
+            <div className="bg-white/70 backdrop-blur-sm rounded-xl p-6 md:p-10 shadow-lg border border-teal-100">
               <h3 className="text-xl font-semibold text-teal-800 mb-4">Hitri napotki za izgubljene živali:</h3>
               <ul className="space-y-3 text-gray-700">
                 <li className="flex items-start gap-2">
@@ -221,7 +247,6 @@ export default function LostAndFound() {
               <TabsList className="w-full sm:w-auto mb-6 bg-teal-50">
                 <TabsTrigger value="lost" className="flex-1 sm:flex-initial data-[state=active]:bg-teal-100 data-[state=active]:text-teal-800">Izgubljene živali</TabsTrigger>
                 <TabsTrigger value="found" className="flex-1 sm:flex-initial data-[state=active]:bg-teal-100 data-[state=active]:text-teal-800">Najdene živali</TabsTrigger>
-                <TabsTrigger value="report" className="flex-1 sm:flex-initial data-[state=active]:bg-teal-100 data-[state=active]:text-teal-800">Prijavi</TabsTrigger>
               </TabsList>
               
               <TabsContent value="lost" className="focus-visible:outline-none focus-visible:ring-0">
@@ -370,37 +395,6 @@ export default function LostAndFound() {
                   )}
                 </AnimatedWrapper>
               </TabsContent>
-              
-              <TabsContent value="report" className="focus-visible:outline-none focus-visible:ring-0">
-                <AnimatedWrapper animation="fade-in">
-                  <div className="bg-white/80 backdrop-blur-sm rounded-xl p-6 md:p-10 shadow-sm border border-teal-100 max-w-2xl mx-auto">
-                    <h3 className="text-2xl font-bold text-teal-800 mb-6">Prijavite izgubljeno ali najdeno žival</h3>
-                    
-                    <div className="mb-8">
-                      <div className="flex flex-col sm:flex-row gap-4 mb-6">
-                        <Button variant="teal" size="lg" className="flex-1 py-8 flex-col h-auto">
-                          <PawPrint size={32} className="mb-2" />
-                          <span className="text-lg font-medium">Prijavi izgubljeno žival</span>
-                        </Button>
-                        <Button variant="lightTeal" size="lg" className="flex-1 py-8 flex-col h-auto">
-                          <Search size={32} className="mb-2" />
-                          <span className="text-lg font-medium">Prijavi najdeno žival</span>
-                        </Button>
-                      </div>
-                      
-                      <p className="text-gray-600 text-center">
-                        Izberite vrsto prijave, ki jo želite oddati. 
-                        Nato vas bomo vodili skozi preprost obrazec.
-                      </p>
-                    </div>
-                    
-                    <div className="text-sm text-gray-500 border-t border-teal-100 pt-4">
-                      <p className="mb-2">Za nujne primere pokličite našo telefonsko številko: <a href="tel:+38623211040" className="text-teal-600 font-medium">02 321 10 40</a></p>
-                      <p>Pridite do nas na naslovu: <strong>Tržaška cesta 65, 2000 Maribor</strong></p>
-                    </div>
-                  </div>
-                </AnimatedWrapper>
-              </TabsContent>
             </Tabs>
           </div>
         </AnimatedWrapper>
@@ -490,3 +484,4 @@ export default function LostAndFound() {
     </Layout>
   );
 }
+
