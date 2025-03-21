@@ -43,9 +43,9 @@ export const MobileNavigation = ({
 
       <div 
         className={`lg:hidden fixed inset-0 bg-white/95 backdrop-blur-[2px] z-40 transition-transform duration-300 ease-in-out ${isOpen ? "translate-x-0" : "translate-x-full"}`} 
-        style={{ top: "60px" }}
+        style={{ top: "60px", height: "calc(100vh - 60px)" }}
       >
-        <nav className="container mx-auto px-6 py-8 flex flex-col space-y-4">
+        <nav className="container mx-auto px-6 py-8 flex flex-col space-y-4 h-full overflow-y-auto">
           <MobileNavItem title="Posvojitev" hasSubmenu>
             <Link to="/posvojitev/psi" onClick={closeMenu} className="flex items-center gap-2 py-2 transition-normal text-teal-700 hover:text-teal-500">
               <Dog size={16} className="text-teal-500" />
@@ -77,9 +77,11 @@ export const MobileNavigation = ({
             O nas
           </Link>
           
-          <Button size="lg" asChild variant="teal" className="mt-6 shadow-md">
-            <Link to="/donacije" onClick={closeMenu}>Doniraj</Link>
-          </Button>
+          <div className="mt-auto pb-8">
+            <Button size="lg" asChild variant="teal" className="w-full shadow-md">
+              <Link to="/donacije" onClick={closeMenu}>Doniraj</Link>
+            </Button>
+          </div>
         </nav>
       </div>
     </>
@@ -109,7 +111,7 @@ export const MobileNavItem = ({ title, hasSubmenu = false, children }: MobileNav
         onClick={toggleSubmenu}
       >
         <span>{title}</span>
-        {hasSubmenu && <ChevronDown size={18} className="text-teal-500" />}
+        {hasSubmenu && <ChevronDown size={18} className={`text-teal-500 transition-transform ${isOpen ? 'rotate-180' : ''}`} />}
       </button>
       {hasSubmenu && (
         <div className={`pl-4 pb-3 space-y-2 ${isOpen ? "" : "hidden"}`}>

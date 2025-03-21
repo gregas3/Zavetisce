@@ -47,7 +47,10 @@ export default function Navbar() {
         setShowNavbar(true);
       } else {
         setScrollingUp(false);
-        setShowNavbar(false);
+        // Only hide when not in mobile menu mode
+        if (!isOpen) {
+          setShowNavbar(false);
+        }
       }
       
       // Check if scrolled more than 10px
@@ -76,10 +79,14 @@ export default function Navbar() {
         clearTimeout(scrollTimeout.current);
       }
     };
-  }, [lastScrollY]);
+  }, [lastScrollY, isOpen]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+    // Always show navbar when menu is open
+    if (!isOpen) {
+      setShowNavbar(true);
+    }
   };
 
   const closeMenu = () => {
@@ -99,14 +106,23 @@ export default function Navbar() {
     }
   };
 
+  // Force navbar to be visible when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      setShowNavbar(true);
+    }
+  }, [isOpen]);
+
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? isScrolling && !scrollingUp && !atBottom && !showNavbar
-            ? "py-0 -translate-y-full opacity-0" // Hide when scrolling down
-            : "py-3 bg-gradient-to-b from-teal-700/80 to-teal-800/70 backdrop-blur-[4px] shadow-md" // Show when scrolling up, stopped, or at bottom
-          : "py-4 bg-gradient-to-b from-teal-700/70 to-teal-800/60 backdrop-blur-[4px]" // At top
+        isOpen 
+          ? "py-3 bg-gradient-to-b from-teal-700/90 to-teal-800/80 backdrop-blur-[4px] shadow-md" // Always fully visible when menu is open
+          : scrolled 
+            ? isScrolling && !scrollingUp && !atBottom && !showNavbar
+              ? "py-0 -translate-y-full opacity-0" // Hide when scrolling down
+              : "py-3 bg-gradient-to-b from-teal-700/80 to-teal-800/70 backdrop-blur-[4px] shadow-md" // Show when scrolling up, stopped, or at bottom
+            : "py-4 bg-gradient-to-b from-teal-700/70 to-teal-800/60 backdrop-blur-[4px]" // At top
       }`} 
       style={{ borderBottom: 'none' }}
     >
