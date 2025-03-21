@@ -5,6 +5,14 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
+// Add the google maps types declaration to handle TypeScript errors
+declare global {
+  interface Window {
+    google: typeof google;
+    initMap: () => void;
+  }
+}
+
 interface LocationPickerProps {
   value: { lat: number; lng: number } | null;
   onChange: (location: { lat: number; lng: number } | null) => void;
@@ -45,7 +53,7 @@ const LocationPicker = ({ value, onChange, error }: LocationPickerProps) => {
     const maribor = { lat: 46.5547, lng: 15.6467 };
     const initialPosition = value || maribor;
 
-    const map = new google.maps.Map(mapRef.current, {
+    const map = new window.google.maps.Map(mapRef.current, {
       center: initialPosition,
       zoom: 13,
       mapTypeControl: false,
@@ -57,7 +65,7 @@ const LocationPicker = ({ value, onChange, error }: LocationPickerProps) => {
 
     // Create marker if we have a value
     if (value) {
-      const newMarker = new google.maps.Marker({
+      const newMarker = new window.google.maps.Marker({
         position: value,
         map: map,
         draggable: true,
@@ -84,7 +92,7 @@ const LocationPicker = ({ value, onChange, error }: LocationPickerProps) => {
       if (marker) {
         marker.setPosition(position);
       } else {
-        const newMarker = new google.maps.Marker({
+        const newMarker = new window.google.maps.Marker({
           position,
           map,
           draggable: true,
@@ -110,7 +118,7 @@ const LocationPicker = ({ value, onChange, error }: LocationPickerProps) => {
     const setupAutocomplete = () => {
       if (!mapLoaded) return;
       
-      const autocomplete = new google.maps.places.Autocomplete(
+      const autocomplete = new window.google.maps.places.Autocomplete(
         document.getElementById('location-input') as HTMLInputElement,
         { 
           componentRestrictions: { country: 'si' },
@@ -132,7 +140,7 @@ const LocationPicker = ({ value, onChange, error }: LocationPickerProps) => {
         if (marker) {
           marker.setPosition({ lat, lng });
         } else {
-          const newMarker = new google.maps.Marker({
+          const newMarker = new window.google.maps.Marker({
             position: { lat, lng },
             map,
             draggable: true,
@@ -160,7 +168,7 @@ const LocationPicker = ({ value, onChange, error }: LocationPickerProps) => {
   const reverseGeocode = (lat: number, lng: number) => {
     if (!mapLoaded) return;
     
-    const geocoder = new google.maps.Geocoder();
+    const geocoder = new window.google.maps.Geocoder();
     geocoder.geocode({ location: { lat, lng } }, (results, status) => {
       if (status === 'OK' && results && results[0]) {
         setAddress(results[0].formatted_address);
@@ -191,7 +199,7 @@ const LocationPicker = ({ value, onChange, error }: LocationPickerProps) => {
             if (marker) {
               marker.setPosition({ lat, lng });
             } else {
-              const newMarker = new google.maps.Marker({
+              const newMarker = new window.google.maps.Marker({
                 position: { lat, lng },
                 map: mapInstance,
                 draggable: true,
