@@ -27,7 +27,7 @@ export default function FeaturedAnimals() {
   return (
     <Section
       title="Spoznajte naše živali"
-      description="Tukaj so nekatere izmed živali, ki trenutno čakajo na svoj za vedno dom. Kliknite na žival za več informacij."
+      description="Tukaj so nekatere izmed živali, ki trenutno čakajo na svoj dom. Kliknite na žival za več informacij."
       centered
       className="pb-8"
     >
