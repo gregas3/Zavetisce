@@ -8,6 +8,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogClose,
+  DialogDescription,
 } from '@/components/ui/dialog';
 
 const FloatingContactButton = () => {
@@ -19,7 +20,7 @@ const FloatingContactButton = () => {
         onClick={() => setOpen(true)}
         variant="primary"
         size="icon"
-        className="fixed right-4 bottom-16 z-50 rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-all duration-300 animate-bounce-slow"
+        className="fixed right-4 bottom-16 z-50 rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-all duration-300 animate-pulse"
         aria-label="Contact Us"
       >
         <Phone className="w-6 h-6" />
@@ -31,6 +32,9 @@ const FloatingContactButton = () => {
             <DialogTitle className="text-xl font-semibold text-teal-800">
               Kontaktne informacije
             </DialogTitle>
+            <DialogDescription className="sr-only">
+              Contact information for the animal shelter
+            </DialogDescription>
           </DialogHeader>
           <DialogClose className="absolute right-4 top-4 rounded-full p-1.5 bg-teal-50 text-teal-700 hover:bg-teal-100 transition-colors">
             <X className="h-4 w-4" />
