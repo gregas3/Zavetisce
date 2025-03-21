@@ -43,6 +43,9 @@ const DogImageCarousel = ({
 }: DogImageCarouselProps) => {
   const navigate = useNavigate();
 
+  // If only one image is provided, convert it to an array
+  const imageArray = Array.isArray(images) ? images : [images];
+
   const handleImageClick = (e: React.MouseEvent) => {
     if (!isDetailPage && dogId) {
       e.preventDefault();
@@ -53,7 +56,7 @@ const DogImageCarousel = ({
   return (
     <Carousel className="mb-8 w-full" opts={{ loop: true }}>
       <CarouselContent>
-        {images.map((image, index) => (
+        {imageArray.map((image, index) => (
           <CarouselItem key={`image-${index}`}>
             <div className="overflow-hidden rounded-xl">
               {isDetailPage ? (
@@ -154,8 +157,12 @@ const DogImageCarousel = ({
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="left-2" />
-      <CarouselNext className="right-2" />
+      {(imageArray.length > 1 || (videos && videos.length > 0)) && (
+        <>
+          <CarouselPrevious className="left-2" />
+          <CarouselNext className="right-2" />
+        </>
+      )}
     </Carousel>
   );
 };
