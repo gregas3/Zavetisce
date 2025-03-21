@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
@@ -55,7 +56,7 @@ const lostPets = [
     date: "2023-05-28",
     description: "Velik pes z rdečo ovratnico. Je prijazen, a nekoliko plašen.",
     contact: "070 456 789",
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/d154fae5-9f35-4f95-9308-55b5d9599de4.png",
     isFound: true
   },
 ];
@@ -73,7 +74,7 @@ const foundPets = [
     date: "2023-06-05",
     description: "Manjša mačka z belim trebuščkom in črnim hrbtom. Najdena pri trgovini Mercator.",
     contact: "051 123 789",
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/855c1f57-5893-4641-9022-ed413de55b90.png",
     isFound: false
   },
   {
@@ -87,7 +88,7 @@ const foundPets = [
     date: "2023-06-08",
     description: "Manjši pes z modro ovratnico. Najden v parku pri osnovni šoli.",
     contact: "031 456 123",
-    image: "/placeholder.svg",
+    image: "/lovable-uploads/9ec09e1c-3793-4fa6-8dd5-808040227dae.png",
     isFound: false
   },
 ];
