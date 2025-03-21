@@ -129,10 +129,6 @@ export default {
 					'from': { transform: 'rotate(0deg)' },
 					'to': { transform: 'rotate(360deg)' }
 				},
-				'button-pulse': {
-					'0%, 100%': { transform: 'scale(1)', boxShadow: '0 0 0 0 rgba(61, 174, 163, 0.7)' },
-					'50%': { transform: 'scale(1.05)', boxShadow: '0 0 0 10px rgba(61, 174, 163, 0)' }
-				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -146,7 +142,6 @@ export default {
 				'bounce-slow': 'bounce-slow 3s ease-in-out infinite',
 				'shake': 'shake 2.5s ease-in-out infinite',
 				'spin-slow': 'spin-slow 10s linear infinite',
-				'button-pulse': 'button-pulse 2s infinite'
 			},
 			fontFamily: {
 				sans: ['Inter', 'system-ui', 'sans-serif'],
