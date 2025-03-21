@@ -1,5 +1,6 @@
+
 import { Link } from "react-router-dom";
-import { PawPrint, Search, Heart, Calendar, DollarSign, Mail } from "lucide-react";
+import { PawPrint, Search, Heart, Calendar, Euro, Mail } from "lucide-react";
 import AnimatedWrapper from "../shared/AnimatedWrapper";
 
 const links = [
@@ -38,7 +39,7 @@ const links = [
   {
     title: "Donacije",
     description: "Finančno ali materialno podpri zavetišče",
-    icon: DollarSign,
+    icon: Euro,
     link: "/donacije",
     color: "bg-amber-50 text-amber-600",
     delay: 400,
