@@ -1,8 +1,7 @@
-
 import { Helmet } from 'react-helmet';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Search, Heart } from 'lucide-react';
+import { Search } from 'lucide-react';
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Section from "@/components/shared/Section";
@@ -12,6 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { dogs, Dog } from "@/data/dogsData";
+import DogImageCarousel from "@/components/dogs/DogImageCarousel";
 
 const DogsAdoption = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -148,32 +148,18 @@ const DogCard = ({ dog }: DogCardProps) => {
     navigate(`/posvojitev/psi/${dog.id}`);
   };
   
-  const handleFavoriteClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent card click when clicking the favorite button
-    // Add favorite functionality here
-  };
-  
   return (
     <Card 
       className="overflow-hidden group hover-lift transition-normal h-full cursor-pointer"
       onClick={handleCardClick}
     >
-      <div className="aspect-square relative overflow-hidden">
-        <img
-          src={dog.image}
-          alt={dog.name}
-          className="object-cover w-full h-full transition-normal group-hover:scale-105"
-          loading="lazy"
+      <div className="relative overflow-hidden">
+        <DogImageCarousel
+          dogName={dog.name}
+          images={Array.isArray(dog.images) ? dog.images : [dog.image]}
+          dogId={dog.id}
+          isDetailPage={false}
         />
-        <Button
-          variant="ghost"
-          size="icon"
-          className="absolute top-3 right-3 bg-background/80 backdrop-blur-sm hover:bg-background/90 hover:text-primary"
-          aria-label="Dodaj med priljubljene"
-          onClick={handleFavoriteClick}
-        >
-          <Heart size={18} />
-        </Button>
       </div>
       <CardContent className="p-5">
         <div className="flex justify-between items-start mb-2">
