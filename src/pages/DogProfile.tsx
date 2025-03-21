@@ -80,13 +80,13 @@ const dogsDatabase: Record<string, DogData> = {
     id: "7",
     name: "Ajša",
     images: [
-      "/lovable-uploads/99f635b5-3797-485c-be8f-e76012c87d6f.png", 
+      "/lovable-uploads/9ec09e1c-3793-4fa6-8dd5-808040227dae.png", 
       "/placeholder.svg", 
       "/placeholder.svg"
     ],
     videos: [
       {
-        thumbnail: "/lovable-uploads/99f635b5-3797-485c-be8f-e76012c87d6f.png",
+        thumbnail: "/lovable-uploads/9ec09e1c-3793-4fa6-8dd5-808040227dae.png",
         url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
         title: "Ajša se igra"
       }
@@ -710,3 +710,4 @@ const DogProfile = () => {
 };
 
 export default DogProfile;
+
