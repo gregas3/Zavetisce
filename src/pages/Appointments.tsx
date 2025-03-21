@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { CalendarIcon, Clock, Phone, Mail, Calendar, Info, PawPrint } from "lucide-react";
@@ -8,6 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import Section from "@/components/shared/Section";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calendar as CalendarComponent } from "@/components/ui/calendar";
@@ -592,7 +594,7 @@ const Appointments = () => {
         </Section>
       </main>
 
-      
+      <Footer />
     </>
   );
 };

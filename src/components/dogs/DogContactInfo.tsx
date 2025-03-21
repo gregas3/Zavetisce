@@ -1,7 +1,7 @@
 
 import React from "react";
-import { Phone, Mail, Calendar, FileText, ChevronLeft, ChevronRight } from "lucide-react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { Phone, Mail, Calendar, FileText } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { 
   Card, 
@@ -19,16 +19,12 @@ interface DogContactInfoProps {
     email: string;
   };
   handleScheduleAppointment: () => void;
-  prevDogId?: string;
-  nextDogId?: string;
 }
 
 const DogContactInfo = ({ 
   name, 
   contactInfo, 
-  handleScheduleAppointment,
-  prevDogId,
-  nextDogId
+  handleScheduleAppointment 
 }: DogContactInfoProps) => {
   const navigate = useNavigate();
 
@@ -66,49 +62,14 @@ const DogContactInfo = ({
         </div>
       </CardContent>
       <CardFooter className="flex flex-col gap-3">
-        <Button onClick={handleScheduleAppointment} className="w-full text-black">
+        <Button onClick={handleScheduleAppointment} className="w-full">
           <Calendar className="mr-2 h-4 w-4" />
           Rezerviraj termin za obisk
         </Button>
-        <Button onClick={handleFillQuestionnaire} variant="teal" className="w-full text-black">
+        <Button onClick={handleFillQuestionnaire} variant="teal" className="w-full">
           <FileText className="mr-2 h-4 w-4" />
           Izpolni vprašalnik
         </Button>
-        
-        {/* Navigation buttons */}
-        <div className="flex justify-between w-full mt-2">
-          {prevDogId ? (
-            <Button 
-              asChild 
-              variant="outline" 
-              size="sm" 
-              className="flex items-center gap-1"
-            >
-              <Link to={`/posvojitev/psi/${prevDogId}`}>
-                <ChevronLeft className="h-4 w-4" />
-                Prejšnji pes
-              </Link>
-            </Button>
-          ) : (
-            <div></div> /* Empty placeholder to maintain flex spacing */
-          )}
-          
-          {nextDogId ? (
-            <Button 
-              asChild 
-              variant="outline" 
-              size="sm" 
-              className="flex items-center gap-1"
-            >
-              <Link to={`/posvojitev/psi/${nextDogId}`}>
-                Naslednji pes
-                <ChevronRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          ) : (
-            <div></div> /* Empty placeholder to maintain flex spacing */
-          )}
-        </div>
       </CardFooter>
     </Card>
   );

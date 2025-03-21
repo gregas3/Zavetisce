@@ -1,8 +1,10 @@
+
 import { useState } from "react";
 import { Helmet } from 'react-helmet';
 import { Link } from "react-router-dom";
 import { FileText, Users, ClipboardCheck, Calendar, Home, ArrowRight, Info, MessageCircle, HeartHandshake, CheckCircle2 } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import Section from "@/components/shared/Section";
 import { Button } from "@/components/ui/button";
 import {
@@ -399,6 +401,7 @@ const AdoptionProcess = () => {
         </Section>
       </main>
 
+      <Footer />
     </>
   );
 };

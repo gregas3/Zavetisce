@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Heart } from 'lucide-react';
 import Layout from "@/components/layout/Layout";
+import Footer from "@/components/layout/Footer";
 import Section from "@/components/shared/Section";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -128,6 +129,7 @@ const CatsAdoption = () => {
         </Section>
       </main>
       
+      <Footer />
     </Layout>
   );
 };
