@@ -51,6 +51,41 @@ interface DogData {
 }
 
 const dogsDatabase: Record<string, DogData> = {
+  "11": {
+    id: "11",
+    name: "Bolt",
+    images: [
+      "/lovable-uploads/2c83f5ef-126f-466b-b39a-e3b59e673a45.png",
+      "/placeholder.svg", 
+      "/placeholder.svg"
+    ],
+    videos: [
+      {
+        thumbnail: "/lovable-uploads/2c83f5ef-126f-466b-b39a-e3b59e673a45.png",
+        url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+        title: "Bolt na sprehodu"
+      }
+    ],
+    age: "2 leti",
+    breed: "Mešanec",
+    gender: "Samec",
+    size: "Velik",
+    color: "Svetlo rjava",
+    status: "Na voljo za posvojitev",
+    microchipped: true,
+    neutered: true,
+    vaccinated: true,
+    description: "Bolt je dvoletni samec večje rasti, ki te s svojim videzom takoj očara. Je prijazen, igriv, razposajen in hkrati tudi odličen spremljevalec na sprehodih. Je kastriran.",
+    suitableFor: "Aktivne družine, izkušeni lastniki psov, dom z veliko prostora za igro",
+    notSuitableFor: "Stanovanja brez dostopa do vrta, neaktivni lastniki",
+    additionalInfo: "Bolt je bil sprejet v zavetišče 26. 09. 2024. Rojen je bil 26. 12. 2022.",
+    dateArrived: "2024-09-26",
+    adoptionRequirements: "- Aktivno gospodinjstvo\n- Dovolj časa za sprehode in igro\n- Izkušnje s psi z veliko energije\n- Vrt ali reden dostop do odprtih površin",
+    contactInfo: {
+      phone: "+386 (0)2 480 16 60",
+      email: "zavetisce.mb@snaga-mb.si"
+    }
+  },
   "10": {
     id: "10",
     name: "Zum",
@@ -140,7 +175,7 @@ const dogsDatabase: Record<string, DogData> = {
     vaccinated: true,
     description: "Roki je zaradi smrti svoje lastnice pristal v zavetišču. Star je dobrih 8 let, je kastriran in osnovno veterinarsko urejen. Je zelo prijazen in lepo vodljiv, navajen je notranjega bivanja v družbi ljudi. Z drugimi psi se ne razume najbolje. Roki išče ljubečo in odgovorno družino, ki mu bo ponudila miren dom.",
     suitableFor: "Mirne družine, starejši ljudje, dom brez drugih psov",
-    notSuitableFor: "Družine z majhnimi otroki, domovi z drugimi psi",
+    notSuitableFor: "Stanovanja brez dostopa do vrta, domovi z drugimi psi",
     additionalInfo: "Roki je bil sprejet v zavetišče 10. 10. 2023. Potrebuje redno jemanje zdravil za sklepe.",
     dateArrived: "2023-10-10",
     adoptionRequirements: "- Mirno okolje\n- Redni, a ne predolgi sprehodi\n- Brez drugih psov\n- Pripravljenost na stroške zdravljenja",
@@ -526,4 +561,3 @@ const DogProfile = () => {
 };
 
 export default DogProfile;
-

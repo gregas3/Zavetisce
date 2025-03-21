@@ -1,3 +1,4 @@
+
 // Dogs database shared between pages
 export interface Dog {
   id: number;
@@ -15,6 +16,20 @@ export interface Dog {
 }
 
 export const dogs: Dog[] = [
+  {
+    id: 11,
+    name: "Bolt",
+    breed: "Mešanec",
+    age: "2 leti",
+    gender: "samec",
+    size: "velik",
+    image: "/lovable-uploads/2c83f5ef-126f-466b-b39a-e3b59e673a45.png",
+    description: "Bolt je dvoletni samec večje rasti, ki te s svojim videzom takoj očara. Je prijazen, igriv, razposajen in hkrati tudi odličen spremljevalec na sprehodih. Je kastriran.",
+    characteristics: ["prijazen", "igriv", "razposajen", "čipiran"],
+    vaccinated: true,
+    neutered: true,
+    goodWith: ["aktivni ljudje", "izkušeni lastniki", "družine"]
+  },
   {
     id: 10,
     name: "Zum",
