@@ -1,8 +1,7 @@
-
 import { Helmet } from 'react-helmet';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Search, Heart } from 'lucide-react';
+import { Search } from 'lucide-react';
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Section from "@/components/shared/Section";
@@ -148,11 +147,6 @@ const DogCard = ({ dog }: DogCardProps) => {
     navigate(`/posvojitev/psi/${dog.id}`);
   };
   
-  const handleFavoriteClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent card click when clicking the favorite button
-    // Add favorite functionality here
-  };
-  
   return (
     <Card 
       className="overflow-hidden group hover-lift transition-normal h-full cursor-pointer"
@@ -165,15 +159,6 @@ const DogCard = ({ dog }: DogCardProps) => {
           className="object-cover w-full h-full transition-normal group-hover:scale-105"
           loading="lazy"
         />
-        <Button
-          variant="ghost"
-          size="icon"
-          className="absolute top-3 right-3 bg-background/80 backdrop-blur-sm hover:bg-background/90 hover:text-primary"
-          aria-label="Dodaj med priljubljene"
-          onClick={handleFavoriteClick}
-        >
-          <Heart size={18} />
-        </Button>
       </div>
       <CardContent className="p-5">
         <div className="flex justify-between items-start mb-2">
