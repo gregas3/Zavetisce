@@ -59,7 +59,7 @@ export default function Navbar() {
   const handleHomeClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (location.pathname === '/') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo(0, 0);
     } else {
       navigate('/');
     }
@@ -70,10 +70,11 @@ export default function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled 
           ? scrollingUp || atBottom 
-            ? "py-3 bg-gradient-to-b from-teal-700/75 to-teal-800/65 backdrop-blur-md border-b border-teal-600/20" // Scrolling up or at bottom - visible with blur
-            : "py-2 bg-transparent -translate-y-full" // Scrolling down - hide navbar
-          : "py-4 bg-gradient-to-b from-teal-700/60 to-teal-800/50 backdrop-blur-md" // At top - fully visible with lighter background
-      }`}
+            ? "py-3 bg-gradient-to-b from-teal-700/80 to-teal-800/70 backdrop-blur-[4px]" // Scrolling up or at bottom - visible, but lighter
+            : "py-2 bg-transparent" // Scrolling down - transparent
+          : "py-4 bg-gradient-to-b from-teal-700/70 to-teal-800/60 backdrop-blur-[4px]" // At top - fully visible, but lighter
+      }`} 
+      style={{ borderBottom: 'none' }}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">

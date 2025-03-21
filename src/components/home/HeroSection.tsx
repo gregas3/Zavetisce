@@ -2,7 +2,6 @@
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import AnimatedWrapper from "../shared/AnimatedWrapper";
 
 export default function HeroSection() {
   const scrollToNextSection = () => {
@@ -24,11 +23,11 @@ export default function HeroSection() {
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10 my-auto">
         <div className="max-w-3xl">
-          <AnimatedWrapper animation="fade-in" delay={300}>
-            <span className="inline-block bg-teal-500/20 text-teal-100 px-4 py-1.5 rounded-full text-sm font-medium mb-6 border border-teal-500/30 backdrop-blur-sm shadow-sm">
+          <div className="animate-fade-in">
+            <span className="inline-block bg-teal-500/20 text-teal-100 px-4 py-1.5 rounded-full text-sm font-medium mb-6">
               Zavetišče za živali Maribor
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white drop-shadow-md">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white">
               Pomagajte nam ustvariti srečne zgodbe za zapuščene živali
             </h1>
             <p className="text-lg md:text-xl text-teal-100/80 mb-8 max-w-2xl">
@@ -37,31 +36,18 @@ export default function HeroSection() {
             </p>
             
             <div className="flex flex-wrap gap-4 mb-16 md:mb-0">
-              <Button 
-                size="lg" 
-                variant="darkTeal" 
-                asChild 
-                className="rounded-full font-medium text-base shadow-lg relative overflow-hidden group"
-              >
-                <Link to="/donacije" className="relative z-10 flex items-center">
-                  <span className="relative z-10">Podpri zavetišče</span>
-                  <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-teal-800 to-teal-700 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <Button size="lg" variant="darkTeal" asChild className="rounded-full font-medium text-base">
+                <Link to="/donacije">
+                  Podpri zavetišče
                 </Link>
               </Button>
-              <Button 
-                size="lg" 
-                variant="teal" 
-                asChild 
-                className="rounded-full font-medium text-base shadow-lg relative overflow-hidden group"
-              >
-                <Link to="/posvojitev/psi" className="relative z-10 flex items-center">
-                  <span className="relative z-10">Posvoji zdaj</span>
-                  <ArrowRight className="ml-2 h-4 w-4 relative z-10 transition-transform duration-300 group-hover:translate-x-1" />
-                  <div className="absolute bottom-0 left-0 h-1 w-0 bg-teal-200 group-hover:w-full transition-all duration-300"></div>
+              <Button size="lg" variant="teal" asChild className="rounded-full font-medium text-base animate-fade-in delay-100 button-pulse">
+                <Link to="/posvojitev/psi">
+                  Posvoji zdaj <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </div>
-          </AnimatedWrapper>
+          </div>
         </div>
       </div>
       
@@ -71,7 +57,7 @@ export default function HeroSection() {
         onClick={scrollToNextSection}
         aria-label="Scroll down"
       >
-        <div className="w-16 h-16 rounded-full bg-teal-400/20 flex items-center justify-center border border-teal-400/30 shadow-lg backdrop-blur-sm hover:bg-teal-400/30 transition-all duration-300 hover:scale-110">
+        <div className="w-16 h-16 rounded-full bg-teal-400/20 flex items-center justify-center border border-teal-400/30 shadow-lg backdrop-blur-sm">
           <ChevronDown className="h-12 w-12 text-teal-300 animate-bounce" />
         </div>
       </div>
