@@ -27,6 +27,16 @@ export default function HeroSection() {
             <span className="inline-block bg-teal-500/20 text-teal-100 px-4 py-1.5 rounded-full text-sm font-medium mb-6">
               Zavetišče za živali Maribor
             </span>
+
+            {/* Logo added above the headline */}
+            <div className="mb-8">
+              <img 
+                src="/lovable-uploads/9ff960c2-c2fe-4dad-a2cc-928dcbea7e4a.png" 
+                alt="Zavetišče za živali Maribor" 
+                className="h-28 md:h-36 object-contain mb-2"
+              />
+            </div>
+
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white">
               Pomagajte nam ustvariti srečne zgodbe za zapuščene živali
             </h1>
