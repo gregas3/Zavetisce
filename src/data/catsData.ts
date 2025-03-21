@@ -17,6 +17,20 @@ export interface Cat {
 
 export const cats: Cat[] = [
   {
+    id: 5,
+    name: "Bor",
+    color: "Črna",
+    age: "3 leta",
+    gender: "samec",
+    size: "srednja",
+    image: "/lovable-uploads/355994ff-7034-4e34-8839-91a36ab6fd78.png",
+    description: "Bor je odrasel, cartljiv muc, sprejet s poškodovanim očesom. Poškodovano oko smo amputirali, na življenje z eno očko pa se je lepo navadil. Rojen 09. 12. 2021, v zavetišče sprejet 08. 12. 2024.",
+    characteristics: ["cartljiv", "prijazen", "pogumen", "prilagodljiv"],
+    vaccinated: true,
+    neutered: true,
+    goodWith: ["odrasli", "starejši", "mirno okolje"]
+  },
+  {
     id: 4,
     name: "Carta",
     color: "Črna",
