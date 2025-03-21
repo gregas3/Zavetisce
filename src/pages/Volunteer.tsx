@@ -9,12 +9,9 @@ import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import Section from "@/components/shared/Section";
 import Layout from "@/components/layout/Layout";
 import DogWalkerForm from '@/components/volunteer/DogWalkerForm';
-
 const Volunteer = () => {
   const [showDogWalkerForm, setShowDogWalkerForm] = useState(false);
-
-  return (
-    <Layout>
+  return <Layout>
       <Helmet>
         <title>Prostovoljstvo | Zavetišče za živali Maribor</title>
         <meta name="description" content="Postanite prostovoljec v Zavetišču za živali Maribor in pomagajte živalim do boljšega življenja. Sprehajanje psov, pomoč pri oskrbi, sodelovanje na dogodkih in druge možnosti prostovoljstva." />
@@ -93,12 +90,7 @@ const Volunteer = () => {
                     Rezerviraj termin za sprehod <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
-                <Button 
-                  variant="teal" 
-                  size="lg" 
-                  className="gap-2"
-                  onClick={() => setShowDogWalkerForm(true)}
-                >
+                <Button variant="teal" size="lg" className="gap-2" onClick={() => setShowDogWalkerForm(true)}>
                   <Dog className="h-4 w-4" />
                   Postani sprehajalec - Izpolni obrazec
                 </Button>
@@ -109,11 +101,7 @@ const Volunteer = () => {
               <AnimatedWrapper animation="fade-in" delay={300}>
                 <Card className="overflow-hidden h-full">
                   <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src="/lovable-uploads/8f6e5321-07d2-4b39-aed4-01b468676d36.png" 
-                      alt="Sprehajanje psov" 
-                      className="w-full h-full object-cover"
-                    />
+                    <img alt="Sprehajanje psov" className="w-full h-full object-cover" src="/lovable-uploads/11b6ae09-a045-4edf-a94d-89d29c7f0b57.jpg" />
                   </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-semibold text-teal-800 mb-4 text-center">Kako se prijavim?</h3>
@@ -165,10 +153,7 @@ const Volunteer = () => {
         </Section>
         
         {/* Dog Walker Form */}
-        <DogWalkerForm 
-          isOpen={showDogWalkerForm} 
-          onClose={() => setShowDogWalkerForm(false)} 
-        />
+        <DogWalkerForm isOpen={showDogWalkerForm} onClose={() => setShowDogWalkerForm(false)} />
         
         {/* Other Ways to Help Section */}
         <Section className="bg-teal-50/50" title="Druge oblike prostovoljstva" subtitle="Pomagajte na različne načine">
@@ -256,8 +241,6 @@ const Volunteer = () => {
           </div>
         </section>
       </main>
-    </Layout>
-  );
+    </Layout>;
 };
-
 export default Volunteer;

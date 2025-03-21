@@ -4,13 +4,11 @@ import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMe
 import { cn } from "@/lib/utils";
 import { NavbarActions } from "./NavbarActions";
 import { NavbarBranding } from "./NavbarBranding";
-
 type DesktopNavigationProps = {
   closeMenu: () => void;
   toggleSearch: () => void;
   handleHomeClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
-
 export const DesktopNavigation = ({
   closeMenu,
   toggleSearch,
@@ -55,7 +53,7 @@ export const DesktopNavigation = ({
           
           <NavigationMenuItem>
             <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
-              <Link to="/izgubljeni-najdeni">Izgubljene in najdene živali</Link>
+              <Link to="/izgubljeni-najdeni">Najdene živali</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           
