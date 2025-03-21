@@ -1,5 +1,5 @@
 
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Instagram, Facebook } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -14,6 +14,24 @@ const Footer = () => {
               Zavetišče za zapuščene živali v Mariboru nudi dom izgubljenim, zapuščenim in 
               odvzetim živalim.
             </p>
+            <div className="flex space-x-4 mt-4">
+              <a 
+                href="https://www.instagram.com/zavetiscemaribor" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-white hover:text-teal-400 transition-colors"
+              >
+                <Instagram className="h-6 w-6" />
+              </a>
+              <a 
+                href="https://www.facebook.com/zavetiscemaribor" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-white hover:text-teal-400 transition-colors"
+              >
+                <Facebook className="h-6 w-6" />
+              </a>
+            </div>
           </div>
 
           {/* Second Column - Contact */}
