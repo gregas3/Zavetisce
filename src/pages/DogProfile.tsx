@@ -2,7 +2,6 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet";
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { dogs } from "@/data/dogsData";
@@ -51,6 +50,44 @@ interface DogData {
     email: string;
   };
 }
+
+// Create a filtered dogs database only containing dogs that exist in the shared system
+const createFilteredDogsDatabase = () => {
+  const result: Record<string, DogData> = {};
+  
+  // Map of shared dogs by ID for quick lookup
+  const sharedDogsMap = new Map(
+    dogs.map(dog => [dog.id.toString(), dog])
+  );
+  
+  // Add all dogs from the database that exist in the shared data
+  for (const [id, dog] of Object.entries(dogsDatabase)) {
+    const numericId = parseInt(id);
+    if (sharedDogsMap.has(id)) {
+      result[id] = {
+        ...dog,
+        // Ensure image is synchronized
+        images: [
+          sharedDogsMap.get(id)!.image,
+          ...dog.images.slice(1)
+        ]
+      };
+      
+      // Update video thumbnail if needed
+      if (dog.videos && dog.videos.length > 0) {
+        result[id].videos = [{
+          ...dog.videos[0],
+          thumbnail: sharedDogsMap.get(id)!.image
+        }, ...dog.videos.slice(1)];
+      }
+    }
+  }
+  
+  return result;
+};
+
+// Filter the database to include only dogs that exist in the shared system
+const filteredDogsDatabase = createFilteredDogsDatabase();
 
 const dogsDatabase: Record<string, DogData> = {
   "11": {
@@ -450,22 +487,10 @@ const dogsDatabase: Record<string, DogData> = {
 const fetchDogById = async (id: string) => {
   await new Promise((resolve) => setTimeout(resolve, 500));
 
-  const dog = dogsDatabase[id];
+  // Check if dog exists in the filtered database
+  const dog = filteredDogsDatabase[id];
   if (!dog) {
     throw new Error(`Dog with id ${id} not found`);
-  }
-  
-  const numericId = parseInt(id);
-  const sharedDog = dogs.find(d => d.id === numericId);
-  
-  if (sharedDog) {
-    if (dog.images[0] !== sharedDog.image) {
-      dog.images[0] = sharedDog.image;
-      
-      if (dog.videos && dog.videos.length > 0) {
-        dog.videos[0].thumbnail = sharedDog.image;
-      }
-    }
   }
   
   return dog;
@@ -481,9 +506,9 @@ const DogProfile = () => {
     enabled: !!id,
   });
 
-  // Find the previous and next dog IDs
+  // Find the previous and next dog IDs from the filtered database
   const findAdjacentDogIds = () => {
-    const allDogIds = Object.keys(dogsDatabase).sort((a, b) => parseInt(a) - parseInt(b));
+    const allDogIds = Object.keys(filteredDogsDatabase).sort((a, b) => parseInt(a) - parseInt(b));
     const currentIndex = allDogIds.indexOf(id || "");
     
     const prevDogId = currentIndex > 0 ? allDogIds[currentIndex - 1] : undefined;
