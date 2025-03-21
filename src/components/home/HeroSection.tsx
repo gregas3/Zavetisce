@@ -26,20 +26,20 @@ export default function HeroSection() {
         <div className="max-w-3xl">
           <div className="animate-fade-in">
             <div className="flex items-center gap-3 mb-6">
-              <span className="inline-block bg-teal-500/20 text-teal-100 px-4 py-1.5 rounded-full text-sm font-medium">
+              <span className="inline-block bg-teal-500/20 text-teal-100 px-4 py-1.5 rounded-full text-lg font-medium">
                 Zavetišče za živali Maribor
               </span>
               <img 
                 src="/lovable-uploads/48b0f5a4-0bee-4f96-af30-5157149e0517.png" 
                 alt="Zavetišče za živali Maribor Logo" 
-                className="h-10 w-auto" 
+                className="h-12 w-auto" 
               />
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 text-white">
               Pomagajte nam ustvariti srečne zgodbe za zapuščene živali
             </h1>
-            <p className="text-lg md:text-xl text-teal-100/80 mb-8 max-w-2xl">
+            <p className="text-xl md:text-2xl text-teal-100/80 mb-8 max-w-2xl">
               V našem zavetišču nudimo dom izgubljenim, zapuščenim in odvzetim živalim. 
               Vsaka žival si zasluži ljubeč dom in z vašo pomočjo lahko to uresničimo.
             </p>
