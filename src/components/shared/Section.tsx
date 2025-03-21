@@ -31,7 +31,7 @@ export default function Section({
 }: SectionProps) {
   const content = (
     <section id={id} className={`section-padding relative ${className}`} tabIndex={-1}>
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         {(title || description || subtitle) && (
           <div className={`mb-12 md:mb-16 ${centered ? 'text-center mx-auto max-w-3xl' : ''}`}>
             {title && (

@@ -11,7 +11,7 @@ export default function HeroSection() {
     }
   };
 
-  return <div className="relative min-h-[90vh] flex items-center overflow-hidden">
+  return <div className="relative min-h-[90vh] flex items-center overflow-hidden w-full">
       {/* Background image with overlay */}
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
       backgroundImage: "url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80')"
@@ -20,7 +20,7 @@ export default function HeroSection() {
       </div>
       
       {/* Content */}
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl relative z-10">
         <div className="max-w-3xl">
           <div className="animate-fade-in">
             <span className="inline-block bg-teal-500/20 text-teal-100 px-4 py-1.5 rounded-full text-sm font-medium mb-6">
