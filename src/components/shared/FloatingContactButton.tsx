@@ -16,8 +16,8 @@ const FloatingContactButton = () => {
         </Button>
       </PopoverTrigger>
       
-      <PopoverContent side={isMobile ? "top" : "left"} sideOffset={isMobile ? 16 : 30} align={isMobile ? "end" : "center"} className="w-80 p-0 bg-[#f5fcfb] border-teal-200 shadow-md rounded-xl">
-        <div className="p-4 bg-gradient-to-b from-teal-100 to-teal-50">
+      <PopoverContent side={isMobile ? "top" : "left"} sideOffset={isMobile ? 16 : 30} align={isMobile ? "end" : "center"} className="w-80 p-0 bg-white border-2 border-teal-200 shadow-lg rounded-xl">
+        <div className="p-4 bg-white rounded-t-xl border-b border-teal-100">
           <h3 className="font-semibold text-lg text-teal-800 mb-3">
             Kontaktne informacije
           </h3>
