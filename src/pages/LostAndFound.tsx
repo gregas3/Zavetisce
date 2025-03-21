@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Search, PawPrint, Calendar, Info, Plus, Cat, Dog, ArrowUpRight } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import Section from "@/components/shared/Section";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
+import LostAnimalForm from "@/components/forms/LostAnimalForm";
+import FoundAnimalForm from "@/components/forms/FoundAnimalForm";
 
 // Sample data for lost pets
 const lostPets = [
@@ -95,6 +96,8 @@ const foundPets = [
 export default function LostAndFound() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterType, setFilterType] = useState("all");
+  const [activeTab, setActiveTab] = useState("listings");
+  const [formType, setFormType] = useState<"lost" | "found" | null>(null);
   
   const filteredLostPets = lostPets.filter(pet => {
     const matchesQuery = pet.name?.toLowerCase().includes(searchQuery.toLowerCase()) || 
@@ -119,6 +122,12 @@ export default function LostAndFound() {
     return matchesQuery;
   });
 
+  const handleReportButtonClick = (type: "lost" | "found") => {
+    setFormType(type);
+    setActiveTab("report");
+    window.scrollTo(0, 0);
+  };
+
   return (
     <Layout>
       <Helmet>
@@ -138,11 +147,21 @@ export default function LostAndFound() {
               <h3 className="text-xl font-semibold text-teal-800 mb-6">Prijavite izgubljeno ali najdeno žival</h3>
               
               <div className="flex flex-col sm:flex-row gap-4 mb-6">
-                <Button variant="teal" size="lg" className="flex-1 py-8 flex-col h-auto">
+                <Button 
+                  variant="teal" 
+                  size="lg" 
+                  className="flex-1 py-8 flex-col h-auto"
+                  onClick={() => handleReportButtonClick("lost")}
+                >
                   <PawPrint size={32} className="mb-2" />
                   <span className="text-lg font-medium">Prijavi izgubljeno žival</span>
                 </Button>
-                <Button variant="lightTeal" size="lg" className="flex-1 py-8 flex-col h-auto">
+                <Button 
+                  variant="lightTeal" 
+                  size="lg" 
+                  className="flex-1 py-8 flex-col h-auto"
+                  onClick={() => handleReportButtonClick("found")}
+                >
                   <Search size={32} className="mb-2" />
                   <span className="text-lg font-medium">Prijavi najdeno žival</span>
                 </Button>
@@ -195,209 +214,301 @@ export default function LostAndFound() {
       </div>
 
       <Section className="py-12">
-        <AnimatedWrapper animation="fade-in-up" className="mb-8">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
-            <div className="w-full md:w-1/2">
-              <div className="relative">
-                <Input
-                  type="text"
-                  placeholder="Išči po lokaciji, pasmi, opisu..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
-                />
-                <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-teal-500" />
+        <Tabs defaultValue={activeTab} value={activeTab} onValueChange={(value) => setActiveTab(value)}>
+          <TabsList className="w-full max-w-md mx-auto mb-8 bg-teal-50">
+            <TabsTrigger 
+              value="listings" 
+              className="flex-1 data-[state=active]:bg-teal-100 data-[state=active]:text-teal-800"
+            >
+              Seznam izgubljenih in najdenih
+            </TabsTrigger>
+            <TabsTrigger 
+              value="report" 
+              className="flex-1 data-[state=active]:bg-teal-100 data-[state=active]:text-teal-800"
+            >
+              Oddaj prijavo
+            </TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="listings">
+            <AnimatedWrapper animation="fade-in-up" className="mb-8">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
+                <div className="w-full md:w-1/2">
+                  <div className="relative">
+                    <Input
+                      type="text"
+                      placeholder="Išči po lokaciji, pasmi, opisu..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="pl-10"
+                    />
+                    <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-teal-500" />
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 w-full md:w-auto">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className={`${filterType === 'all' ? 'bg-teal-100 text-teal-800 border-teal-200' : ''}`}
+                    onClick={() => setFilterType('all')}
+                  >
+                    <PawPrint size={16} />
+                    Vse živali
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className={`${filterType === 'dog' ? 'bg-teal-100 text-teal-800 border-teal-200' : ''}`}
+                    onClick={() => setFilterType('dog')}
+                  >
+                    <Dog size={16} />
+                    Psi
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className={`${filterType === 'cat' ? 'bg-teal-100 text-teal-800 border-teal-200' : ''}`}
+                    onClick={() => setFilterType('cat')}
+                  >
+                    <Cat size={16} />
+                    Mačke
+                  </Button>
+                </div>
               </div>
-            </div>
-            <div className="flex items-center gap-2 w-full md:w-auto">
-              <Button 
-                variant="outline" 
-                size="sm" 
-                className={`${filterType === 'all' ? 'bg-teal-100 text-teal-800 border-teal-200' : ''}`}
-                onClick={() => setFilterType('all')}
-              >
-                <PawPrint size={16} />
-                Vse živali
-              </Button>
-              <Button 
-                variant="outline" 
-                size="sm" 
-                className={`${filterType === 'dog' ? 'bg-teal-100 text-teal-800 border-teal-200' : ''}`}
-                onClick={() => setFilterType('dog')}
-              >
-                <Dog size={16} />
-                Psi
-              </Button>
-              <Button 
-                variant="outline" 
-                size="sm" 
-                className={`${filterType === 'cat' ? 'bg-teal-100 text-teal-800 border-teal-200' : ''}`}
-                onClick={() => setFilterType('cat')}
-              >
-                <Cat size={16} />
-                Mačke
-              </Button>
-            </div>
-          </div>
-        </AnimatedWrapper>
+            </AnimatedWrapper>
 
-        <AnimatedWrapper animation="fade-in">
-          <div className="mb-8">
-            <Tabs defaultValue="lost" className="w-full">
-              <TabsList className="w-full sm:w-auto mb-6 bg-teal-50">
-                <TabsTrigger value="lost" className="flex-1 sm:flex-initial data-[state=active]:bg-teal-100 data-[state=active]:text-teal-800">Izgubljene živali</TabsTrigger>
-                <TabsTrigger value="found" className="flex-1 sm:flex-initial data-[state=active]:bg-teal-100 data-[state=active]:text-teal-800">Najdene živali</TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="lost" className="focus-visible:outline-none focus-visible:ring-0">
-                <AnimatedWrapper animation="fade-in">
-                  {filteredLostPets.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {filteredLostPets.map((pet) => (
-                        <AnimatedWrapper key={pet.id} animation="fade-in" className="h-full">
-                          <Card className="h-full overflow-hidden hover:shadow-md transition-shadow duration-300">
-                            <div className="relative h-48 overflow-hidden bg-teal-50">
-                              {pet.isFound && (
-                                <div className="absolute top-0 right-0 bg-green-500 text-white px-3 py-1 z-10 font-medium rounded-bl-lg">
-                                  Najden
+            <AnimatedWrapper animation="fade-in">
+              <div className="mb-8">
+                <Tabs defaultValue="lost" className="w-full">
+                  <TabsList className="w-full sm:w-auto mb-6 bg-teal-50">
+                    <TabsTrigger value="lost" className="flex-1 sm:flex-initial data-[state=active]:bg-teal-100 data-[state=active]:text-teal-800">Izgubljene živali</TabsTrigger>
+                    <TabsTrigger value="found" className="flex-1 sm:flex-initial data-[state=active]:bg-teal-100 data-[state=active]:text-teal-800">Najdene živali</TabsTrigger>
+                  </TabsList>
+                  
+                  <TabsContent value="lost" className="focus-visible:outline-none focus-visible:ring-0">
+                    <AnimatedWrapper animation="fade-in">
+                      {filteredLostPets.length > 0 ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                          {filteredLostPets.map((pet) => (
+                            <AnimatedWrapper key={pet.id} animation="fade-in" className="h-full">
+                              <Card className="h-full overflow-hidden hover:shadow-md transition-shadow duration-300">
+                                <div className="relative h-48 overflow-hidden bg-teal-50">
+                                  {pet.isFound && (
+                                    <div className="absolute top-0 right-0 bg-green-500 text-white px-3 py-1 z-10 font-medium rounded-bl-lg">
+                                      Najden
+                                    </div>
+                                  )}
+                                  <img 
+                                    src={pet.image} 
+                                    alt={pet.name || "Izgubljena žival"} 
+                                    className="w-full h-full object-cover"
+                                  />
                                 </div>
-                              )}
-                              <img 
-                                src={pet.image} 
-                                alt={pet.name || "Izgubljena žival"} 
-                                className="w-full h-full object-cover"
-                              />
-                            </div>
-                            
-                            <CardContent className="p-5">
-                              <div className="flex items-center justify-between mb-2">
-                                <h3 className="text-xl font-bold text-teal-800">
-                                  {pet.name || (pet.type === "dog" ? "Pes" : "Mačka")}
-                                </h3>
-                                <span className="flex items-center text-gray-600 text-sm">
-                                  <Calendar size={14} className="mr-1" />
-                                  {new Date(pet.date).toLocaleDateString('sl-SI')}
-                                </span>
-                              </div>
-                              
-                              <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-4 text-sm">
-                                <div>
-                                  <span className="text-gray-500">Vrsta:</span> {pet.type === "dog" ? "Pes" : "Mačka"}
+                                
+                                <CardContent className="p-5">
+                                  <div className="flex items-center justify-between mb-2">
+                                    <h3 className="text-xl font-bold text-teal-800">
+                                      {pet.name || (pet.type === "dog" ? "Pes" : "Mačka")}
+                                    </h3>
+                                    <span className="flex items-center text-gray-600 text-sm">
+                                      <Calendar size={14} className="mr-1" />
+                                      {new Date(pet.date).toLocaleDateString('sl-SI')}
+                                    </span>
+                                  </div>
+                                  
+                                  <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-4 text-sm">
+                                    <div>
+                                      <span className="text-gray-500">Vrsta:</span> {pet.type === "dog" ? "Pes" : "Mačka"}
+                                    </div>
+                                    <div>
+                                      <span className="text-gray-500">Spol:</span> {pet.gender}
+                                    </div>
+                                    <div>
+                                      <span className="text-gray-500">Pasma:</span> {pet.breed}
+                                    </div>
+                                    <div>
+                                      <span className="text-gray-500">Starost:</span> {pet.age}
+                                    </div>
+                                  </div>
+                                  
+                                  <div className="mb-4">
+                                    <div className="flex items-start gap-1 text-gray-700 mb-2">
+                                      <MapPin size={16} className="shrink-0 mt-1 text-teal-500" />
+                                      <span>{pet.location}</span>
+                                    </div>
+                                    <p className="text-gray-600 line-clamp-2">{pet.description}</p>
+                                  </div>
+                                  
+                                  <div className="pt-2 border-t border-gray-100">
+                                    <Button variant="lightTeal" size="sm" className="w-full gap-1">
+                                      <span>Več informacij</span>
+                                      <ArrowUpRight size={16} />
+                                    </Button>
+                                  </div>
+                                </CardContent>
+                              </Card>
+                            </AnimatedWrapper>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="text-center py-12">
+                          <p className="text-gray-500 mb-4">Ni najdenih rezultatov za iskalni niz.</p>
+                          <Button variant="outline" onClick={() => {setSearchQuery(""); setFilterType("all")}}>
+                            Ponastavi iskanje
+                          </Button>
+                        </div>
+                      )}
+                    </AnimatedWrapper>
+                  </TabsContent>
+                  
+                  <TabsContent value="found" className="focus-visible:outline-none focus-visible:ring-0">
+                    <AnimatedWrapper animation="fade-in">
+                      {filteredFoundPets.length > 0 ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                          {filteredFoundPets.map((pet) => (
+                            <AnimatedWrapper key={pet.id} animation="fade-in" className="h-full">
+                              <Card className="h-full overflow-hidden hover:shadow-md transition-shadow duration-300">
+                                <div className="relative h-48 overflow-hidden bg-teal-50">
+                                  <img 
+                                    src={pet.image} 
+                                    alt={"Najdena žival"} 
+                                    className="w-full h-full object-cover"
+                                  />
                                 </div>
-                                <div>
-                                  <span className="text-gray-500">Spol:</span> {pet.gender}
-                                </div>
-                                <div>
-                                  <span className="text-gray-500">Pasma:</span> {pet.breed}
-                                </div>
-                                <div>
-                                  <span className="text-gray-500">Starost:</span> {pet.age}
-                                </div>
-                              </div>
-                              
-                              <div className="mb-4">
-                                <div className="flex items-start gap-1 text-gray-700 mb-2">
-                                  <MapPin size={16} className="shrink-0 mt-1 text-teal-500" />
-                                  <span>{pet.location}</span>
-                                </div>
-                                <p className="text-gray-600 line-clamp-2">{pet.description}</p>
-                              </div>
-                              
-                              <div className="pt-2 border-t border-gray-100">
-                                <Button variant="lightTeal" size="sm" className="w-full gap-1">
-                                  <span>Več informacij</span>
-                                  <ArrowUpRight size={16} />
-                                </Button>
-                              </div>
-                            </CardContent>
-                          </Card>
-                        </AnimatedWrapper>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="text-center py-12">
-                      <p className="text-gray-500 mb-4">Ni najdenih rezultatov za iskalni niz.</p>
-                      <Button variant="outline" onClick={() => {setSearchQuery(""); setFilterType("all")}}>
-                        Ponastavi iskanje
-                      </Button>
-                    </div>
-                  )}
-                </AnimatedWrapper>
-              </TabsContent>
-              
-              <TabsContent value="found" className="focus-visible:outline-none focus-visible:ring-0">
-                <AnimatedWrapper animation="fade-in">
-                  {filteredFoundPets.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {filteredFoundPets.map((pet) => (
-                        <AnimatedWrapper key={pet.id} animation="fade-in" className="h-full">
-                          <Card className="h-full overflow-hidden hover:shadow-md transition-shadow duration-300">
-                            <div className="relative h-48 overflow-hidden bg-teal-50">
-                              <img 
-                                src={pet.image} 
-                                alt={"Najdena žival"} 
-                                className="w-full h-full object-cover"
-                              />
-                            </div>
-                            
-                            <CardContent className="p-5">
-                              <div className="flex items-center justify-between mb-2">
-                                <h3 className="text-xl font-bold text-teal-800">
-                                  {pet.type === "dog" ? "Najden pes" : "Najdena mačka"}
-                                </h3>
-                                <span className="flex items-center text-gray-600 text-sm">
-                                  <Calendar size={14} className="mr-1" />
-                                  {new Date(pet.date).toLocaleDateString('sl-SI')}
-                                </span>
-                              </div>
-                              
-                              <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-4 text-sm">
-                                <div>
-                                  <span className="text-gray-500">Vrsta:</span> {pet.type === "dog" ? "Pes" : "Mačka"}
-                                </div>
-                                <div>
-                                  <span className="text-gray-500">Spol:</span> {pet.gender}
-                                </div>
-                                <div>
-                                  <span className="text-gray-500">Pasma:</span> {pet.breed}
-                                </div>
-                                <div>
-                                  <span className="text-gray-500">Starost:</span> {pet.age}
-                                </div>
-                              </div>
-                              
-                              <div className="mb-4">
-                                <div className="flex items-start gap-1 text-gray-700 mb-2">
-                                  <MapPin size={16} className="shrink-0 mt-1 text-teal-500" />
-                                  <span>{pet.location}</span>
-                                </div>
-                                <p className="text-gray-600 line-clamp-2">{pet.description}</p>
-                              </div>
-                              
-                              <div className="pt-2 border-t border-gray-100">
-                                <Button variant="lightTeal" size="sm" className="w-full gap-1">
-                                  <span>Več informacij</span>
-                                  <ArrowUpRight size={16} />
-                                </Button>
-                              </div>
-                            </CardContent>
-                          </Card>
-                        </AnimatedWrapper>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="text-center py-12">
-                      <p className="text-gray-500 mb-4">Ni najdenih rezultatov za iskalni niz.</p>
-                      <Button variant="outline" onClick={() => {setSearchQuery(""); setFilterType("all")}}>
-                        Ponastavi iskanje
-                      </Button>
-                    </div>
-                  )}
-                </AnimatedWrapper>
-              </TabsContent>
-            </Tabs>
-          </div>
-        </AnimatedWrapper>
+                                
+                                <CardContent className="p-5">
+                                  <div className="flex items-center justify-between mb-2">
+                                    <h3 className="text-xl font-bold text-teal-800">
+                                      {pet.type === "dog" ? "Najden pes" : "Najdena mačka"}
+                                    </h3>
+                                    <span className="flex items-center text-gray-600 text-sm">
+                                      <Calendar size={14} className="mr-1" />
+                                      {new Date(pet.date).toLocaleDateString('sl-SI')}
+                                    </span>
+                                  </div>
+                                  
+                                  <div className="grid grid-cols-2 gap-x-4 gap-y-2 mb-4 text-sm">
+                                    <div>
+                                      <span className="text-gray-500">Vrsta:</span> {pet.type === "dog" ? "Pes" : "Mačka"}
+                                    </div>
+                                    <div>
+                                      <span className="text-gray-500">Spol:</span> {pet.gender}
+                                    </div>
+                                    <div>
+                                      <span className="text-gray-500">Pasma:</span> {pet.breed}
+                                    </div>
+                                    <div>
+                                      <span className="text-gray-500">Starost:</span> {pet.age}
+                                    </div>
+                                  </div>
+                                  
+                                  <div className="mb-4">
+                                    <div className="flex items-start gap-1 text-gray-700 mb-2">
+                                      <MapPin size={16} className="shrink-0 mt-1 text-teal-500" />
+                                      <span>{pet.location}</span>
+                                    </div>
+                                    <p className="text-gray-600 line-clamp-2">{pet.description}</p>
+                                  </div>
+                                  
+                                  <div className="pt-2 border-t border-gray-100">
+                                    <Button variant="lightTeal" size="sm" className="w-full gap-1">
+                                      <span>Več informacij</span>
+                                      <ArrowUpRight size={16} />
+                                    </Button>
+                                  </div>
+                                </CardContent>
+                              </Card>
+                            </AnimatedWrapper>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="text-center py-12">
+                          <p className="text-gray-500 mb-4">Ni najdenih rezultatov za iskalni niz.</p>
+                          <Button variant="outline" onClick={() => {setSearchQuery(""); setFilterType("all")}}>
+                            Ponastavi iskanje
+                          </Button>
+                        </div>
+                      )}
+                    </AnimatedWrapper>
+                  </TabsContent>
+                </Tabs>
+              </div>
+            </AnimatedWrapper>
+            
+            <div className="flex justify-center mt-12">
+              <Button 
+                variant="primary" 
+                size="lg"
+                className="gap-2 shadow-md"
+                onClick={() => setActiveTab("report")}
+              >
+                <Plus size={18} />
+                Oddaj novo prijavo
+              </Button>
+            </div>
+          </TabsContent>
+          
+          <TabsContent value="report">
+            <div className="max-w-3xl mx-auto">
+              {!formType ? (
+                <div className="bg-white p-8 rounded-xl shadow-sm border border-teal-100 text-center mb-8">
+                  <h3 className="text-xl font-semibold text-teal-800 mb-6">Izberite vrsto prijave</h3>
+                  
+                  <div className="flex flex-col sm:flex-row gap-4 mb-6">
+                    <Button 
+                      variant="teal" 
+                      size="lg" 
+                      className="flex-1 py-6 flex-col h-auto"
+                      onClick={() => setFormType("lost")}
+                    >
+                      <PawPrint size={28} className="mb-2" />
+                      <span className="font-medium">Prijavi izgubljeno žival</span>
+                    </Button>
+                    <Button 
+                      variant="lightTeal" 
+                      size="lg" 
+                      className="flex-1 py-6 flex-col h-auto"
+                      onClick={() => setFormType("found")}
+                    >
+                      <Search size={28} className="mb-2" />
+                      <span className="font-medium">Prijavi najdeno žival</span>
+                    </Button>
+                  </div>
+                  
+                  <Button 
+                    variant="outline" 
+                    onClick={() => setActiveTab("listings")}
+                    className="mt-4"
+                  >
+                    Nazaj na seznam
+                  </Button>
+                </div>
+              ) : (
+                <>
+                  <div className="flex justify-between items-center mb-4">
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => setFormType(null)}
+                    >
+                      Izberi drugo vrsto prijave
+                    </Button>
+                    
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      onClick={() => setActiveTab("listings")}
+                    >
+                      Nazaj na seznam
+                    </Button>
+                  </div>
+                  
+                  {formType === "lost" ? <LostAnimalForm /> : <FoundAnimalForm />}
+                </>
+              )}
+            </div>
+          </TabsContent>
+        </Tabs>
       </Section>
 
       <Section 
@@ -484,4 +595,3 @@ export default function LostAndFound() {
     </Layout>
   );
 }
-
