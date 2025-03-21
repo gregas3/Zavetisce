@@ -40,10 +40,12 @@ export default function Navbar() {
         setScrolled(true);
       } else {
         setScrolled(false);
+        setIsVisible(true); // Always show navbar when at top of page
       }
       
       if (windowHeight + currentScrollY >= documentHeight - 50) {
         setAtBottom(true);
+        setIsVisible(true); // Always show navbar when at bottom of page
       } else {
         setAtBottom(false);
       }
@@ -58,7 +60,7 @@ export default function Navbar() {
       // Set a timeout to detect when scrolling stops
       scrollTimeoutRef.current = setTimeout(() => {
         setIsVisible(true); // Show navbar when scrolling stops
-      }, 1000); // Adjust timeout as needed (1 second here)
+      }, 600); // Shorter timeout for better responsiveness
     };
     
     window.addEventListener("scroll", handleScroll);
