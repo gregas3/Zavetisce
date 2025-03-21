@@ -1,4 +1,3 @@
-
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet";
@@ -6,8 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { dogs } from "@/data/dogsData";
 import { syncDogData } from "@/utils/dogUtils";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 import DogProfileSkeleton from "@/components/dogs/DogProfileSkeleton";
 import DogProfileError from "@/components/dogs/DogProfileError";
 import DogProfileBreadcrumb from "@/components/dogs/DogProfileBreadcrumb";
@@ -51,29 +48,23 @@ interface DogData {
   };
 }
 
-// Create a filtered dogs database only containing dogs that exist in the shared system
 const createFilteredDogsDatabase = () => {
   const result: Record<string, DogData> = {};
   
-  // Map of shared dogs by ID for quick lookup
   const sharedDogsMap = new Map(
     dogs.map(dog => [dog.id.toString(), dog])
   );
   
-  // Add all dogs from the database that exist in the shared data
   for (const [id, dog] of Object.entries(dogsDatabase)) {
-    const numericId = parseInt(id);
     if (sharedDogsMap.has(id)) {
       result[id] = {
         ...dog,
-        // Ensure image is synchronized
         images: [
           sharedDogsMap.get(id)!.image,
           ...dog.images.slice(1)
         ]
       };
       
-      // Update video thumbnail if needed
       if (dog.videos && dog.videos.length > 0) {
         result[id].videos = [{
           ...dog.videos[0],
@@ -86,7 +77,6 @@ const createFilteredDogsDatabase = () => {
   return result;
 };
 
-// Filter the database to include only dogs that exist in the shared system
 const filteredDogsDatabase = createFilteredDogsDatabase();
 
 const dogsDatabase: Record<string, DogData> = {
@@ -487,7 +477,6 @@ const dogsDatabase: Record<string, DogData> = {
 const fetchDogById = async (id: string) => {
   await new Promise((resolve) => setTimeout(resolve, 500));
 
-  // Check if dog exists in the filtered database
   const dog = filteredDogsDatabase[id];
   if (!dog) {
     throw new Error(`Dog with id ${id} not found`);
@@ -506,7 +495,6 @@ const DogProfile = () => {
     enabled: !!id,
   });
 
-  // Find the previous and next dog IDs from the filtered database
   const findAdjacentDogIds = () => {
     const allDogIds = Object.keys(filteredDogsDatabase).sort((a, b) => parseInt(a) - parseInt(b));
     const currentIndex = allDogIds.indexOf(id || "");
@@ -553,8 +541,6 @@ const DogProfile = () => {
         <title>{dog.name} | Zavetišče za živali Maribor</title>
         <meta name="description" content={`Spoznajte ${dog.name} - ${dog.breed}, ${dog.age}. ${dog.description}`} />
       </Helmet>
-
-      <Navbar />
 
       <main className="pt-20 pb-10">
         <div className="container">
@@ -643,8 +629,6 @@ const DogProfile = () => {
           </div>
         </div>
       </main>
-      
-      <Footer />
     </>
   );
 };
