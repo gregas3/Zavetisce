@@ -34,40 +34,38 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Index />} />
-            
-            {/* Adoption routes */}
-            <Route path="/posvojitev/psi" element={<DogsAdoption />} />
-            <Route path="/posvojitev/psi/:id" element={<DogProfile />} />
-            <Route path="/posvojitev/mačke" element={<CatsAdoption />} />
-            <Route path="/posvojitev/mačke/:id" element={<CatProfile />} />
-            <Route path="/posvojitev/vprašalnik" element={<Questionnaire />} />
-            <Route path="/posvojitev/postopek" element={<AdoptionProcess />} />
-            
-            {/* Appointments route */}
-            <Route path="/termini" element={<Appointments />} />
-            
-            {/* Donations route */}
-            <Route path="/donacije" element={<Donations />} />
-            
-            {/* Volunteer route */}
-            <Route path="/prostovoljstvo" element={<Volunteer />} />
-            
-            {/* Contact route */}
-            <Route path="/kontakt" element={<Kontakt />} />
-            
-            {/* About us route */}
-            <Route path="/o-nas" element={<AboutUs />} />
-            
-            {/* Lost and Found route */}
-            <Route path="/izgubljeni-najdeni" element={<LostAndFound />} />
-            
-            {/* Catch-all route */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Layout>
+        <Routes>
+          <Route path="/" element={<Layout><Index /></Layout>} />
+          
+          {/* Adoption routes */}
+          <Route path="/posvojitev/psi" element={<Layout><DogsAdoption /></Layout>} />
+          <Route path="/posvojitev/psi/:id" element={<Layout><DogProfile /></Layout>} />
+          <Route path="/posvojitev/mačke" element={<Layout><CatsAdoption /></Layout>} />
+          <Route path="/posvojitev/mačke/:id" element={<Layout><CatProfile /></Layout>} />
+          <Route path="/posvojitev/vprašalnik" element={<Layout><Questionnaire /></Layout>} />
+          <Route path="/posvojitev/postopek" element={<Layout><AdoptionProcess /></Layout>} />
+          
+          {/* Appointments route */}
+          <Route path="/termini" element={<Layout><Appointments /></Layout>} />
+          
+          {/* Donations route */}
+          <Route path="/donacije" element={<Layout><Donations /></Layout>} />
+          
+          {/* Volunteer route */}
+          <Route path="/prostovoljstvo" element={<Layout><Volunteer /></Layout>} />
+          
+          {/* Contact route */}
+          <Route path="/kontakt" element={<Layout><Kontakt /></Layout>} />
+          
+          {/* About us route */}
+          <Route path="/o-nas" element={<Layout><AboutUs /></Layout>} />
+          
+          {/* Lost and Found route */}
+          <Route path="/izgubljeni-najdeni" element={<Layout><LostAndFound /></Layout>} />
+          
+          {/* Catch-all route */}
+          <Route path="*" element={<Layout><NotFound /></Layout>} />
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

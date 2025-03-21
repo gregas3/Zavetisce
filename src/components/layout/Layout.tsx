@@ -13,8 +13,11 @@ const Layout = ({ children }: LayoutProps) => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   
-  // By moving the Footer component outside of individual pages and only including it here,
-  // we ensure it only appears once across the entire application
+  // Check if the children already have a Footer component
+  const hasNestedFooter = React.Children.toArray(children).some(
+    child => React.isValidElement(child) && child.type === Footer
+  );
+  
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -22,7 +25,7 @@ const Layout = ({ children }: LayoutProps) => {
         {children}
       </main>
       {isHomePage && <FloatingContactButton />}
-      <Footer />
+      {!hasNestedFooter && <Footer />}
     </div>
   );
 };
