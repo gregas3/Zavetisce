@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Calendar, Mail, Phone } from "lucide-react";
+import { Calendar, Mail, Phone, FileText } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import Layout from "@/components/layout/Layout";
 import Footer from "@/components/layout/Footer";
@@ -64,6 +64,14 @@ const CatProfile = () => {
       description: `Ustvarjanje termina za ogled mačke ${cat?.name}`,
     });
   };
+  
+  const handleFillQuestionnaire = () => {
+    navigate(`/posvojitev/vprašalnik?animalName=${cat?.name}&animalType=Mačka`);
+    toast({
+      title: "Vprašalnik za posvojitev",
+      description: `Izpolnjevanje vprašalnika za posvojitev mačke ${cat?.name}`,
+    });
+  };
 
   // Mock contact info for the shelter
   const contactInfo = {
@@ -117,13 +125,7 @@ const CatProfile = () => {
                     phone: "+386 2 480 1660",
                     email: "info@zavetisce-maribor.si",
                   }}
-                  handleScheduleAppointment={() => {
-                    navigate("/termini", { state: { petName: cat.name, petType: "mačka" } });
-                    toast({
-                      title: "Termin za ogled",
-                      description: `Ustvarjanje termina za ogled mačke ${cat.name}`,
-                    });
-                  }}
+                  handleScheduleAppointment={handleScheduleAppointment}
                 />
 
                 <div className="flex flex-wrap gap-2 mt-4">
@@ -167,16 +169,17 @@ const CatProfile = () => {
             </Tabs>
 
             <div className="mt-8 text-center">
-              <Button size="lg" onClick={() => {
-                navigate("/termini", { state: { petName: cat.name, petType: "mačka" } });
-                toast({
-                  title: "Termin za ogled",
-                  description: `Ustvarjanje termina za ogled mačke ${cat.name}`,
-                });
-              }}>
+              <Button size="lg" onClick={handleScheduleAppointment}>
                 <Calendar className="mr-2 h-5 w-5" />
                 Rezerviraj termin za obisk
               </Button>
+              
+              <div className="mt-4">
+                <Button variant="teal" size="lg" onClick={handleFillQuestionnaire}>
+                  <FileText className="mr-2 h-5 w-5" />
+                  Izpolni vprašalnik
+                </Button>
+              </div>
               
               <div className="mt-6 flex justify-center gap-4">
                 <Button variant="outline" size="sm" asChild>
