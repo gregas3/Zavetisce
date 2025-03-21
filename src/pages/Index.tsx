@@ -14,11 +14,12 @@ const Index = () => {
       <Helmet>
         <title>Zavetišče za živali Maribor</title>
         <meta name="description" content="Zavetišče za zapuščene živali v Mariboru nudi dom izgubljenim, zapuščenim in odvzetim živalim. Posvojitev psov in mačk, prijava izgubljene ali najdene živali." />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </Helmet>
       
       <div className="min-h-screen bg-gradient-to-b from-[#e2efed]/80 to-[#dfecea]/80">
         <HeroSection />
-        <div className="bg-gradient-to-b from-[#e2efed]/80 to-[#dfecea]/80 py-8">
+        <div className="bg-gradient-to-b from-[#e2efed]/80 to-[#dfecea]/80 py-6 sm:py-8">
           <FeaturedAnimals />
         </div>
         <QuickLinks />

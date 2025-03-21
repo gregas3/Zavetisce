@@ -18,6 +18,18 @@ const Layout = ({ children }: LayoutProps) => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
   
+  // Add meta viewport tag
+  useEffect(() => {
+    const meta = document.createElement('meta');
+    meta.name = 'viewport';
+    meta.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+    document.getElementsByTagName('head')[0].appendChild(meta);
+    
+    return () => {
+      document.getElementsByTagName('head')[0].removeChild(meta);
+    };
+  }, []);
+  
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />

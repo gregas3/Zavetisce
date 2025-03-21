@@ -11,13 +11,13 @@ type NavbarActionsProps = {
 
 export const NavbarActions = ({ toggleSearch, handleHomeClick, isMobile }: NavbarActionsProps) => {
   return (
-    <div className={`flex items-center gap-${isMobile ? '2' : '3'} ${!isMobile ? 'ml-3' : ''}`}>
+    <div className={`flex items-center gap-${isMobile ? '1' : '3'} ${!isMobile ? 'ml-3' : ''}`}>
       <button 
         onClick={handleHomeClick}
         className={`p-2 text-white rounded-full transition-colors hover:bg-teal-600/50 ${!isMobile ? 'hover:text-white' : ''}`}
         aria-label="Domov"
       >
-        <Home size={isMobile ? 20 : 20} />
+        <Home size={isMobile ? 22 : 20} />
       </button>
       
       <button 
@@ -25,7 +25,7 @@ export const NavbarActions = ({ toggleSearch, handleHomeClick, isMobile }: Navba
         className={`p-2 text-white rounded-full transition-colors hover:bg-teal-600/50 ${!isMobile ? 'hover:text-white' : ''}`} 
         aria-label="Search"
       >
-        <Search size={20} />
+        <Search size={isMobile ? 22 : 20} />
       </button>
       
       {!isMobile && (
