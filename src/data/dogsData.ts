@@ -1,4 +1,3 @@
-
 // Dogs database shared between pages
 export interface Dog {
   id: number;
@@ -16,6 +15,20 @@ export interface Dog {
 }
 
 export const dogs: Dog[] = [
+  {
+    id: 10,
+    name: "Zum",
+    breed: "Sibirski haski",
+    age: "3 leta",
+    gender: "samec",
+    size: "velik",
+    image: "/lovable-uploads/906ab7e3-5336-465c-af1c-f705e6e8bedf.png",
+    description: "Zum je samec v tipu pasme sibirski haski. Star je približno tri leta in je čipiran, cepljen ter kastriran. Potrebuje aktivnega skrbnika, ker pa je plašne narave in potrebuje nekaj časa, da se navadi novih ljudi, se od posvojiteljev pričakuje tudi umirjenost in potrpežljivost.",
+    characteristics: ["aktiven", "plašen", "potrpežljiv", "čipiran"],
+    vaccinated: true,
+    neutered: true,
+    goodWith: ["aktivni ljudje", "potrpežljivi lastniki", "izkušeni lastniki"]
+  },
   {
     id: 9,
     name: "Bella",

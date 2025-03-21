@@ -51,6 +51,41 @@ interface DogData {
 }
 
 const dogsDatabase: Record<string, DogData> = {
+  "10": {
+    id: "10",
+    name: "Zum",
+    images: [
+      "/lovable-uploads/906ab7e3-5336-465c-af1c-f705e6e8bedf.png",
+      "/placeholder.svg", 
+      "/placeholder.svg"
+    ],
+    videos: [
+      {
+        thumbnail: "/lovable-uploads/906ab7e3-5336-465c-af1c-f705e6e8bedf.png",
+        url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+        title: "Zum na sprehodu"
+      }
+    ],
+    age: "3 leta",
+    breed: "Sibirski haski",
+    gender: "Samec",
+    size: "Velik",
+    color: "Črno-bela",
+    status: "Na voljo za posvojitev",
+    microchipped: true,
+    neutered: true,
+    vaccinated: true,
+    description: "Zum je samec v tipu pasme sibirski haski. Star je približno tri leta in je čipiran, cepljen ter kastriran. Potrebuje aktivnega skrbnika, ker pa je plašne narave in potrebuje nekaj časa, da se navadi novih ljudi, se od posvojiteljev pričakuje tudi umirjenost in potrpežljivost.",
+    suitableFor: "Aktivni lastniki, izkušeni s pasmami kot je haski, potrpežljivi ljudje, ki so pripravljeni mu dati čas za prilagoditev",
+    notSuitableFor: "Družine z majhnimi otroki, nepotrpežljivi lastniki, stanovanja brez dostopa do zunanjih površin",
+    additionalInfo: "Zum je bil sprejet v zavetišču 20. 10. 2024. Rojen je bil 29. 08. 2021. Zaradi plašne narave potrebuje skrbnika, ki bo razumel njegove potrebe.",
+    dateArrived: "2024-10-20",
+    adoptionRequirements: "- Izkušnje s srednje do velikimi psi\n- Aktivni življenjski slog\n- Dovolj časa za sprehode in aktivnosti\n- Potrpežljivost pri vzpostavljanju zaupanja\n- Mirno domače okolje\n- Ograjen vrt",
+    contactInfo: {
+      phone: "+386 (0)2 480 16 60",
+      email: "zavetisce.mb@snaga-mb.si"
+    }
+  },
   "9": {
     id: "9",
     name: "Bella",
@@ -491,3 +526,4 @@ const DogProfile = () => {
 };
 
 export default DogProfile;
+
