@@ -7,9 +7,11 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const FloatingContactButton = () => {
   const [open, setOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -25,8 +27,9 @@ const FloatingContactButton = () => {
       </PopoverTrigger>
       
       <PopoverContent 
-        side="left" 
-        sideOffset={30} 
+        side={isMobile ? "top" : "left"} 
+        sideOffset={isMobile ? 16 : 30} 
+        align={isMobile ? "end" : "center"}
         className="w-80 p-0 bg-[#f5fcfb] border-teal-200 shadow-md rounded-xl"
       >
         <div className="p-4">
