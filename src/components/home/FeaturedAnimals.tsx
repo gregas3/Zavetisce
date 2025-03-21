@@ -95,6 +95,7 @@ export default function FeaturedAnimals() {
       title="Spoznajte naše živali"
       description="Tukaj so nekatere izmed živali, ki trenutno čakajo na svoj za vedno dom. Kliknite na žival za več informacij."
       centered
+      className="pb-8" // Reduced bottom padding here
     >
       <div className="relative">
         <div className="overflow-hidden">
@@ -191,7 +192,7 @@ export default function FeaturedAnimals() {
         )}
       </div>
       
-      <div className="flex justify-center mt-10">
+      <div className="flex justify-center mt-8"> {/* Reduced top margin here */}
         <Button asChild size="lg" className="rounded-full">
           <Link to="/posvojitev/psi">
             Ogled vseh živali
