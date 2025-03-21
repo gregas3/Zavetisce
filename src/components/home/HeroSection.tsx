@@ -1,29 +1,27 @@
-
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-
 export default function HeroSection() {
   const scrollToNextSection = () => {
     const nextSection = document.querySelector('.section-padding');
     if (nextSection) {
-      nextSection.scrollIntoView({ behavior: 'smooth' });
+      nextSection.scrollIntoView({
+        behavior: 'smooth'
+      });
     }
   };
-
-  return (
-    <div className="relative pt-24 min-h-[100vh] flex items-center overflow-hidden">
+  return <div className="relative pt-24 min-h-[100vh] flex items-center overflow-hidden">
       {/* Background image with overlay */}
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
-        backgroundImage: "url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80')"
-      }}>
+      backgroundImage: "url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80')"
+    }}>
         <div className="absolute inset-0 bg-gradient-to-r from-[#0f2a2d]/90 via-[#0f2a2d]/70 to-[#0f2a2d]/50"></div>
       </div>
       
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10 my-auto">
         <div className="max-w-3xl">
-          <div className="animate-fade-in">
+          <div className="animate-fade-in py-[240px]">
             <span className="inline-block bg-teal-500/20 text-teal-100 px-4 py-1.5 rounded-full text-sm font-medium mb-6">
               Zavetišče za živali Maribor
             </span>
@@ -52,15 +50,10 @@ export default function HeroSection() {
       </div>
       
       {/* Animated arrow replacing scroll indicator */}
-      <div 
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer" 
-        onClick={scrollToNextSection}
-        aria-label="Scroll down"
-      >
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer" onClick={scrollToNextSection} aria-label="Scroll down">
         <div className="w-16 h-16 rounded-full bg-teal-400/20 flex items-center justify-center border border-teal-400/30 shadow-lg backdrop-blur-sm">
           <ChevronDown className="h-12 w-12 text-teal-300 animate-bounce" />
         </div>
       </div>
-    </div>
-  );
+    </div>;
 }
