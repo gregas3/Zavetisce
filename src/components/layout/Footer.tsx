@@ -16,10 +16,10 @@ export default function Footer() {
               odvzetim živalim.
             </p>
             <div className="flex gap-4 mt-4">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-teal-300 hover:text-white transition-colors" aria-label="Facebook">
+              <a href="https://www.facebook.com/profile.php?id=100064510547105" target="_blank" rel="noopener noreferrer" className="text-teal-300 hover:text-white transition-colors" aria-label="Facebook">
                 <Facebook size={20} />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-teal-300 hover:text-white transition-colors" aria-label="Instagram">
+              <a href="https://www.instagram.com/zavetisce_za_zivali_maribor/" target="_blank" rel="noopener noreferrer" className="text-teal-300 hover:text-white transition-colors" aria-label="Instagram">
                 <Instagram size={20} />
               </a>
               <a href="mailto:zavetisce.mb@snaga-mb.si" className="text-teal-300 hover:text-white transition-colors" aria-label="Email">

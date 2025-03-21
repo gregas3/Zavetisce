@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Phone, MapPin, Mail } from 'lucide-react';
+import { Phone, MapPin, Mail, Facebook, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Popover,
@@ -89,6 +89,25 @@ const FloatingContactButton = () => {
               </div>
               <span>zavetisce.mb@snaga-mb.si</span>
             </a>
+            
+            <div className="flex justify-center gap-4 mt-2">
+              <a 
+                href="https://www.facebook.com/profile.php?id=100064510547105" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-teal-100 p-2 rounded-full hover:bg-teal-200 transition-colors"
+              >
+                <Facebook className="w-5 h-5 text-teal-600" />
+              </a>
+              <a 
+                href="https://www.instagram.com/zavetisce_za_zivali_maribor/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-teal-100 p-2 rounded-full hover:bg-teal-200 transition-colors"
+              >
+                <Instagram className="w-5 h-5 text-teal-600" />
+              </a>
+            </div>
           </div>
         </div>
       </PopoverContent>
