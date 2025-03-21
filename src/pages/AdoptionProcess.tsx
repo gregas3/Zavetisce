@@ -8,7 +8,6 @@ import Section from "@/components/shared/Section";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card, CardContent } from "@/components/ui/card";
-
 const AdoptionProcess = () => {
   const [activeSection, setActiveSection] = useState("browse");
   return <>
@@ -56,28 +55,21 @@ const AdoptionProcess = () => {
                       </div>
                       <div className="space-y-4">
                         <div className="rounded-xl overflow-hidden">
-                          <img 
-                            src="/lovable-uploads/ed75a6c7-0783-4665-a307-03632c7557bc.png" 
-                            alt="Mačke in psi" 
-                            className="w-full h-auto object-cover"
-                          />
+                          
                         </div>
-                        <div className="flex justify-center gap-8 mt-6 relative">
-                          <div className="absolute inset-0 -m-10 bg-[url('/lovable-uploads/ed75a6c7-0783-4665-a307-03632c7557bc.png')] bg-cover bg-center blur-xl opacity-20 rounded-3xl"></div>
-                          <div className="relative z-10 flex justify-center gap-8 w-full p-8 rounded-2xl backdrop-blur-sm">
-                            <Link to="/posvojitev/psi" className="flex flex-col items-center group transition-transform hover:scale-105">
-                              <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mb-2 group-hover:bg-primary/20 transition-colors">
-                                <Dog className="h-14 w-14 text-primary" />
-                              </div>
-                              <span className="font-medium text-primary">Oglej si pse</span>
-                            </Link>
-                            <Link to="/posvojitev/mačke" className="flex flex-col items-center group transition-transform hover:scale-105">
-                              <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mb-2 group-hover:bg-primary/20 transition-colors">
-                                <Cat className="h-14 w-14 text-primary" />
-                              </div>
-                              <span className="font-medium text-primary">Oglej si mačke</span>
-                            </Link>
-                          </div>
+                        <div className="flex justify-center gap-8 mt-6">
+                          <Link to="/posvojitev/psi" className="flex flex-col items-center group transition-transform hover:scale-105">
+                            <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mb-2 group-hover:bg-primary/20 transition-colors">
+                              <Dog className="h-14 w-14 text-primary" />
+                            </div>
+                            <span className="font-medium text-primary">Oglej si pse</span>
+                          </Link>
+                          <Link to="/posvojitev/mačke" className="flex flex-col items-center group transition-transform hover:scale-105">
+                            <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mb-2 group-hover:bg-primary/20 transition-colors">
+                              <Cat className="h-14 w-14 text-primary" />
+                            </div>
+                            <span className="font-medium text-primary">Oglej si mačke</span>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -334,25 +326,22 @@ const AdoptionProcess = () => {
             <p className="mb-8 max-w-xl mx-auto">
               Začnite svoj posvojitveni proces danes in pomagajte živali najti za vedno dom. Vaša nova žival vam bo hvaležna za vso ljubezen in skrb.
             </p>
-            <div className="flex flex-wrap gap-12 justify-center relative">
-              <div className="absolute inset-0 -m-10 bg-[url('/lovable-uploads/ed75a6c7-0783-4665-a307-03632c7557bc.png')] bg-cover bg-center blur-xl opacity-20 rounded-3xl"></div>
-              <div className="relative z-10 flex flex-wrap gap-12 justify-center w-full p-8 rounded-2xl backdrop-blur-sm">
-                <Link to="/posvojitev/psi" className="flex flex-col items-center group transition-transform hover:scale-105">
-                  <div className="w-32 h-32 rounded-full bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
-                    <Dog className="h-20 w-20 text-primary" />
-                  </div>
-                  <span className="font-medium text-lg text-primary">Posvoji psa</span>
-                </Link>
-                <Link to="/posvojitev/mačke" className="flex flex-col items-center group transition-transform hover:scale-105">
-                  <div className="w-32 h-32 rounded-full bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
-                    <Cat className="h-20 w-20 text-primary" />
-                  </div>
-                  <span className="font-medium text-lg text-primary">Posvoji mačko</span>
-                </Link>
-                <Button asChild size="lg" variant="secondary" className="self-center">
-                  <Link to="/termini">Rezerviraj termin</Link>
-                </Button>
-              </div>
+            <div className="flex flex-wrap gap-12 justify-center">
+              <Link to="/posvojitev/psi" className="flex flex-col items-center group transition-transform hover:scale-105">
+                <div className="w-32 h-32 rounded-full bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
+                  <Dog className="h-20 w-20 text-primary" />
+                </div>
+                <span className="font-medium text-lg text-primary">Posvoji psa</span>
+              </Link>
+              <Link to="/posvojitev/mačke" className="flex flex-col items-center group transition-transform hover:scale-105">
+                <div className="w-32 h-32 rounded-full bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
+                  <Cat className="h-20 w-20 text-primary" />
+                </div>
+                <span className="font-medium text-lg text-primary">Posvoji mačko</span>
+              </Link>
+              <Button asChild size="lg" variant="secondary" className="self-center">
+                <Link to="/termini">Rezerviraj termin</Link>
+              </Button>
             </div>
           </div>
         </Section>
@@ -361,7 +350,6 @@ const AdoptionProcess = () => {
       <Footer />
     </>;
 };
-
 interface ProcessStepProps {
   icon: React.ReactNode;
   title: string;
@@ -370,7 +358,6 @@ interface ProcessStepProps {
   onClick: () => void;
   step: number;
 }
-
 const ProcessStep = ({
   icon,
   title,
@@ -397,5 +384,4 @@ const ProcessStep = ({
         </div>}
     </div>;
 };
-
 export default AdoptionProcess;
