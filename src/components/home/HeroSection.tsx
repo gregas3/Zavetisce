@@ -1,3 +1,4 @@
+
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -22,9 +23,8 @@ export default function HeroSection() {
       <div className="container mx-auto px-4 relative z-10 my-auto">
         <div className="max-w-3xl">
           <div className="animate-fade-in">
-            <span className="inline-block bg-teal-500/20 text-teal-100 px-4 py-1.5 rounded-full text-sm font-medium mb-6">
-              Zavetišče za živali Maribor
-            </span>
+            {/* Text added to the left of the logo */}
+            <h2 className="text-3xl md:text-4xl font-bold text-teal-100 mb-6">Zavetišče za živali Maribor</h2>
 
             {/* Logo added above the headline */}
             <div className="mb-8">
