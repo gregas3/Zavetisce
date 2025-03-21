@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
@@ -155,8 +154,8 @@ export default function LostAndFound() {
               </p>
               
               <div className="text-sm text-gray-500 border-t border-teal-100 pt-4">
-                <p className="mb-2">Za nujne primere pokličite našo telefonsko številko: <a href="tel:+38623211040" className="text-teal-600 font-medium">02 321 10 40</a></p>
-                <p>Pridite do nas na naslovu: <strong>Tržaška cesta 65, 2000 Maribor</strong></p>
+                <p className="mb-2">Za nujne primere pokličite našo telefonsko številko: <a href="tel:+38624801660" className="text-teal-600 font-medium">02 480 16 60</a> ali <a href="tel:+386031788822" className="text-teal-600 font-medium">031-788-822</a> (za nujne primere)</p>
+                <p>Pridite do nas na naslovu: <strong>Avtomobilska ulica 25, 2000 Maribor, Slovenia</strong></p>
               </div>
             </div>
           </AnimatedWrapper>

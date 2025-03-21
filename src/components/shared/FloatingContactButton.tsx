@@ -31,7 +31,7 @@ const FloatingContactButton = () => {
               <div className="bg-teal-100 p-2 rounded-full">
                 <MapPin className="w-5 h-5 text-teal-600" />
               </div>
-              <span>Avtomobilska ulica 25, 2000 Maribor</span>
+              <span>Avtomobilska ulica 25, 2000 Maribor, Slovenia</span>
             </a>
 
             <a href="tel:024801660" className="flex items-center gap-3 p-2 rounded-md hover:bg-teal-50 transition-colors">

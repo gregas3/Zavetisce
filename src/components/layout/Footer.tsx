@@ -39,7 +39,7 @@ export default function Footer() {
                 className="flex items-start gap-2 hover:text-teal-300 transition-colors"
               >
                 <MapPin size={18} className="text-teal-300 shrink-0 mt-1" />
-                <p>Avtomobilska ulica 25, 2000 Maribor, Slovenija</p>
+                <p>Avtomobilska ulica 25, 2000 Maribor, Slovenia</p>
               </a>
               <a 
                 href="tel:024801660" 
