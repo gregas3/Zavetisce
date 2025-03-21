@@ -6,46 +6,15 @@ import { Helmet } from "react-helmet";
 import { useState } from "react";
 import { dogs } from "@/data/dogsData";
 import { syncDogData } from "@/utils/dogUtils";
-
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogClose,
-} from "@/components/ui/dialog";
-
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
 interface DogData {
   id: string;
   name: string;
@@ -75,23 +44,16 @@ interface DogData {
     email: string;
   };
 }
-
 const dogsDatabase: Record<string, DogData> = {
   "8": {
     id: "8",
     name: "Roki",
-    images: [
-      "/lovable-uploads/c8aa987a-b8a9-4eb0-a2ee-44c69202ce18.png", 
-      "/lovable-uploads/4eb83a4c-bde9-4fda-85d0-03131f38e119.png", 
-      "/placeholder.svg"
-    ],
-    videos: [
-      {
-        thumbnail: "/lovable-uploads/c8aa987a-b8a9-4eb0-a2ee-44c69202ce18.png",
-        url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
-        title: "Roki na sprehodu"
-      }
-    ],
+    images: ["/lovable-uploads/c8aa987a-b8a9-4eb0-a2ee-44c69202ce18.png", "/lovable-uploads/4eb83a4c-bde9-4fda-85d0-03131f38e119.png", "/placeholder.svg"],
+    videos: [{
+      thumbnail: "/lovable-uploads/c8aa987a-b8a9-4eb0-a2ee-44c69202ce18.png",
+      url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+      title: "Roki na sprehodu"
+    }],
     age: "8 let",
     breed: "Mešanec",
     gender: "Samec",
@@ -115,18 +77,12 @@ const dogsDatabase: Record<string, DogData> = {
   "7": {
     id: "7",
     name: "Ajša",
-    images: [
-      "/lovable-uploads/9ec09e1c-3793-4fa6-8dd5-808040227dae.png", 
-      "/placeholder.svg", 
-      "/placeholder.svg"
-    ],
-    videos: [
-      {
-        thumbnail: "/lovable-uploads/9ec09e1c-3793-4fa6-8dd5-808040227dae.png",
-        url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
-        title: "Ajša se igra"
-      }
-    ],
+    images: ["/lovable-uploads/9ec09e1c-3793-4fa6-8dd5-808040227dae.png", "/placeholder.svg", "/placeholder.svg"],
+    videos: [{
+      thumbnail: "/lovable-uploads/9ec09e1c-3793-4fa6-8dd5-808040227dae.png",
+      url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+      title: "Ajša se igra"
+    }],
     age: "6 mesecev",
     breed: "Mešanec",
     gender: "Samica",
@@ -150,18 +106,12 @@ const dogsDatabase: Record<string, DogData> = {
   "1": {
     id: "1",
     name: "Reks",
-    images: [
-      "https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-      "/placeholder.svg",
-      "/placeholder.svg"
-    ],
-    videos: [
-      {
-        thumbnail: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-        url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
-        title: "Reks se igra"
-      }
-    ],
+    images: ["https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80", "/placeholder.svg", "/placeholder.svg"],
+    videos: [{
+      thumbnail: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+      url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+      title: "Reks se igra"
+    }],
     age: "2 leti",
     breed: "Mešanec",
     gender: "Samec",
@@ -185,18 +135,12 @@ const dogsDatabase: Record<string, DogData> = {
   "2": {
     id: "2",
     name: "Lara",
-    images: [
-      "https://images.unsplash.com/photo-1583511655826-05700442b31b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1588&q=80",
-      "/placeholder.svg",
-      "/placeholder.svg"
-    ],
-    videos: [
-      {
-        thumbnail: "https://images.unsplash.com/photo-1583511655826-05700442b31b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1588&q=80",
-        url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
-        title: "Lara raziskuje"
-      }
-    ],
+    images: ["https://images.unsplash.com/photo-1583511655826-05700442b31b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1588&q=80", "/placeholder.svg", "/placeholder.svg"],
+    videos: [{
+      thumbnail: "https://images.unsplash.com/photo-1583511655826-05700442b31b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1588&q=80",
+      url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+      title: "Lara raziskuje"
+    }],
     age: "7 mesecev",
     breed: "Mešanec",
     gender: "Samica",
@@ -220,18 +164,12 @@ const dogsDatabase: Record<string, DogData> = {
   "3": {
     id: "3",
     name: "Bela",
-    images: [
-      "https://images.unsplash.com/photo-1591769225440-811ad7d6eab2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
-      "/placeholder.svg",
-      "/placeholder.svg"
-    ],
-    videos: [
-      {
-        thumbnail: "https://images.unsplash.com/photo-1591769225440-811ad7d6eab2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
-        url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
-        title: "Bela počiva"
-      }
-    ],
+    images: ["https://images.unsplash.com/photo-1591769225440-811ad7d6eab2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80", "/placeholder.svg", "/placeholder.svg"],
+    videos: [{
+      thumbnail: "https://images.unsplash.com/photo-1591769225440-811ad7d6eab2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
+      url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+      title: "Bela počiva"
+    }],
     age: "3 leta",
     breed: "Labrador",
     gender: "Samica",
@@ -255,18 +193,12 @@ const dogsDatabase: Record<string, DogData> = {
   "4": {
     id: "4",
     name: "Max",
-    images: [
-      "https://images.unsplash.com/photo-1589941013453-ec89f98c748d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-      "/placeholder.svg",
-      "/placeholder.svg"
-    ],
-    videos: [
-      {
-        thumbnail: "https://images.unsplash.com/photo-1589941013453-ec89f98c748d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-        url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
-        title: "Max na treningu"
-      }
-    ],
+    images: ["https://images.unsplash.com/photo-1589941013453-ec89f98c748d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80", "/placeholder.svg", "/placeholder.svg"],
+    videos: [{
+      thumbnail: "https://images.unsplash.com/photo-1589941013453-ec89f98c748d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+      url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+      title: "Max na treningu"
+    }],
     age: "4 leta",
     breed: "Nemški ovčar",
     gender: "Samec",
@@ -290,18 +222,12 @@ const dogsDatabase: Record<string, DogData> = {
   "5": {
     id: "5",
     name: "Piki",
-    images: [
-      "https://images.unsplash.com/photo-1563321769-3100f782c24d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-      "/placeholder.svg",
-      "/placeholder.svg"
-    ],
-    videos: [
-      {
-        thumbnail: "https://images.unsplash.com/photo-1563321769-3100f782c24d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-        url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
-        title: "Piki skače"
-      }
-    ],
+    images: ["https://images.unsplash.com/photo-1563321769-3100f782c24d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80", "/placeholder.svg", "/placeholder.svg"],
+    videos: [{
+      thumbnail: "https://images.unsplash.com/photo-1563321769-3100f782c24d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+      url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+      title: "Piki skače"
+    }],
     age: "1 leto",
     breed: "Jack Russell terier",
     gender: "Samec",
@@ -325,18 +251,12 @@ const dogsDatabase: Record<string, DogData> = {
   "6": {
     id: "6",
     name: "Luna",
-    images: [
-      "https://images.unsplash.com/photo-1503256207526-0d5d80fa2f47?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1466&q=80",
-      "/placeholder.svg",
-      "/placeholder.svg"
-    ],
-    videos: [
-      {
-        thumbnail: "https://images.unsplash.com/photo-1503256207526-0d5d80fa2f47?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1466&q=80",
-        url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
-        title: "Luna rešuje naloge"
-      }
-    ],
+    images: ["https://images.unsplash.com/photo-1503256207526-0d5d80fa2f47?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1466&q=80", "/placeholder.svg", "/placeholder.svg"],
+    videos: [{
+      thumbnail: "https://images.unsplash.com/photo-1503256207526-0d5d80fa2f47?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1466&q=80",
+      url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+      title: "Luna rešuje naloge"
+    }],
     age: "2 leti",
     breed: "Border collie",
     gender: "Samica",
@@ -358,58 +278,53 @@ const dogsDatabase: Record<string, DogData> = {
     }
   }
 };
-
 const fetchDogById = async (id: string) => {
-  await new Promise((resolve) => setTimeout(resolve, 500));
-
+  await new Promise(resolve => setTimeout(resolve, 500));
   const dog = dogsDatabase[id];
   if (!dog) {
     throw new Error(`Dog with id ${id} not found`);
   }
-  
   const numericId = parseInt(id);
   const sharedDog = dogs.find(d => d.id === numericId);
-  
   if (sharedDog) {
     if (dog.images[0] !== sharedDog.image) {
       dog.images[0] = sharedDog.image;
-      
       if (dog.videos && dog.videos.length > 0) {
         dog.videos[0].thumbnail = sharedDog.image;
       }
     }
   }
-  
   return dog;
 };
-
 const DogProfile = () => {
-  const { id } = useParams<{ id: string }>();
+  const {
+    id
+  } = useParams<{
+    id: string;
+  }>();
   const navigate = useNavigate();
   const [activeVideoUrl, setActiveVideoUrl] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
-  const { data: dog, isLoading, error } = useQuery({
+  const {
+    data: dog,
+    isLoading,
+    error
+  } = useQuery({
     queryKey: ["dog", id],
     queryFn: () => fetchDogById(id || ""),
-    enabled: !!id,
+    enabled: !!id
   });
-
   const handleScheduleAppointment = () => {
     navigate(`/termini?animalId=${dog?.id}&animalName=${dog?.name}&animalType=Pes`);
   };
-  
   const handleFillQuestionnaire = () => {
     navigate(`/posvojitev/vprašalnik?animalName=${dog?.name}&animalType=Pes`);
   };
-
   const handleImageClick = (image: string) => {
     setSelectedImage(image);
   };
-
   if (isLoading) {
-    return (
-      <>
+    return <>
         <Navbar />
         <main className="pt-20 pb-10">
           <div className="container">
@@ -425,13 +340,10 @@ const DogProfile = () => {
           </div>
         </main>
         <Footer />
-      </>
-    );
+      </>;
   }
-
   if (error || !dog) {
-    return (
-      <>
+    return <>
         <Navbar />
         <main className="pt-20 pb-10">
           <div className="container text-center py-10">
@@ -443,12 +355,9 @@ const DogProfile = () => {
           </div>
         </main>
         <Footer />
-      </>
-    );
+      </>;
   }
-
-  return (
-    <>
+  return <>
       <Helmet>
         <title>{dog.name} | Zavetišče za živali Maribor</title>
         <meta name="description" content={`Spoznajte ${dog.name} - ${dog.breed}, ${dog.age}. ${dog.description}`} />
@@ -488,19 +397,16 @@ const DogProfile = () => {
                 </Badge>
               </h1>
 
-              <Carousel className="mb-8" opts={{ loop: true }}>
+              <Carousel className="mb-8" opts={{
+              loop: true
+            }}>
                 <CarouselContent>
-                  {dog.images.map((image, index) => (
-                    <CarouselItem key={`image-${index}`}>
+                  {dog.images.map((image, index) => <CarouselItem key={`image-${index}`}>
                       <div className="aspect-video w-full overflow-hidden rounded-xl">
                         <Dialog>
                           <DialogTrigger asChild>
                             <button className="w-full h-full p-0 m-0 bg-transparent border-0 cursor-pointer">
-                              <img
-                                src={image}
-                                alt={`${dog.name} - slika ${index + 1}`}
-                                className="object-cover w-full h-full hover:opacity-95 transition-opacity"
-                              />
+                              
                             </button>
                           </DialogTrigger>
                           <DialogContent className="sm:max-w-5xl p-1 bg-transparent border-0">
@@ -508,26 +414,16 @@ const DogProfile = () => {
                               <DialogClose className="absolute top-2 right-2 z-10 rounded-full bg-black/60 p-2 text-white hover:bg-black/80">
                                 <X size={20} />
                               </DialogClose>
-                              <img 
-                                src={image} 
-                                alt={`${dog.name} - slika ${index + 1}`} 
-                                className="w-full h-auto max-h-[85vh] object-contain rounded-md" 
-                              />
+                              <img src={image} alt={`${dog.name} - slika ${index + 1}`} className="w-full h-auto max-h-[85vh] object-contain rounded-md" />
                             </div>
                           </DialogContent>
                         </Dialog>
                       </div>
-                    </CarouselItem>
-                  ))}
+                    </CarouselItem>)}
                   
-                  {dog.videos && dog.videos.map((video, index) => (
-                    <CarouselItem key={`video-${index}`}>
+                  {dog.videos && dog.videos.map((video, index) => <CarouselItem key={`video-${index}`}>
                       <div className="aspect-video w-full overflow-hidden rounded-xl relative group">
-                        <img
-                          src={video.thumbnail}
-                          alt={`${dog.name} - ${video.title}`}
-                          className="object-cover w-full h-full"
-                        />
+                        <img src={video.thumbnail} alt={`${dog.name} - ${video.title}`} className="object-cover w-full h-full" />
                         <Dialog>
                           <DialogTrigger asChild>
                             <button className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition-all">
@@ -545,18 +441,12 @@ const DogProfile = () => {
                               <DialogDescription>Video posnetek psa</DialogDescription>
                             </DialogHeader>
                             <div className="aspect-video w-full">
-                              <video 
-                                src={video.url} 
-                                controls
-                                className="w-full h-full rounded-md"
-                                autoPlay
-                              />
+                              <video src={video.url} controls className="w-full h-full rounded-md" autoPlay />
                             </div>
                           </DialogContent>
                         </Dialog>
                       </div>
-                    </CarouselItem>
-                  ))}
+                    </CarouselItem>)}
                 </CarouselContent>
                 <CarouselPrevious className="left-2" />
                 <CarouselNext className="right-2" />
@@ -718,9 +608,6 @@ const DogProfile = () => {
         </div>
       </main>
       <Footer />
-    </>
-  );
+    </>;
 };
-
 export default DogProfile;
-
