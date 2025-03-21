@@ -1,20 +1,15 @@
-
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-
 export default function HeroSection() {
   const scrollToNextSection = () => {
     const nextSection = document.querySelector('.section-padding');
     if (nextSection) {
-      const topPosition = nextSection.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({
-        top: topPosition,
+      nextSection.scrollIntoView({
         behavior: 'smooth'
       });
     }
   };
-  
   return <div className="relative pt-24 min-h-[100vh] flex items-center overflow-hidden">
       {/* Background image with overlay */}
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
@@ -27,18 +22,13 @@ export default function HeroSection() {
       <div className="container mx-auto px-4 relative z-10 my-auto">
         <div className="max-w-3xl">
           <div className="animate-fade-in">
-            {/* Logo and text in a flex container */}
-            <div className="flex flex-col md:flex-row items-center gap-4 mb-8">
-              <Link to="/" onClick={() => window.scrollTo(0, 0)}>
-                <img 
-                  alt="Zavetišče za živali Maribor" 
-                  className="h-28 md:h-36 object-contain transition-transform hover:scale-105" 
-                  src="/lovable-uploads/57b6cf18-7b1a-48a3-9341-5bd8d46dc3f4.png" 
-                />
-              </Link>
-              <span className="text-teal-100 text-lg md:text-xl lg:text-2xl font-semibold px-4 py-2 bg-teal-500/20 rounded-lg">
-                Zavetišče za živali Maribor
-              </span>
+            <span className="inline-block bg-teal-500/20 text-teal-100 px-4 py-1.5 rounded-full text-sm font-medium mb-6">
+              Zavetišče za živali Maribor
+            </span>
+
+            {/* Logo added above the headline */}
+            <div className="mb-8">
+              <img alt="Zavetišče za živali Maribor" className="h-28 md:h-36 object-contain mb-2" src="/lovable-uploads/57b6cf18-7b1a-48a3-9341-5bd8d46dc3f4.png" />
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white">
@@ -51,12 +41,12 @@ export default function HeroSection() {
             
             <div className="flex flex-wrap gap-4 mb-16 md:mb-0">
               <Button size="lg" variant="darkTeal" asChild className="rounded-full font-medium text-base">
-                <Link to="/donacije" onClick={() => window.scrollTo(0, 0)}>
+                <Link to="/donacije">
                   Podpri zavetišče
                 </Link>
               </Button>
               <Button size="lg" variant="teal" asChild className="rounded-full font-medium text-base animate-fade-in delay-100 button-pulse">
-                <Link to="/posvojitev/psi" onClick={() => window.scrollTo(0, 0)}>
+                <Link to="/posvojitev/psi">
                   Posvoji zdaj <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
