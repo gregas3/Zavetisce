@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -23,7 +24,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import LocationPicker from '@/components/shared/LocationPicker';
 import FileUpload from '@/components/shared/FileUpload';
 
 const formSchema = z.object({
@@ -37,10 +37,7 @@ const formSchema = z.object({
   gender: z.string().optional(),
   age: z.string().optional(),
   lastSeenDate: z.string().min(1, { message: 'Datum je obvezen' }),
-  location: z.object({
-    lat: z.number(),
-    lng: z.number()
-  }).nullable(),
+  locationText: z.string().min(3, { message: 'Vpišite lokacijo zadnjega videnja' }),
   additionalInfo: z.string().optional(),
 });
 
@@ -64,7 +61,7 @@ const LostAnimalForm = () => {
       gender: '',
       age: '',
       lastSeenDate: new Date().toISOString().split('T')[0],
-      location: null,
+      locationText: '',
       additionalInfo: '',
     }
   });
@@ -77,11 +74,7 @@ const LostAnimalForm = () => {
       const formData = new FormData();
       
       Object.entries(data).forEach(([key, value]) => {
-        if (key === 'location' && value) {
-          formData.append(key, JSON.stringify(value));
-        } else {
-          formData.append(key, value as string);
-        }
+        formData.append(key, value as string);
       });
       
       files.forEach((file, index) => {
@@ -345,21 +338,14 @@ const LostAnimalForm = () => {
           
           <FormField
             control={form.control}
-            name="location"
+            name="locationText"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Lokacija zadnjega videnja</FormLabel>
                 <FormControl>
-                  <LocationPicker
-                    value={field.value}
-                    onChange={(location) => {
-                      if (location && typeof location.lat === 'number' && typeof location.lng === 'number') {
-                        field.onChange(location);
-                      } else {
-                        field.onChange(null);
-                      }
-                    }}
-                    error={form.formState.errors.location?.message}
+                  <Input 
+                    placeholder="Npr. Gosposvetska cesta 83, Maribor ali bližina Mestnega parka..."
+                    {...field}
                   />
                 </FormControl>
                 <FormMessage />
