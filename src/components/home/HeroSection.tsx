@@ -36,14 +36,11 @@ export default function HeroSection() {
             </p>
             
             <div className="flex flex-wrap gap-4">
-              {/* Updated with a different animation */}
-              <AnimatedWrapper animation="float" className="inline-block">
-                <Button size="lg" variant="darkTeal" asChild className="rounded-full font-medium text-base">
-                  <Link to="/donacije">
-                    Podpri zavetišče
-                  </Link>
-                </Button>
-              </AnimatedWrapper>
+              <Button size="lg" variant="darkTeal" asChild className="rounded-full font-medium text-base">
+                <Link to="/donacije">
+                  Podpri zavetišče
+                </Link>
+              </Button>
               <Button size="lg" variant="teal" asChild className="rounded-full font-medium text-base animate-fade-in delay-100 button-pulse">
                 <Link to="/posvojitev/psi">
                   Posvoji zdaj <ArrowRight className="ml-2 h-4 w-4" />
