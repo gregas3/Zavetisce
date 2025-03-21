@@ -1,28 +1,20 @@
-
 import { Link } from "react-router-dom";
 import { Dog, Cat, Heart } from "lucide-react";
-import { 
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle
-} from "@/components/ui/navigation-menu";
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { NavbarActions } from "./NavbarActions";
 import { NavbarBranding } from "./NavbarBranding";
-
 type DesktopNavigationProps = {
   closeMenu: () => void;
   toggleSearch: () => void;
   handleHomeClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
-
-export const DesktopNavigation = ({ closeMenu, toggleSearch, handleHomeClick }: DesktopNavigationProps) => {
-  return (
-    <div className="hidden lg:flex items-center gap-3">
+export const DesktopNavigation = ({
+  closeMenu,
+  toggleSearch,
+  handleHomeClick
+}: DesktopNavigationProps) => {
+  return <div className="hidden lg:flex items-center gap-3">
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
@@ -61,7 +53,7 @@ export const DesktopNavigation = ({ closeMenu, toggleSearch, handleHomeClick }: 
           
           <NavigationMenuItem>
             <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
-              <Link to="/izgubljeni-najdeni">Izgubljeni in Najdeni</Link>
+              <Link to="/izgubljeni-najdeni">Najdene živali</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           
@@ -92,14 +84,9 @@ export const DesktopNavigation = ({ closeMenu, toggleSearch, handleHomeClick }: 
       </NavigationMenu>
       
       <div className="flex items-center gap-3 ml-3">
-        <NavbarActions 
-          toggleSearch={toggleSearch} 
-          handleHomeClick={handleHomeClick} 
-          isMobile={false} 
-        />
+        <NavbarActions toggleSearch={toggleSearch} handleHomeClick={handleHomeClick} isMobile={false} />
         
         <NavbarBranding />
       </div>
-    </div>
-  );
+    </div>;
 };
