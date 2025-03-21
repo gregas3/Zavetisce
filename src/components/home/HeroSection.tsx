@@ -29,11 +29,16 @@ export default function HeroSection() {
               <span className="inline-block bg-teal-500/20 text-teal-100 px-4 py-1.5 rounded-full text-lg font-medium">
                 Zavetišče za živali Maribor
               </span>
-              <img 
-                src="/lovable-uploads/48b0f5a4-0bee-4f96-af30-5157149e0517.png" 
-                alt="Zavetišče za živali Maribor Logo" 
+              <AnimatedWrapper 
+                animation="bounce-slow" 
                 className="h-12 w-auto" 
-              />
+              >
+                <img 
+                  src="/lovable-uploads/48b0f5a4-0bee-4f96-af30-5157149e0517.png" 
+                  alt="Zavetišče za živali Maribor Logo" 
+                  className="h-12 w-auto drop-shadow-md" 
+                />
+              </AnimatedWrapper>
             </div>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 text-white">
