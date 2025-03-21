@@ -1,3 +1,4 @@
+
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -20,36 +21,69 @@ export default function HeroSection() {
       
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10 my-auto">
-        <div className="max-w-3xl">
-          <div className="animate-fade-in">
-            <span className="inline-block bg-teal-500/20 text-teal-100 px-4 py-1.5 rounded-full text-sm font-medium mb-6">
-              Zavetišče za živali Maribor
-            </span>
-
-            {/* Logo added above the headline */}
-            <div className="mb-8">
-              <img alt="Zavetišče za živali Maribor" className="h-28 md:h-36 object-contain mb-2" src="/lovable-uploads/57b6cf18-7b1a-48a3-9341-5bd8d46dc3f4.png" />
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          {/* Left side - Text */}
+          <div className="md:col-span-5">
+            <div className="animate-fade-in bg-teal-800/70 rounded-lg p-6 backdrop-blur-sm border border-teal-700/50 shadow-xl">
+              <h2 className="text-3xl md:text-4xl font-bold text-teal-100 mb-4">
+                Zavetišče za živali Maribor
+              </h2>
+              <div className="space-y-4 text-teal-50">
+                <p className="font-medium">
+                  Delovni čas za obiskovalce:
+                </p>
+                <div className="space-y-2">
+                  <div className="flex justify-between">
+                    <span>Ponedeljek - Petek:</span>
+                    <span>10:00 - 18:00</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Sobota:</span>
+                    <span>10:00 - 16:00</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Nedelja in prazniki:</span>
+                    <span>Zaprto</span>
+                  </div>
+                </div>
+                <div className="pt-2">
+                  <p className="font-medium mb-2">
+                    Lokacija:
+                  </p>
+                  <p>Avtomobilska ulica 25, 2000 Maribor</p>
+                </div>
+              </div>
             </div>
+          </div>
+          
+          {/* Right side - Logo and CTA */}
+          <div className="md:col-span-7 max-w-3xl">
+            <div className="animate-fade-in">
+              {/* Logo added above the headline */}
+              <div className="mb-8">
+                <img alt="Zavetišče za živali Maribor" className="h-28 md:h-40 object-contain mb-2" src="/lovable-uploads/57b6cf18-7b1a-48a3-9341-5bd8d46dc3f4.png" />
+              </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white">
-              Pomagajte nam ustvariti srečne zgodbe za zapuščene živali
-            </h1>
-            <p className="text-lg md:text-xl text-teal-100/80 mb-8 max-w-2xl">
-              V našem zavetišču nudimo dom izgubljenim, zapuščenim in odvzetim živalim. 
-              Vsaka žival si zasluži ljubeč dom in z vašo pomočjo lahko to uresničimo.
-            </p>
-            
-            <div className="flex flex-wrap gap-4 mb-16 md:mb-0">
-              <Button size="lg" variant="darkTeal" asChild className="rounded-full font-medium text-base">
-                <Link to="/donacije">
-                  Podpri zavetišče
-                </Link>
-              </Button>
-              <Button size="lg" variant="teal" asChild className="rounded-full font-medium text-base animate-fade-in delay-100 button-pulse">
-                <Link to="/posvojitev/psi">
-                  Posvoji zdaj <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white">
+                Pomagajte nam ustvariti srečne zgodbe za zapuščene živali
+              </h1>
+              <p className="text-lg md:text-xl text-teal-100/80 mb-8 max-w-2xl">
+                V našem zavetišču nudimo dom izgubljenim, zapuščenim in odvzetim živalim. 
+                Vsaka žival si zasluži ljubeč dom in z vašo pomočjo lahko to uresničimo.
+              </p>
+              
+              <div className="flex flex-wrap gap-4 mb-16 md:mb-0">
+                <Button size="lg" variant="darkTeal" asChild className="rounded-full font-medium text-base">
+                  <Link to="/donacije">
+                    Podpri zavetišče
+                  </Link>
+                </Button>
+                <Button size="lg" variant="teal" asChild className="rounded-full font-medium text-base animate-fade-in delay-100 button-pulse">
+                  <Link to="/posvojitev/psi">
+                    Posvoji zdaj <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
