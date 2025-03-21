@@ -1,11 +1,12 @@
 
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { PawPrint, Heart, Calendar, ArrowLeft, ArrowRight, CheckCircle, Info, Phone, Mail, FileText, Play } from "lucide-react";
+import { PawPrint, Heart, Calendar, ArrowLeft, ArrowRight, CheckCircle, Info, Phone, Mail, FileText, Play, X } from "lucide-react";
 import { format } from "date-fns";
 import { Helmet } from "react-helmet";
 import { useState } from "react";
 import { dogs } from "@/data/dogsData";
+import { syncDogData } from "@/utils/dogUtils";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -352,6 +353,7 @@ const DogProfile = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [activeVideoUrl, setActiveVideoUrl] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const { data: dog, isLoading, error } = useQuery({
     queryKey: ["dog", id],
@@ -365,6 +367,10 @@ const DogProfile = () => {
   
   const handleFillQuestionnaire = () => {
     navigate(`/posvojitev/vprašalnik?animalName=${dog?.name}&animalType=Pes`);
+  };
+
+  const handleImageClick = (image: string) => {
+    setSelectedImage(image);
   };
 
   if (isLoading) {
@@ -453,11 +459,29 @@ const DogProfile = () => {
                   {dog.images.map((image, index) => (
                     <CarouselItem key={`image-${index}`}>
                       <div className="aspect-video w-full overflow-hidden rounded-xl">
-                        <img
-                          src={image}
-                          alt={`${dog.name} - slika ${index + 1}`}
-                          className="object-cover w-full h-full"
-                        />
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <button className="w-full h-full p-0 m-0 bg-transparent border-0 cursor-pointer">
+                              <img
+                                src={image}
+                                alt={`${dog.name} - slika ${index + 1}`}
+                                className="object-cover w-full h-full hover:opacity-95 transition-opacity"
+                              />
+                            </button>
+                          </DialogTrigger>
+                          <DialogContent className="sm:max-w-5xl p-1 bg-transparent border-0">
+                            <div className="relative">
+                              <DialogClose className="absolute top-2 right-2 z-10 rounded-full bg-black/60 p-2 text-white hover:bg-black/80">
+                                <X size={20} />
+                              </DialogClose>
+                              <img 
+                                src={image} 
+                                alt={`${dog.name} - slika ${index + 1}`} 
+                                className="w-full h-auto max-h-[85vh] object-contain rounded-md" 
+                              />
+                            </div>
+                          </DialogContent>
+                        </Dialog>
                       </div>
                     </CarouselItem>
                   ))}
