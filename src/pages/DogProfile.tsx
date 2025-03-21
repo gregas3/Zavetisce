@@ -1,50 +1,24 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { PawPrint, Heart, Calendar, ArrowLeft, ArrowRight, CheckCircle, Info, Phone, Mail, FileText, Play, X } from "lucide-react";
-import { format } from "date-fns";
 import { Helmet } from "react-helmet";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { dogs } from "@/data/dogsData";
 import { syncDogData } from "@/utils/dogUtils";
 
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-  DialogClose,
-} from "@/components/ui/dialog";
-
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import DogProfileSkeleton from "@/components/dogs/DogProfileSkeleton";
+import DogProfileError from "@/components/dogs/DogProfileError";
+import DogProfileBreadcrumb from "@/components/dogs/DogProfileBreadcrumb";
+import DogProfileHeader from "@/components/dogs/DogProfileHeader";
+import DogImageCarousel from "@/components/dogs/DogImageCarousel";
+import DogBasicInfo from "@/components/dogs/DogBasicInfo";
+import DogAboutTab from "@/components/dogs/DogAboutTab";
+import DogRequirementsTab from "@/components/dogs/DogRequirementsTab";
+import DogHealthTab from "@/components/dogs/DogHealthTab";
+import DogContactInfo from "@/components/dogs/DogContactInfo";
 
 interface DogData {
   id: string;
@@ -104,7 +78,7 @@ const dogsDatabase: Record<string, DogData> = {
     description: "Skoraj dve leti stara psička, večje rasti je polna energije. Obožuje igro, aktivne sprehode, zaradi svoje energičnosti pa se najbolje ujema z psi, ki uživajo v energičnih igrah. Potrebuje nekoga, ki ji bo zagotavljal dovolj gibanja in mentalnih izzivov. Je sterilizirana, čipirana, cepljena.",
     suitableFor: "Aktivne družine, izkušeni lastniki psov, dom z veliko prostora za igro",
     notSuitableFor: "Stanovanja brez dostopa do vrta, starejši ljudje, neaktivni lastniki",
-    additionalInfo: "Bella je bila sprejeta v zavetišče 14. 11. 2024. Rojena je bila 15. 04. 2023. Uživa v dolgih sprehodih in igri z drugimi psi.",
+    additionalInfo: "Bella je bila sprejeta v zavetišču 14. 11. 2024. Rojena je bila 15. 04. 2023. Uživa v dolgih sprehodih in igri z drugimi psi.",
     dateArrived: "2024-11-14",
     adoptionRequirements: "- Aktivno gospodinjstvo\n- Dovolj časa za sprehode in igro\n- Izkušnje s psi z veliko energije\n- Vrt ali reden dostop do odprtih površin\n- Potrpežljivost in doslednost pri vzgoji",
     contactInfo: {
@@ -366,460 +340,146 @@ const dogsDatabase: Record<string, DogData> = {
   }
 };
 
-// Function to fetch dog data by ID
-const fetchDogById = async (id: string): Promise<DogData> => {
-  // Simulate API call with a delay
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const dog = dogsDatabase[id];
-      if (dog) {
-        resolve(dog);
-      } else {
-        reject(new Error("Pes ni bil najden"));
-      }
-    }, 500);
-  });
-};
+const fetchDogById = async (id: string) => {
+  await new Promise((resolve) => setTimeout(resolve, 500));
 
-// Function to get next and previous dog IDs
-const getAdjacentDogIds = (currentId: string): { prev: string | null; next: string | null } => {
-  const ids = Object.keys(dogsDatabase).sort((a, b) => parseInt(a) - parseInt(b));
-  const currentIndex = ids.indexOf(currentId);
+  const dog = dogsDatabase[id];
+  if (!dog) {
+    throw new Error(`Dog with id ${id} not found`);
+  }
   
-  return {
-    prev: currentIndex > 0 ? ids[currentIndex - 1] : null,
-    next: currentIndex < ids.length - 1 ? ids[currentIndex + 1] : null
-  };
+  const numericId = parseInt(id);
+  const sharedDog = dogs.find(d => d.id === numericId);
+  
+  if (sharedDog) {
+    if (dog.images[0] !== sharedDog.image) {
+      dog.images[0] = sharedDog.image;
+      
+      if (dog.videos && dog.videos.length > 0) {
+        dog.videos[0].thumbnail = sharedDog.image;
+      }
+    }
+  }
+  
+  return dog;
 };
 
 const DogProfile = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [isVideoDialogOpen, setIsVideoDialogOpen] = useState(false);
-  const [activeVideoIndex, setActiveVideoIndex] = useState(0);
   
-  // Get dog data
-  const { data: dog, isLoading, isError } = useQuery({
-    queryKey: ['dog', id],
-    queryFn: () => fetchDogById(id || '1'),
+  const { data: dog, isLoading, error } = useQuery({
+    queryKey: ["dog", id],
+    queryFn: () => fetchDogById(id || ""),
     enabled: !!id,
-    staleTime: 1000 * 60 * 5, // 5 minutes
   });
-  
-  // Get adjacent dog IDs
-  const adjacentDogs = id ? getAdjacentDogIds(id) : { prev: null, next: null };
-  
-  // Handle navigation to adjacent dogs
-  const navigateToAdjacentDog = (adjacentId: string | null) => {
-    if (adjacentId) {
-      navigate(`/posvojitev/psi/${adjacentId}`);
-    }
+
+  const handleScheduleAppointment = () => {
+    navigate(`/termini?animalId=${dog?.id}&animalName=${dog?.name}&animalType=Pes`);
   };
   
-  // Sync the main image with the shared dogs data
+  const handleFillQuestionnaire = () => {
+    navigate(`/posvojitev/vprašalnik?animalName=${dog?.name}&animalType=Pes`);
+  };
+
+  if (isLoading) {
+    return <DogProfileSkeleton />;
+  }
+
+  if (error || !dog) {
+    return <DogProfileError />;
+  }
+
   if (dog && dog.images.length > 0) {
     syncDogData(parseInt(dog.id), dog.images[0]);
   }
-  
-  // Handle loading state
-  if (isLoading) {
-    return (
-      <>
-        <Navbar />
-        <main className="min-h-screen pt-16 pb-12">
-          <div className="container max-w-7xl mx-auto px-4 py-8">
-            <div className="flex justify-center items-center h-96">
-              <div className="animate-pulse flex flex-col items-center">
-                <div className="rounded-full bg-primary/20 h-24 w-24 mb-4 flex items-center justify-center">
-                  <PawPrint className="h-12 w-12 text-primary/40" />
-                </div>
-                <div className="h-8 bg-primary/20 rounded w-64 mb-4"></div>
-                <div className="h-4 bg-primary/10 rounded w-48"></div>
-              </div>
-            </div>
-          </div>
-        </main>
-        <Footer />
-      </>
-    );
-  }
-  
-  // Handle error state
-  if (isError || !dog) {
-    return (
-      <>
-        <Navbar />
-        <main className="min-h-screen pt-16 pb-12">
-          <div className="container max-w-7xl mx-auto px-4 py-8">
-            <div className="flex flex-col items-center justify-center h-96 text-center">
-              <PawPrint className="h-16 w-16 text-muted-foreground mb-4" />
-              <h1 className="text-2xl font-bold mb-2">Pes ni bil najden</h1>
-              <p className="text-muted-foreground mb-6">Žal ne najdemo podatkov o tem psu.</p>
-              <Button asChild>
-                <Link to="/posvojitev/psi">Nazaj na seznam psov</Link>
-              </Button>
-            </div>
-          </div>
-        </main>
-        <Footer />
-      </>
-    );
-  }
-  
-  // Format date for display
-  const formattedDate = dog.dateArrived 
-    ? format(new Date(dog.dateArrived), 'dd. MM. yyyy')
-    : 'Ni podatka';
-  
+
   return (
     <>
       <Helmet>
         <title>{dog.name} | Zavetišče za živali Maribor</title>
-        <meta name="description" content={`Spoznajte ${dog.name}, ${dog.gender.toLowerCase()} ${dog.breed.toLowerCase()}, ki išče nov dom. ${dog.description.substring(0, 100)}...`} />
+        <meta name="description" content={`Spoznajte ${dog.name} - ${dog.breed}, ${dog.age}. ${dog.description}`} />
       </Helmet>
-      
+
       <Navbar />
-      
-      <main className="min-h-screen pt-16 pb-12">
-        <div className="container max-w-7xl mx-auto px-4 py-8">
-          {/* Breadcrumbs */}
-          <Breadcrumb className="mb-6">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink as={Link} to="/">Domov</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink as={Link} to="/posvojitev/psi">Psi za posvojitev</BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbPage>{dog.name}</BreadcrumbPage>
-            </BreadcrumbList>
-          </Breadcrumb>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Left column - Images */}
-            <div className="space-y-4">
-              <div className="relative aspect-square rounded-xl overflow-hidden border border-border">
-                <img 
-                  src={dog.images[activeImageIndex]} 
-                  alt={`${dog.name} - slika ${activeImageIndex + 1}`}
-                  className="w-full h-full object-cover"
-                />
-                
-                {/* Video play button */}
-                {dog.videos && dog.videos.length > 0 && (
-                  <Dialog open={isVideoDialogOpen} onOpenChange={setIsVideoDialogOpen}>
-                    <DialogTrigger asChild>
-                      <Button 
-                        variant="default" 
-                        size="icon"
-                        className="absolute bottom-4 right-4 rounded-full bg-primary/90 hover:bg-primary text-white shadow-lg"
-                        onClick={() => setActiveVideoIndex(0)}
-                      >
-                        <Play className="h-5 w-5" />
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent className="sm:max-w-[800px] p-0 bg-background/95 backdrop-blur-sm">
-                      <DialogHeader className="p-4 pb-0">
-                        <DialogTitle className="flex items-center justify-between">
-                          <span>{dog.videos[activeVideoIndex].title}</span>
-                          <DialogClose asChild>
-                            <Button variant="ghost" size="icon" className="rounded-full">
-                              <X className="h-4 w-4" />
-                            </Button>
-                          </DialogClose>
-                        </DialogTitle>
-                      </DialogHeader>
-                      <div className="p-4">
-                        <div className="aspect-video overflow-hidden rounded-lg">
-                          <video 
-                            src={dog.videos[activeVideoIndex].url} 
-                            controls 
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      </div>
-                    </DialogContent>
-                  </Dialog>
-                )}
-                
-                {/* Status badge */}
-                <div className="absolute top-4 left-4">
-                  <Badge className="bg-primary text-white px-3 py-1 text-sm">
-                    {dog.status}
-                  </Badge>
-                </div>
-                
-                {/* Favorite button */}
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="absolute top-4 right-4 bg-background/80 backdrop-blur-sm hover:bg-background/90 hover:text-primary"
-                  aria-label="Dodaj med priljubljene"
-                >
-                  <Heart size={18} />
-                </Button>
-              </div>
+
+      <main className="pt-20 pb-10">
+        <div className="container">
+          <DogProfileBreadcrumb dogName={dog.name} />
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2">
+              <DogProfileHeader name={dog.name} status={dog.status} />
               
-              {/* Thumbnails */}
-              <div className="flex space-x-2 overflow-x-auto pb-2">
-                {dog.images.map((image, index) => (
-                  <button
-                    key={index}
-                    className={`relative rounded-lg overflow-hidden border-2 flex-shrink-0 transition-all ${
-                      activeImageIndex === index 
-                        ? 'border-primary ring-2 ring-primary/20' 
-                        : 'border-border hover:border-primary/50'
-                    }`}
-                    onClick={() => setActiveImageIndex(index)}
-                  >
-                    <div className="w-20 h-20">
-                      <img 
-                        src={image} 
-                        alt={`${dog.name} - thumbnail ${index + 1}`}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </button>
-                ))}
-                
-                {/* Video thumbnails */}
-                {dog.videos && dog.videos.map((video, index) => (
-                  <Dialog key={`video-${index}`}>
-                    <DialogTrigger asChild>
-                      <button
-                        className="relative rounded-lg overflow-hidden border-2 border-border hover:border-primary/50 flex-shrink-0"
-                        onClick={() => {
-                          setIsVideoDialogOpen(true);
-                          setActiveVideoIndex(index);
-                        }}
-                      >
-                        <div className="w-20 h-20 relative">
-                          <img 
-                            src={video.thumbnail} 
-                            alt={`${dog.name} - video thumbnail ${index + 1}`}
-                            className="w-full h-full object-cover"
-                          />
-                          <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                            <Play className="h-8 w-8 text-white" />
-                          </div>
-                        </div>
-                      </button>
-                    </DialogTrigger>
-                  </Dialog>
-                ))}
-              </div>
-            </div>
-            
-            {/* Right column - Info */}
-            <div>
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h1 className="text-3xl font-bold">{dog.name}</h1>
-                  <p className="text-muted-foreground">{dog.breed} • {dog.age} • {dog.gender}</p>
-                </div>
-                <div className="flex space-x-2">
-                  {adjacentDogs.prev && (
-                    <Button 
-                      variant="outline" 
-                      size="icon"
-                      onClick={() => navigateToAdjacentDog(adjacentDogs.prev)}
-                      aria-label="Prejšnji pes"
-                    >
-                      <ArrowLeft className="h-4 w-4" />
-                    </Button>
-                  )}
-                  {adjacentDogs.next && (
-                    <Button 
-                      variant="outline" 
-                      size="icon"
-                      onClick={() => navigateToAdjacentDog(adjacentDogs.next)}
-                      aria-label="Naslednji pes"
-                    >
-                      <ArrowRight className="h-4 w-4" />
-                    </Button>
-                  )}
-                </div>
-              </div>
-              
-              <div className="flex flex-wrap gap-2 mb-6">
-                <Badge variant="outline" className="bg-primary/5 flex items-center gap-1">
-                  <Calendar className="h-3 w-3" />
-                  V zavetišču od {formattedDate}
-                </Badge>
-                {dog.microchipped && (
-                  <Badge variant="outline" className="bg-primary/5 flex items-center gap-1">
-                    <CheckCircle className="h-3 w-3" />
-                    Čipiran
-                  </Badge>
-                )}
-                {dog.vaccinated && (
-                  <Badge variant="outline" className="bg-primary/5 flex items-center gap-1">
-                    <CheckCircle className="h-3 w-3" />
-                    Cepljen
-                  </Badge>
-                )}
-                {dog.neutered && (
-                  <Badge variant="outline" className="bg-primary/5 flex items-center gap-1">
-                    <CheckCircle className="h-3 w-3" />
-                    {dog.gender === "Samec" ? "Kastriran" : "Sterilizirana"}
-                  </Badge>
-                )}
-              </div>
-              
-              <Tabs defaultValue="about" className="mb-6">
+              <DogImageCarousel 
+                dogName={dog.name} 
+                images={dog.images} 
+                videos={dog.videos} 
+              />
+
+              <Tabs defaultValue="about" className="mt-6">
                 <TabsList className="grid w-full grid-cols-3">
                   <TabsTrigger value="about">O psu</TabsTrigger>
-                  <TabsTrigger value="requirements">Zahteve</TabsTrigger>
-                  <TabsTrigger value="contact">Kontakt</TabsTrigger>
+                  <TabsTrigger value="requirements">Posvojitev</TabsTrigger>
+                  <TabsTrigger value="health">Zdravje</TabsTrigger>
                 </TabsList>
                 
-                <TabsContent value="about" className="space-y-4 mt-4">
-                  <div>
-                    <h3 className="text-lg font-semibold mb-2">Opis</h3>
-                    <p className="text-muted-foreground">{dog.description}</p>
-                  </div>
-                  
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <h3 className="text-lg font-semibold mb-2">Osnovne informacije</h3>
-                      <ul className="space-y-2">
-                        <li className="flex justify-between">
-                          <span className="text-muted-foreground">Starost:</span>
-                          <span className="font-medium">{dog.age}</span>
-                        </li>
-                        <li className="flex justify-between">
-                          <span className="text-muted-foreground">Pasma:</span>
-                          <span className="font-medium">{dog.breed}</span>
-                        </li>
-                        <li className="flex justify-between">
-                          <span className="text-muted-foreground">Spol:</span>
-                          <span className="font-medium">{dog.gender}</span>
-                        </li>
-                        <li className="flex justify-between">
-                          <span className="text-muted-foreground">Velikost:</span>
-                          <span className="font-medium">{dog.size}</span>
-                        </li>
-                        <li className="flex justify-between">
-                          <span className="text-muted-foreground">Barva:</span>
-                          <span className="font-medium">{dog.color}</span>
-                        </li>
-                      </ul>
-                    </div>
-                    
-                    <div>
-                      <h3 className="text-lg font-semibold mb-2">Primeren za</h3>
-                      <p className="text-muted-foreground mb-4">{dog.suitableFor}</p>
-                      
-                      <h3 className="text-lg font-semibold mb-2">Ni primeren za</h3>
-                      <p className="text-muted-foreground">{dog.notSuitableFor}</p>
-                    </div>
-                  </div>
-                  
-                  <div>
-                    <h3 className="text-lg font-semibold mb-2">Dodatne informacije</h3>
-                    <p className="text-muted-foreground">{dog.additionalInfo}</p>
-                  </div>
+                <TabsContent value="about" className="mt-4">
+                  <DogAboutTab 
+                    name={dog.name}
+                    description={dog.description}
+                    suitableFor={dog.suitableFor}
+                    notSuitableFor={dog.notSuitableFor}
+                    additionalInfo={dog.additionalInfo}
+                  />
                 </TabsContent>
                 
-                <TabsContent value="requirements" className="space-y-4 mt-4">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Zahteve za posvojitev</CardTitle>
-                      <CardDescription>
-                        Pred posvojitvijo {dog.name} prosimo, da upoštevate naslednje zahteve
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="whitespace-pre-line text-muted-foreground">
-                        {dog.adoptionRequirements}
-                      </div>
-                    </CardContent>
-                    <CardFooter className="flex flex-col items-start gap-4">
-                      <div className="bg-primary/5 rounded-lg p-4 w-full">
-                        <div className="flex items-start gap-2">
-                          <Info className="h-5 w-5 text-primary mt-0.5" />
-                          <div>
-                            <h4 className="font-medium">Postopek posvojitve</h4>
-                            <p className="text-sm text-muted-foreground">
-                              Pred posvojitvijo je potrebno izpolniti vprašalnik in opraviti razgovor z našim osebjem.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="flex gap-4 w-full">
-                        <Button asChild className="flex-1">
-                          <Link to="/posvojitev/vprašalnik">
-                            <FileText className="mr-2 h-4 w-4" />
-                            Izpolni vprašalnik
-                          </Link>
-                        </Button>
-                        <Button asChild variant="outline" className="flex-1">
-                          <Link to="/posvojitev/postopek">
-                            Več o postopku
-                          </Link>
-                        </Button>
-                      </div>
-                    </CardFooter>
-                  </Card>
+                <TabsContent value="requirements" className="mt-4">
+                  <DogRequirementsTab 
+                    name={dog.name}
+                    adoptionRequirements={dog.adoptionRequirements}
+                    handleFillQuestionnaire={handleFillQuestionnaire}
+                  />
                 </TabsContent>
                 
-                <TabsContent value="contact" className="space-y-4 mt-4">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Kontaktne informacije</CardTitle>
-                      <CardDescription>
-                        Za več informacij o {dog.name} nas lahko kontaktirate
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-4">
-                      <div className="flex items-center gap-3">
-                        <Button variant="outline" size="icon" className="h-10 w-10 rounded-full">
-                          <Phone className="h-4 w-4" />
-                        </Button>
-                        <div>
-                          <p className="text-sm text-muted-foreground">Telefon</p>
-                          <p className="font-medium">{dog.contactInfo.phone}</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-center gap-3">
-                        <Button variant="outline" size="icon" className="h-10 w-10 rounded-full">
-                          <Mail className="h-4 w-4" />
-                        </Button>
-                        <div>
-                          <p className="text-sm text-muted-foreground">E-pošta</p>
-                          <p className="font-medium">{dog.contactInfo.email}</p>
-                        </div>
-                      </div>
-                    </CardContent>
-                    <CardFooter>
-                      <Button asChild className="w-full">
-                        <Link to="/termini">
-                          <Calendar className="mr-2 h-4 w-4" />
-                          Rezerviraj termin za obisk
-                        </Link>
-                      </Button>
-                    </CardFooter>
-                  </Card>
+                <TabsContent value="health" className="mt-4">
+                  <DogHealthTab 
+                    name={dog.name}
+                    vaccinated={dog.vaccinated}
+                    neutered={dog.neutered}
+                    microchipped={dog.microchipped}
+                    gender={dog.gender}
+                  />
                 </TabsContent>
               </Tabs>
               
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="flex-1">
-                  <Link to="/termini">
-                    Rezerviraj termin za obisk
-                  </Link>
+              <div className="flex mt-6 space-x-4">
+                <Button className="flex-1" onClick={handleScheduleAppointment}>
+                  Rezerviraj termin za obisk
                 </Button>
-                <Button asChild variant="outline" size="lg" className="flex-1">
+                <Button asChild variant="outline" className="flex-1">
                   <Link to="/posvojitev/psi">
                     Nazaj na seznam psov
                   </Link>
                 </Button>
               </div>
+            </div>
+            
+            <div className="space-y-6">
+              <DogBasicInfo 
+                age={dog.age}
+                breed={dog.breed}
+                gender={dog.gender}
+                size={dog.size}
+                color={dog.color}
+                dateArrived={dog.dateArrived}
+              />
+              
+              <DogContactInfo 
+                name={dog.name}
+                contactInfo={dog.contactInfo}
+                handleScheduleAppointment={handleScheduleAppointment}
+              />
             </div>
           </div>
         </div>
