@@ -145,7 +145,7 @@ const AdoptionProcess = () => {
                       </div>
                       <div className="space-y-4">
                         <div className="rounded-xl overflow-hidden">
-                          <img src="/lovable-uploads/0e7e3534-b460-499c-9caa-9d12dbfd38e8.png" alt="Spoznavanje živali" className="w-full h-auto rounded-xl object-cover" />
+                          <img alt="Spoznavanje živali" className="w-full h-auto rounded-xl object-cover" src="/lovable-uploads/82cfcbda-b08a-47bc-8dda-e7384d61e2d3.png" />
                         </div>
                         <div className="bg-primary/5 rounded-xl p-4 border border-primary/20">
                           <h4 className="font-bold flex items-center gap-2 mb-2">
