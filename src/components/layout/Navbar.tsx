@@ -110,7 +110,15 @@ export default function Navbar() {
   useEffect(() => {
     if (isOpen) {
       setShowNavbar(true);
+      // Prevent body scrolling when mobile menu is open
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
     }
+    
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [isOpen]);
 
   return (
