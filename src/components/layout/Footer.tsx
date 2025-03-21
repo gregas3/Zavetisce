@@ -1,14 +1,17 @@
-
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
 export default function Footer() {
+  useEffect(() => {
+    console.log('Footer component mounted');
+  }, []);
+
   return (
     <footer className="bg-teal-800 text-white py-12">
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Column 1: About */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Zavetišče za živali Maribor</h3>
             <p className="text-gray-300 text-sm leading-relaxed">
@@ -28,7 +31,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Contact */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Kontakt</h3>
             <div className="space-y-3 text-gray-300 text-sm">
@@ -71,7 +73,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 3: Quick Links */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Povezani</h3>
             <ul className="space-y-2 text-gray-300 text-sm">
@@ -103,7 +104,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Working Hours */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Delovni čas</h3>
             <div className="space-y-2 text-sm">

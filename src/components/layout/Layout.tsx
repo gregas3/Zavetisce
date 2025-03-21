@@ -18,6 +18,11 @@ const Layout = ({ children }: LayoutProps) => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
   
+  // Log when Layout is mounting to help debug
+  useEffect(() => {
+    console.log('Layout mounted, pathname:', location.pathname);
+  }, []);
+  
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -25,6 +30,7 @@ const Layout = ({ children }: LayoutProps) => {
         {children}
       </main>
       {isHomePage && <FloatingContactButton />}
+      {/* Only render one Footer component */}
       <Footer />
     </div>
   );
