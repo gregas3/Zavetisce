@@ -64,9 +64,9 @@ export default function Navbar() {
     }
   };
 
-  return <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? scrollingUp || atBottom ? "py-3 bg-gradient-to-b from-teal-50/95 to-teal-50/80 backdrop-blur-[2px]" // Scrolling up or at bottom - visible
+  return <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? scrollingUp || atBottom ? "py-3 bg-gradient-to-b from-teal-900/80 to-teal-900/70 backdrop-blur-[4px]" // Scrolling up or at bottom - visible
   : "py-2 bg-transparent" // Scrolling down - transparent
-  : "py-4 bg-gradient-to-b from-teal-50/95 to-teal-50/80 backdrop-blur-[2px]" // At top - fully visible
+  : "py-4 bg-gradient-to-b from-teal-900/80 to-teal-900/70 backdrop-blur-[4px]" // At top - fully visible
   }`} style={{
     borderBottom: 'none'
   }}>
