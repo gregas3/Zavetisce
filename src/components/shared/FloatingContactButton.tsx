@@ -1,11 +1,14 @@
+
 import React, { useState } from 'react';
 import { Phone, MapPin, Mail, Facebook, Instagram } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { useIsMobile } from '@/hooks/use-mobile';
+
 const FloatingContactButton = () => {
   const [open, setOpen] = useState(false);
   const isMobile = useIsMobile();
+
   return <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button variant="primary" size="icon" className="fixed right-4 bottom-16 z-50 rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-all duration-700 animate-pulse" aria-label="Contact Us">
@@ -14,7 +17,7 @@ const FloatingContactButton = () => {
       </PopoverTrigger>
       
       <PopoverContent side={isMobile ? "top" : "left"} sideOffset={isMobile ? 16 : 30} align={isMobile ? "end" : "center"} className="w-80 p-0 bg-[#f5fcfb] border-teal-200 shadow-md rounded-xl">
-        <div className="p-4 bg-[#aee0c3]">
+        <div className="p-4 bg-gradient-to-b from-teal-100 to-teal-50">
           <h3 className="font-semibold text-lg text-teal-800 mb-3">
             Kontaktne informacije
           </h3>
@@ -71,4 +74,5 @@ const FloatingContactButton = () => {
       </PopoverContent>
     </Popover>;
 };
+
 export default FloatingContactButton;
