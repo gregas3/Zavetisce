@@ -56,11 +56,8 @@ export default function HeroSection() {
         onClick={scrollToNextSection}
         aria-label="Scroll down"
       >
-        <div className="flex flex-col items-center">
-          <div className="w-12 h-12 rounded-full bg-teal-400/20 flex items-center justify-center mb-2 border border-teal-400/30 shadow-lg backdrop-blur-sm">
-            <ChevronDown className="h-8 w-8 text-teal-300 animate-bounce" />
-          </div>
-          <div className="h-12 w-1 bg-gradient-to-b from-teal-400/50 to-transparent rounded-full animate-pulse"></div>
+        <div className="w-16 h-16 rounded-full bg-teal-400/20 flex items-center justify-center border border-teal-400/30 shadow-lg backdrop-blur-sm">
+          <ChevronDown className="h-12 w-12 text-teal-300 animate-bounce" />
         </div>
       </div>
     </div>;
