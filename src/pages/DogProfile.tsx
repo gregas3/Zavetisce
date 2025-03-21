@@ -1,3 +1,4 @@
+
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { PawPrint, Heart, Calendar, ArrowLeft, ArrowRight, CheckCircle, Info, Phone, Mail, FileText, Play } from "lucide-react";
@@ -598,4 +599,69 @@ const DogProfile = () => {
                         <div className="flex items-center gap-2">
                           <CheckCircle size={18} className={dog.vaccinated ? "text-green-500" : "text-gray-300"} />
                           <span className={dog.vaccinated ? "text-green-700" : "text-gray-500"}>
-                            {dog.vaccinated ? "Cepljen" : "Ni cepl
+                            {dog.vaccinated ? "Cepljen" : "Ni cepljen"}
+                          </span>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+              </Tabs>
+
+              <div className="mt-8 flex flex-col sm:flex-row gap-4">
+                <Button onClick={handleScheduleAppointment} className="flex-1">
+                  <Calendar className="mr-2 h-4 w-4" /> Rezerviraj termin za obisk
+                </Button>
+                <Button onClick={handleFillQuestionnaire} variant="outline" className="flex-1">
+                  <FileText className="mr-2 h-4 w-4" /> Izpolni vprašalnik za posvojitev
+                </Button>
+              </div>
+            </div>
+
+            <div>
+              <Card>
+                <CardHeader>
+                  <CardTitle>Kontaktne informacije</CardTitle>
+                  <CardDescription>
+                    Za več informacij o {dog.name} nas kontaktirajte.
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <Phone size={18} className="text-primary" />
+                      <span>{dog.contactInfo.phone}</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <Mail size={18} className="text-primary" />
+                      <span>{dog.contactInfo.email}</span>
+                    </div>
+                  </div>
+                </CardContent>
+                <CardFooter className="flex-col items-start gap-2">
+                  <p className="text-sm text-muted-foreground">
+                    Urnik zavetišča: vsak dan med 10:00 in 18:00
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Naslov: Avtomobilska ulica 25, 2000 Maribor
+                  </p>
+                </CardFooter>
+              </Card>
+
+              <div className="mt-6">
+                <Button asChild variant="outline" className="w-full">
+                  <Link to="/posvojitev/psi">
+                    <ArrowLeft className="mr-2 h-4 w-4" /> Nazaj na seznam psov
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </>
+  );
+};
+
+export default DogProfile;
