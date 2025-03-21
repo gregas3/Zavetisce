@@ -35,14 +35,15 @@ export default function HeroSection() {
             </p>
             
             <div className="flex flex-wrap gap-4">
-              <Button size="lg" variant="teal" asChild className="rounded-full font-medium text-base animate-fade-in delay-100">
-                <Link to="/posvojitev/psi">
-                  Posvoji zdaj <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
+              {/* Swapped button positions and added button-pulse class */}
               <Button size="lg" variant="outline" asChild className="rounded-full font-medium text-base animate-fade-in delay-200 border-teal-400/30 text-teal-100 hover:bg-teal-500/20 hover:text-white">
                 <Link to="/donacije">
                   Podpri zavetišče
+                </Link>
+              </Button>
+              <Button size="lg" variant="teal" asChild className="rounded-full font-medium text-base animate-fade-in delay-100 button-pulse">
+                <Link to="/posvojitev/psi">
+                  Posvoji zdaj <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </div>
