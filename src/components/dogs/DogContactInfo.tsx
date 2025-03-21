@@ -90,7 +90,7 @@ const DogContactInfo = ({
               </Link>
             </Button>
           ) : (
-            <div></div> {/* Empty placeholder to maintain flex spacing */}
+            <div></div> /* Empty placeholder to maintain flex spacing */
           )}
           
           {nextDogId ? (
@@ -106,7 +106,7 @@ const DogContactInfo = ({
               </Link>
             </Button>
           ) : (
-            <div></div> {/* Empty placeholder to maintain flex spacing */}
+            <div></div> /* Empty placeholder to maintain flex spacing */
           )}
         </div>
       </CardFooter>
