@@ -1,3 +1,4 @@
+
 import { useState, useRef } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
@@ -870,4 +871,44 @@ const Questionnaire = () => {
       <Dialog open={submissionComplete} onOpenChange={setSubmissionComplete}>
         <DialogContent className="max-w-md p-0 overflow-hidden bg-white">
           <div className="p-6">
-            <div className="flex items-
+            <div className="flex items-center justify-center mb-4">
+              <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center">
+                <Check className="h-6 w-6 text-green-600" />
+              </div>
+            </div>
+            <DialogHeader>
+              <DialogTitle className="text-center">Vprašalnik uspešno poslan!</DialogTitle>
+              <DialogDescription className="text-center mt-2">
+                Hvala za izpolnitev vprašalnika. Pregledali ga bomo in vas kontaktirali v roku 3 delovnih dni.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="mt-6">
+              {isPdfReady && (
+                <div className="space-y-3">
+                  <Button className="w-full" onClick={handleDownloadPdf}>
+                    <Download className="mr-2 h-4 w-4" />
+                    Prenos vprašalnika kot PDF
+                  </Button>
+                  <Button variant="outline" className="w-full" onClick={() => window.print()}>
+                    <Printer className="mr-2 h-4 w-4" />
+                    Natisni vprašalnik
+                  </Button>
+                </div>
+              )}
+              <div className="mt-4">
+                <Button variant="secondary" asChild className="w-full">
+                  <Link to="/" className="flex items-center justify-center">
+                    <ArrowRight className="mr-2 h-4 w-4" />
+                    Nazaj na domačo stran
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+};
+
+export default Questionnaire;
