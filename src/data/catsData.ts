@@ -17,6 +17,20 @@ export interface Cat {
 
 export const cats: Cat[] = [
   {
+    id: 4,
+    name: "Carta",
+    color: "Črna",
+    age: "1.5 leta",
+    gender: "samica",
+    size: "srednja",
+    image: "/lovable-uploads/855c1f57-5893-4641-9022-ed413de55b90.png",
+    description: "Za najbolj cartljivo muco se spodobi, da dobi tudi ime, ki jo najbolje opisuje.. Carta. Puhasta, mehka in nežna Carta je stara leto in pol. Po nekaj težavah s prebavo smo prilagodili njeno prehrano na surovo meso (konj) in se je stanje zdaj že povsem normaliziralo. Potrebuje skrbne in odgovorne lastnike, ki ji bodo omogočili mirno in srečno življenje.",
+    characteristics: ["cartljiva", "puhasta", "mehka", "nežna"],
+    vaccinated: true,
+    neutered: true,
+    goodWith: ["odrasli", "odgovorni lastniki", "mirno okolje"]
+  },
+  {
     id: 1,
     name: "Muri",
     color: "Črno-bela",
