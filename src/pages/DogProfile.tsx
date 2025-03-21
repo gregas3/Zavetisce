@@ -78,7 +78,7 @@ const dogsDatabase: Record<string, DogData> = {
     description: "Bolt je dvoletni samec večje rasti, ki te s svojim videzom takoj očara. Je prijazen, igriv, razposajen in hkrati tudi odličen spremljevalec na sprehodih. Je kastriran.",
     suitableFor: "Aktivne družine, izkušeni lastniki psov, dom z veliko prostora za igro",
     notSuitableFor: "Stanovanja brez dostopa do vrta, neaktivni lastniki",
-    additionalInfo: "Bolt je bil sprejet v zavetišče 26. 09. 2024. Rojen je bil 26. 12. 2022.",
+    additionalInfo: "Bolt je bil sprejet v zavetišču 26. 09. 2024. Rojen je bil 26. 12. 2022.",
     dateArrived: "2024-09-26",
     adoptionRequirements: "- Aktivno gospodinjstvo\n- Dovolj časa za sprehode in igro\n- Izkušnje s psi z veliko energije\n- Vrt ali reden dostop do odprtih površin",
     contactInfo: {
@@ -407,6 +407,41 @@ const dogsDatabase: Record<string, DogData> = {
       phone: "+386 (0)2 480 16 60",
       email: "zavetisce.mb@snaga-mb.si"
     }
+  },
+  "12": {
+    id: "12",
+    name: "Bono",
+    images: [
+      "/lovable-uploads/d17c98e9-d9a9-4e46-947c-373b929f0b53.png",
+      "/lovable-uploads/a7799912-98d9-440e-b3cf-332a1d3bffd8.png", 
+      "/placeholder.svg"
+    ],
+    videos: [
+      {
+        thumbnail: "/lovable-uploads/d17c98e9-d9a9-4e46-947c-373b929f0b53.png",
+        url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+        title: "Bono na sprehodu"
+      }
+    ],
+    age: "4 leta",
+    breed: "Mešanec",
+    gender: "Samec",
+    size: "Velik",
+    color: "Črno-rjava z belimi lisami",
+    status: "Na voljo za posvojitev",
+    microchipped: true,
+    neutered: true,
+    vaccinated: true,
+    description: "Bono je večji samec. Na sprehodu je lepo vodljiv, poslušen in umirjen. Potrebuje odločnega in izkušenega skrbnika, ki se bo z njim aktivno ukvarjal. Ni primeren za družine z majhnimi otroki.",
+    suitableFor: "Izkušeni lastniki psov, odločni vodniki, aktivni odrasli brez majhnih otrok",
+    notSuitableFor: "Družine z majhnimi otroki, neizkušeni lastniki psov, premalo aktivni ljudje",
+    additionalInfo: "Bono je bil sprejet v zavetišče 13. 05. 2023. Rojen je bil 15. 05. 2020. Je čipiran, kastriran in cepljen.",
+    dateArrived: "2023-05-13",
+    adoptionRequirements: "- Izkušnje z večjimi psi\n- Odločno in dosledno vodenje\n- Aktivno preživljanje časa s psom\n- Dom brez majhnih otrok\n- Redni sprehodi in aktivnosti",
+    contactInfo: {
+      phone: "+386 (0)2 480 16 60",
+      email: "zavetisce.mb@snaga-mb.si"
+    }
   }
 };
 
@@ -561,3 +596,4 @@ const DogProfile = () => {
 };
 
 export default DogProfile;
+

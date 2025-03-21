@@ -17,6 +17,20 @@ export interface Dog {
 
 export const dogs: Dog[] = [
   {
+    id: 12,
+    name: "Bono",
+    breed: "Mešanec",
+    age: "4 leta",
+    gender: "samec",
+    size: "velik",
+    image: "/lovable-uploads/d17c98e9-d9a9-4e46-947c-373b929f0b53.png",
+    description: "Bono je večji samec. Na sprehodu je lepo vodljiv, poslušen in umirjen. Potrebuje odločnega in izkušenega skrbnika, ki se bo z njim aktivno ukvarjal. Ni primeren za družine z majhnimi otroki.",
+    characteristics: ["vodljiv", "poslušen", "umirjen", "potrebuje izkušenega lastnika"],
+    vaccinated: true,
+    neutered: true,
+    goodWith: ["odrasli", "izkušeni lastniki", "aktivni ljudje"]
+  },
+  {
     id: 11,
     name: "Bolt",
     breed: "Mešanec",
