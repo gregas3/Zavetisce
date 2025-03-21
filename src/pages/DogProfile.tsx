@@ -1,3 +1,4 @@
+
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { PawPrint, Heart, Calendar, ArrowLeft, ArrowRight, CheckCircle, Info, Phone, Mail, FileText, Play, X } from "lucide-react";
@@ -591,4 +592,214 @@ const DogProfile = () => {
                       </div>
                       
                       <div className="mt-4">
-                        <h3 className="font-semibold mb-2">Dodatne
+                        <h3 className="font-semibold mb-2">Dodatne informacije:</h3>
+                        <p className="text-sm">{dog.additionalInfo}</p>
+                      </div>
+                      
+                      <div className="mt-4">
+                        <h3 className="font-semibold mb-2">V zavetišču od:</h3>
+                        <p className="text-sm">{format(new Date(dog.dateArrived), "dd. MM. yyyy")}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+                
+                <TabsContent value="requirements" className="mt-4">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Posvojitev {dog.name}</CardTitle>
+                      <CardDescription>
+                        Kaj potrebujete za posvojitev in kako poteka postopek.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                      <h3 className="font-semibold">Zahteve za posvojitev:</h3>
+                      <div className="whitespace-pre-line text-sm">
+                        {dog.adoptionRequirements}
+                      </div>
+                      
+                      <div className="mt-6 grid gap-4 md:grid-cols-2">
+                        <Card>
+                          <CardHeader className="pb-2">
+                            <CardTitle className="text-base flex items-center gap-2">
+                              <Calendar size={18} className="text-primary" /> Rezervirajte termin
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <p className="text-sm mb-4">Rezervirajte termin za obisk in spoznavanje tega psa. Na voljo so termini vsak delovni dan.</p>
+                            <Button onClick={handleScheduleAppointment} className="w-full">
+                              Rezerviraj termin
+                            </Button>
+                          </CardContent>
+                        </Card>
+                        
+                        <Card>
+                          <CardHeader className="pb-2">
+                            <CardTitle className="text-base flex items-center gap-2">
+                              <FileText size={18} className="text-primary" /> Izpolnite vprašalnik
+                            </CardTitle>
+                          </CardHeader>
+                          <CardContent>
+                            <p className="text-sm mb-4">Izpolnite kratek vprašalnik za posvojitev, ki nam bo pomagal ugotoviti, ali je ta pes primeren za vas.</p>
+                            <Button onClick={handleFillQuestionnaire} variant="outline" className="w-full">
+                              Izpolni vprašalnik
+                            </Button>
+                          </CardContent>
+                        </Card>
+                      </div>
+                      
+                      <div className="mt-6">
+                        <h3 className="font-semibold mb-2">Kontaktne informacije:</h3>
+                        <div className="flex flex-col gap-2">
+                          <p className="flex items-center gap-2 text-sm">
+                            <Phone size={16} className="text-primary flex-shrink-0" /> {dog.contactInfo.phone}
+                          </p>
+                          <p className="flex items-center gap-2 text-sm">
+                            <Mail size={16} className="text-primary flex-shrink-0" /> {dog.contactInfo.email}
+                          </p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+                
+                <TabsContent value="health" className="mt-4">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Zdravje {dog.name}</CardTitle>
+                      <CardDescription>
+                        Zdravstvene informacije in oskrba.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div className="flex flex-col items-center p-4 bg-green-50 rounded-lg">
+                          <div className={`p-2 rounded-full ${dog.vaccinated ? 'bg-green-100' : 'bg-red-100'} mb-2`}>
+                            {dog.vaccinated ? (
+                              <CheckCircle className="h-6 w-6 text-green-600" />
+                            ) : (
+                              <X className="h-6 w-6 text-red-600" />
+                            )}
+                          </div>
+                          <h3 className="font-medium text-center">Cepljen/a</h3>
+                        </div>
+                        
+                        <div className="flex flex-col items-center p-4 bg-green-50 rounded-lg">
+                          <div className={`p-2 rounded-full ${dog.microchipped ? 'bg-green-100' : 'bg-red-100'} mb-2`}>
+                            {dog.microchipped ? (
+                              <CheckCircle className="h-6 w-6 text-green-600" />
+                            ) : (
+                              <X className="h-6 w-6 text-red-600" />
+                            )}
+                          </div>
+                          <h3 className="font-medium text-center">Čipiran/a</h3>
+                        </div>
+                        
+                        <div className="flex flex-col items-center p-4 bg-green-50 rounded-lg">
+                          <div className={`p-2 rounded-full ${dog.neutered ? 'bg-green-100' : 'bg-red-100'} mb-2`}>
+                            {dog.neutered ? (
+                              <CheckCircle className="h-6 w-6 text-green-600" />
+                            ) : (
+                              <X className="h-6 w-6 text-red-600" />
+                            )}
+                          </div>
+                          <h3 className="font-medium text-center">
+                            {dog.gender === "Samec" ? "Kastriran" : "Sterilizirana"}
+                          </h3>
+                        </div>
+                      </div>
+                      
+                      <div className="mt-6 border-t pt-4">
+                        <h3 className="font-semibold mb-2">Splošne informacije:</h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                          <div className="flex items-center gap-2">
+                            <Info size={16} className="text-primary" /> Pasma: {dog.breed}
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Calendar size={16} className="text-primary" /> Starost: {dog.age}
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Info size={16} className="text-primary" /> Spol: {dog.gender}
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Info size={16} className="text-primary" /> Velikost: {dog.size}
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Info size={16} className="text-primary" /> Barva: {dog.color}
+                          </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TabsContent>
+              </Tabs>
+            </div>
+            
+            <div className="lg:col-span-1">
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-xl flex items-center gap-2">
+                    <Heart className="text-primary" size={20} />
+                    Želim posvojiti {dog.name}
+                  </CardTitle>
+                  <CardDescription>
+                    Naslednji koraki za posvojitev
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <ol className="space-y-3 list-decimal ml-4">
+                    <li className="text-sm">Rezervirajte termin za obisk</li>
+                    <li className="text-sm">Spoznajte {dog.name} v živo</li>
+                    <li className="text-sm">Izpolnite vprašalnik za posvojitev</li>
+                    <li className="text-sm">Počakajte na odobritev</li>
+                    <li className="text-sm">Pripravite dom za novega člana</li>
+                  </ol>
+                </CardContent>
+                <CardFooter className="flex flex-col gap-4">
+                  <Button onClick={handleScheduleAppointment} className="w-full">
+                    Rezerviraj termin
+                  </Button>
+                  <Button onClick={handleFillQuestionnaire} variant="outline" className="w-full">
+                    Izpolni vprašalnik
+                  </Button>
+                </CardFooter>
+              </Card>
+              
+              <Card className="mt-6">
+                <CardHeader>
+                  <CardTitle className="text-xl">Osnovni podatki</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm font-medium">Starost:</span>
+                    <span className="text-sm">{dog.age}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm font-medium">Spol:</span>
+                    <span className="text-sm">{dog.gender}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm font-medium">Pasma:</span>
+                    <span className="text-sm">{dog.breed}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm font-medium">Velikost:</span>
+                    <span className="text-sm">{dog.size}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm font-medium">V zavetišču od:</span>
+                    <span className="text-sm">{format(new Date(dog.dateArrived), "dd. MM. yyyy")}</span>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </main>
+      
+      <Footer />
+    </>
+  );
+};
+
+export default DogProfile;
