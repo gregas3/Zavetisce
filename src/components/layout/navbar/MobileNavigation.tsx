@@ -1,11 +1,11 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, ChevronDown, Dog, Cat, Heart } from "lucide-react";
+import { Menu, X, ChevronDown, Dog, Cat, Heart, Calendar, Users, Phone, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NavbarActions } from "./NavbarActions";
 import { NavbarBranding } from "./NavbarBranding";
-import { Drawer, DrawerContent, DrawerOverlay } from "@/components/ui/drawer";
+import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 
 type MobileNavigationProps = {
   isOpen: boolean;
@@ -42,6 +42,7 @@ export const MobileNavigation = ({
         </button>
       </div>
 
+      {/* Overlay and Menu */}
       <div 
         className={`lg:hidden fixed inset-0 z-40 transition-all duration-300 ease-in-out ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
       >
@@ -51,48 +52,107 @@ export const MobileNavigation = ({
         ></div>
         
         <div 
-          className={`absolute top-[60px] right-0 bottom-0 w-[85%] max-w-[320px] bg-white shadow-xl transition-transform duration-300 ${isOpen ? "translate-x-0" : "translate-x-full"}`}
+          className={`absolute top-[60px] right-0 bottom-0 w-[85%] max-w-[300px] bg-gradient-to-b from-white to-teal-50 rounded-l-2xl shadow-xl transition-transform duration-300 overflow-hidden ${isOpen ? "translate-x-0" : "translate-x-full"}`}
           style={{ height: "calc(100vh - 60px)" }}
         >
           <nav className="flex flex-col h-full overflow-y-auto">
-            <div className="px-4 py-6 flex flex-col space-y-2 flex-1">
-              <MobileNavItem title="Posvojitev" hasSubmenu>
-                <Link to="/posvojitev/psi" onClick={closeMenu} className="flex items-center gap-2 py-2 transition-normal text-teal-700 hover:text-teal-500">
-                  <Dog size={16} className="text-teal-500" />
-                  Psi
-                </Link>
-                <Link to="/posvojitev/mačke" onClick={closeMenu} className="flex items-center gap-2 py-2 transition-normal text-teal-700 hover:text-teal-500">
-                  <Cat size={16} className="text-teal-500" />
-                  Mačke
-                </Link>
-                <Link to="/posvojitev/postopek" onClick={closeMenu} className="flex items-center gap-2 py-2 transition-normal text-teal-700 hover:text-teal-500">
-                  <Heart size={16} className="text-teal-500" />
-                  Postopek posvojitve
-                </Link>
-              </MobileNavItem>
+            <div className="px-2 py-4 flex flex-col space-y-1 flex-1">
+              <AnimatedWrapper animation="fade-in" delay={50} className="mb-2">
+                <MobileNavItem 
+                  title="Posvojitev" 
+                  hasSubmenu 
+                  icon={<Heart size={18} className="text-teal-500" />}
+                >
+                  <Link 
+                    to="/posvojitev/psi" 
+                    onClick={closeMenu} 
+                    className="flex items-center gap-2 py-2 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80"
+                  >
+                    <Dog size={16} className="text-teal-500" />
+                    <span className="font-medium">Psi</span>
+                  </Link>
+                  <Link 
+                    to="/posvojitev/mačke" 
+                    onClick={closeMenu} 
+                    className="flex items-center gap-2 py-2 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80"
+                  >
+                    <Cat size={16} className="text-teal-500" />
+                    <span className="font-medium">Mačke</span>
+                  </Link>
+                  <Link 
+                    to="/posvojitev/postopek" 
+                    onClick={closeMenu} 
+                    className="flex items-center gap-2 py-2 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80"
+                  >
+                    <Heart size={16} className="text-teal-500" />
+                    <span className="font-medium">Postopek posvojitve</span>
+                  </Link>
+                </MobileNavItem>
+              </AnimatedWrapper>
               
-              <Link to="/izgubljeni-najdeni" className="text-lg py-3 block font-medium border-b border-teal-100 text-teal-800 hover:text-teal-600 transition-normal" onClick={closeMenu}>
-                Izgubljeni in Najdeni
-              </Link>
-              <Link to="/prostovoljstvo" className="text-lg py-3 block font-medium border-b border-teal-100 text-teal-800 hover:text-teal-600 transition-normal" onClick={closeMenu}>
-                Prostovoljstvo
-              </Link>
-              <Link to="/kontakt" className="text-lg py-3 block font-medium border-b border-teal-100 text-teal-800 hover:text-teal-600 transition-normal" onClick={closeMenu}>
-                Kontakt
-              </Link>
-              <Link to="/termini" className="text-lg py-3 block font-medium border-b border-teal-100 text-teal-800 hover:text-teal-600 transition-normal" onClick={closeMenu}>
-                Termini
-              </Link>
-              <Link to="/o-nas" className="text-lg py-3 block font-medium border-b border-teal-100 text-teal-800 hover:text-teal-600 transition-normal" onClick={closeMenu}>
-                O nas
-              </Link>
+              <AnimatedWrapper animation="fade-in" delay={100}>
+                <Link 
+                  to="/izgubljeni-najdeni" 
+                  className="flex items-center gap-2 text-md py-3 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" 
+                  onClick={closeMenu}
+                >
+                  <HelpCircle size={18} className="text-teal-500" />
+                  <span>Izgubljeni in Najdeni</span>
+                </Link>
+              </AnimatedWrapper>
+              
+              <AnimatedWrapper animation="fade-in" delay={150}>
+                <Link 
+                  to="/prostovoljstvo" 
+                  className="flex items-center gap-2 text-md py-3 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" 
+                  onClick={closeMenu}
+                >
+                  <Users size={18} className="text-teal-500" />
+                  <span>Prostovoljstvo</span>
+                </Link>
+              </AnimatedWrapper>
+              
+              <AnimatedWrapper animation="fade-in" delay={200}>
+                <Link 
+                  to="/kontakt" 
+                  className="flex items-center gap-2 text-md py-3 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" 
+                  onClick={closeMenu}
+                >
+                  <Phone size={18} className="text-teal-500" />
+                  <span>Kontakt</span>
+                </Link>
+              </AnimatedWrapper>
+              
+              <AnimatedWrapper animation="fade-in" delay={250}>
+                <Link 
+                  to="/termini" 
+                  className="flex items-center gap-2 text-md py-3 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" 
+                  onClick={closeMenu}
+                >
+                  <Calendar size={18} className="text-teal-500" />
+                  <span>Termini</span>
+                </Link>
+              </AnimatedWrapper>
+              
+              <AnimatedWrapper animation="fade-in" delay={300}>
+                <Link 
+                  to="/o-nas" 
+                  className="flex items-center gap-2 text-md py-3 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" 
+                  onClick={closeMenu}
+                >
+                  <Users size={18} className="text-teal-500" />
+                  <span>O nas</span>
+                </Link>
+              </AnimatedWrapper>
             </div>
             
-            <div className="px-4 py-4 border-t border-teal-100">
-              <Button size="lg" asChild variant="teal" className="w-full shadow-md">
-                <Link to="/donacije" onClick={closeMenu}>Doniraj</Link>
-              </Button>
-            </div>
+            <AnimatedWrapper animation="fade-in" delay={350}>
+              <div className="px-3 py-4 border-t border-teal-100">
+                <Button size="lg" asChild variant="teal" className="w-full shadow-md rounded-xl">
+                  <Link to="/donacije" onClick={closeMenu}>Doniraj</Link>
+                </Button>
+              </div>
+            </AnimatedWrapper>
           </nav>
         </div>
       </div>
@@ -104,9 +164,10 @@ type MobileNavItemProps = {
   title: string;
   hasSubmenu?: boolean;
   children?: React.ReactNode;
+  icon?: React.ReactNode;
 };
 
-export const MobileNavItem = ({ title, hasSubmenu = false, children }: MobileNavItemProps) => {
+export const MobileNavItem = ({ title, hasSubmenu = false, children, icon }: MobileNavItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
   
   const toggleSubmenu = (e: React.MouseEvent) => {
@@ -117,16 +178,30 @@ export const MobileNavItem = ({ title, hasSubmenu = false, children }: MobileNav
   };
   
   return (
-    <div className="border-b border-teal-100">
+    <div className="rounded-lg overflow-hidden hover:bg-teal-50/80 transition-normal">
       <button 
-        className="flex items-center justify-between w-full text-lg py-3 font-medium text-left text-teal-800 hover:text-teal-600" 
+        className="flex items-center justify-between w-full text-md py-3 px-3 font-medium text-left text-teal-800 hover:text-teal-600 transition-normal" 
         onClick={toggleSubmenu}
       >
-        <span>{title}</span>
-        {hasSubmenu && <ChevronDown size={18} className={`text-teal-500 transition-transform ${isOpen ? 'rotate-180' : ''}`} />}
+        <span className="flex items-center gap-2">
+          {icon}
+          {title}
+        </span>
+        {hasSubmenu && (
+          <ChevronDown 
+            size={18} 
+            className={`text-teal-500 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} 
+          />
+        )}
       </button>
       {hasSubmenu && (
-        <div className={`pl-4 pb-3 space-y-2 ${isOpen ? "" : "hidden"}`}>
+        <div 
+          className={`pl-2 space-y-1 overflow-hidden transition-all duration-300 ${
+            isOpen 
+              ? "max-h-[300px] opacity-100 pb-2" 
+              : "max-h-0 opacity-0"
+          }`}
+        >
           {children}
         </div>
       )}
