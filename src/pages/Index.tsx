@@ -21,8 +21,8 @@ const Index = () => {
       
       <main className="min-h-screen pt-24">
         <HeroSection />
-        <QuickLinks />
         <FeaturedAnimals />
+        <QuickLinks />
         <StatsSection />
         <TestimonialsSection />
         <CtaSection />
