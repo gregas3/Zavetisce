@@ -28,7 +28,7 @@ export default function HeroSection() {
 
             {/* Logo added above the headline */}
             <div className="mb-8">
-              <img alt="Zavetišče za živali Maribor" className="h-28 md:h-36 object-contain mb-2" src="/lovable-uploads/fdabfdde-e503-4a4c-a27c-5e64f0975a3d.png" />
+              <img alt="Zavetišče za živali Maribor" className="h-28 md:h-36 object-contain mb-2" src="/lovable-uploads/57b6cf18-7b1a-48a3-9341-5bd8d46dc3f4.png" />
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 text-white">
