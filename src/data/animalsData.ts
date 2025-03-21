@@ -15,8 +15,7 @@ export interface Animal extends Omit<Dog | Cat, 'id'> {
 export const getAnimals = (): Animal[] => {
   const dogsWithType: Animal[] = dogs.map(dog => ({
     ...dog,
-    type: "pes",
-    color: dog.color
+    type: "pes"
   }));
 
   const catsWithType: Animal[] = cats.map(cat => ({

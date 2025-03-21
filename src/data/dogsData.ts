@@ -4,6 +4,7 @@ export interface Dog {
   id: number;
   name: string;
   breed: string;
+  color: string; // Adding color property to Dog interface
   age: string;
   gender: string;
   size: string;
@@ -21,6 +22,7 @@ export const dogs: Dog[] = [
     id: 12,
     name: "Bono",
     breed: "Mešanec",
+    color: "Rjava", // Adding color data
     age: "4 leta",
     gender: "samec",
     size: "velik",
@@ -40,6 +42,7 @@ export const dogs: Dog[] = [
     id: 11,
     name: "Bolt",
     breed: "Mešanec",
+    color: "Črno-bela", // Adding color data
     age: "2 leti",
     gender: "samec",
     size: "velik",
@@ -59,6 +62,7 @@ export const dogs: Dog[] = [
     id: 10,
     name: "Zum",
     breed: "Sibirski haski",
+    color: "Sivo-bela", // Adding color data
     age: "3 leta",
     gender: "samec",
     size: "velik",
@@ -78,6 +82,7 @@ export const dogs: Dog[] = [
     id: 9,
     name: "Bella",
     breed: "Mešanec",
+    color: "Rjavo-bela", // Adding color data
     age: "2 leti",
     gender: "samica",
     size: "velika",
@@ -97,6 +102,7 @@ export const dogs: Dog[] = [
     id: 8,
     name: "Roki",
     breed: "Mešanec",
+    color: "Rjava", // Adding color data
     age: "8 let",
     gender: "samec",
     size: "srednji",
@@ -116,6 +122,7 @@ export const dogs: Dog[] = [
     id: 7,
     name: "Ajša",
     breed: "Mešanec",
+    color: "Črno-bela", // Adding color data
     age: "6 mesecev",
     gender: "samica",
     size: "srednja",

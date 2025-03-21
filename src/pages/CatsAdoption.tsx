@@ -29,7 +29,7 @@ const CatsAdoption = () => {
     const filtered = cats.filter(
       cat => 
         cat.name.toLowerCase().includes(query) || 
-        cat.breed.toLowerCase().includes(query) ||
+        cat.color.toLowerCase().includes(query) ||
         cat.description.toLowerCase().includes(query) ||
         cat.characteristics.some(char => char.toLowerCase().includes(query))
     );
@@ -141,7 +141,7 @@ interface CatCardProps {
   cat: {
     id: number;
     name: string;
-    breed: string;
+    color: string; // Updated from breed to color
     age: string;
     gender: string;
     image: string;
@@ -182,7 +182,7 @@ const CatCard = ({ cat }: CatCardProps) => {
           </Badge>
         </div>
         <div className="text-sm text-muted-foreground mb-3">
-          {cat.breed} • {cat.age}
+          {cat.color} • {cat.age}
         </div>
         <p className="line-clamp-3 mb-4 text-muted-foreground">
           {cat.description}
