@@ -1,4 +1,3 @@
-
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -21,7 +20,10 @@ export default function ScrollToTop() {
     }
     
     // Otherwise scroll to top of the page immediately when route changes
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant' // Ensure it's instant to avoid any delays
+    });
   }, [pathname, hash]);
 
   return null; // This component doesn't render anything

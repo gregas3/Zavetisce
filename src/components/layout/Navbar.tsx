@@ -15,6 +15,7 @@ export default function Navbar() {
   const [searchActive, setSearchActive] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isScrolling, setIsScrolling] = useState(false);
   const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   
   const isMobile = useIsMobile();
@@ -27,15 +28,22 @@ export default function Navbar() {
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
       
+      // Detect scrolling activity
+      setIsScrolling(true);
+      
       // Determine scroll direction
       if (currentScrollY < lastScrollY) {
         setScrollingUp(true);
-        setIsVisible(true); // Show when scrolling up
+        setIsVisible(true); // Always show when scrolling up
       } else if (currentScrollY > lastScrollY) {
         setScrollingUp(false);
-        setIsVisible(false); // Hide when scrolling down
+        // Only hide when actively scrolling down and not at top or bottom
+        if (currentScrollY > 10 && windowHeight + currentScrollY < documentHeight - 50) {
+          setIsVisible(false);
+        }
       }
       
+      // Handle scrolled state
       if (currentScrollY > 10) {
         setScrolled(true);
       } else {
@@ -43,6 +51,7 @@ export default function Navbar() {
         setIsVisible(true); // Always show navbar when at top of page
       }
       
+      // Handle bottom of page
       if (windowHeight + currentScrollY >= documentHeight - 50) {
         setAtBottom(true);
         setIsVisible(true); // Always show navbar when at bottom of page
@@ -59,8 +68,9 @@ export default function Navbar() {
       
       // Set a timeout to detect when scrolling stops
       scrollTimeoutRef.current = setTimeout(() => {
+        setIsScrolling(false);
         setIsVisible(true); // Show navbar when scrolling stops
-      }, 600); // Shorter timeout for better responsiveness
+      }, 400); // Even shorter timeout for better responsiveness
     };
     
     window.addEventListener("scroll", handleScroll);
@@ -71,6 +81,13 @@ export default function Navbar() {
       }
     };
   }, [lastScrollY]);
+
+  // Add another effect to ensure navbar shows when user is stationary
+  useEffect(() => {
+    if (!isScrolling) {
+      setIsVisible(true);
+    }
+  }, [isScrolling]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -95,10 +112,10 @@ export default function Navbar() {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? scrollingUp || atBottom 
-            ? "py-3 bg-gradient-to-b from-teal-700/80 to-teal-800/70 backdrop-blur-[4px]" // Scrolling up or at bottom - visible, but lighter
+          ? scrollingUp || atBottom || !isScrolling
+            ? "py-3 bg-gradient-to-b from-teal-700/80 to-teal-800/70 backdrop-blur-[4px]" // Scrolling up or at bottom or not scrolling - visible, but lighter
             : "py-2 bg-transparent" // Scrolling down - transparent
           : "py-4 bg-gradient-to-b from-teal-700/70 to-teal-800/60 backdrop-blur-[4px]" // At top - fully visible, but lighter
       } ${
