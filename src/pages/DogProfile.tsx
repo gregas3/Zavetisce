@@ -1,4 +1,3 @@
-
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { PawPrint, Heart, Calendar, ArrowLeft, ArrowRight, CheckCircle, Info, Phone, Mail, FileText, Play, X } from "lucide-react";
@@ -78,6 +77,41 @@ interface DogData {
 }
 
 const dogsDatabase: Record<string, DogData> = {
+  "8": {
+    id: "8",
+    name: "Roki",
+    images: [
+      "/lovable-uploads/c8aa987a-b8a9-4eb0-a2ee-44c69202ce18.png", 
+      "/lovable-uploads/4eb83a4c-bde9-4fda-85d0-03131f38e119.png", 
+      "/placeholder.svg"
+    ],
+    videos: [
+      {
+        thumbnail: "/lovable-uploads/c8aa987a-b8a9-4eb0-a2ee-44c69202ce18.png",
+        url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+        title: "Roki na sprehodu"
+      }
+    ],
+    age: "8 let",
+    breed: "Mešanec",
+    gender: "Samec",
+    size: "Srednji",
+    color: "Črno-rjava",
+    status: "Na voljo za posvojitev",
+    microchipped: true,
+    neutered: true,
+    vaccinated: true,
+    description: "Roki je zaradi smrti svoje lastnice pristal v zavetišču. Star je dobrih 8 let, je kastriran in osnovno veterinarsko urejen. Je zelo prijazen in lepo vodljiv, navajen je notranjega bivanja v družbi ljudi. Z drugimi psi se ne razume najbolje. Roki išče ljubečo in odgovorno družino, ki mu bo ponudila miren dom.",
+    suitableFor: "Mirni domovi, starejši lastniki, ljudje ki živijo sami",
+    notSuitableFor: "Domovi z drugimi psi, zelo aktivni lastniki",
+    additionalInfo: "Rojen: 13. 09. 2016\nSprejem v zavetišče: 23. 12. 2024",
+    dateArrived: "2024-12-23",
+    adoptionRequirements: "- Miren dom brez drugih psov\n- Izkušnje s psi\n- Razumevanje potreb starejših psov\n- Možnost rednih, a umirjenih sprehodov",
+    contactInfo: {
+      phone: "+386 (0)2 480 16 60",
+      email: "zavetisce.mb@snaga-mb.si"
+    }
+  },
   "7": {
     id: "7",
     name: "Ajša",
@@ -689,3 +723,4 @@ const DogProfile = () => {
 };
 
 export default DogProfile;
+
