@@ -1,3 +1,4 @@
+
 import { dogs } from "@/data/dogsData";
 import { syncDogData } from "@/utils/dogUtils";
 
@@ -401,3 +402,44 @@ const dogsDatabase: Record<string, DogData> = {
       "/placeholder.svg"
     ],
     videos: [
+      {
+        thumbnail: "/lovable-uploads/d17c98e9-d9a9-4e46-947c-373b929f0b53.png",
+        url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+        title: "Bono na sprehodu"
+      }
+    ],
+    age: "4 leta",
+    breed: "Mešanec",
+    gender: "Samec",
+    size: "Velik",
+    color: "Rjava",
+    status: "Na voljo za posvojitev",
+    microchipped: true,
+    neutered: true,
+    vaccinated: true,
+    description: "Bono je večji samec. Na sprehodu je lepo vodljiv, poslušen in umirjen. Potrebuje odločnega in izkušenega skrbnika, ki se bo z njim aktivno ukvarjal. Ni primeren za družine z majhnimi otroki.",
+    suitableFor: "Odrasli, izkušeni lastniki, aktivni ljudje",
+    notSuitableFor: "Družine z majhnimi otroki, neizkušeni lastniki psov",
+    additionalInfo: "Bono je bil sprejet v zavetišče 5. 12. 2024. Rojen je bil 18. 11. 2020.",
+    dateArrived: "2024-12-05",
+    adoptionRequirements: "- Izkušnje z vodljivimi psi\n- Aktivni življenjski slog\n- Dovolj časa za sprehode in aktivnosti\n- Potrpežljivost in doslednost pri vzgoji",
+    contactInfo: {
+      phone: "+386 (0)2 480 16 60",
+      email: "zavetisce.mb@snaga-mb.si"
+    }
+  }
+};
+
+export const fetchDogById = async (id: string): Promise<DogData> => {
+  // Simulate API call with a delay
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const dog = dogsDatabase[id];
+      if (dog) {
+        resolve(dog);
+      } else {
+        reject(new Error(`Dog with ID ${id} not found`));
+      }
+    }, 500);
+  });
+};
