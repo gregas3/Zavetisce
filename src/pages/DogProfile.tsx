@@ -1,4 +1,3 @@
-
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { PawPrint, Heart, Calendar, ArrowLeft, ArrowRight, CheckCircle, Info, Phone, Mail, FileText, Play } from "lucide-react";
@@ -241,47 +240,6 @@ const DogProfile = () => {
                 <CarouselPrevious />
                 <CarouselNext />
               </Carousel>
-
-              {dog.videos && dog.videos.length > 0 && (
-                <div className="mb-6 flex flex-wrap gap-4">
-                  <h3 className="w-full text-lg font-semibold mb-2">Video posnetki</h3>
-                  {dog.videos.map((video, index) => (
-                    <Dialog key={index}>
-                      <DialogTrigger asChild>
-                        <div className="relative w-40 rounded-md overflow-hidden cursor-pointer hover-lift">
-                          <div className="aspect-video">
-                            <img 
-                              src={video.thumbnail} 
-                              alt={video.title}
-                              className="w-full h-full object-cover"
-                            />
-                            <div className="absolute inset-0 bg-black/30 hover:bg-black/50 transition-colors flex items-center justify-center">
-                              <Play size={24} className="text-white" />
-                            </div>
-                          </div>
-                          <div className="absolute bottom-0 left-0 right-0 px-2 py-1 bg-black/60 text-white text-xs truncate">
-                            {video.title}
-                          </div>
-                        </div>
-                      </DialogTrigger>
-                      <DialogContent className="sm:max-w-4xl">
-                        <DialogHeader>
-                          <DialogTitle>{dog.name} - {video.title}</DialogTitle>
-                          <DialogDescription>Video posnetek psa</DialogDescription>
-                        </DialogHeader>
-                        <div className="aspect-video w-full">
-                          <video 
-                            src={video.url} 
-                            controls
-                            className="w-full h-full rounded-md"
-                            autoPlay
-                          />
-                        </div>
-                      </DialogContent>
-                    </Dialog>
-                  ))}
-                </div>
-              )}
 
               <Tabs defaultValue="about" className="mt-6">
                 <TabsList className="grid w-full grid-cols-3">
