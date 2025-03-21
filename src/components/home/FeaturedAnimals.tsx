@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronRight, ChevronLeft, Heart, Info, Play } from "lucide-react";
+import { ChevronRight, ChevronLeft, Heart, Info } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import AnimatedWrapper from "../shared/AnimatedWrapper";
@@ -14,7 +14,7 @@ import {
   CarouselNext 
 } from "@/components/ui/carousel";
 
-// Updated mock data for featured animals with video option
+// Updated mock data for featured animals - removed hasVideo and videoUrl properties
 const featuredAnimals = [
   {
     id: 1,
@@ -24,9 +24,7 @@ const featuredAnimals = [
     age: "2 leti",
     gender: "samec",
     image: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-    description: "Reks je prijazna in energična mešanka z veliko ljubezni. Rad ima dolge sprehode in igranje.",
-    hasVideo: true,
-    videoUrl: "https://example.com/videos/reks.mp4" // Example video URL
+    description: "Reks je prijazna in energična mešanka z veliko ljubezni. Rad ima dolge sprehode in igranje."
   },
   {
     id: 2,
@@ -36,8 +34,7 @@ const featuredAnimals = [
     age: "1 leto",
     gender: "samec",
     image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1473&q=80",
-    description: "Muri je igriv in radoveden mlad maček, ki se rad stiska in prede.",
-    hasVideo: false
+    description: "Muri je igriv in radoveden mlad maček, ki se rad stiska in prede."
   },
   {
     id: 3,
@@ -47,9 +44,7 @@ const featuredAnimals = [
     age: "3 leta",
     gender: "samica",
     image: "https://images.unsplash.com/photo-1591769225440-811ad7d6eab2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
-    description: "Bela je prijazna in mirna psička, ki obožuje družbo in crkljanje.",
-    hasVideo: true,
-    videoUrl: "https://example.com/videos/bela.mp4" // Example video URL
+    description: "Bela je prijazna in mirna psička, ki obožuje družbo in crkljanje."
   },
   {
     id: 4,
@@ -59,8 +54,7 @@ const featuredAnimals = [
     age: "2 leti",
     gender: "samec",
     image: "https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80",
-    description: "Črnko je eleganten črn maček, ki je samostojen, a hkrati ljubeč do ljudi.",
-    hasVideo: false
+    description: "Črnko je eleganten črn maček, ki je samostojen, a hkrati ljubeč do ljudi."
   },
   {
     id: 5,
@@ -70,9 +64,7 @@ const featuredAnimals = [
     age: "7 mesecev",
     gender: "samica",
     image: "https://images.unsplash.com/photo-1583511655826-05700442b31b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1588&q=80",
-    description: "Lara je mladiček poln energije in radovednosti, ki išče aktivno družino.",
-    hasVideo: true,
-    videoUrl: "https://example.com/videos/lara.mp4" // Example video URL
+    description: "Lara je mladiček poln energije in radovednosti, ki išče aktivno družino."
   },
   {
     id: 6,
@@ -82,8 +74,7 @@ const featuredAnimals = [
     age: "5 let",
     gender: "samica",
     image: "https://images.unsplash.com/photo-1573865526739-10659fec78a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1458&q=80",
-    description: "Liza je umirjena odrasla mačka, ki išče miren dom, kjer bo lahko kraljevala.",
-    hasVideo: false
+    description: "Liza je umirjena odrasla mačka, ki išče miren dom, kjer bo lahko kraljevala."
   }
 ];
 
@@ -128,15 +119,6 @@ export default function FeaturedAnimals() {
                       <Badge className="absolute top-3 left-3 bg-background/80 backdrop-blur-sm text-foreground">
                         {animal.type === 'pes' ? 'Pes' : 'Mačka'}
                       </Badge>
-                      
-                      {animal.hasVideo && (
-                        <div className="absolute bottom-3 right-3">
-                          <Badge className="bg-primary/90 backdrop-blur-sm text-white flex items-center gap-1 hover:bg-primary cursor-pointer px-3 py-1">
-                            <Play size={14} />
-                            Video
-                          </Badge>
-                        </div>
-                      )}
                     </div>
                     <div className="p-5 flex flex-col flex-grow">
                       <h3 className="text-xl font-bold mb-1 group-hover:text-primary transition-normal">
