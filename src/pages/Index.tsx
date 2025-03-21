@@ -24,8 +24,8 @@ const Index = () => {
         <FeaturedAnimals />
         <QuickLinks />
         <StatsSection />
-        <TestimonialsSection />
         <CtaSection />
+        <TestimonialsSection />
       </main>
       
       <Footer />
