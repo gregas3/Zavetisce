@@ -43,7 +43,7 @@ const FloatingContactButton = () => {
 
           <div className="space-y-3 text-sm">
             <a 
-              href="https://www.google.com/maps/place/Avtomobilska+ulica+25,+Maribor" 
+              href="https://www.google.com/maps/place/Avtomobilska+ulica+25,+2000+Maribor" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center gap-3 p-2 rounded-md hover:bg-teal-50 transition-colors"
@@ -51,7 +51,7 @@ const FloatingContactButton = () => {
               <div className="bg-teal-100 p-2 rounded-full">
                 <MapPin className="w-5 h-5 text-teal-600" />
               </div>
-              <span>Avtomobilska ulica 25, Maribor</span>
+              <span>Avtomobilska ulica 25, 2000 Maribor</span>
             </a>
 
             <a 

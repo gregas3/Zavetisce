@@ -32,33 +32,42 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Kontakt</h3>
             <div className="space-y-3 text-gray-300 text-sm">
-              <div className="flex items-start gap-2">
+              <a 
+                href="https://www.google.com/maps/place/Avtomobilska+ulica+25,+2000+Maribor,+Slovenija" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="flex items-start gap-2 hover:text-teal-300 transition-colors"
+              >
                 <MapPin size={18} className="text-teal-300 shrink-0 mt-1" />
                 <p>Avtomobilska ulica 25, 2000 Maribor, Slovenija</p>
-              </div>
-              <div className="flex items-center gap-2">
+              </a>
+              <a 
+                href="tel:024801660" 
+                className="flex items-center gap-2 hover:text-teal-300 transition-colors"
+              >
                 <Phone size={18} className="text-teal-300 shrink-0" />
                 <div>
                   <p>02 480 16 60</p>
                   <p className="text-xs text-gray-400">Telefonska številka</p>
                 </div>
-              </div>
-              <div className="flex items-center gap-2">
+              </a>
+              <a 
+                href="tel:031788822" 
+                className="flex items-center gap-2 hover:text-teal-300 transition-colors"
+              >
                 <Phone size={18} className="text-teal-300 shrink-0" />
                 <div>
                   <p>031-788-822</p>
                   <p className="text-xs text-gray-400">Številka za nujne primere</p>
                 </div>
-              </div>
-              <div className="flex items-center gap-2">
+              </a>
+              <a 
+                href="mailto:zavetisce.mb@snaga-mb.si" 
+                className="flex items-center gap-2 hover:text-teal-300 transition-colors"
+              >
                 <Mail size={18} className="text-teal-300 shrink-0" />
-                <a 
-                  href="mailto:zavetisce.mb@snaga-mb.si" 
-                  className="hover:text-teal-300 transition-colors"
-                >
-                  zavetisce.mb@snaga-mb.si
-                </a>
-              </div>
+                <span>zavetisce.mb@snaga-mb.si</span>
+              </a>
             </div>
           </div>
 
