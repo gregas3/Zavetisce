@@ -45,20 +45,6 @@ export const cats: Cat[] = [
     goodWith: ["odrasli", "odgovorni lastniki", "mirno okolje"]
   },
   {
-    id: 1,
-    name: "Muri",
-    color: "Črno-bela",
-    age: "1 leto",
-    gender: "samec",
-    size: "srednji",
-    image: "/lovable-uploads/43430fe9-3d3a-406d-bde2-ac740dabf168.png",
-    description: "Muri je igriv in radoveden mlad maček, ki se rad stiska in prede.",
-    characteristics: ["igriv", "radoveden", "prijazen", "nežen"],
-    vaccinated: true,
-    neutered: true,
-    goodWith: ["otroci", "starejši", "drugi mačke"]
-  },
-  {
     id: 2,
     name: "Črnko",
     color: "Črna",
@@ -71,19 +57,5 @@ export const cats: Cat[] = [
     vaccinated: true,
     neutered: true,
     goodWith: ["odrasli", "drugi mačke"]
-  },
-  {
-    id: 3,
-    name: "Liza",
-    color: "Siva tigrasta",
-    age: "5 let",
-    gender: "samica",
-    size: "majhna",
-    image: "https://images.unsplash.com/photo-1573865526739-10659fec78a5",
-    description: "Liza je umirjena odrasla mačka, ki išče miren dom, kjer bo lahko kraljevala.",
-    characteristics: ["umirjena", "nežna", "samostojna", "dostojanstvena"],
-    vaccinated: true,
-    neutered: true,
-    goodWith: ["odrasli", "starejši", "mirno okolje"]
   }
 ];
