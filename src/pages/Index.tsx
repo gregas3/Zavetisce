@@ -9,7 +9,6 @@ import QuickLinks from '@/components/home/QuickLinks';
 import AnimatedWrapper from '@/components/shared/AnimatedWrapper';
 
 export default function Index() {
-  // Remove any duplicate Footer if it was here
   return (
     <AnimatedWrapper>
       <HeroSection />

@@ -7,11 +7,6 @@ import { Heart, HelpingHand } from 'lucide-react';
 const CtaSection = () => {
   const navigate = useNavigate();
   
-  // Log to help debug
-  React.useEffect(() => {
-    console.log('CtaSection mounted');
-  }, []);
-  
   return (
     <section className="py-16 bg-gradient-to-br from-teal-600 to-teal-800 text-white">
       <div className="container mx-auto px-4 md:px-8 text-center">

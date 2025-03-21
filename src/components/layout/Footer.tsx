@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
+
+import React from "react";
 import { Link } from "react-router-dom";
 import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
 export default function Footer() {
-  useEffect(() => {
-    console.log('Footer component mounted');
-  }, []);
-
   return (
     <footer className="bg-teal-800 text-white py-12">
       <div className="container mx-auto px-4 md:px-8">
