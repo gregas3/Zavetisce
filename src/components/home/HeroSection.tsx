@@ -36,8 +36,8 @@ export default function HeroSection() {
             </p>
             
             <div className="flex flex-wrap gap-4">
-              {/* Updated button with darkTeal variant and pulse animation */}
-              <AnimatedWrapper animation="shake" className="inline-block">
+              {/* Updated with a different animation */}
+              <AnimatedWrapper animation="float" className="inline-block">
                 <Button size="lg" variant="darkTeal" asChild className="rounded-full font-medium text-base">
                   <Link to="/donacije">
                     Podpri zavetišče
