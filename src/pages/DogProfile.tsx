@@ -1,3 +1,4 @@
+
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { PawPrint, Heart, Calendar, ArrowLeft, ArrowRight, CheckCircle, Info, Phone, Mail, FileText, Play } from "lucide-react";
@@ -185,7 +186,7 @@ const DogProfile = () => {
                 </Badge>
               </h1>
 
-              <Carousel className="mb-8">
+              <Carousel className="mb-8" opts={{ loop: true }}>
                 <CarouselContent>
                   {dog.images.map((image, index) => (
                     <CarouselItem key={`image-${index}`}>
@@ -237,8 +238,8 @@ const DogProfile = () => {
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
+                <CarouselPrevious className="left-2" />
+                <CarouselNext className="right-2" />
               </Carousel>
 
               <Tabs defaultValue="about" className="mt-6">

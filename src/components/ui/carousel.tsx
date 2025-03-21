@@ -60,13 +60,14 @@ const Carousel = React.forwardRef<
     },
     ref
   ) => {
-    const [carouselRef, api] = useEmblaCarousel(
-      {
-        ...opts,
-        axis: orientation === "horizontal" ? "x" : "y",
-      },
-      plugins
-    )
+    // Set default options with loop enabled
+    const defaultOptions = {
+      loop: true,
+      ...opts,
+      axis: orientation === "horizontal" ? "x" : "y",
+    }
+    
+    const [carouselRef, api] = useEmblaCarousel(defaultOptions, plugins)
     const [canScrollPrev, setCanScrollPrev] = React.useState(false)
     const [canScrollNext, setCanScrollNext] = React.useState(false)
     const [selectedIndex, setSelectedIndex] = React.useState(0)
@@ -78,10 +79,18 @@ const Carousel = React.forwardRef<
 
       const currentIndex = api.selectedScrollSnap()
       setSelectedIndex(currentIndex)
-      setCanScrollPrev(api.canScrollPrev())
-      setCanScrollNext(api.canScrollNext())
+      
+      // With loop enabled, we should always be able to scroll in both directions
+      if (defaultOptions.loop) {
+        setCanScrollPrev(true)
+        setCanScrollNext(true)
+      } else {
+        setCanScrollPrev(api.canScrollPrev())
+        setCanScrollNext(api.canScrollNext())
+      }
+      
       onSelect?.(currentIndex)
-    }, [onSelect])
+    }, [onSelect, defaultOptions.loop])
 
     const scrollPrev = React.useCallback(() => {
       api?.scrollPrev()
@@ -121,19 +130,25 @@ const Carousel = React.forwardRef<
       api.on("reInit", onSelectHandler)
       api.on("select", onSelectHandler)
 
+      // Initialize with correct scroll states
+      if (defaultOptions.loop) {
+        setCanScrollPrev(true)
+        setCanScrollNext(true)
+      }
+
       return () => {
         api?.off("select", onSelectHandler)
       }
-    }, [api, onSelectHandler])
+    }, [api, onSelectHandler, defaultOptions.loop])
 
     return (
       <CarouselContext.Provider
         value={{
           carouselRef,
           api: api,
-          opts,
+          opts: defaultOptions,
           orientation:
-            orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
+            orientation || (defaultOptions?.axis === "y" ? "vertical" : "horizontal"),
           scrollPrev,
           scrollNext,
           canScrollPrev,
