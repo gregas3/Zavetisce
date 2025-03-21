@@ -14,27 +14,22 @@ export const NavbarActions = ({ toggleSearch, handleHomeClick, isMobile }: Navba
     <div className={`flex items-center gap-${isMobile ? '2' : '3'} ${!isMobile ? 'ml-3' : ''}`}>
       <button 
         onClick={handleHomeClick}
-        className="p-2 text-white rounded-full transition-all duration-300 hover:bg-teal-600/50 hover:scale-110"
+        className={`p-2 text-white rounded-full transition-colors hover:bg-teal-600/50 ${!isMobile ? 'hover:text-white' : ''}`}
         aria-label="Domov"
       >
-        <Home size={isMobile ? 20 : 20} className="transition-transform" />
+        <Home size={isMobile ? 20 : 20} />
       </button>
       
       <button 
         onClick={toggleSearch} 
-        className="p-2 text-white rounded-full transition-all duration-300 hover:bg-teal-600/50 hover:scale-110" 
+        className={`p-2 text-white rounded-full transition-colors hover:bg-teal-600/50 ${!isMobile ? 'hover:text-white' : ''}`} 
         aria-label="Search"
       >
-        <Search size={20} className="transition-transform" />
+        <Search size={20} />
       </button>
       
       {!isMobile && (
-        <Button 
-          size="sm" 
-          asChild 
-          variant="teal" 
-          className="shadow-lg hover:shadow-teal-200/30 transition-all duration-300 hover:-translate-y-0.5 hover:scale-105"
-        >
+        <Button size="sm" asChild variant="teal" className="shadow-md hover:shadow-teal-200/50 transition-all duration-300 hover:-translate-y-0.5">
           <Link to="/donacije">Doniraj</Link>
         </Button>
       )}

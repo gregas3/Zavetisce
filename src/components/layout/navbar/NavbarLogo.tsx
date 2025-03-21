@@ -1,28 +1,12 @@
-
 import { Link } from "react-router-dom";
-
 type NavbarLogoProps = {
   closeMenu: () => void;
 };
-
 export const NavbarLogo = ({
   closeMenu
 }: NavbarLogoProps) => {
-  return (
-    <Link 
-      to="/" 
-      className="flex items-center gap-3 transition-all duration-300 hover:scale-[1.02]" 
-      onClick={closeMenu}
-    >
+  return <Link to="/" className="text-2xl font-display font-bold text-teal-600 flex items-center gap-2 transition-normal hover-scale" onClick={closeMenu}>
       <span className="sr-only">Zavetišče za živali Maribor</span>
-      <img 
-        src="/lovable-uploads/05f2fc83-29c9-401c-bc6c-0847f10b16db.png" 
-        alt="Zavetišče za živali Maribor" 
-        className="h-12 md:h-14 transition-normal drop-shadow-md" 
-      />
-      <span className="hidden md:inline-block text-lg font-medium text-white/90">
-        Zavetišče za živali Maribor
-      </span>
-    </Link>
-  );
+      <img alt="Logo" className="h-16 md:h-20 transition-normal drop-shadow-md" src="/lovable-uploads/ee94c529-e10a-4267-8d61-be0c492d6b50.png" />
+    </Link>;
 };
