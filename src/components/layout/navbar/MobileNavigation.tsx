@@ -33,7 +33,7 @@ export const MobileNavigation = ({
         />
         
         <button 
-          className="text-teal-600 p-2 rounded-full hover:bg-teal-100 transition-normal" 
+          className="text-white p-2 rounded-full hover:bg-teal-600/50 transition-normal" 
           onClick={toggleMenu} 
           aria-label={isOpen ? "Zapri meni" : "Odpri meni"}
         >

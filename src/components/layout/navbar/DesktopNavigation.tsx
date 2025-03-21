@@ -26,7 +26,7 @@ export const DesktopNavigation = ({ closeMenu, toggleSearch, handleHomeClick }: 
       <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="bg-transparent font-medium text-teal-800 hover:bg-teal-100 hover:text-teal-700 data-[state=open]:bg-teal-100">
+            <NavigationMenuTrigger className="bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white data-[state=open]:bg-teal-600/50">
               Posvojitev
             </NavigationMenuTrigger>
             <NavigationMenuContent>
@@ -60,31 +60,31 @@ export const DesktopNavigation = ({ closeMenu, toggleSearch, handleHomeClick }: 
           </NavigationMenuItem>
           
           <NavigationMenuItem>
-            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-teal-800 hover:bg-teal-100 hover:text-teal-700")}>
+            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
               <Link to="/izgubljeni-najdeni">Izgubljeni in Najdeni</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           
           <NavigationMenuItem>
-            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-teal-800 hover:bg-teal-100 hover:text-teal-700")}>
+            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
               <Link to="/prostovoljstvo">Prostovoljstvo</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           
           <NavigationMenuItem>
-            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-teal-800 hover:bg-teal-100 hover:text-teal-700")}>
+            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
               <Link to="/kontakt">Kontakt</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           
           <NavigationMenuItem>
-            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-teal-800 hover:bg-teal-100 hover:text-teal-700")}>
+            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
               <Link to="/termini">Rezerviraj Termin</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           
           <NavigationMenuItem>
-            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-teal-800 hover:bg-teal-100 hover:text-teal-700")}>
+            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
               <Link to="/o-nas">O nas</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>

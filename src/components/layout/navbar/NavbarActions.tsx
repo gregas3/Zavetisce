@@ -14,7 +14,7 @@ export const NavbarActions = ({ toggleSearch, handleHomeClick, isMobile }: Navba
     <div className={`flex items-center gap-${isMobile ? '2' : '3'} ${!isMobile ? 'ml-3' : ''}`}>
       <button 
         onClick={handleHomeClick}
-        className={`p-2 text-teal-600 rounded-full transition-colors hover:bg-teal-100 ${!isMobile ? 'hover:text-teal-800' : ''}`}
+        className={`p-2 text-white rounded-full transition-colors hover:bg-teal-600/50 ${!isMobile ? 'hover:text-white' : ''}`}
         aria-label="Domov"
       >
         <Home size={isMobile ? 20 : 20} />
@@ -22,7 +22,7 @@ export const NavbarActions = ({ toggleSearch, handleHomeClick, isMobile }: Navba
       
       <button 
         onClick={toggleSearch} 
-        className={`p-2 text-teal-600 rounded-full transition-colors hover:bg-teal-100 ${!isMobile ? 'hover:text-teal-800' : ''}`} 
+        className={`p-2 text-white rounded-full transition-colors hover:bg-teal-600/50 ${!isMobile ? 'hover:text-white' : ''}`} 
         aria-label="Search"
       >
         <Search size={20} />

@@ -70,9 +70,9 @@ export default function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled 
           ? scrollingUp || atBottom 
-            ? "py-3 bg-gradient-to-b from-teal-900/80 to-teal-900/70 backdrop-blur-[4px]" // Scrolling up or at bottom - visible
+            ? "py-3 bg-gradient-to-b from-teal-700/80 to-teal-800/70 backdrop-blur-[4px]" // Scrolling up or at bottom - visible, but lighter
             : "py-2 bg-transparent" // Scrolling down - transparent
-          : "py-4 bg-gradient-to-b from-teal-900/80 to-teal-900/70 backdrop-blur-[4px]" // At top - fully visible
+          : "py-4 bg-gradient-to-b from-teal-700/70 to-teal-800/60 backdrop-blur-[4px]" // At top - fully visible, but lighter
       }`} 
       style={{ borderBottom: 'none' }}
     >
