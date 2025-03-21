@@ -1,22 +1,33 @@
 
-import React from 'react';
-import HeroSection from '@/components/home/HeroSection';
-import FeaturedAnimals from '@/components/home/FeaturedAnimals';
-import StatsSection from '@/components/home/StatsSection';
-import TestimonialsSection from '@/components/home/TestimonialsSection';
-import CtaSection from '@/components/home/CtaSection';
-import QuickLinks from '@/components/home/QuickLinks';
-import AnimatedWrapper from '@/components/shared/AnimatedWrapper';
+import { Helmet } from 'react-helmet';
+import HeroSection from "@/components/home/HeroSection";
+import QuickLinks from "@/components/home/QuickLinks";
+import FeaturedAnimals from "@/components/home/FeaturedAnimals";
+import TestimonialsSection from "@/components/home/TestimonialsSection";
+import StatsSection from "@/components/home/StatsSection";
+import CtaSection from "@/components/home/CtaSection";
+import Layout from "@/components/layout/Layout";
 
-export default function Index() {
+const Index = () => {
   return (
-    <AnimatedWrapper>
-      <HeroSection />
-      <QuickLinks />
-      <FeaturedAnimals />
-      <StatsSection />
-      <TestimonialsSection />
-      <CtaSection />
-    </AnimatedWrapper>
+    <Layout>
+      <Helmet>
+        <title>Zavetišče za živali Maribor</title>
+        <meta name="description" content="Zavetišče za zapuščene živali v Mariboru nudi dom izgubljenim, zapuščenim in odvzetim živalim. Posvojitev psov in mačk, prijava izgubljene ali najdene živali." />
+      </Helmet>
+      
+      <div className="min-h-screen bg-gradient-to-b from-[#e2efed]/80 to-[#dfecea]/80">
+        <HeroSection />
+        <div className="bg-gradient-to-b from-[#e2efed]/80 to-[#dfecea]/80 py-8">
+          <FeaturedAnimals />
+        </div>
+        <QuickLinks />
+        <StatsSection />
+        <CtaSection />
+        <TestimonialsSection />
+      </div>
+    </Layout>
   );
-}
+};
+
+export default Index;
