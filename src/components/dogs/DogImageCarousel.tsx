@@ -17,6 +17,7 @@ import {
   DialogTrigger,
   DialogClose,
 } from "@/components/ui/dialog";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 interface DogVideo {
   thumbnail: string;
@@ -32,19 +33,21 @@ interface DogImageCarouselProps {
 
 const DogImageCarousel = ({ dogName, images, videos }: DogImageCarouselProps) => {
   return (
-    <Carousel className="mb-8" opts={{ loop: true }}>
+    <Carousel className="mb-8 w-full" opts={{ loop: true }}>
       <CarouselContent>
         {images.map((image, index) => (
           <CarouselItem key={`image-${index}`}>
-            <div className="aspect-video w-full overflow-hidden rounded-xl">
+            <div className="overflow-hidden rounded-xl">
               <Dialog>
                 <DialogTrigger asChild>
                   <button className="w-full h-full p-0 m-0 bg-transparent border-0 cursor-pointer">
-                    <img
-                      src={image}
-                      alt={`${dogName} - slika ${index + 1}`}
-                      className="object-cover w-full h-full hover:opacity-95 transition-opacity"
-                    />
+                    <AspectRatio ratio={16 / 9} className="bg-muted">
+                      <img
+                        src={image}
+                        alt={`${dogName} - slika ${index + 1}`}
+                        className="object-contain w-full h-full hover:opacity-95 transition-opacity"
+                      />
+                    </AspectRatio>
                   </button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-5xl p-1 bg-transparent border-0">
@@ -66,38 +69,40 @@ const DogImageCarousel = ({ dogName, images, videos }: DogImageCarouselProps) =>
         
         {videos && videos.map((video, index) => (
           <CarouselItem key={`video-${index}`}>
-            <div className="aspect-video w-full overflow-hidden rounded-xl relative group">
-              <img
-                src={video.thumbnail}
-                alt={`${dogName} - ${video.title}`}
-                className="object-cover w-full h-full"
-              />
-              <Dialog>
-                <DialogTrigger asChild>
-                  <button className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition-all">
-                    <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center text-white transform transition-transform group-hover:scale-110">
-                      <Play size={32} fill="white" />
+            <div className="overflow-hidden rounded-xl relative group">
+              <AspectRatio ratio={16 / 9} className="bg-muted">
+                <img
+                  src={video.thumbnail}
+                  alt={`${dogName} - ${video.title}`}
+                  className="object-contain w-full h-full"
+                />
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition-all">
+                      <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center text-white transform transition-transform group-hover:scale-110">
+                        <Play size={32} fill="white" />
+                      </div>
+                      <span className="absolute bottom-4 left-4 text-white font-medium px-3 py-1 bg-black/50 rounded-lg">
+                        {video.title}
+                      </span>
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-4xl">
+                    <DialogHeader>
+                      <DialogTitle>{dogName} - {video.title}</DialogTitle>
+                      <DialogDescription>Video posnetek psa</DialogDescription>
+                    </DialogHeader>
+                    <div className="aspect-video w-full">
+                      <video 
+                        src={video.url} 
+                        controls
+                        className="w-full h-full rounded-md"
+                        autoPlay
+                      />
                     </div>
-                    <span className="absolute bottom-4 left-4 text-white font-medium px-3 py-1 bg-black/50 rounded-lg">
-                      {video.title}
-                    </span>
-                  </button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-4xl">
-                  <DialogHeader>
-                    <DialogTitle>{dogName} - {video.title}</DialogTitle>
-                    <DialogDescription>Video posnetek psa</DialogDescription>
-                  </DialogHeader>
-                  <div className="aspect-video w-full">
-                    <video 
-                      src={video.url} 
-                      controls
-                      className="w-full h-full rounded-md"
-                      autoPlay
-                    />
-                  </div>
-                </DialogContent>
-              </Dialog>
+                  </DialogContent>
+                </Dialog>
+              </AspectRatio>
             </div>
           </CarouselItem>
         ))}
