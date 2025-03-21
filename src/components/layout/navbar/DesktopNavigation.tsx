@@ -53,7 +53,7 @@ export const DesktopNavigation = ({
           
           <NavigationMenuItem>
             <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
-              <Link to="/izgubljeni-najdeni">Najdene živali</Link>
+              <Link to="/izgubljeni-najdeni">Najdeno in Pogrešano</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           
