@@ -1,4 +1,3 @@
-
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { PawPrint, Heart, Calendar, ArrowLeft, ArrowRight, CheckCircle, Info, Phone, Mail, FileText, Play, X } from "lucide-react";
@@ -78,6 +77,41 @@ interface DogData {
 }
 
 const dogsDatabase: Record<string, DogData> = {
+  "8": {
+    id: "8",
+    name: "Roki",
+    images: [
+      "/lovable-uploads/d154fae5-9f35-4f95-9308-55b5d9599de4.png",
+      "/placeholder.svg", 
+      "/placeholder.svg"
+    ],
+    videos: [
+      {
+        thumbnail: "/lovable-uploads/d154fae5-9f35-4f95-9308-55b5d9599de4.png",
+        url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+        title: "Roki na sprehodu"
+      }
+    ],
+    age: "8 let",
+    breed: "Mešanec",
+    gender: "Samec",
+    size: "Srednji",
+    color: "Črno-rjava",
+    status: "Na voljo za posvojitev",
+    microchipped: true,
+    neutered: true,
+    vaccinated: true,
+    description: "Roki je zaradi smrti svoje lastnice pristal v zavetišču. Star je dobrih 8 let, je kastriran in osnovno veterinarsko urejen. Je zelo prijazen in lepo vodljiv, navajen je notranjega bivanja v družbi ljudi. Z drugimi psi se ne razume najbolje. Roki išče ljubečo in odgovorno družino, ki mu bo ponudila miren dom.",
+    suitableFor: "Ljudje, ki iščejo zvestega in umirjenega psa, starejši, odrasli brez drugih psov",
+    notSuitableFor: "Družine z drugimi psi, zelo aktivni ljudje, ki bi pričakovali veliko fizične aktivnosti",
+    additionalInfo: "Roki je bil ves čas svojega življenja navajen na notranje bivanje in družbo ljudi. Rad ima mirne sprehode in crkljanje.",
+    dateArrived: "2023-12-23",
+    adoptionRequirements: "- Mirno domače okolje\n- Brez drugih psov v gospodinjstvu\n- Redni krajši sprehodi\n- Čas za druženje in crkljanje\n- Potrpežljivost in razumevanje starejšega psa",
+    contactInfo: {
+      phone: "+386 (0)2 480 16 60",
+      email: "zavetisce.mb@snaga-mb.si"
+    }
+  },
   "7": {
     id: "7",
     name: "Ajša",
@@ -557,135 +591,4 @@ const DogProfile = () => {
                       </div>
                       
                       <div className="mt-4">
-                        <h3 className="font-semibold mb-2">Dodatne informacije:</h3>
-                        <p className="text-sm">{dog.additionalInfo}</p>
-                      </div>
-                      
-                      <div className="mt-4">
-                        <h3 className="font-semibold mb-2">V zavetišču od:</h3>
-                        <p className="text-sm">{format(new Date(dog.dateArrived), "d. MMMM yyyy")}</p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </TabsContent>
-                <TabsContent value="requirements" className="mt-4">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Zahteve za posvojitev</CardTitle>
-                      <CardDescription>
-                        Pred posvojitvijo {dog.name} morate izpolnjevati naslednje pogoje.
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <pre className="whitespace-pre-line font-sans text-sm">
-                        {dog.adoptionRequirements}
-                      </pre>
-                      
-                      <div className="mt-6 p-4 bg-amber-50 rounded-lg border border-amber-200">
-                        <h3 className="font-semibold flex items-center gap-2 text-amber-800">
-                          <Info size={18} />
-                          Postopek posvojitve
-                        </h3>
-                        <ol className="mt-2 space-y-2 text-sm text-amber-800 list-decimal pl-5">
-                          <li>Rezervirajte termin za obisk in spoznavanje psa</li>
-                          <li>Ob obisku se pogovorite z osebjem o vaših pogojih za psa</li>
-                          <li>Izpolnite vlogo za posvojitev</li>
-                          <li>Po odobritvi vloge sledi podpis pogodbe o posvojitvi</li>
-                          <li>Plačilo stroškov posvojitve (cepljenje, čipiranje, sterilizacija)</li>
-                          <li>Odpeljete novega družinskega člana domov</li>
-                        </ol>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </TabsContent>
-                <TabsContent value="health" className="mt-4">
-                  <Card>
-                    <CardHeader>
-                      <CardTitle>Zdravstveno stanje</CardTitle>
-                      <CardDescription>
-                        Zdravstvene informacije in oskrba, ki jo je {dog.name} že prejel.
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        <div className="flex items-center gap-2">
-                          <CheckCircle size={18} className={dog.microchipped ? "text-green-500" : "text-gray-300"} />
-                          <span className={dog.microchipped ? "text-green-700" : "text-gray-500"}>
-                            {dog.microchipped ? "Čipiran" : "Ni čipiran"}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <CheckCircle size={18} className={dog.neutered ? "text-green-500" : "text-gray-300"} />
-                          <span className={dog.neutered ? "text-green-700" : "text-gray-500"}>
-                            {dog.neutered ? "Kastriran/Steriliziran" : "Ni kastriran/steriliziran"}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <CheckCircle size={18} className={dog.vaccinated ? "text-green-500" : "text-gray-300"} />
-                          <span className={dog.vaccinated ? "text-green-700" : "text-gray-500"}>
-                            {dog.vaccinated ? "Cepljen" : "Ni cepljen"}
-                          </span>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </TabsContent>
-              </Tabs>
-
-              <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                <Button onClick={handleScheduleAppointment} className="flex-1">
-                  <Calendar className="mr-2 h-4 w-4" /> Rezerviraj termin za obisk
-                </Button>
-                <Button onClick={handleFillQuestionnaire} variant="outline" className="flex-1">
-                  <FileText className="mr-2 h-4 w-4" /> Izpolni vprašalnik za posvojitev
-                </Button>
-              </div>
-            </div>
-
-            <div>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Kontaktne informacije</CardTitle>
-                  <CardDescription>
-                    Za več informacij o {dog.name} nas kontaktirajte.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <Phone size={18} className="text-primary" />
-                      <span>{dog.contactInfo.phone}</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <Mail size={18} className="text-primary" />
-                      <span>{dog.contactInfo.email}</span>
-                    </div>
-                  </div>
-                </CardContent>
-                <CardFooter className="flex-col items-start gap-2">
-                  <p className="text-sm text-muted-foreground">
-                    Urnik zavetišča: vsak dan med 10:00 in 18:00
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    Naslov: Avtomobilska ulica 25, 2000 Maribor
-                  </p>
-                </CardFooter>
-              </Card>
-
-              <div className="mt-6">
-                <Button asChild variant="outline" className="w-full">
-                  <Link to="/posvojitev/psi">
-                    <ArrowLeft className="mr-2 h-4 w-4" /> Nazaj na seznam psov
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-      <Footer />
-    </>
-  );
-};
-
-export default DogProfile;
+                        <h3 className="font-semibold mb-2">Dodatne
