@@ -1,8 +1,7 @@
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 
 export default function HeroSection() {
   const scrollToNextSection = () => {
@@ -51,14 +50,17 @@ export default function HeroSection() {
         </div>
       </div>
       
-      {/* Scroll indicator - improved with onClick handler */}
+      {/* Animated arrow replacing scroll indicator */}
       <div 
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-float cursor-pointer" 
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer" 
         onClick={scrollToNextSection}
         aria-label="Scroll down"
       >
-        <div className="w-8 h-14 rounded-full border-2 border-teal-400/30 flex justify-center hover:border-teal-400/60 transition-normal">
-          <div className="w-1.5 h-3 bg-teal-400/60 rounded-full mt-2 animate-[bounce_1.5s_infinite]"></div>
+        <div className="flex flex-col items-center">
+          <div className="w-12 h-12 rounded-full bg-teal-400/20 flex items-center justify-center mb-2 border border-teal-400/30 shadow-lg backdrop-blur-sm">
+            <ChevronDown className="h-8 w-8 text-teal-300 animate-bounce" />
+          </div>
+          <div className="h-12 w-1 bg-gradient-to-b from-teal-400/50 to-transparent rounded-full animate-pulse"></div>
         </div>
       </div>
     </div>;
