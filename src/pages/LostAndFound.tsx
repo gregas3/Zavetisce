@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
@@ -5,7 +6,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Search, PawPrint, Calendar, Info, Plus, Cat, Dog, ArrowUpRight, ExternalLink, Mail, Building } from "lucide-react";
+import { MapPin, Search, PawPrint, Calendar, Info, Plus, Cat, Dog, ArrowUpRight, Mail, Building } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import Section from "@/components/shared/Section";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
@@ -201,144 +202,202 @@ export default function LostAndFound() {
 
           <AnimatedWrapper animation="fade-in" className="max-w-3xl mx-auto mt-8">
             <div className="bg-white/70 backdrop-blur-sm rounded-xl p-6 md:p-10 shadow-lg border border-teal-100">
-              <h3 className="text-xl font-semibold text-teal-800 mb-4 flex items-center">
-                <Building size={22} className="mr-2 text-teal-600" />
+              <h3 className="flex items-center text-xl font-semibold text-teal-800 mb-4 gap-2">
+                <Building className="text-teal-600" size={22} />
                 Občine, ki je pokriva Zavetišče za živali Maribor
               </h3>
-              <p className="text-gray-600 mb-4">Seznam občin in kontaktni e-naslovi:</p>
+              <p className="text-gray-600 mb-5">Seznam občin in kontaktni e-naslovi:</p>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
-                <div className="flex items-start gap-2">
-                  <Mail size={16} className="mt-0.5 text-teal-500 shrink-0" />
-                  <div>
-                    <span className="font-medium">Duplek</span>
-                    <a href="mailto:obcina.duplek@duplek.si" className="block text-teal-600 hover:underline">obcina.duplek@duplek.si</a>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-3">
+                  <div className="flex items-start gap-2">
+                    <Mail size={18} className="mt-0.5 text-teal-600 shrink-0" />
+                    <div>
+                      <div className="font-medium">Duplek</div>
+                      <a href="mailto:obcina.duplek@duplek.si" className="text-teal-600 hover:underline">
+                        obcina.duplek@duplek.si
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-2">
+                    <Mail size={18} className="mt-0.5 text-teal-600 shrink-0" />
+                    <div>
+                      <div className="font-medium">Lenart</div>
+                      <a href="mailto:obcina@lenart.si" className="text-teal-600 hover:underline">
+                        obcina@lenart.si
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-2">
+                    <Mail size={18} className="mt-0.5 text-teal-600 shrink-0" />
+                    <div>
+                      <div className="font-medium">Miklavž na Drav. polj.</div>
+                      <a href="mailto:obcina.miklavz@miklavz.si" className="text-teal-600 hover:underline">
+                        obcina.miklavz@miklavz.si
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-2">
+                    <Mail size={18} className="mt-0.5 text-teal-600 shrink-0" />
+                    <div>
+                      <div className="font-medium">Selnica ob Dravi</div>
+                      <a href="mailto:info@selnica.si" className="text-teal-600 hover:underline">
+                        info@selnica.si
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-2">
+                    <Mail size={18} className="mt-0.5 text-teal-600 shrink-0" />
+                    <div>
+                      <div className="font-medium">Hoče - Slivnica</div>
+                      <a href="mailto:obcina@hoce-slivnica.si" className="text-teal-600 hover:underline">
+                        obcina@hoce-slivnica.si
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-2">
+                    <Mail size={18} className="mt-0.5 text-teal-600 shrink-0" />
+                    <div>
+                      <div className="font-medium">Destrnik</div>
+                      <a href="mailto:obcina.destrnik@destrnik.si" className="text-teal-600 hover:underline">
+                        obcina.destrnik@destrnik.si
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-2">
+                    <Mail size={18} className="mt-0.5 text-teal-600 shrink-0" />
+                    <div>
+                      <div className="font-medium">Rače - Fram</div>
+                      <a href="mailto:info@race-fram.si" className="text-teal-600 hover:underline">
+                        info@race-fram.si
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-2">
+                    <Mail size={18} className="mt-0.5 text-teal-600 shrink-0" />
+                    <div>
+                      <div className="font-medium">Poljčane</div>
+                      <a href="mailto:obcina@poljcane.si" className="text-teal-600 hover:underline">
+                        obcina@poljcane.si
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-2">
+                    <Mail size={18} className="mt-0.5 text-teal-600 shrink-0" />
+                    <div>
+                      <div className="font-medium">Maribor</div>
+                      <a href="mailto:mestna.obcina@maribor.si" className="text-teal-600 hover:underline">
+                        mestna.obcina@maribor.si
+                      </a>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-start gap-2">
+                    <Mail size={18} className="mt-0.5 text-teal-600 shrink-0" />
+                    <div>
+                      <div className="font-medium">Slovenske Konjice</div>
+                      <span className="text-gray-500">(ni podanega e-naslova)</span>
+                    </div>
                   </div>
                 </div>
-                <div className="flex items-start gap-2">
-                  <Mail size={16} className="mt-0.5 text-teal-500 shrink-0" />
-                  <div>
-                    <span className="font-medium">Kungota</span>
-                    <a href="mailto:obcina@kungota.si" className="block text-teal-600 hover:underline">obcina@kungota.si</a>
+                
+                <div className="space-y-3">
+                  <div className="flex items-start gap-2">
+                    <Mail size={18} className="mt-0.5 text-teal-600 shrink-0" />
+                    <div>
+                      <div className="font-medium">Kungota</div>
+                      <a href="mailto:obcina@kungota.si" className="text-teal-600 hover:underline">
+                        obcina@kungota.si
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Mail size={16} className="mt-0.5 text-teal-500 shrink-0" />
-                  <div>
-                    <span className="font-medium">Lenart</span>
-                    <a href="mailto:obcina@lenart.si" className="block text-teal-600 hover:underline">obcina@lenart.si</a>
+                  
+                  <div className="flex items-start gap-2">
+                    <Mail size={18} className="mt-0.5 text-teal-600 shrink-0" />
+                    <div>
+                      <div className="font-medium">Lovrenc na Pohorju</div>
+                      <a href="mailto:obcina@lovrenc.si" className="text-teal-600 hover:underline">
+                        obcina@lovrenc.si
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Mail size={16} className="mt-0.5 text-teal-500 shrink-0" />
-                  <div>
-                    <span className="font-medium">Lovrenc na Pohorju</span>
-                    <a href="mailto:obcina@lovrenc.si" className="block text-teal-600 hover:underline">obcina@lovrenc.si</a>
+                  
+                  <div className="flex items-start gap-2">
+                    <Mail size={18} className="mt-0.5 text-teal-600 shrink-0" />
+                    <div>
+                      <div className="font-medium">Ruše</div>
+                      <a href="mailto:obcina@ruse.si" className="text-teal-600 hover:underline">
+                        obcina@ruse.si
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Mail size={16} className="mt-0.5 text-teal-500 shrink-0" />
-                  <div>
-                    <span className="font-medium">Miklavž na Drav. polj.</span>
-                    <a href="mailto:obcina.miklavz@miklavz.si" className="block text-teal-600 hover:underline">obcina.miklavz@miklavz.si</a>
+                  
+                  <div className="flex items-start gap-2">
+                    <Mail size={18} className="mt-0.5 text-teal-600 shrink-0" />
+                    <div>
+                      <div className="font-medium">Starše</div>
+                      <a href="mailto:obcina@starse.si" className="text-teal-600 hover:underline">
+                        obcina@starse.si
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Mail size={16} className="mt-0.5 text-teal-500 shrink-0" />
-                  <div>
-                    <span className="font-medium">Ruše</span>
-                    <a href="mailto:obcina@ruse.si" className="block text-teal-600 hover:underline">obcina@ruse.si</a>
+                  
+                  <div className="flex items-start gap-2">
+                    <Mail size={18} className="mt-0.5 text-teal-600 shrink-0" />
+                    <div>
+                      <div className="font-medium">Videm</div>
+                      <a href="mailto:info@videm.si" className="text-teal-600 hover:underline">
+                        info@videm.si
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Mail size={16} className="mt-0.5 text-teal-500 shrink-0" />
-                  <div>
-                    <span className="font-medium">Selnica ob Dravi</span>
-                    <a href="mailto:info@selnica.si" className="block text-teal-600 hover:underline">info@selnica.si</a>
+                  
+                  <div className="flex items-start gap-2">
+                    <Mail size={18} className="mt-0.5 text-teal-600 shrink-0" />
+                    <div>
+                      <div className="font-medium">Zreče</div>
+                      <a href="mailto:info@zrece.eu" className="text-teal-600 hover:underline">
+                        info@zrece.eu
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Mail size={16} className="mt-0.5 text-teal-500 shrink-0" />
-                  <div>
-                    <span className="font-medium">Starše</span>
-                    <a href="mailto:obcina@starse.si" className="block text-teal-600 hover:underline">obcina@starse.si</a>
+                  
+                  <div className="flex items-start gap-2">
+                    <Mail size={18} className="mt-0.5 text-teal-600 shrink-0" />
+                    <div>
+                      <div className="font-medium">Pesnica</div>
+                      <a href="mailto:obcina.pesnica@pesnica.si" className="text-teal-600 hover:underline">
+                        obcina.pesnica@pesnica.si
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Mail size={16} className="mt-0.5 text-teal-500 shrink-0" />
-                  <div>
-                    <span className="font-medium">Hoče - Slivnica</span>
-                    <a href="mailto:obcina@hoce-slivnica.si" className="block text-teal-600 hover:underline">obcina@hoce-slivnica.si</a>
+                  
+                  <div className="flex items-start gap-2">
+                    <Mail size={18} className="mt-0.5 text-teal-600 shrink-0" />
+                    <div>
+                      <div className="font-medium">Šentilj</div>
+                      <a href="mailto:obcina@sentilj.si" className="text-teal-600 hover:underline">
+                        obcina@sentilj.si
+                      </a>
+                    </div>
                   </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Mail size={16} className="mt-0.5 text-teal-500 shrink-0" />
-                  <div>
-                    <span className="font-medium">Videm</span>
-                    <a href="mailto:info@videm.si" className="block text-teal-600 hover:underline">info@videm.si</a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Mail size={16} className="mt-0.5 text-teal-500 shrink-0" />
-                  <div>
-                    <span className="font-medium">Destrnik</span>
-                    <a href="mailto:obcina.destrnik@destrnik.si" className="block text-teal-600 hover:underline">obcina.destrnik@destrnik.si</a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Mail size={16} className="mt-0.5 text-teal-500 shrink-0" />
-                  <div>
-                    <span className="font-medium">Zreče</span>
-                    <a href="mailto:info@zrece.eu" className="block text-teal-600 hover:underline">info@zrece.eu</a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Mail size={16} className="mt-0.5 text-teal-500 shrink-0" />
-                  <div>
-                    <span className="font-medium">Rače - Fram</span>
-                    <a href="mailto:info@race-fram.si" className="block text-teal-600 hover:underline">info@race-fram.si</a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Mail size={16} className="mt-0.5 text-teal-500 shrink-0" />
-                  <div>
-                    <span className="font-medium">Pesnica</span>
-                    <a href="mailto:obcina.pesnica@pesnica.si" className="block text-teal-600 hover:underline">obcina.pesnica@pesnica.si</a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Mail size={16} className="mt-0.5 text-teal-500 shrink-0" />
-                  <div>
-                    <span className="font-medium">Poljčane</span>
-                    <a href="mailto:obcina@poljcane.si" className="block text-teal-600 hover:underline">obcina@poljcane.si</a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Mail size={16} className="mt-0.5 text-teal-500 shrink-0" />
-                  <div>
-                    <span className="font-medium">Šentilj</span>
-                    <a href="mailto:obcina@sentilj.si" className="block text-teal-600 hover:underline">obcina@sentilj.si</a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Mail size={16} className="mt-0.5 text-teal-500 shrink-0" />
-                  <div>
-                    <span className="font-medium">Maribor</span>
-                    <a href="mailto:mestna.obcina@maribor.si" className="block text-teal-600 hover:underline">mestna.obcina@maribor.si</a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Mail size={16} className="mt-0.5 text-teal-500 shrink-0" />
-                  <div>
-                    <span className="font-medium">Slovenska Bistrica</span>
-                    <a href="mailto:obcina@slov-bistrica.si" className="block text-teal-600 hover:underline">obcina@slov-bistrica.si</a>
-                  </div>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Mail size={16} className="mt-0.5 text-teal-500 shrink-0" />
-                  <div>
-                    <span className="font-medium">Slovenske Konjice</span>
-                    <span className="block text-gray-500">(ni podanega e-naslova)</span>
+                  
+                  <div className="flex items-start gap-2">
+                    <Mail size={18} className="mt-0.5 text-teal-600 shrink-0" />
+                    <div>
+                      <div className="font-medium">Slovenska Bistrica</div>
+                      <a href="mailto:obcina@slov-bistrica.si" className="text-teal-600 hover:underline">
+                        obcina@slov-bistrica.si
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
