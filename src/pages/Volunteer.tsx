@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet';
-import { ArrowRight, Clock, CalendarDays, Map, CheckCircle, Info, Pencil } from "lucide-react";
+import { useState } from 'react';
+import { ArrowRight, Clock, CalendarDays, Map, CheckCircle, Info, Pencil, Dog } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -7,8 +8,11 @@ import { Textarea } from "@/components/ui/textarea";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import Section from "@/components/shared/Section";
 import Layout from "@/components/layout/Layout";
+import DogWalkerForm from '@/components/volunteer/DogWalkerForm';
 
 const Volunteer = () => {
+  const [showDogWalkerForm, setShowDogWalkerForm] = useState(false);
+
   return (
     <Layout>
       <Helmet>
@@ -83,12 +87,21 @@ const Volunteer = () => {
                 </div>
               </AnimatedWrapper>
               
-              <AnimatedWrapper animation="fade-in" delay={200} className="mt-8">
+              <AnimatedWrapper animation="fade-in" delay={200} className="mt-8 flex gap-4">
                 <Link to="/termini">
                   <Button variant="primary" size="lg" className="gap-2">
                     Rezerviraj termin za sprehod <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>
+                <Button 
+                  variant="teal" 
+                  size="lg" 
+                  className="gap-2"
+                  onClick={() => setShowDogWalkerForm(true)}
+                >
+                  <Dog className="h-4 w-4" />
+                  Postani sprehajalec - Izpolni obrazec
+                </Button>
               </AnimatedWrapper>
             </div>
             
@@ -96,7 +109,11 @@ const Volunteer = () => {
               <AnimatedWrapper animation="fade-in" delay={300}>
                 <Card className="overflow-hidden h-full">
                   <div className="relative h-48 overflow-hidden">
-                    
+                    <img 
+                      src="/lovable-uploads/8f6e5321-07d2-4b39-aed4-01b468676d36.png" 
+                      alt="Sprehajanje psov" 
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                   <CardContent className="p-6">
                     <h3 className="text-xl font-semibold text-teal-800 mb-4 text-center">Kako se prijavim?</h3>
@@ -146,6 +163,12 @@ const Volunteer = () => {
             </div>
           </div>
         </Section>
+        
+        {/* Dog Walker Form */}
+        <DogWalkerForm 
+          isOpen={showDogWalkerForm} 
+          onClose={() => setShowDogWalkerForm(false)} 
+        />
         
         {/* Other Ways to Help Section */}
         <Section className="bg-teal-50/50" title="Druge oblike prostovoljstva" subtitle="Pomagajte na različne načine">

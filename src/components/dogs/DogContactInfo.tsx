@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Phone, Mail, Calendar, FileText } from "lucide-react";
+import { Phone, Mail, Calendar, FileText, Dog } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { 
@@ -30,6 +30,10 @@ const DogContactInfo = ({
 
   const handleFillQuestionnaire = () => {
     navigate(`/posvojitev/vprašalnik?animalName=${name}&animalType=Pes`);
+  };
+
+  const handleVolunteerClick = () => {
+    navigate('/prostovoljstvo');
   };
 
   return (
@@ -69,6 +73,10 @@ const DogContactInfo = ({
         <Button onClick={handleFillQuestionnaire} variant="teal" className="w-full">
           <FileText className="mr-2 h-4 w-4" />
           Izpolni vprašalnik
+        </Button>
+        <Button onClick={handleVolunteerClick} variant="lightTeal" className="w-full">
+          <Dog className="mr-2 h-4 w-4" />
+          Postani prostovoljec sprehajalec
         </Button>
       </CardFooter>
     </Card>
