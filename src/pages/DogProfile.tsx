@@ -1,3 +1,4 @@
+
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { Helmet } from "react-helmet";
@@ -480,6 +481,19 @@ const DogProfile = () => {
     enabled: !!id,
   });
 
+  // Find the previous and next dog IDs
+  const findAdjacentDogIds = () => {
+    const allDogIds = Object.keys(dogsDatabase).sort((a, b) => parseInt(a) - parseInt(b));
+    const currentIndex = allDogIds.indexOf(id || "");
+    
+    const prevDogId = currentIndex > 0 ? allDogIds[currentIndex - 1] : undefined;
+    const nextDogId = currentIndex < allDogIds.length - 1 ? allDogIds[currentIndex + 1] : undefined;
+    
+    return { prevDogId, nextDogId };
+  };
+
+  const { prevDogId, nextDogId } = findAdjacentDogIds();
+
   const handleScheduleAppointment = () => {
     navigate(`/termini?animalId=${dog?.id}&animalName=${dog?.name}&animalType=Pes`);
     toast({
@@ -568,10 +582,10 @@ const DogProfile = () => {
               </Tabs>
               
               <div className="flex flex-col mt-6 space-y-4">
-                <Button className="w-full" onClick={handleScheduleAppointment}>
+                <Button className="w-full text-black" onClick={handleScheduleAppointment}>
                   Rezerviraj termin za obisk
                 </Button>
-                <Button variant="teal" className="w-full" onClick={handleFillQuestionnaire}>
+                <Button variant="teal" className="w-full text-black" onClick={handleFillQuestionnaire}>
                   <FileText className="mr-2 h-5 w-5" />
                   Izpolni vprašalnik
                 </Button>
@@ -597,6 +611,8 @@ const DogProfile = () => {
                 name={dog.name}
                 contactInfo={dog.contactInfo}
                 handleScheduleAppointment={handleScheduleAppointment}
+                prevDogId={prevDogId}
+                nextDogId={nextDogId}
               />
             </div>
           </div>
