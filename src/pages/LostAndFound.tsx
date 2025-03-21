@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
@@ -7,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Search, PawPrint, Calendar, Info, Plus, Cat, Dog, Mail, Building, ArrowUpRight } from "lucide-react";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import Layout from "@/components/layout/Layout";
 import Section from "@/components/shared/Section";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
@@ -96,6 +96,8 @@ export default function LostAndFound() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterType, setFilterType] = useState("all");
   const [activeTab, setActiveTab] = useState("listings");
+  const [isLostFormOpen, setIsLostFormOpen] = useState(false);
+  const [isFoundFormOpen, setIsFoundFormOpen] = useState(false);
   
   const filteredLostPets = lostPets.filter(pet => {
     const matchesQuery = pet.name?.toLowerCase().includes(searchQuery.toLowerCase()) || 
@@ -120,35 +122,9 @@ export default function LostAndFound() {
     return matchesQuery;
   });
 
-  const openFormInNewWindow = (formType: "lost" | "found") => {
-    const url = `/izgubljeni-najdeni?form=${formType}`;
-    window.open(url, '_blank', 'width=800,height=900');
-  };
-
   const urlParams = new URLSearchParams(window.location.search);
   const formParam = urlParams.get('form');
   
-  if (formParam === 'lost' || formParam === 'found') {
-    return (
-      <Layout>
-        <Helmet>
-          <title>
-            {formParam === 'lost' ? 'Prijava izgubljene živali' : 'Prijava najdene živali'} | Zavetišče za živali Maribor
-          </title>
-        </Helmet>
-        <div className="pt-24 md:pt-32 pb-12">
-          <Section className="py-4">
-            <AnimatedWrapper animation="fade-in">
-              <div className="max-w-3xl mx-auto">
-                {formParam === 'lost' ? <LostAnimalForm /> : <FoundAnimalForm />}
-              </div>
-            </AnimatedWrapper>
-          </Section>
-        </div>
-      </Layout>
-    );
-  }
-
   return (
     <Layout>
       <Helmet>
@@ -169,28 +145,27 @@ export default function LostAndFound() {
               
               <div className="flex flex-col sm:flex-row gap-4 mb-6">
                 <Button 
-                  variant="teal" 
+                  variant="default" 
                   size="lg" 
-                  className="flex-1 py-8 flex-col h-auto"
-                  onClick={() => openFormInNewWindow("lost")}
+                  className="flex-1 py-8 flex-col h-auto bg-teal-500 hover:bg-teal-600 text-center"
+                  onClick={() => setIsLostFormOpen(true)}
                 >
                   <PawPrint size={32} className="mb-2" />
                   <span className="text-lg font-medium">Prijavi izgubljeno žival</span>
                 </Button>
                 <Button 
-                  variant="lightTeal" 
+                  variant="outline" 
                   size="lg" 
-                  className="flex-1 py-8 flex-col h-auto"
-                  onClick={() => openFormInNewWindow("found")}
+                  className="flex-1 py-8 flex-col h-auto border-teal-200 bg-white hover:bg-teal-50 text-teal-800 text-center"
+                  onClick={() => setIsFoundFormOpen(true)}
                 >
-                  <Search size={32} className="mb-2" />
+                  <Search size={32} className="mb-2 text-teal-600" />
                   <span className="text-lg font-medium">Prijavi najdeno žival</span>
                 </Button>
               </div>
               
               <p className="text-gray-600 text-center mb-6">
-                Izberite vrsto prijave, ki jo želite oddati. 
-                Obrazec se bo odprl v novem oknu.
+                Izberite vrsto prijave, ki jo želite oddati.
               </p>
               
               <div className="text-sm text-gray-500 border-t border-teal-100 pt-4">
@@ -454,7 +429,7 @@ export default function LostAndFound() {
                   variant="primary" 
                   size="lg"
                   className="gap-2 shadow-md"
-                  onClick={() => openFormInNewWindow("lost")}
+                  onClick={() => setIsLostFormOpen(true)}
                 >
                   <PawPrint size={18} />
                   Prijavi izgubljeno žival
@@ -463,7 +438,7 @@ export default function LostAndFound() {
                   variant="lightTeal" 
                   size="lg"
                   className="gap-2 shadow-md"
-                  onClick={() => openFormInNewWindow("found")}
+                  onClick={() => setIsFoundFormOpen(true)}
                 >
                   <Search size={18} />
                   Prijavi najdeno žival
@@ -473,6 +448,36 @@ export default function LostAndFound() {
           </TabsContent>
         </Tabs>
       </Section>
+
+      <Sheet open={isLostFormOpen} onOpenChange={setIsLostFormOpen}>
+        <SheetContent className="w-full sm:max-w-md md:max-w-xl overflow-y-auto">
+          <SheetHeader className="mb-6">
+            <SheetTitle className="text-2xl font-bold text-teal-800 flex items-center gap-2">
+              <PawPrint className="text-teal-600" />
+              Prijava izgubljene živali
+            </SheetTitle>
+            <SheetDescription>
+              Izpolnite obrazec za prijavo izgubljene živali
+            </SheetDescription>
+          </SheetHeader>
+          <LostAnimalForm onSuccess={() => setIsLostFormOpen(false)} />
+        </SheetContent>
+      </Sheet>
+
+      <Sheet open={isFoundFormOpen} onOpenChange={setIsFoundFormOpen}>
+        <SheetContent className="w-full sm:max-w-md md:max-w-xl overflow-y-auto">
+          <SheetHeader className="mb-6">
+            <SheetTitle className="text-2xl font-bold text-teal-800 flex items-center gap-2">
+              <Search className="text-teal-600" />
+              Prijava najdene živali
+            </SheetTitle>
+            <SheetDescription>
+              Izpolnite obrazec za prijavo najdene živali
+            </SheetDescription>
+          </SheetHeader>
+          <FoundAnimalForm onSuccess={() => setIsFoundFormOpen(false)} />
+        </SheetContent>
+      </Sheet>
 
       <Section className="py-12 bg-teal-50/50">
         <AnimatedWrapper animation="fade-in" className="max-w-5xl mx-auto">
@@ -672,3 +677,4 @@ export default function LostAndFound() {
     </Layout>
   );
 }
+

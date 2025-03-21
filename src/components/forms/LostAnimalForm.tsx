@@ -43,7 +43,11 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-const LostAnimalForm = () => {
+interface LostAnimalFormProps {
+  onSuccess?: () => void;
+}
+
+const LostAnimalForm = ({ onSuccess }: LostAnimalFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [files, setFiles] = useState<File[]>([]);
@@ -88,6 +92,13 @@ const LostAnimalForm = () => {
       await new Promise(r => setTimeout(r, 1500));
       
       setSubmitStatus('success');
+      
+      // Call onSuccess callback if provided
+      if (onSuccess) {
+        setTimeout(() => {
+          onSuccess();
+        }, 2000);
+      }
       
       form.reset();
       setFiles([]);

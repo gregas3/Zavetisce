@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -44,7 +43,11 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-const FoundAnimalForm = () => {
+interface FoundAnimalFormProps {
+  onSuccess?: () => void;
+}
+
+const FoundAnimalForm = ({ onSuccess }: FoundAnimalFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [files, setFiles] = useState<File[]>([]);
@@ -73,33 +76,30 @@ const FoundAnimalForm = () => {
     setSubmitStatus('idle');
     
     try {
-      // Create form data for sending files
       const formData = new FormData();
       
-      // Add form fields to formData
       Object.entries(data).forEach(([key, value]) => {
         formData.append(key, value as string);
       });
       
-      // Add files
       files.forEach((file, index) => {
         formData.append(`file-${index}`, file);
       });
       
-      // Add form type
       formData.append('formType', 'found-animal');
       
-      // In a real application, you would send this to your API endpoint
-      // For now, we'll simulate a successful response after a delay
       console.log("Form data would be sent:", Object.fromEntries(formData));
       
-      // Simulate API delay
       await new Promise(r => setTimeout(r, 1500));
       
-      // Simulated successful submission
       setSubmitStatus('success');
       
-      // Reset form
+      if (onSuccess) {
+        setTimeout(() => {
+          onSuccess();
+        }, 2000);
+      }
+      
       form.reset();
       setFiles([]);
     } catch (error) {
