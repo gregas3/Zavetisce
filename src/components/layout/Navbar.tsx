@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { NavbarLogo } from "./navbar/NavbarLogo";
@@ -13,11 +13,7 @@ export default function Navbar() {
   const [scrollingUp, setScrollingUp] = useState(false);
   const [atBottom, setAtBottom] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [isScrolling, setIsScrolling] = useState(false);
-  const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  
   const isMobile = useIsMobile();
   const location = useLocation();
   const navigate = useNavigate();
@@ -27,67 +23,26 @@ export default function Navbar() {
       const currentScrollY = window.scrollY;
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
-      
-      // Detect scrolling activity
-      setIsScrolling(true);
-      
-      // Determine scroll direction
       if (currentScrollY < lastScrollY) {
         setScrollingUp(true);
-        setIsVisible(true); // Always show when scrolling up
-      } else if (currentScrollY > lastScrollY) {
+      } else {
         setScrollingUp(false);
-        // Only hide when actively scrolling down and not at top or bottom
-        if (currentScrollY > 10 && windowHeight + currentScrollY < documentHeight - 50) {
-          setIsVisible(false);
-        }
       }
-      
-      // Handle scrolled state
       if (currentScrollY > 10) {
         setScrolled(true);
       } else {
         setScrolled(false);
-        setIsVisible(true); // Always show navbar when at top of page
       }
-      
-      // Handle bottom of page
       if (windowHeight + currentScrollY >= documentHeight - 50) {
         setAtBottom(true);
-        setIsVisible(true); // Always show navbar when at bottom of page
       } else {
         setAtBottom(false);
       }
-      
       setLastScrollY(currentScrollY);
-      
-      // Reset the timeout on every scroll event
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-      
-      // Set a timeout to detect when scrolling stops
-      scrollTimeoutRef.current = setTimeout(() => {
-        setIsScrolling(false);
-        setIsVisible(true); // Show navbar when scrolling stops
-      }, 400); // Even shorter timeout for better responsiveness
     };
-    
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (scrollTimeoutRef.current) {
-        clearTimeout(scrollTimeoutRef.current);
-      }
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
-
-  // Add another effect to ensure navbar shows when user is stationary
-  useEffect(() => {
-    if (!isScrolling) {
-      setIsVisible(true);
-    }
-  }, [isScrolling]);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -112,14 +67,12 @@ export default function Navbar() {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled 
-          ? scrollingUp || atBottom || !isScrolling
-            ? "py-3 bg-gradient-to-b from-teal-700/80 to-teal-800/70 backdrop-blur-[4px]" // Scrolling up or at bottom or not scrolling - visible, but lighter
+          ? scrollingUp || atBottom 
+            ? "py-3 bg-gradient-to-b from-teal-700/80 to-teal-800/70 backdrop-blur-[4px]" // Scrolling up or at bottom - visible, but lighter
             : "py-2 bg-transparent" // Scrolling down - transparent
           : "py-4 bg-gradient-to-b from-teal-700/70 to-teal-800/60 backdrop-blur-[4px]" // At top - fully visible, but lighter
-      } ${
-        isVisible ? 'translate-y-0' : '-translate-y-full'
       }`} 
       style={{ borderBottom: 'none' }}
     >
