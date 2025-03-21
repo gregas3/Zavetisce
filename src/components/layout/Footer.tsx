@@ -32,7 +32,7 @@ export default function Footer() {
                 <Instagram size={18} />
               </a>
               <a
-                href="mailto:info@zavetisce-mb.si"
+                href="mailto:zavetisce.mb@snaga-mb.si"
                 className="h-9 w-9 flex items-center justify-center rounded-full bg-teal-500/20 text-teal-300 hover:bg-teal-500 hover:text-white transition-normal"
                 aria-label="Email"
               >
@@ -52,20 +52,35 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-3">
                 <Phone size={18} className="text-teal-400 flex-shrink-0" />
-                <a
-                  href="tel:+38640880839"
-                  className="text-teal-100/80 hover:text-teal-300 transition-normal"
-                >
-                  +386 40 880 839
-                </a>
+                <div className="flex flex-col">
+                  <a
+                    href="tel:024801660"
+                    className="text-teal-100/80 hover:text-teal-300 transition-normal"
+                  >
+                    02 480 16 60
+                  </a>
+                  <span className="text-xs text-teal-100/60">Telefonska številka</span>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Phone size={18} className="text-teal-400 flex-shrink-0" />
+                <div className="flex flex-col">
+                  <a
+                    href="tel:031788822"
+                    className="text-teal-100/80 hover:text-teal-300 transition-normal"
+                  >
+                    031-788-822
+                  </a>
+                  <span className="text-xs text-teal-100/60">Številka za nujne primere</span>
+                </div>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail size={18} className="text-teal-400 flex-shrink-0" />
                 <a
-                  href="mailto:info@zavetisce-mb.si"
+                  href="mailto:zavetisce.mb@snaga-mb.si"
                   className="text-teal-100/80 hover:text-teal-300 transition-normal"
                 >
-                  info@zavetisce-mb.si
+                  zavetisce.mb@snaga-mb.si
                 </a>
               </div>
             </div>
