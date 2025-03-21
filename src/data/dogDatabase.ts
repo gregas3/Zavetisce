@@ -397,4 +397,29 @@ export const dogsDatabase: Record<string, DogData> = {
     ],
     videos: [
       {
-        thumbnail: "/lovable-uploads/d17c98e9-d9a9-4e46-947c-3
+        thumbnail: "/lovable-uploads/d17c98e9-d9a9-4e46-947c-373b929f0b53.png",
+        url: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_1mb.mp4",
+        title: "Bono na sprehodih"
+      }
+    ],
+    age: "1 leto",
+    breed: "Mešanec",
+    gender: "Samec",
+    size: "Srednji",
+    color: "Rjav",
+    status: "Na voljo za posvojitev",
+    microchipped: true,
+    neutered: true,
+    vaccinated: true,
+    description: "Bono je prijazen, živahen in igriv mladič, ki išče aktivno družino. Dobro se razume z drugimi psi in je zelo učljiv.",
+    suitableFor: "Aktivne družine, domovi z drugimi psi, izkušeni lastniki",
+    notSuitableFor: "Stanovanja brez dostopa do vrta, neaktivni lastniki",
+    additionalInfo: "Bono je bil sprejet v zavetišče 01.10.2023. Rojen je bil približno 15.10.2022.",
+    dateArrived: "2023-10-01",
+    adoptionRequirements: "- Aktivno gospodinjstvo\n- Dovolj časa za sprehode in igro\n- Izkušnje s psi z veliko energije\n- Vrt ali reden dostop do odprtih površin",
+    contactInfo: {
+      phone: "+386 (0)2 480 16 60",
+      email: "zavetisce.mb@snaga-mb.si"
+    }
+  }
+};
