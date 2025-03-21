@@ -3,7 +3,6 @@ import React from "react";
 import { Phone } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 const FloatingContactButton = () => {
   return (
@@ -13,7 +12,7 @@ const FloatingContactButton = () => {
           <Button 
             size="icon" 
             variant="darkTeal" 
-            className="h-14 w-14 rounded-full shadow-lg hover:scale-105 transition-all duration-300"
+            className="h-14 w-14 rounded-full shadow-lg hover:scale-105 transition-all duration-300 button-pulse"
             aria-label="Contact Shelter"
           >
             <Phone className="h-6 w-6" />
