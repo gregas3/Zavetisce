@@ -1,16 +1,16 @@
+
 import { Helmet } from 'react-helmet';
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Search } from 'lucide-react';
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Section from "@/components/shared/Section";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { dogs, Dog } from "@/data/dogsData";
+import DogCard from "@/components/dogs/DogCard";
 
 const DogsAdoption = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -133,67 +133,6 @@ const DogsAdoption = () => {
       
       <Footer />
     </>
-  );
-};
-
-interface DogCardProps {
-  dog: Dog;
-}
-
-const DogCard = ({ dog }: DogCardProps) => {
-  const navigate = useNavigate();
-  
-  const handleCardClick = () => {
-    navigate(`/posvojitev/psi/${dog.id}`);
-  };
-  
-  return (
-    <Card 
-      className="overflow-hidden group hover-lift transition-normal h-full cursor-pointer"
-      onClick={handleCardClick}
-    >
-      <div className="aspect-square relative overflow-hidden">
-        <img
-          src={dog.image}
-          alt={dog.name}
-          className="object-cover w-full h-full transition-normal group-hover:scale-105"
-          loading="lazy"
-        />
-      </div>
-      <CardContent className="p-5">
-        <div className="flex justify-between items-start mb-2">
-          <h3 className="text-xl font-bold group-hover:text-primary transition-normal">
-            {dog.name}
-          </h3>
-          <Badge variant={dog.gender === 'samec' ? 'default' : 'secondary'}>
-            {dog.gender}
-          </Badge>
-        </div>
-        <div className="text-sm text-muted-foreground mb-3">
-          {dog.breed} • {dog.age} • {dog.size}
-        </div>
-        <p className="line-clamp-3 mb-4 text-muted-foreground">
-          {dog.description}
-        </p>
-        <div className="flex flex-wrap gap-1 mb-4">
-          {dog.characteristics.slice(0, 3).map((char, i) => (
-            <Badge key={i} variant="outline" className="bg-primary/5">
-              {char}
-            </Badge>
-          ))}
-          {dog.characteristics.length > 3 && (
-            <Badge variant="outline" className="bg-primary/5">
-              +{dog.characteristics.length - 3}
-            </Badge>
-          )}
-        </div>
-        <Button asChild className="w-full">
-          <Link to={`/posvojitev/psi/${dog.id}`} onClick={(e) => e.stopPropagation()}>
-            Več informacij
-          </Link>
-        </Button>
-      </CardContent>
-    </Card>
   );
 };
 

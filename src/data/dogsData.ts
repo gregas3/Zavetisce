@@ -1,187 +1,227 @@
-
-// Dogs database shared between pages
 export interface Dog {
   id: number;
   name: string;
+  gender: 'samec' | 'samica';
   breed: string;
   age: string;
-  gender: string;
   size: string;
-  image: string;
   description: string;
   characteristics: string[];
-  vaccinated: boolean;
-  neutered: boolean;
-  goodWith: string[];
+  image: string;
+  images?: string[]; // Add support for multiple images
+  vaccination?: string;
+  castration?: string;
+  chip?: string;
+  health?: string;
+  requirements?: string[];
+  adoptionProcess?: string;
+  videos?: {
+    thumbnail: string;
+    url: string;
+    title: string;
+  }[];
 }
 
 export const dogs: Dog[] = [
   {
-    id: 12,
-    name: "Bono",
-    breed: "Mešanec",
-    age: "4 leta",
-    gender: "samec",
-    size: "velik",
-    image: "/lovable-uploads/d17c98e9-d9a9-4e46-947c-373b929f0b53.png",
-    description: "Bono je večji samec. Na sprehodu je lepo vodljiv, poslušen in umirjen. Potrebuje odločnega in izkušenega skrbnika, ki se bo z njim aktivno ukvarjal. Ni primeren za družine z majhnimi otroki.",
-    characteristics: ["vodljiv", "poslušen", "umirjen", "potrebuje izkušenega lastnika"],
-    vaccinated: true,
-    neutered: true,
-    goodWith: ["odrasli", "izkušeni lastniki", "aktivni ljudje"]
-  },
-  {
-    id: 11,
-    name: "Bolt",
-    breed: "Mešanec",
-    age: "2 leti",
-    gender: "samec",
-    size: "velik",
-    image: "/lovable-uploads/2c83f5ef-126f-466b-b39a-e3b59e673a45.png",
-    description: "Bolt je dvoletni samec večje rasti, ki te s svojim videzom takoj očara. Je prijazen, igriv, razposajen in hkrati tudi odličen spremljevalec na sprehodih. Je kastriran.",
-    characteristics: ["prijazen", "igriv", "razposajen", "čipiran"],
-    vaccinated: true,
-    neutered: true,
-    goodWith: ["aktivni ljudje", "izkušeni lastniki", "družine"]
-  },
-  {
-    id: 10,
-    name: "Zum",
-    breed: "Sibirski haski",
-    age: "3 leta",
-    gender: "samec",
-    size: "velik",
-    image: "/lovable-uploads/906ab7e3-5336-465c-af1c-f705e6e8bedf.png",
-    description: "Zum je samec v tipu pasme sibirski haski. Star je približno tri leta in je čipiran, cepljen ter kastriran. Potrebuje aktivnega skrbnika, ker pa je plašne narave in potrebuje nekaj časa, da se navadi novih ljudi, se od posvojiteljev pričakuje tudi umirjenost in potrpežljivost.",
-    characteristics: ["aktiven", "plašen", "potrpežljiv", "čipiran"],
-    vaccinated: true,
-    neutered: true,
-    goodWith: ["aktivni ljudje", "potrpežljivi lastniki", "izkušeni lastniki"]
-  },
-  {
-    id: 9,
-    name: "Bella",
-    breed: "Mešanec",
-    age: "2 leti",
-    gender: "samica",
-    size: "velika",
-    image: "/lovable-uploads/cd9908b3-76f2-4fd9-a3d9-b739d1b8721f.png",
-    description: "Skoraj dve leti stara psička, večje rasti je polna energije. Obožuje igro, aktivne sprehode, zaradi svoje energičnosti pa se najbolje ujame z psi, ki uživajo v energičnih igrah. Potrebuje nekoga, ki ji bo zagotavljal dovolj gibanja in mentalnih izzivov. Je sterilizirana, čipirana, cepljena.",
-    characteristics: ["energična", "aktivna", "igriva", "družabna"],
-    vaccinated: true,
-    neutered: true,
-    goodWith: ["aktivni ljudje", "drugi psi", "izkušeni lastniki"]
-  },
-  {
-    id: 8,
-    name: "Roki",
-    breed: "Mešanec",
-    age: "8 let",
-    gender: "samec",
-    size: "srednji",
-    image: "/lovable-uploads/d154fae5-9f35-4f95-9308-55b5d9599de4.png",
-    description: "Roki je zaradi smrti svoje lastnice pristal v zavetišču. Star je dobrih 8 let, je kastriran in osnovno veterinarsko urejen. Je zelo prijazen in lepo vodljiv, navajen je notranjega bivanja v družbi ljudi. Z drugimi psi se ne razume najbolje. Roki išče ljubečo in odgovorno družino, ki mu bo ponudila miren dom.",
-    characteristics: ["prijazen", "vodljiv", "navajen notranjega bivanja", "starejši"],
-    vaccinated: true,
-    neutered: true,
-    goodWith: ["odrasli", "starejši"]
-  },
-  {
-    id: 7,
-    name: "Ajša",
-    breed: "Mešanec",
-    age: "6 mesecev",
-    gender: "samica",
-    size: "srednja",
-    image: "/lovable-uploads/9ec09e1c-3793-4fa6-8dd5-808040227dae.png",
-    description: "Ajša je 6 mesecev stara psička, izredno igriva, čuječa in ljubezniva, seveda zaradi let tudi nagajiva, kar je popolnoma normalno za njeno starost. Trenutno tehta 20 kg, bo še zrasla in postala večja psička. Išče odgovoren in ljubeč dom, kjer ji bodo nudili dovolj pozornosti, sprehodov in igre.",
-    characteristics: ["igriva", "čuječa", "ljubezniva", "nagajiva"],
-    vaccinated: true,
-    neutered: true,
-    goodWith: ["otroci", "drugi psi"]
-  },
-  {
     id: 1,
-    name: "Reks",
-    breed: "Mešanec",
-    age: "2 leti",
-    gender: "samec",
-    size: "srednje velik",
-    image: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-    description: "Reks je prijazen in energičen pes z veliko ljubezni. Rad ima dolge sprehode in igranje. Išče aktivno družino, ki mu bo nudila dovolj gibanja in pozornosti.",
-    characteristics: ["prijazen", "energičen", "igriv", "družaben"],
-    vaccinated: true,
-    neutered: true,
-    goodWith: ["otroci", "drugi psi"]
+    name: 'Bim',
+    gender: 'samec',
+    breed: 'Mešanec',
+    age: '2 leti',
+    size: 'Srednji',
+    description: 'Bim je prijazen in igriv pes, ki išče ljubeč dom. Je zelo energičen in potrebuje veliko gibanja.',
+    characteristics: ['Prijazen', 'Iglriv', 'Energičen', 'Inteligenten'],
+    image: '/lovable-uploads/0674c8f5-b223-455c-8b15-0fa594099fad.png',
+    vaccination: 'cepljen',
+    castration: 'kastriran',
+    chip: 'čipiran',
+    health: 'zdrav',
+    requirements: ['Veliko gibanja', 'Prijazen lastnik'],
+    adoptionProcess: 'Obisk v zavetišču, pogovor, podpis pogodbe',
+    videos: [
+      {
+        thumbnail: '/placeholder-dog-video-thumbnail.png',
+        url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        title: 'Bim se igra'
+      }
+    ]
   },
   {
     id: 2,
-    name: "Lara",
-    breed: "Mešanec",
-    age: "7 mesecev",
-    gender: "samica",
-    size: "manjša",
-    image: "https://images.unsplash.com/photo-1583511655826-05700442b31b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1588&q=80",
-    description: "Lara je mladič poln energije in radovednosti, ki išče aktivno družino. Zelo je živahna in rada raziskuje novo okolico. Potrebuje veliko gibanja in stimulacije.",
-    characteristics: ["živahna", "radovedna", "prijazna", "učljiva"],
-    vaccinated: true,
-    neutered: false,
-    goodWith: ["otroci", "drugi psi", "mačke"]
+    name: 'Luna',
+    gender: 'samica',
+    breed: 'Labradorec',
+    age: '1 leto',
+    size: 'Velik',
+    description: 'Luna je nežna in ljubezniva psička, ki obožuje otroke. Je zelo poslušna in hitro učljiva.',
+    characteristics: ['Nežna', 'Ljubezniva', 'Poslušna', 'Učljiva'],
+    image: '/lovable-uploads/072fa08a-6143-4c19-8c93-afd108144826.png',
+    vaccination: 'cepljena',
+    castration: 'sterilizirana',
+    chip: 'čipirana',
+    health: 'zdrava',
+    requirements: ['Dostop do vrta', 'Igre z otroki'],
+    adoptionProcess: 'Obisk v zavetišču, pogovor, podpis pogodbe'
   },
   {
     id: 3,
-    name: "Bela",
-    breed: "Labrador",
-    age: "3 leta",
-    gender: "samica",
-    size: "velika",
-    image: "https://images.unsplash.com/photo-1591769225440-811ad7d6eab2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80",
-    description: "Bela je prijazna in mirna psička, ki obožuje družbo in crkljanje. Zelo je nežna in potrpežljiva. Rada se crklja in uživa v mirnem okolju.",
-    characteristics: ["mirna", "nežna", "potrpežljiva", "ljubeča"],
-    vaccinated: true,
-    neutered: true,
-    goodWith: ["otroci", "starejši", "drugi psi", "mačke"]
+    name: 'Rex',
+    gender: 'samec',
+    breed: 'Nemški ovčar',
+    age: '3 leta',
+    size: 'Velik',
+    description: 'Rex je zvest in zaščitniški pes, ki potrebuje izkušenega lastnika. Je zelo inteligenten in potrebuje veliko mentalne stimulacije.',
+    characteristics: ['Zvest', 'Zaščitniški', 'Inteligenten', 'Potrebuje izkušenega lastnika'],
+    image: '/lovable-uploads/098b937d-c365-4e7b-b760-6b167ee1a376.png',
+    vaccination: 'cepljen',
+    castration: 'kastriran',
+    chip: 'čipiran',
+    health: 'zdrav',
+    requirements: ['Izkušen lastnik', 'Veliko mentalne stimulacije'],
+    adoptionProcess: 'Obisk v zavetišču, pogovor, podpis pogodbe'
   },
   {
     id: 4,
-    name: "Max",
-    breed: "Nemški ovčar",
-    age: "4 leta",
-    gender: "samec",
-    size: "velik",
-    image: "https://images.unsplash.com/photo-1589941013453-ec89f98c748d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-    description: "Max je inteligenten in zaščitniški pes, ki je zelo zvest. Je zelo pameten in se hitro uči. Potrebuje dosledno vodenje in redno aktivnost.",
-    characteristics: ["inteligenten", "zvest", "zaščitniški", "aktiven"],
-    vaccinated: true,
-    neutered: true,
-    goodWith: ["odrasli", "izkušeni lastniki"]
+    name: 'Mici',
+    gender: 'samica',
+    breed: 'Mešanka',
+    age: '6 mesecev',
+    size: 'Majhen',
+    description: 'Mici je majhna in prikupna psička, ki išče topel dom. Je zelo igriva in rada se crklja.',
+    characteristics: ['Prikupna', 'Iglriva', 'Crkljiva'],
+    image: '/lovable-uploads/104a72ef-7c74-4656-b79d-5995c98a84cf.png',
+    vaccination: 'cepljena',
+    castration: 'še ni sterilizirana',
+    chip: 'čipirana',
+    health: 'zdrava',
+    requirements: ['Topel dom', 'Veliko ljubezni'],
+    adoptionProcess: 'Obisk v zavetišču, pogovor, podpis pogodbe'
   },
   {
     id: 5,
-    name: "Piki",
-    breed: "Jack Russell terier",
-    age: "1 leto",
-    gender: "samec",
-    size: "majhen",
-    image: "https://images.unsplash.com/photo-1563321769-3100f782c24d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
-    description: "Piki je izjemno živahen in energičen terier, ki potrebuje veliko aktivnosti. Je zelo igriv in vedno pripravljen na akcijo. Potrebuje aktivnega lastnika.",
-    characteristics: ["energičen", "igriv", "inteligentan", "pogumen"],
-    vaccinated: true,
-    neutered: false,
-    goodWith: ["aktivni ljudje", "izkušeni lastniki"]
+    name: 'Max',
+    gender: 'samec',
+    breed: 'Borderski škotski ovčar',
+    age: '5 let',
+    size: 'Srednji',
+    description: 'Max je izredno inteligenten pes, ki potrebuje veliko aktivnosti. Primeren je za lastnike, ki imajo izkušnje s pasjo poslušnostjo in agility.',
+    characteristics: ['Inteligenten', 'Aktiven', 'Potrebuje izkušnje', 'Agility'],
+    image: '/lovable-uploads/12345678-1234-1234-1234-123456789012.png',
+     vaccination: 'cepljen',
+    castration: 'kastriran',
+    chip: 'čipiran',
+    health: 'zdrav',
+    requirements: ['Izkušnje s pasjo poslušnostjo', 'Veliko aktivnosti'],
+    adoptionProcess: 'Obisk v zavetišču, pogovor, podpis pogodbe'
   },
   {
     id: 6,
-    name: "Luna",
-    breed: "Border collie",
-    age: "2 leti",
-    gender: "samica",
-    size: "srednja",
-    image: "https://images.unsplash.com/photo-1503256207526-0d5d80fa2f47?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1466&q=80",
-    description: "Luna je izjemno inteligentna in delovna psička, ki potrebuje mentalne izzive. Je zelo učljiva in potrebuje veliko mentalne stimulacije. Primerna za aktivne lastnike.",
-    characteristics: ["inteligentna", "delovna", "učljiva", "aktivna"],
-    vaccinated: true,
-    neutered: true,
-    goodWith: ["aktivni ljudje", "odrasli", "drugi psi"]
+    name: 'Bella',
+    gender: 'samica',
+    breed: 'Zlati prinašalec',
+    age: '4 leta',
+    size: 'Velik',
+    description: 'Bella je prijazna in ljubezniva psica, ki obožuje družbo ljudi. Je potrpežljiva in primerna za družine z otroki.',
+    characteristics: ['Prijazna', 'Ljubezniva', 'Potrpežljiva', 'Primerna za otroke'],
+    image: '/lovable-uploads/22223333-4444-5555-6666-777788889999.png',
+    vaccination: 'cepljena',
+    castration: 'sterilizirana',
+    chip: 'čipirana',
+    health: 'zdrava',
+    requirements: ['Družba ljudi', 'Potrpežljivost'],
+    adoptionProcess: 'Obisk v zavetišču, pogovor, podpis pogodbe'
+  },
+  {
+    id: 7,
+    name: 'Charlie',
+    gender: 'samec',
+    breed: 'Jack Russell terier',
+    age: '1 leto',
+    size: 'Majhen',
+    description: 'Charlie je energičen in igriv pes, ki potrebuje veliko gibanja. Je inteligenten in rad se uči novih trikov.',
+    characteristics: ['Energičen', 'Iglriv', 'Inteligenten', 'Rad se uči'],
+    image: '/lovable-uploads/33334444-5555-6666-7777-888899990000.png',
+    vaccination: 'cepljen',
+    castration: 'kastriran',
+    chip: 'čipiran',
+    health: 'zdrav',
+    requirements: ['Veliko gibanja', 'Učenje novih trikov'],
+    adoptionProcess: 'Obisk v zavetišču, pogovor, podpis pogodbe'
+  },
+  {
+    id: 8,
+    name: 'Lola',
+    gender: 'samica',
+    breed: 'Francoski buldog',
+    age: '3 leta',
+    size: 'Majhen',
+    description: 'Lola je prijazna in ljubezniva psica, ki obožuje crkljanje. Je potrpežljiva in primerna za življenje v stanovanju.',
+    characteristics: ['Prijazna', 'Ljubezniva', 'Crkljanje', 'Primerna za stanovanje'],
+    image: '/lovable-uploads/44445555-6666-7777-8888-999900001111.png',
+    vaccination: 'cepljena',
+    castration: 'sterilizirana',
+    chip: 'čipirana',
+    health: 'zdrava',
+    requirements: ['Crkljanje', 'Življenje v stanovanju'],
+    adoptionProcess: 'Obisk v zavetišču, pogovor, podpis pogodbe'
+  },
+  {
+    id: 9,
+    name: 'Rocky',
+    gender: 'samec',
+    breed: 'Staffordshire bull terier',
+    age: '2 leti',
+    size: 'Srednji',
+    description: 'Rocky je močan in energičen pes, ki potrebuje izkušenega lastnika. Je zvest in zaščitniški do svoje družine.',
+    characteristics: ['Močan', 'Energičen', 'Potrebuje izkušnje', 'Zvest', 'Zaščitniški'],
+    image: '/lovable-uploads/55556666-7777-8888-9999-000011112222.png',
+    vaccination: 'cepljen',
+    castration: 'kastriran',
+    chip: 'čipiran',
+    health: 'zdrav',
+    requirements: ['Izkušen lastnik', 'Zvestoba', 'Zaščita'],
+    adoptionProcess: 'Obisk v zavetišču, pogovor, podpis pogodbe'
+  },
+  {
+    id: 10,
+    name: 'Daisy',
+    gender: 'samica',
+    breed: 'Shih Tzu',
+    age: '5 let',
+    size: 'Majhen',
+    description: 'Daisy je prijazna in ljubezniva psica, ki obožuje družbo ljudi. Je potrpežljiva in primerna za starejše ljudi.',
+    characteristics: ['Prijazna', 'Ljubezniva', 'Potrpežljiva', 'Primerna za starejše'],
+    image: '/lovable-uploads/66667777-8888-9999-0000-111122223333.png',
+    vaccination: 'cepljena',
+    castration: 'sterilizirana',
+    chip: 'čipirana',
+    health: 'zdrava',
+    requirements: ['Družba ljudi', 'Potrpežljivost', 'Primerna za starejše'],
+    adoptionProcess: 'Obisk v zavetišču, pogovor, podpis pogodbe'
   }
 ];
+
+// For each dog in the dogs array, add an 'images' property that includes the main image plus additional dummy images
+const dogsWithMultipleImages = dogs.map(dog => {
+  // Generate array with the main image and additional sample images
+  // This is just a temporary solution for demonstration purposes
+  const additionalImages = [
+    "/lovable-uploads/0674c8f5-b223-455c-8b15-0fa594099fad.png",
+    "/lovable-uploads/072fa08a-6143-4c19-8c93-afd108144826.png",
+    "/lovable-uploads/098b937d-c365-4e7b-b760-6b167ee1a376.png"
+  ];
+  
+  // Create a unique set of images for each dog by selecting different additional images
+  const uniqueAdditionalImages = additionalImages.filter((_, index) => 
+    index % (dog.id % 3 + 1) === 0  // This formula creates variety in image selection
+  );
+  
+  return {
+    ...dog,
+    images: [dog.image, ...uniqueAdditionalImages].slice(0, 3) // Limit to 3 images total
+  };
+});
+
+// Replace the original dogs array with the new one that includes multiple images
+export const dogsData = dogsWithMultipleImages;
