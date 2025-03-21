@@ -123,16 +123,18 @@ export default function Navbar() {
   }, [isOpen]);
 
   return (
-    <AnimatedWrapper animation="none" className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isOpen 
-        ? "py-3 bg-gradient-to-b from-teal-700/90 to-teal-800/80 backdrop-blur-[4px] shadow-md" // Always fully visible when menu is open
-        : scrolled 
-          ? isScrolling && !scrollingUp && !atBottom && !showNavbar
-            ? "py-0 -translate-y-full opacity-0" // Hide when scrolling down
-            : "py-3 bg-gradient-to-b from-teal-700/80 to-teal-800/70 backdrop-blur-[4px] shadow-md" // Show when scrolling up, stopped, or at bottom
-          : "py-4 bg-gradient-to-b from-teal-700/70 to-teal-800/60 backdrop-blur-[4px]" // At top
-    }`} 
-    style={{ borderBottom: 'none' }}
+    <AnimatedWrapper 
+      animation="none" 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isOpen 
+          ? "py-3 bg-gradient-to-b from-teal-700/90 to-teal-800/80 backdrop-blur-[4px] shadow-md" // Always fully visible when menu is open
+          : scrolled 
+            ? isScrolling && !scrollingUp && !atBottom && !showNavbar
+              ? "py-0 -translate-y-full opacity-0" // Hide when scrolling down
+              : "py-3 bg-gradient-to-b from-teal-700/80 to-teal-800/70 backdrop-blur-[4px] shadow-md" // Show when scrolling up, stopped, or at bottom
+            : "py-4 bg-gradient-to-b from-teal-700/70 to-teal-800/60 backdrop-blur-[4px]" // At top
+      }`}
+      style={{ borderBottom: 'none' }}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">

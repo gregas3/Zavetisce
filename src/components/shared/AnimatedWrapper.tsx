@@ -1,5 +1,5 @@
 
-import { ReactNode, useEffect, useRef } from 'react';
+import { ReactNode, useEffect, useRef, CSSProperties } from 'react';
 
 interface AnimatedWrapperProps {
   children: ReactNode;
@@ -7,6 +7,7 @@ interface AnimatedWrapperProps {
   animation?: 'fade-in' | 'zoom-in' | 'slide-up' | 'slide-in-right' | 'fade-in-up' | 'none' | 'float' | 'bounce-slow' | 'shake';
   delay?: number;
   threshold?: number;
+  style?: CSSProperties;
 }
 
 export default function AnimatedWrapper({
@@ -15,6 +16,7 @@ export default function AnimatedWrapper({
   animation = 'fade-in',
   delay = 0,
   threshold = 0.1,
+  style,
 }: AnimatedWrapperProps) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -74,7 +76,7 @@ export default function AnimatedWrapper({
   }
 
   return (
-    <div ref={ref} className={`${animationClasses} ${className}`}>
+    <div ref={ref} className={`${animationClasses} ${className}`} style={style}>
       {children}
     </div>
   );
