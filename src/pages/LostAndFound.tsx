@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
@@ -5,7 +6,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Search, PawPrint, Calendar, Info, Plus, Cat, Dog, Mail, Building } from "lucide-react";
+import { MapPin, Search, PawPrint, Calendar, Info, Plus, Cat, Dog, Mail, Building, ArrowUpRight } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import Section from "@/components/shared/Section";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
@@ -356,7 +357,6 @@ export default function LostAndFound() {
                                   <div className="pt-2 border-t border-gray-100">
                                     <Button variant="lightTeal" size="sm" className="w-full gap-1">
                                       <span>Več informacij</span>
-                                      <ArrowUpRight size={16} />
                                     </Button>
                                   </div>
                                 </CardContent>
@@ -427,7 +427,6 @@ export default function LostAndFound() {
                                   <div className="pt-2 border-t border-gray-100">
                                     <Button variant="lightTeal" size="sm" className="w-full gap-1">
                                       <span>Več informacij</span>
-                                      <ArrowUpRight size={16} />
                                     </Button>
                                   </div>
                                 </CardContent>
@@ -660,4 +659,16 @@ export default function LostAndFound() {
                   <Mail size={18} className="mt-1 text-teal-600 shrink-0" />
                   <div>
                     <div className="font-medium text-gray-900">Šentilj</div>
-                    <a href="mailto:obcina@sentilj.si" className="
+                    <a href="mailto:obcina@sentilj.si" className="text-teal-600 hover:underline">
+                      obcina@sentilj.si
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </AnimatedWrapper>
+      </Section>
+    </Layout>
+  );
+}
