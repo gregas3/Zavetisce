@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
@@ -176,7 +175,6 @@ export default function LostAndFound() {
                 >
                   <PawPrint size={32} className="mb-2" />
                   <span className="text-lg font-medium">Prijavi izgubljeno žival</span>
-                  <ExternalLink size={16} className="ml-1" />
                 </Button>
                 <Button 
                   variant="lightTeal" 
@@ -186,7 +184,6 @@ export default function LostAndFound() {
                 >
                   <Search size={32} className="mb-2" />
                   <span className="text-lg font-medium">Prijavi najdeno žival</span>
-                  <ExternalLink size={16} className="ml-1" />
                 </Button>
               </div>
               
@@ -202,7 +199,6 @@ export default function LostAndFound() {
             </div>
           </AnimatedWrapper>
 
-          {/* New section with municipalities */}
           <AnimatedWrapper animation="fade-in" className="max-w-3xl mx-auto mt-8">
             <div className="bg-white/70 backdrop-blur-sm rounded-xl p-6 md:p-10 shadow-lg border border-teal-100">
               <h3 className="text-xl font-semibold text-teal-800 mb-4 flex items-center">
