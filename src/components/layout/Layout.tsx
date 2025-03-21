@@ -13,6 +13,8 @@ const Layout = ({ children }: LayoutProps) => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   
+  // By moving the Footer component outside of individual pages and only including it here,
+  // we ensure it only appears once across the entire application
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
