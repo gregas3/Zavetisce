@@ -407,8 +407,8 @@ export default function LostAndFound() {
 
       <Section 
         className="py-16 bg-teal-50"
-        title="Kako lahko pomagamo?"
-        description="Izgubljena ali najdena žival potrebuje našo pomoč. Tukaj so koristni napotki, ki lahko pomagajo."
+        title="Izgubljeni in Najdeni"
+        description="Prijavite izgubljeno ali najdeno žival. Morda lahko pomagamo vašemu hišnemu ljubljenčku najti pot domov."
         centered
         animation="fade-in"
       >
@@ -489,3 +489,4 @@ export default function LostAndFound() {
     </Layout>
   );
 }
+
