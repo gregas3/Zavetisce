@@ -1,7 +1,7 @@
 
 import React from "react";
-import { Phone, Mail, Calendar } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Phone, Mail, Calendar, FileText } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { 
   Card, 
@@ -26,6 +26,12 @@ const DogContactInfo = ({
   contactInfo, 
   handleScheduleAppointment 
 }: DogContactInfoProps) => {
+  const navigate = useNavigate();
+
+  const handleFillQuestionnaire = () => {
+    navigate(`/posvojitev/vprašalnik?animalName=${name}&animalType=Pes`);
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -55,10 +61,14 @@ const DogContactInfo = ({
           </div>
         </div>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="flex flex-col gap-3">
         <Button onClick={handleScheduleAppointment} className="w-full">
           <Calendar className="mr-2 h-4 w-4" />
           Rezerviraj termin za obisk
+        </Button>
+        <Button onClick={handleFillQuestionnaire} variant="teal" className="w-full">
+          <FileText className="mr-2 h-4 w-4" />
+          Izpolni vprašalnik
         </Button>
       </CardFooter>
     </Card>

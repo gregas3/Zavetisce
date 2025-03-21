@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { dogs } from "@/data/dogsData";
 import { syncDogData } from "@/utils/dogUtils";
-
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import DogProfileSkeleton from "@/components/dogs/DogProfileSkeleton";
@@ -19,6 +18,8 @@ import DogAboutTab from "@/components/dogs/DogAboutTab";
 import DogRequirementsTab from "@/components/dogs/DogRequirementsTab";
 import DogHealthTab from "@/components/dogs/DogHealthTab";
 import DogContactInfo from "@/components/dogs/DogContactInfo";
+import { FileText } from "lucide-react";
+import { toast } from "@/components/ui/use-toast";
 
 interface DogData {
   id: string;
@@ -481,10 +482,18 @@ const DogProfile = () => {
 
   const handleScheduleAppointment = () => {
     navigate(`/termini?animalId=${dog?.id}&animalName=${dog?.name}&animalType=Pes`);
+    toast({
+      title: "Termin za ogled",
+      description: `Ustvarjanje termina za ogled psa ${dog?.name}`,
+    });
   };
   
   const handleFillQuestionnaire = () => {
     navigate(`/posvojitev/vprašalnik?animalName=${dog?.name}&animalType=Pes`);
+    toast({
+      title: "Vprašalnik za posvojitev",
+      description: `Izpolnjevanje vprašalnika za posvojitev psa ${dog?.name}`,
+    });
   };
 
   if (isLoading) {
@@ -558,11 +567,15 @@ const DogProfile = () => {
                 </TabsContent>
               </Tabs>
               
-              <div className="flex mt-6 space-x-4">
-                <Button className="flex-1" onClick={handleScheduleAppointment}>
+              <div className="flex flex-col mt-6 space-y-4">
+                <Button className="w-full" onClick={handleScheduleAppointment}>
                   Rezerviraj termin za obisk
                 </Button>
-                <Button asChild variant="outline" className="flex-1">
+                <Button variant="teal" className="w-full" onClick={handleFillQuestionnaire}>
+                  <FileText className="mr-2 h-5 w-5" />
+                  Izpolni vprašalnik
+                </Button>
+                <Button asChild variant="outline" className="w-full">
                   <Link to="/posvojitev/psi">
                     Nazaj na seznam psov
                   </Link>
@@ -596,4 +609,3 @@ const DogProfile = () => {
 };
 
 export default DogProfile;
-
