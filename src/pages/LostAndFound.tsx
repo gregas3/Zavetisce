@@ -4,10 +4,8 @@ import { Link } from "react-router-dom";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Search, PawPrint, Calendar, Info, Plus, Cat, Dog, ArrowUpRight } from "lucide-react";
-import Layout from "@/components/layout/Layout";
+import { MapPin, Search, PawPrint, Calendar, Info, Cat, Dog, ArrowUpRight } from "lucide-react";
 import Section from "@/components/shared/Section";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 
@@ -120,7 +118,7 @@ export default function LostAndFound() {
   });
 
   return (
-    <Layout>
+    <>
       <Helmet>
         <title>Izgubljeni in Najdeni | Zavetišče za živali Maribor</title>
         <meta name="description" content="Prijavite izgubljeno ali najdeno žival. Pomagamo vam najti vašega hišnega ljubljenčka ali njegov novi dom." />
@@ -486,6 +484,6 @@ export default function LostAndFound() {
           </Button>
         </div>
       </Section>
-    </Layout>
+    </>
   );
 }
