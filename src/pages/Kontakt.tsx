@@ -1,14 +1,16 @@
 
-import { Mail, Phone, Clock, MapPin, AlertTriangle } from "lucide-react";
+import { Mail, Phone, Clock, MapPin, AlertTriangle, Navigation } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Section from "@/components/shared/Section";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import Layout from "@/components/layout/Layout";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function Kontakt() {
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const isMobile = useIsMobile();
   
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,6 +25,16 @@ export default function Kontakt() {
       setTimeout(() => setFormStatus('idle'), 3000);
     }, 1500);
   };
+
+  const navigateToLocation = () => {
+    // For mobile devices, open in maps app with navigation
+    if (isMobile) {
+      window.open('https://www.google.com/maps/dir/?api=1&destination=Avtomobilska+ulica+25,+2000+Maribor,+Slovenia&travelmode=driving', '_blank');
+    } else {
+      // For desktop, just open Google Maps with the location
+      window.open('https://www.google.com/maps/place/Avtomobilska+ulica+25,+2000+Maribor,+Slovenia', '_blank');
+    }
+  };
   
   return <Layout>
       <Section id="kontakt-hero" title="Kontakt" description="Stopite v stik z nami za vse informacije o posvojitvah, prostovoljstvu ali drugih vprašanjih." centered className="pt-24 md:pt-32" animation="fade-in-up">
@@ -36,15 +48,16 @@ export default function Kontakt() {
                 <div className="flex items-start gap-3">
                   <MapPin className="text-teal-600 mt-1 flex-shrink-0" />
                   <div>
-                    <a 
-                      href="https://www.google.com/maps/dir/?api=1&destination=Avtomobilska+ulica+25,+2000+Maribor,+Slovenia" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="font-medium hover:text-teal-600 transition-colors"
+                    <button 
+                      onClick={navigateToLocation}
+                      className="font-medium hover:text-teal-600 transition-colors text-left"
                     >
                       <p className="font-medium">Avtomobilska ulica 25</p>
                       <p>2000 Maribor</p>
-                    </a>
+                      <p className="text-xs text-teal-600 flex items-center gap-1 mt-1">
+                        <Navigation size={12} /> Pridobi navigacijo
+                      </p>
+                    </button>
                   </div>
                 </div>
                 

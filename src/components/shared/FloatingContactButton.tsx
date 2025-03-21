@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Phone, MapPin, Mail, Facebook, Instagram } from 'lucide-react';
+import { Phone, MapPin, Mail, Facebook, Instagram, Navigation } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -8,6 +8,16 @@ import { useIsMobile } from '@/hooks/use-mobile';
 const FloatingContactButton = () => {
   const [open, setOpen] = useState(false);
   const isMobile = useIsMobile();
+
+  const navigateToLocation = () => {
+    // For mobile devices, open in maps app with navigation
+    if (isMobile) {
+      window.open('https://www.google.com/maps/dir/?api=1&destination=Avtomobilska+ulica+25,+2000+Maribor,+Slovenia&travelmode=driving', '_blank');
+    } else {
+      // For desktop, just open Google Maps with the location
+      window.open('https://www.google.com/maps/place/Avtomobilska+ulica+25,+2000+Maribor,+Slovenia', '_blank');
+    }
+  };
 
   return <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -27,12 +37,17 @@ const FloatingContactButton = () => {
           </div>
 
           <div className="space-y-3 text-sm">
-            <a href="https://www.google.com/maps/place/Avtomobilska+ulica+25,+2000+Maribor" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-2 rounded-md hover:bg-teal-50 transition-colors">
+            <button onClick={navigateToLocation} className="flex items-center w-full text-left gap-3 p-2 rounded-md hover:bg-teal-50 transition-colors">
               <div className="bg-teal-100 p-2 rounded-full">
                 <MapPin className="w-5 h-5 text-teal-600" />
               </div>
-              <span>Avtomobilska ulica 25, 2000 Maribor, Slovenia</span>
-            </a>
+              <div className="flex flex-col">
+                <span>Avtomobilska ulica 25, 2000 Maribor, Slovenia</span>
+                <span className="text-xs text-teal-600 flex items-center gap-1 mt-1">
+                  <Navigation size={12} /> Pridobi navigacijo
+                </span>
+              </div>
+            </button>
 
             <a href="tel:024801660" className="flex items-center gap-3 p-2 rounded-md hover:bg-teal-50 transition-colors">
               <div className="bg-teal-100 p-2 rounded-full">

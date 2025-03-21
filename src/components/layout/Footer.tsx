@@ -1,9 +1,22 @@
 
 import { Link } from "react-router-dom";
-import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
+import { Facebook, Instagram, Mail, MapPin, Phone, Navigation } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function Footer() {
+  const isMobile = useIsMobile();
+
+  const navigateToLocation = () => {
+    // For mobile devices, open in maps app with navigation
+    if (isMobile) {
+      window.open('https://www.google.com/maps/dir/?api=1&destination=Avtomobilska+ulica+25,+2000+Maribor,+Slovenia&travelmode=driving', '_blank');
+    } else {
+      // For desktop, just open Google Maps with the location
+      window.open('https://www.google.com/maps/place/Avtomobilska+ulica+25,+2000+Maribor,+Slovenia', '_blank');
+    }
+  };
+
   return (
     <footer className="bg-teal-800 text-white py-12">
       <div className="container mx-auto px-4 md:px-8">
@@ -32,15 +45,18 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Kontakt</h3>
             <div className="space-y-3 text-gray-300 text-sm">
-              <a 
-                href="https://www.google.com/maps/place/Avtomobilska+ulica+25,+2000+Maribor,+Slovenija" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-start gap-2 hover:text-teal-300 transition-colors"
+              <button 
+                onClick={navigateToLocation}
+                className="flex items-start gap-2 hover:text-teal-300 transition-colors text-left w-full"
               >
                 <MapPin size={18} className="text-teal-300 shrink-0 mt-1" />
-                <p>Avtomobilska ulica 25, 2000 Maribor, Slovenia</p>
-              </a>
+                <div>
+                  <p>Avtomobilska ulica 25, 2000 Maribor, Slovenia</p>
+                  <p className="text-xs text-teal-400 flex items-center gap-1 mt-1">
+                    <Navigation size={12} /> Pridobi navigacijo
+                  </p>
+                </div>
+              </button>
               <a 
                 href="tel:024801660" 
                 className="flex items-center gap-2 hover:text-teal-300 transition-colors"
