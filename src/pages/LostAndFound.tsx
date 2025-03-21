@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
@@ -122,13 +123,13 @@ export default function LostAndFound() {
   return (
     <Layout>
       <Helmet>
-        <title>Izgubljeni in Najdeni | Zavetišče za živali Maribor</title>
+        <title>Izgubljene in najdene živali | Zavetišče za živali Maribor</title>
         <meta name="description" content="Prijavite izgubljeno ali najdeno žival. Pomagamo vam najti vašega hišnega ljubljenčka ali njegov novi dom." />
       </Helmet>
 
       <div className="pt-24 md:pt-32 pb-12 bg-gradient-to-b from-teal-50 to-teal-100/30">
         <Section
-          title="Izgubljeni in Najdeni"
+          title="Izgubljene in najdene živali"
           description="Prijavite izgubljeno ali najdeno žival. Morda lahko pomagamo vašemu hišnemu ljubljenčku najti pot domov."
           centered
           className="pb-8"

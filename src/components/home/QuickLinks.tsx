@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { PawPrint, Search, Heart, Calendar, DollarSign, Mail } from "lucide-react";
 import AnimatedWrapper from "../shared/AnimatedWrapper";
@@ -13,7 +12,7 @@ const links = [
     delay: 0,
   },
   {
-    title: "Izgubljeni & Najdeni",
+    title: "Izgubljene & najdene živali",
     description: "Prijavi izgubljeno ali najdeno žival",
     icon: Search,
     link: "/izgubljeni-najdeni",

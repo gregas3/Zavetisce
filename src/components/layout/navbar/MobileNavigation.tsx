@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, ChevronDown, Dog, Cat, Heart, Calendar, Users, Phone, HelpCircle } from "lucide-react";
@@ -62,7 +61,7 @@ export const MobileNavigation = ({
               <AnimatedWrapper animation="fade-in" delay={100}>
                 <Link to="/izgubljeni-najdeni" className="flex items-center gap-2 text-sm py-2.5 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" onClick={closeMenu}>
                   <HelpCircle size={16} className="text-teal-500" />
-                  <span>Izgubljeni in Najdeni</span>
+                  <span>Izgubljene in najdene živali</span>
                 </Link>
               </AnimatedWrapper>
               
@@ -96,7 +95,6 @@ export const MobileNavigation = ({
             </div>
             
             <AnimatedWrapper animation="fade-in" delay={350}>
-              {/* This is the section that was missing children */}
               <div className="p-3">
                 {/* Footer content here if needed */}
               </div>
