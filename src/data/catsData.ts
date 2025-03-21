@@ -3,7 +3,7 @@
 export interface Cat {
   id: number;
   name: string;
-  breed: string;
+  color: string;
   age: string;
   gender: string;
   size: string;
@@ -19,7 +19,7 @@ export const cats: Cat[] = [
   {
     id: 1,
     name: "Muri",
-    breed: "Evropska kratka dlaka",
+    color: "Črno-bela",
     age: "1 leto",
     gender: "samec",
     size: "srednji",
@@ -33,7 +33,7 @@ export const cats: Cat[] = [
   {
     id: 2,
     name: "Črnko",
-    breed: "Evropska kratka dlaka",
+    color: "Črna",
     age: "2 leti",
     gender: "samec",
     size: "srednji",
@@ -47,7 +47,7 @@ export const cats: Cat[] = [
   {
     id: 3,
     name: "Liza",
-    breed: "Evropska kratka dlaka",
+    color: "Siva tigrasta",
     age: "5 let",
     gender: "samica",
     size: "majhna",

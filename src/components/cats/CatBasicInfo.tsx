@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 
 interface CatBasicInfoProps {
   age: string;
-  breed: string;
+  color: string;
   gender: string;
   size: string;
   dateArrived: string;
@@ -14,7 +14,7 @@ interface CatBasicInfoProps {
 
 const CatBasicInfo = ({ 
   age, 
-  breed, 
+  color, 
   gender, 
   size, 
   dateArrived 
@@ -36,8 +36,8 @@ const CatBasicInfo = ({
           <p className="font-medium">{age}</p>
         </div>
         <div>
-          <p className="text-sm text-muted-foreground">Pasma</p>
-          <p className="font-medium">{breed}</p>
+          <p className="text-sm text-muted-foreground">Barva</p>
+          <p className="font-medium">{color}</p>
         </div>
         <div>
           <p className="text-sm text-muted-foreground">Spol</p>

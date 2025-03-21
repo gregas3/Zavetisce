@@ -85,7 +85,7 @@ const CatProfile = () => {
     <>
       <Helmet>
         <title>{cat.name} | Zavetišče za živali Maribor</title>
-        <meta name="description" content={`Spoznajte ${cat.name}, ${cat.gender} mačka pasme ${cat.breed}, ki išče nov dom.`} />
+        <meta name="description" content={`Spoznajte ${cat.name}, ${cat.gender} mačka, ki išče nov dom.`} />
       </Helmet>
 
       <Navbar />
@@ -102,7 +102,7 @@ const CatProfile = () => {
             <div className="space-y-6">
               <CatBasicInfo
                 age={cat.age}
-                breed={cat.breed}
+                color={cat.color}
                 gender={cat.gender}
                 size={cat.size}
                 dateArrived="2023-06-15"

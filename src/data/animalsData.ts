@@ -7,13 +7,16 @@ export type AnimalType = "pes" | "mačka";
 export interface Animal extends Omit<Dog | Cat, 'id'> {
   id: number;
   type: AnimalType;
+  breed?: string; // Optional since cats don't have breed anymore
+  color: string; // All animals now have color
 }
 
 // Convert dogs and cats arrays to the unified Animal type
 export const getAnimals = (): Animal[] => {
   const dogsWithType: Animal[] = dogs.map(dog => ({
     ...dog,
-    type: "pes"
+    type: "pes",
+    color: dog.color
   }));
 
   const catsWithType: Animal[] = cats.map(cat => ({
