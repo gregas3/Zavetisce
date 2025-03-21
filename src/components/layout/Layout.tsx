@@ -2,7 +2,6 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import FloatingContactButton from '../shared/FloatingContactButton';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -15,7 +14,6 @@ const Layout = ({ children }: LayoutProps) => {
       <main className="flex-grow">
         {children}
       </main>
-      <FloatingContactButton />
       <Footer />
     </div>
   );
