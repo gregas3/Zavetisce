@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Helmet } from 'react-helmet';
 import { Link } from "react-router-dom";
-import { FileText, Users, ClipboardCheck, Calendar, Home, ArrowRight, Info, MessageCircle, HeartHandshake, CheckCircle2 } from "lucide-react";
+import { FileText, Users, ClipboardCheck, Calendar, Home, ArrowRight, Info, MessageCircle, HeartHandshake, CheckCircle2, Dog, Cat } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Section from "@/components/shared/Section";
@@ -110,13 +110,19 @@ const AdoptionProcess = () => {
                             className="w-full h-auto rounded-xl object-cover"
                           />
                         </div>
-                        <div className="flex gap-3 mt-4">
-                          <Button asChild>
-                            <Link to="/posvojitev/psi">Oglej si pse</Link>
-                          </Button>
-                          <Button asChild variant="outline">
-                            <Link to="/posvojitev/mačke">Oglej si mačke</Link>
-                          </Button>
+                        <div className="flex justify-center gap-8 mt-6">
+                          <Link to="/posvojitev/psi" className="flex flex-col items-center group transition-transform hover:scale-105">
+                            <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mb-2 group-hover:bg-primary/20 transition-colors">
+                              <Dog className="h-14 w-14 text-primary" />
+                            </div>
+                            <span className="font-medium text-primary">Oglej si pse</span>
+                          </Link>
+                          <Link to="/posvojitev/mačke" className="flex flex-col items-center group transition-transform hover:scale-105">
+                            <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mb-2 group-hover:bg-primary/20 transition-colors">
+                              <Cat className="h-14 w-14 text-primary" />
+                            </div>
+                            <span className="font-medium text-primary">Oglej si mačke</span>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -383,17 +389,23 @@ const AdoptionProcess = () => {
 
           <div className="mt-12 bg-card rounded-xl border p-6 text-center">
             <h3 className="text-2xl font-bold mb-3">Pripravljeni na posvojitev?</h3>
-            <p className="mb-6 max-w-xl mx-auto">
+            <p className="mb-8 max-w-xl mx-auto">
               Začnite svoj posvojitveni proces danes in pomagajte živali najti za vedno dom. Vaša nova žival vam bo hvaležna za vso ljubezen in skrb.
             </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Button asChild size="lg">
-                <Link to="/posvojitev/psi">Posvoji psa</Link>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link to="/posvojitev/mačke">Posvoji mačko</Link>
-              </Button>
-              <Button asChild size="lg" variant="secondary">
+            <div className="flex flex-wrap gap-12 justify-center">
+              <Link to="/posvojitev/psi" className="flex flex-col items-center group transition-transform hover:scale-105">
+                <div className="w-32 h-32 rounded-full bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
+                  <Dog className="h-20 w-20 text-primary" />
+                </div>
+                <span className="font-medium text-lg text-primary">Posvoji psa</span>
+              </Link>
+              <Link to="/posvojitev/mačke" className="flex flex-col items-center group transition-transform hover:scale-105">
+                <div className="w-32 h-32 rounded-full bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
+                  <Cat className="h-20 w-20 text-primary" />
+                </div>
+                <span className="font-medium text-lg text-primary">Posvoji mačko</span>
+              </Link>
+              <Button asChild size="lg" variant="secondary" className="self-center">
                 <Link to="/termini">Rezerviraj termin</Link>
               </Button>
             </div>
