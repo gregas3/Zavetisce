@@ -56,7 +56,7 @@ export default function Footer() {
             <h3 className="text-xl font-bold mb-4">Povezave</h3>
             <ul className="space-y-2 text-gray-300">
               <li>
-                <Link to="/posvojitev" className="hover:text-primary transition-colors">Posvojitve</Link>
+                <Link to="/posvojitev/psi" className="hover:text-primary transition-colors">Posvojitve</Link>
               </li>
               <li>
                 <Link to="/izgubljeni-najdeni" className="hover:text-primary transition-colors">Izgubljene živali</Link>
