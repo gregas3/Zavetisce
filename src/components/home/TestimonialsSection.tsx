@@ -38,18 +38,18 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <Section className="bg-gradient-soft-purple">
+    <Section className="bg-gradient-to-b from-[#e0f1f0]/60 to-[#ddeeed]/60">
       <div className="max-w-4xl mx-auto">
         <AnimatedWrapper animation="fade-in">
           <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Kaj pravijo naši posvojitelji</h2>
-            <p className="text-lg text-white/90 max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-teal-800">Kaj pravijo naši posvojitelji</h2>
+            <p className="text-lg text-teal-700/90 max-w-3xl mx-auto">
               Spoznajte zgodbe ljudi, ki so posvojili živali iz našega zavetišča in jim spremenili življenja.
             </p>
           </div>
         </AnimatedWrapper>
 
-        <div className="relative bg-[#f3fbef]/90 rounded-xl p-8 md:p-10 shadow-md border border-[#e4f4df]">
+        <div className="relative bg-[#f3fbef]/80 rounded-xl p-8 md:p-10 shadow-sm border border-[#e4f4df]/50">
           <Quote 
             size={70} 
             className="absolute top-8 left-8 text-primary/10 -z-10" 

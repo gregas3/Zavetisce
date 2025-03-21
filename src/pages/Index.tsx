@@ -19,9 +19,11 @@ const Index = () => {
       
       <Navbar />
       
-      <main className="min-h-screen pt-24">
+      <main className="min-h-screen pt-24 bg-gradient-to-b from-[#ebfbfa]/60 to-[#e8f9f8]/60">
         <HeroSection />
-        <FeaturedAnimals />
+        <div className="bg-gradient-to-b from-[#ebfbfa]/60 to-[#e8f9f8]/60 py-8">
+          <FeaturedAnimals />
+        </div>
         <QuickLinks />
         <StatsSection />
         <CtaSection />

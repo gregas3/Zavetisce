@@ -6,7 +6,7 @@ import AnimatedWrapper from "../shared/AnimatedWrapper";
 
 export default function CtaSection() {
   return (
-    <div className="bg-primary/5 py-20 md:py-24">
+    <div className="bg-gradient-to-b from-[#e2f3f2]/70 to-[#e0f1f0]/60 py-20 md:py-24">
       <div className="container mx-auto px-4">
         <div className="rounded-2xl bg-primary relative overflow-hidden">
           <div 
