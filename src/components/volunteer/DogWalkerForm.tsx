@@ -3,52 +3,18 @@ import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Form } from "@/components/ui/form";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
 import { toast } from "@/components/ui/use-toast";
-import { CalendarIcon, Dog, Mail, User, Phone, Clock, CheckCircle } from "lucide-react";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Calendar } from "@/components/ui/calendar";
-import { format } from "date-fns";
-import { sl } from "date-fns/locale";
 
-// Define the form validation schema using Zod
-const formSchema = z.object({
-  fullName: z.string().min(3, {
-    message: "Ime in priimek mora vsebovati vsaj 3 znake.",
-  }),
-  dateOfBirth: z.date({
-    required_error: "Izbira datuma rojstva je obvezna.",
-  }).refine((value) => {
-    const today = new Date();
-    const age = today.getFullYear() - value.getFullYear();
-    return age >= 18;
-  }, {
-    message: "Prostovoljec mora biti polnoleten (18+).",
-  }),
-  phone: z.string().min(8, {
-    message: "Prosimo vnesite veljavno telefonsko številko.",
-  }),
-  email: z.string().email({
-    message: "Prosimo vnesite veljaven e-poštni naslov.",
-  }),
-  experience: z.string().min(10, {
-    message: "Prosimo opišite vaše izkušnje (vsaj 10 znakov).",
-  }),
-  preferredTimes: z.object({
-    weekdayMornings: z.boolean().optional(),
-    weekendMornings: z.boolean().optional(),
-  }).refine((data) => data.weekdayMornings || data.weekendMornings, {
-    message: "Izberite vsaj en termin za sprehajanje.",
-  }),
-  agreement: z.boolean().refine((val) => val === true, {
-    message: "Morate se strinjati s pogoji za oddajo prijave.",
-  }),
-});
+// Import form components
+import FormHeader from "./forms/FormHeader";
+import FormPersonalInfo from "./forms/FormPersonalInfo";
+import FormExperience from "./forms/FormExperience";
+import FormPreferredTimes from "./forms/FormPreferredTimes";
+import FormAgreement from "./forms/FormAgreement";
+import FormActions from "./forms/FormActions";
+import { formSchema } from "./forms/dogWalkerFormSchema";
 
 // Define the props for the DogWalkerForm component
 interface DogWalkerFormProps {
@@ -112,217 +78,18 @@ const DogWalkerForm = ({ open, onClose }: DogWalkerFormProps) => {
   return (
     <Sheet open={open} onOpenChange={onClose}>
       <SheetContent className="w-full sm:max-w-md md:max-w-lg overflow-y-auto">
-        <SheetHeader className="mb-6">
-          <SheetTitle className="text-2xl font-bold text-teal-800 flex items-center gap-2">
-            <Dog className="text-teal-600" />
-            Postani prostovoljec sprehajalec
-          </SheetTitle>
-          <SheetDescription>
-            Izpolnite obrazec za prijavo kot prostovoljec za sprehajanje psov v zavetišču.
-          </SheetDescription>
-        </SheetHeader>
+        <FormHeader 
+          title="Postani prostovoljec sprehajalec"
+          description="Izpolnite obrazec za prijavo kot prostovoljec za sprehajanje psov v zavetišču."
+        />
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <FormField
-              control={form.control}
-              name="fullName"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Ime in priimek</FormLabel>
-                  <FormControl>
-                    <div className="relative">
-                      <Input placeholder="Vnesite ime in priimek" {...field} className="pl-10" />
-                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-teal-500" />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="dateOfBirth"
-              render={({ field }) => (
-                <FormItem className="flex flex-col">
-                  <FormLabel>Datum rojstva</FormLabel>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <FormControl>
-                        <Button
-                          variant="outline"
-                          className={`w-full pl-10 text-left font-normal flex justify-between items-center ${!field.value && "text-muted-foreground"}`}
-                        >
-                          {field.value ? (
-                            format(field.value, "d. MMMM yyyy", { locale: sl })
-                          ) : (
-                            <span>Izberite datum rojstva</span>
-                          )}
-                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                        </Button>
-                      </FormControl>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar
-                        mode="single"
-                        selected={field.value}
-                        onSelect={field.onChange}
-                        disabled={disabledDays}
-                        initialFocus
-                        className="pointer-events-auto"
-                      />
-                    </PopoverContent>
-                  </Popover>
-                  <FormDescription>
-                    Potrditev polnoletnosti (starost vsaj 18 let).
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="phone"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Telefonska številka</FormLabel>
-                  <FormControl>
-                    <div className="relative">
-                      <Input placeholder="Vnesite telefonsko številko" {...field} className="pl-10" />
-                      <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-teal-500" />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>E-poštni naslov</FormLabel>
-                  <FormControl>
-                    <div className="relative">
-                      <Input placeholder="Vnesite e-poštni naslov" {...field} className="pl-10" />
-                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-teal-500" />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="experience"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Prejšnje izkušnje s psi</FormLabel>
-                  <FormControl>
-                    <Textarea 
-                      placeholder="Opišite vaše izkušnje s psi..." 
-                      {...field} 
-                      className="min-h-[120px]"
-                    />
-                  </FormControl>
-                  <FormDescription>
-                    Opišite vaše izkušnje s psi, posebne veščine ali znanja, ki bi lahko bile koristne.
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <div className="space-y-3">
-              <div className="text-sm font-medium">Želeni termini za sprehajanje</div>
-              
-              <FormField
-                control={form.control}
-                name="preferredTimes.weekdayMornings"
-                render={({ field }) => (
-                  <FormItem className="flex items-start space-x-3 space-y-0 rounded-md p-2 border border-muted">
-                    <FormControl>
-                      <Checkbox 
-                        checked={field.value} 
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                    <div className="space-y-1 leading-none">
-                      <FormLabel className="flex items-center gap-1">
-                        <Clock className="h-4 w-4 text-teal-500" />
-                        Med tednom dopoldne (7.00 - 13.00)
-                      </FormLabel>
-                      <FormDescription>
-                        Ponedeljek - petek
-                      </FormDescription>
-                    </div>
-                  </FormItem>
-                )}
-              />
-              
-              <FormField
-                control={form.control}
-                name="preferredTimes.weekendMornings"
-                render={({ field }) => (
-                  <FormItem className="flex items-start space-x-3 space-y-0 rounded-md p-2 border border-muted">
-                    <FormControl>
-                      <Checkbox 
-                        checked={field.value} 
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
-                    <div className="space-y-1 leading-none">
-                      <FormLabel className="flex items-center gap-1">
-                        <Clock className="h-4 w-4 text-teal-500" />
-                        Vikendi in prazniki dopoldne (8.00 - 12.00)
-                      </FormLabel>
-                      <FormDescription>
-                        Sobote, nedelje in prazniki
-                      </FormDescription>
-                    </div>
-                  </FormItem>
-                )}
-              />
-
-              <FormMessage>{form.formState.errors.preferredTimes?.message}</FormMessage>
-            </div>
-
-            <FormField
-              control={form.control}
-              name="agreement"
-              render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md p-4 border border-teal-100 bg-teal-50/50">
-                  <FormControl>
-                    <Checkbox 
-                      checked={field.value} 
-                      onCheckedChange={field.onChange}
-                    />
-                  </FormControl>
-                  <div className="space-y-1 leading-none">
-                    <FormLabel className="flex items-center gap-1">
-                      <CheckCircle className="h-4 w-4 text-teal-500" />
-                      Potrjujem, da sem polnoleten/polnoletna in sprehajam pse na lastno odgovornost
-                    </FormLabel>
-                    <FormDescription>
-                      S potrditvijo te izjave se strinjate, da v zavetišču podpišete pristopno izjavo, da sprehajate pse na lastno odgovornost.
-                    </FormDescription>
-                  </div>
-                </FormItem>
-              )}
-            />
-
-            <div className="flex gap-3 pt-4">
-              <Button type="submit" variant="primary" className="flex-1">
-                Pošlji prijavo
-              </Button>
-              <Button type="button" variant="outline" onClick={onClose} className="flex-1">
-                Prekliči
-              </Button>
-            </div>
+            <FormPersonalInfo form={form} disabledDays={disabledDays} />
+            <FormExperience form={form} />
+            <FormPreferredTimes form={form} />
+            <FormAgreement form={form} />
+            <FormActions onClose={onClose} />
           </form>
         </Form>
       </SheetContent>
