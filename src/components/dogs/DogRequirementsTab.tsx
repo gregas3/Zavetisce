@@ -1,8 +1,6 @@
 
 import React from "react";
-import { FileText, Info, Dog } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { Info } from "lucide-react";
 import { 
   Card, 
   CardHeader, 
@@ -20,19 +18,8 @@ interface DogRequirementsTabProps {
 
 const DogRequirementsTab = ({ 
   name, 
-  adoptionRequirements, 
-  handleFillQuestionnaire 
+  adoptionRequirements
 }: DogRequirementsTabProps) => {
-  const navigate = useNavigate();
-  
-  const handleScheduleAppointment = () => {
-    navigate(`/termini?animalName=${name}&animalType=Pes`);
-  };
-  
-  const handleVolunteerClick = () => {
-    navigate('/prostovoljstvo');
-  };
-  
   return (
     <Card>
       <CardHeader>
@@ -57,28 +44,6 @@ const DogRequirementsTab = ({
               </p>
             </div>
           </div>
-        </div>
-        
-        <div className="flex flex-col gap-3 w-full">
-          <Button asChild variant="outline" className="w-full">
-            <Link to="/posvojitev/psi">
-              Nazaj na seznam psov
-            </Link>
-          </Button>
-          
-          <Button className="w-full text-black" onClick={handleScheduleAppointment}>
-            Prijava na ogled
-          </Button>
-          
-          <Button className="w-full" variant="teal" onClick={handleFillQuestionnaire}>
-            <FileText className="mr-2 h-4 w-4" />
-            Izpolni vprašalnik
-          </Button>
-          
-          <Button onClick={handleVolunteerClick} variant="lightTeal" className="w-full">
-            <Dog className="mr-2 h-4 w-4" />
-            Postani sprehajalec
-          </Button>
         </div>
       </CardFooter>
     </Card>
