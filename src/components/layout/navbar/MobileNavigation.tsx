@@ -58,7 +58,7 @@ export const MobileNavigation = ({
                     <span className="font-medium text-sm">Postopek posvojitve</span>
                   </Link>
                   <Link to="/prostozivece-macke" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
-                    <PawPrint size={15} className="text-teal-500" />
+                    <Cat size={15} className="text-teal-500" />
                     <span className="font-medium text-sm">Prostoživeče mačke</span>
                   </Link>
                   <Link to="/termini" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
@@ -77,7 +77,7 @@ export const MobileNavigation = ({
               
               <AnimatedWrapper animation="fade-in" delay={150}>
                 <Link to="/prostozivece-macke" className="flex items-center gap-2 text-sm py-2.5 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" onClick={closeMenu}>
-                  <PawPrint size={16} className="text-teal-500" />
+                  <Cat size={16} className="text-teal-500" />
                   <span>Prostoživeče mačke</span>
                 </Link>
               </AnimatedWrapper>

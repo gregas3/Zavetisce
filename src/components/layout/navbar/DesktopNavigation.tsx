@@ -56,7 +56,7 @@ export const DesktopNavigation = ({
                 <li>
                   <NavigationMenuLink asChild>
                     <Link to="/prostozivece-macke" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
-                      <PawPrint size={16} className="text-teal-500" />
+                      <Cat size={16} className="text-teal-500" />
                       <span>Prostoživeče mačke</span>
                     </Link>
                   </NavigationMenuLink>
@@ -88,7 +88,7 @@ export const DesktopNavigation = ({
             <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
               <Link to="/prostozivece-macke">
                 <span className="flex items-center gap-1">
-                  <PawPrint size={16} />
+                  <Cat size={16} />
                   Prostoživeče mačke
                 </span>
               </Link>
