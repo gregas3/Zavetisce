@@ -5,20 +5,24 @@ import { Button } from "@/components/ui/button";
 import AnimatedWrapper from "../shared/AnimatedWrapper";
 
 export default function HeroSection() {
-  const scrollToNextSection = () => {
-    // Find the first section after the hero section
-    const nextSection = document.querySelector('.section-padding');
-    if (nextSection) {
-      nextSection.scrollIntoView({
+  const scrollToFeaturedAnimals = () => {
+    // Find the "Spoznajte naše živali" section with a more specific selector
+    const featuredAnimalsSection = document.querySelector('h2:contains("Spoznajte naše živali")') || 
+                                   document.querySelector('section h2') || 
+                                   document.getElementById('featured-animals');
+    
+    if (featuredAnimalsSection) {
+      // If found, scroll to it
+      featuredAnimalsSection.scrollIntoView({
         behavior: 'smooth'
       });
     } else {
-      // Fallback if the section-padding class is not found
+      // Fallback: scroll to the second section which should be the FeaturedAnimals
       const sections = document.querySelectorAll('section');
       if (sections.length > 1) {
         sections[1].scrollIntoView({ behavior: 'smooth' });
       } else {
-        // If no sections are found, scroll down 100vh
+        // Last resort fallback: scroll down 100vh
         window.scrollTo({
           top: window.innerHeight,
           behavior: 'smooth'
@@ -84,15 +88,18 @@ export default function HeroSection() {
         </div>
       </div>
       
-      {/* Scroll button with better styling to match image */}
+      {/* Larger and more visible scroll button */}
       <button 
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer z-10"
-        onClick={scrollToNextSection}
-        aria-label="Scroll down"
+        className="absolute bottom-12 left-1/2 transform -translate-x-1/2 cursor-pointer z-10 animate-bounce animation-duration-2000"
+        onClick={scrollToFeaturedAnimals}
+        aria-label="Scroll to Spoznajte naše živali"
       >
-        <div className="w-12 h-12 rounded-full bg-teal-700/70 flex items-center justify-center shadow-lg backdrop-blur-sm border border-teal-600/30 transition-all duration-300 hover:bg-teal-600/80">
-          <ChevronDown className="h-8 w-8 text-teal-300 animate-bounce" />
+        <div className="w-16 h-16 rounded-full bg-teal-600/90 flex items-center justify-center shadow-lg backdrop-blur-sm border border-teal-500/50 transition-all duration-300 hover:bg-teal-500 hover:scale-110">
+          <ChevronDown className="h-10 w-10 text-white" />
         </div>
+        <span className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 text-white text-sm font-medium bg-teal-700/70 px-3 py-1 rounded-full whitespace-nowrap">
+          Spoznajte naše živali
+        </span>
       </button>
     </div>;
 }
