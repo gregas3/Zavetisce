@@ -30,22 +30,21 @@ export default function HeroSection() {
   };
   
   return (
-    <div className="relative pt-16 min-h-[100vh] flex items-center overflow-hidden">
+    <div className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background image with overlay */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat" 
         style={{
           backgroundImage: "url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80')",
           backgroundPosition: "center 40%",
-          maxHeight: "calc(100vh - 64px)",
-          top: "64px"
+          backgroundSize: "cover"
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-[#0f2a2d]/90 via-[#0f2a2d]/70 to-[#0f2a2d]/40"></div>
       </div>
       
       {/* Content */}
-      <div className="container mx-auto px-4 relative z-10 mt-16 py-16">
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-3xl">
           <div className="animate-fade-in">
             <div className="flex items-center gap-3 mb-6">
@@ -86,14 +85,14 @@ export default function HeroSection() {
         </div>
       </div>
       
-      {/* Scroll button with better positioning */}
+      {/* Scroll button with enhanced visibility */}
       <button 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer z-10" 
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer z-20 animate-bounce" 
         onClick={scrollToNextSection} 
         aria-label="Scroll down"
       >
-        <div className="w-12 h-12 rounded-full bg-teal-700/70 flex items-center justify-center shadow-lg backdrop-blur-sm border border-teal-600/30 transition-all duration-300 hover:bg-teal-600/80">
-          <ChevronDown className="h-8 w-8 text-teal-300 animate-bounce" />
+        <div className="w-16 h-16 rounded-full bg-teal-700/80 flex items-center justify-center shadow-lg backdrop-blur-sm border border-teal-600/40 hover:bg-teal-600/90 transition-all duration-300">
+          <ChevronDown className="h-10 w-10 text-teal-200" />
         </div>
       </button>
     </div>
