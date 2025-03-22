@@ -248,11 +248,9 @@ const Appointments = () => {
                                         </SelectTrigger>
                                       </FormControl>
                                       <SelectContent>
-                                        <SelectItem value="ogled">Splošni ogled zavetišča</SelectItem>
+                                        <SelectItem value="dog-viewing">Splošni ogled psov</SelectItem>
+                                        <SelectItem value="cat-viewing">Splošni ogled mačk</SelectItem>
                                         <SelectItem value="specific">Ogled specifične živali</SelectItem>
-                                        <SelectItem value="posvojitev">Posvojitev živali</SelectItem>
-                                        <SelectItem value="oddaja">Oddaja živali v zavetišče</SelectItem>
-                                        <SelectItem value="svetovanje">Svetovanje</SelectItem>
                                       </SelectContent>
                                     </Select>
                                     <FormMessage />
