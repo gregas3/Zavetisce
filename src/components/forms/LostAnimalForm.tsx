@@ -3,12 +3,13 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { PawPrint, User, Mail, Phone, Info, Calendar, Upload, SendHorizontal, Loader2, Check, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { PawPrint, User, Mail, Phone, Info, Calendar as CalendarIcon, Upload, SendHorizontal, Loader2, Check, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
+import { cn } from '@/lib/utils';
 import {
   Form,
   FormControl,
@@ -340,7 +341,7 @@ const LostAnimalForm = ({ onSuccess }: LostAnimalFormProps) => {
                             !field.value && "text-muted-foreground"
                           )}
                         >
-                          <Calendar className="mr-2 h-4 w-4 text-teal-500" />
+                          <CalendarIcon className="mr-2 h-4 w-4 text-teal-500" />
                           {field.value ? (
                             format(new Date(field.value), "dd. MM. yyyy")
                           ) : (
@@ -352,7 +353,9 @@ const LostAnimalForm = ({ onSuccess }: LostAnimalFormProps) => {
                         <Calendar
                           mode="single"
                           selected={field.value ? new Date(field.value) : undefined}
-                          onSelect={(date) => field.onChange(date ? date.toISOString().split('T')[0] : '')}
+                          onSelect={(date) => 
+                            field.onChange(date ? date.toISOString().split('T')[0] : '')
+                          }
                           initialFocus
                           className="p-3 pointer-events-auto"
                         />
@@ -405,22 +408,12 @@ const LostAnimalForm = ({ onSuccess }: LostAnimalFormProps) => {
           
           <div className="space-y-2">
             <Label>Fotografije živali (do 3)</Label>
-            <div className="border border-dashed border-teal-300 rounded-md p-6 bg-[#f1faf8] flex flex-col items-center justify-center">
-              <Upload className="h-8 w-8 text-teal-500 mb-2" />
-              <p className="text-sm text-center text-gray-600 mb-1">
-                Kliknite za nalaganje ali povlecite datoteke sem
-              </p>
-              <p className="text-xs text-center text-gray-500">
-                0/3 slik, največ 10MB na sliko
-              </p>
-              <FileUpload
-                value={files}
-                onChange={setFiles}
-                maxFiles={3}
-                accept="image/*"
-                className="w-full h-full absolute inset-0 opacity-0 cursor-pointer"
-              />
-            </div>
+            <FileUpload
+              value={files}
+              onChange={setFiles}
+              maxFiles={3}
+              accept="image/*"
+            />
           </div>
           
           <FormField

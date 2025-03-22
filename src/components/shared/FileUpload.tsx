@@ -10,6 +10,7 @@ interface FileUploadProps {
   error?: string;
   maxFiles?: number;
   accept?: string;
+  className?: string; // Add className prop
 }
 
 const FileUpload = ({ 
@@ -17,7 +18,8 @@ const FileUpload = ({
   value = [],
   error,
   maxFiles = 3,
-  accept = "image/*"
+  accept = "image/*",
+  className
 }: FileUploadProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [dragActive, setDragActive] = useState(false);
@@ -81,7 +83,7 @@ const FileUpload = ({
   };
 
   return (
-    <div className="space-y-2">
+    <div className={`space-y-2 ${className || ''}`}>
       <div 
         className={`border-2 border-dashed rounded-lg p-6 text-center ${dragActive ? 'border-teal-500 bg-teal-50' : 'border-gray-300'} ${error ? 'border-destructive' : ''}`}
         onDragEnter={handleDrag}
