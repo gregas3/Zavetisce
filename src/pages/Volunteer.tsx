@@ -9,8 +9,10 @@ import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import Section from "@/components/shared/Section";
 import Layout from "@/components/layout/Layout";
 import DogWalkerForm from '@/components/volunteer/DogWalkerForm';
+
 const Volunteer = () => {
   const [showDogWalkerForm, setShowDogWalkerForm] = useState(false);
+  
   return <Layout>
       <Helmet>
         <title>Prostovoljstvo | Zavetišče za živali Maribor</title>
@@ -153,7 +155,7 @@ const Volunteer = () => {
         </Section>
         
         {/* Dog Walker Form */}
-        <DogWalkerForm isOpen={showDogWalkerForm} onClose={() => setShowDogWalkerForm(false)} />
+        <DogWalkerForm open={showDogWalkerForm} onClose={() => setShowDogWalkerForm(false)} />
         
         {/* Other Ways to Help Section */}
         <Section className="bg-teal-50/50" title="Druge oblike prostovoljstva" subtitle="Pomagajte na različne načine">
@@ -243,4 +245,5 @@ const Volunteer = () => {
       </main>
     </Layout>;
 };
+
 export default Volunteer;
