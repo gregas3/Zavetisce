@@ -460,7 +460,7 @@ export default function LostAndFound() {
               Izpolnite obrazec za prijavo izgubljene živali
             </SheetDescription>
           </SheetHeader>
-          <LostAnimalForm onSuccess={() => setIsLostFormOpen(false)} />
+          <LostAnimalForm />
         </SheetContent>
       </Sheet>
 
@@ -475,7 +475,7 @@ export default function LostAndFound() {
               Izpolnite obrazec za prijavo najdene živali
             </SheetDescription>
           </SheetHeader>
-          <FoundAnimalForm onSuccess={() => setIsFoundFormOpen(false)} />
+          <FoundAnimalForm />
         </SheetContent>
       </Sheet>
 
@@ -677,4 +677,3 @@ export default function LostAndFound() {
     </Layout>
   );
 }
-

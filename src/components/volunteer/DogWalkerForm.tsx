@@ -47,11 +47,12 @@ const formSchema = z.object({
 
 // Define the props for the DogWalkerForm component
 interface DogWalkerFormProps {
-  isOpen: boolean;
+  open: boolean;
   onClose: () => void;
+  onSuccess?: () => void;
 }
 
-const DogWalkerForm = ({ isOpen, onClose }: DogWalkerFormProps) => {
+const DogWalkerForm = ({ open, onClose, onSuccess }: DogWalkerFormProps) => {
   // Initialize the form with react-hook-form and zod validation
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -84,7 +85,12 @@ const DogWalkerForm = ({ isOpen, onClose }: DogWalkerFormProps) => {
       
       // Reset the form and close the sheet
       form.reset();
-      onClose();
+      
+      if (onSuccess) {
+        onSuccess();
+      } else {
+        onClose();
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
       toast({
@@ -96,7 +102,7 @@ const DogWalkerForm = ({ isOpen, onClose }: DogWalkerFormProps) => {
   };
 
   return (
-    <Sheet open={isOpen} onOpenChange={onClose}>
+    <Sheet open={open} onOpenChange={onClose}>
       <SheetContent className="w-full sm:max-w-md md:max-w-lg overflow-y-auto">
         <SheetHeader className="mb-6">
           <SheetTitle className="text-2xl font-bold text-teal-800 flex items-center gap-2">
