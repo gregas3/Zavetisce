@@ -3,13 +3,12 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { PawPrint, User, Mail, Phone, Info, Calendar as CalendarIcon, Upload, SendHorizontal, Loader2, Check, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { PawPrint, User, Mail, Phone, Info, Calendar, Image, SendHorizontal, Loader2, Check } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
-import { cn } from '@/lib/utils';
 import {
   Form,
   FormControl,
@@ -25,13 +24,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { format } from "date-fns";
-import { Calendar } from "@/components/ui/calendar";
 import FileUpload from '@/components/shared/FileUpload';
 
 const formSchema = z.object({
@@ -146,22 +138,13 @@ const LostAnimalForm = ({ onSuccess }: LostAnimalFormProps) => {
   }
 
   return (
-    <div className="bg-white p-6 md:p-8 rounded-xl shadow-sm">
-      <Button 
-        variant="ghost" 
-        size="icon" 
-        className="absolute top-4 right-4 text-gray-500 hover:text-gray-700" 
-        onClick={onSuccess}
-      >
-        <X size={24} />
-      </Button>
-      
+    <div className="bg-white p-6 md:p-8 rounded-xl shadow-sm border border-teal-100">
       <div className="flex items-center mb-6">
-        <div className="w-12 h-12 rounded-full bg-teal-100 flex items-center justify-center mr-4">
-          <PawPrint size={24} className="text-teal-600" />
+        <div className="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center mr-3">
+          <PawPrint size={20} className="text-teal-600" />
         </div>
         <div>
-          <h3 className="text-xl font-bold text-gray-800">Prijava izgubljene živali</h3>
+          <h3 className="text-xl font-bold text-teal-800">Prijava izgubljene živali</h3>
           <p className="text-sm text-gray-500">Prosimo izpolnite obrazec s čim več podatki</p>
         </div>
       </div>
@@ -186,8 +169,8 @@ const LostAnimalForm = ({ onSuccess }: LostAnimalFormProps) => {
                   <FormLabel>Ime in priimek</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <Input placeholder="Janez Novak" {...field} className="pl-10" />
-                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-teal-500" size={16} />
+                      <Input placeholder="Janez Novak" {...field} />
+                      <User className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
                     </div>
                   </FormControl>
                   <FormMessage />
@@ -202,8 +185,8 @@ const LostAnimalForm = ({ onSuccess }: LostAnimalFormProps) => {
                   <FormLabel>Telefonska številka</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <Input placeholder="041 123 456" {...field} className="pl-10" />
-                      <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-teal-500" size={16} />
+                      <Input placeholder="041 123 456" {...field} />
+                      <Phone className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
                     </div>
                   </FormControl>
                   <FormMessage />
@@ -220,8 +203,8 @@ const LostAnimalForm = ({ onSuccess }: LostAnimalFormProps) => {
                 <FormLabel>Email naslov</FormLabel>
                 <FormControl>
                   <div className="relative">
-                    <Input placeholder="janez.novak@primer.si" {...field} className="pl-10" />
-                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-teal-500" size={16} />
+                    <Input placeholder="janez.novak@primer.si" {...field} />
+                    <Mail className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
                   </div>
                 </FormControl>
                 <FormMessage />
@@ -241,7 +224,7 @@ const LostAnimalForm = ({ onSuccess }: LostAnimalFormProps) => {
                       onValueChange={field.onChange} 
                       defaultValue={field.value}
                     >
-                      <SelectTrigger className="h-12 bg-[#f1faf8] border-input">
+                      <SelectTrigger>
                         <SelectValue placeholder="Izberite vrsto živali" />
                       </SelectTrigger>
                       <SelectContent>
@@ -295,7 +278,7 @@ const LostAnimalForm = ({ onSuccess }: LostAnimalFormProps) => {
                       onValueChange={field.onChange} 
                       defaultValue={field.value}
                     >
-                      <SelectTrigger className="h-12 bg-[#f1faf8] border-input">
+                      <SelectTrigger>
                         <SelectValue placeholder="Izberite spol živali" />
                       </SelectTrigger>
                       <SelectContent>
@@ -332,35 +315,10 @@ const LostAnimalForm = ({ onSuccess }: LostAnimalFormProps) => {
                 <FormItem>
                   <FormLabel>Datum zadnjega videnja</FormLabel>
                   <FormControl>
-                    <Popover>
-                      <PopoverTrigger asChild>
-                        <Button
-                          variant="outline"
-                          className={cn(
-                            "w-full h-12 bg-[#f1faf8] border-input justify-start text-left font-normal",
-                            !field.value && "text-muted-foreground"
-                          )}
-                        >
-                          <CalendarIcon className="mr-2 h-4 w-4 text-teal-500" />
-                          {field.value ? (
-                            format(new Date(field.value), "dd. MM. yyyy")
-                          ) : (
-                            <span>Izberite datum</span>
-                          )}
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-auto p-0" align="start">
-                        <Calendar
-                          mode="single"
-                          selected={field.value ? new Date(field.value) : undefined}
-                          onSelect={(date) => 
-                            field.onChange(date ? date.toISOString().split('T')[0] : '')
-                          }
-                          initialFocus
-                          className="p-3 pointer-events-auto"
-                        />
-                      </PopoverContent>
-                    </Popover>
+                    <div className="relative">
+                      <Input type="date" {...field} />
+                      <Calendar className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={16} />
+                    </div>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -379,9 +337,9 @@ const LostAnimalForm = ({ onSuccess }: LostAnimalFormProps) => {
                     <Textarea 
                       placeholder="Podroben opis živali, posebnosti, kakšno ima ovratnico, posebne oznake..."
                       {...field}
-                      className="resize-none min-h-24 bg-[#f1faf8] border-input pl-10 pt-8"
+                      className="resize-none min-h-24"
                     />
-                    <Info className="absolute left-3 top-3 text-teal-500" size={16} />
+                    <Info className="absolute right-3 top-3 text-gray-400" size={16} />
                   </div>
                 </FormControl>
                 <FormMessage />
@@ -426,7 +384,7 @@ const LostAnimalForm = ({ onSuccess }: LostAnimalFormProps) => {
                   <Textarea 
                     placeholder="Morebitne dodatne informacije, ki bi lahko pomagale pri iskanju..."
                     {...field}
-                    className="resize-none min-h-20 bg-[#f1faf8] border-input"
+                    className="resize-none min-h-20"
                   />
                 </FormControl>
                 <FormMessage />
@@ -434,33 +392,25 @@ const LostAnimalForm = ({ onSuccess }: LostAnimalFormProps) => {
             )}
           />
           
-          <div className="flex justify-end gap-4 pt-4">
-            <Button 
-              type="button" 
-              variant="outline" 
-              className="border-gray-300"
-              onClick={onSuccess}
-            >
-              Prekliči
-            </Button>
-            <Button 
-              type="submit" 
-              className="bg-teal-500 hover:bg-teal-600 text-white px-6"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Pošiljam...
-                </>
-              ) : (
-                <>
-                  <SendHorizontal className="mr-2 h-4 w-4" />
-                  Oddaj prijavo
-                </>
-              )}
-            </Button>
-          </div>
+          <Button 
+            type="submit" 
+            variant="primary" 
+            size="lg"
+            className="w-full"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Pošiljam...
+              </>
+            ) : (
+              <>
+                <SendHorizontal className="mr-2 h-4 w-4" />
+                Oddaj prijavo
+              </>
+            )}
+          </Button>
           
           <p className="text-xs text-center text-gray-500 mt-4">
             Z oddajo obrazca se strinjate, da bomo vaše podatke uporabili izključno za namen iskanja izgubljene živali.
