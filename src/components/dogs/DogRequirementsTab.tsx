@@ -13,7 +13,7 @@ import {
 interface DogRequirementsTabProps {
   name: string;
   adoptionRequirements: string;
-  handleFillQuestionnaire: () => void;
+  handleFillQuestionnaire?: () => void; // Make this prop optional with the ? operator
 }
 
 const DogRequirementsTab = ({ 
