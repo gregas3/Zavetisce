@@ -65,6 +65,13 @@ export const MobileNavigation = ({
               </AnimatedWrapper>
               
               <AnimatedWrapper animation="fade-in" delay={100}>
+                <Link to="/prostovoljstvo" className="flex items-center gap-2 text-sm py-2.5 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" onClick={closeMenu}>
+                  <Users size={16} className="text-teal-500" />
+                  <span>Prostovoljstvo</span>
+                </Link>
+              </AnimatedWrapper>
+              
+              <AnimatedWrapper animation="fade-in" delay={150}>
                 <Link to="/izgubljeni-najdeni" className="flex items-center gap-2 text-sm py-2.5 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" onClick={closeMenu}>
                   <AlertCircle size={16} className="text-teal-500" />
                   <span>Izgubljene in najdene živali</span>
@@ -72,20 +79,13 @@ export const MobileNavigation = ({
               </AnimatedWrapper>
               
               <AnimatedWrapper animation="fade-in" delay={200}>
-                <Link to="/prostovoljstvo" className="flex items-center gap-2 text-sm py-2.5 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" onClick={closeMenu}>
-                  <Users size={16} className="text-teal-500" />
-                  <span>Prostovoljstvo</span>
-                </Link>
-              </AnimatedWrapper>
-              
-              <AnimatedWrapper animation="fade-in" delay={250}>
                 <Link to="/kontakt" className="flex items-center gap-2 text-sm py-2.5 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" onClick={closeMenu}>
                   <Phone size={16} className="text-teal-500" />
                   <span>Kontakt</span>
                 </Link>
               </AnimatedWrapper>
               
-              <AnimatedWrapper animation="fade-in" delay={300}>
+              <AnimatedWrapper animation="fade-in" delay={250}>
                 <Link to="/o-nas" className="flex items-center gap-2 text-sm py-2.5 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" onClick={closeMenu}>
                   <HelpCircle size={16} className="text-teal-500" />
                   <span>O nas</span>
@@ -93,7 +93,7 @@ export const MobileNavigation = ({
               </AnimatedWrapper>
             </div>
             
-            <AnimatedWrapper animation="fade-in" delay={350}>
+            <AnimatedWrapper animation="fade-in" delay={300}>
               <div className="p-3">
                 {/* Footer content here if needed */}
               </div>

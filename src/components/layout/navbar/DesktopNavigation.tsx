@@ -67,21 +67,21 @@ export const DesktopNavigation = ({
           
           <NavigationMenuItem>
             <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
-              <Link to="/izgubljeni-najdeni">
-                <span className="flex items-center gap-1">
-                  <AlertCircle size={16} />
-                  Najdeno in Pogrešano
-                </span>
-              </Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-          
-          <NavigationMenuItem>
-            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
               <Link to="/prostovoljstvo">
                 <span className="flex items-center gap-1">
                   <Users size={16} />
                   Prostovoljstvo
+                </span>
+              </Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+
+          <NavigationMenuItem>
+            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
+              <Link to="/izgubljeni-najdeni">
+                <span className="flex items-center gap-1">
+                  <AlertCircle size={16} />
+                  Najdeno in Pogrešano
                 </span>
               </Link>
             </NavigationMenuLink>
