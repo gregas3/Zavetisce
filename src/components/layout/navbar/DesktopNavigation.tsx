@@ -1,15 +1,17 @@
 
 import { Link } from "react-router-dom";
-import { Dog, Cat, Heart, Calendar, PawPrint } from "lucide-react";
+import { Dog, Cat, Heart, Calendar, PawPrint, Users, Phone, HelpCircle } from "lucide-react";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { NavbarActions } from "./NavbarActions";
 import { NavbarBranding } from "./NavbarBranding";
+
 type DesktopNavigationProps = {
   closeMenu: () => void;
   toggleSearch: () => void;
   handleHomeClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
+
 export const DesktopNavigation = ({
   closeMenu,
   toggleSearch,
@@ -71,6 +73,17 @@ export const DesktopNavigation = ({
           <NavigationMenuItem>
             <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
               <Link to="/izgubljeni-najdeni">Najdeno in Pogrešano</Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+          
+          <NavigationMenuItem>
+            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
+              <Link to="/prostozivece-macke">
+                <span className="flex items-center gap-1">
+                  <PawPrint size={16} />
+                  Prostoživeče mačke
+                </span>
+              </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           
