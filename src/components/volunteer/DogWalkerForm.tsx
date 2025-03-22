@@ -1,4 +1,3 @@
-
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -47,11 +46,11 @@ const formSchema = z.object({
 
 // Define the props for the DogWalkerForm component
 interface DogWalkerFormProps {
-  isOpen: boolean;
+  open: boolean;
   onClose: () => void;
 }
 
-const DogWalkerForm = ({ isOpen, onClose }: DogWalkerFormProps) => {
+const DogWalkerForm = ({ open, onClose }: DogWalkerFormProps) => {
   // Initialize the form with react-hook-form and zod validation
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -96,7 +95,7 @@ const DogWalkerForm = ({ isOpen, onClose }: DogWalkerFormProps) => {
   };
 
   return (
-    <Sheet open={isOpen} onOpenChange={onClose}>
+    <Sheet open={open} onOpenChange={onClose}>
       <SheetContent className="w-full sm:max-w-md md:max-w-lg overflow-y-auto">
         <SheetHeader className="mb-6">
           <SheetTitle className="text-2xl font-bold text-teal-800 flex items-center gap-2">
