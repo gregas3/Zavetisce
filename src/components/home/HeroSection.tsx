@@ -6,17 +6,17 @@ import AnimatedWrapper from "../shared/AnimatedWrapper";
 
 export default function HeroSection() {
   const scrollToNextSection = () => {
-    // Find the first section after the hero section
-    const nextSection = document.querySelector('.section-padding');
-    if (nextSection) {
-      nextSection.scrollIntoView({
+    // Specifically target the FeaturedAnimals section by ID
+    const featuredAnimalsSection = document.getElementById('featured-animals-section');
+    if (featuredAnimalsSection) {
+      featuredAnimalsSection.scrollIntoView({
         behavior: 'smooth'
       });
     } else {
-      // Fallback if the section-padding class is not found
+      // Fallback if the element is not found
       const sections = document.querySelectorAll('section');
-      if (sections.length > 1) {
-        sections[1].scrollIntoView({
+      if (sections.length > 0) {
+        sections[0].scrollIntoView({
           behavior: 'smooth'
         });
       } else {
@@ -85,9 +85,9 @@ export default function HeroSection() {
         </div>
       </div>
       
-      {/* Scroll button with enhanced visibility */}
+      {/* Scroll button positioned higher (bottom-16 instead of bottom-8) */}
       <button 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer z-20 animate-bounce" 
+        className="absolute bottom-16 left-1/2 transform -translate-x-1/2 cursor-pointer z-20 animate-bounce" 
         onClick={scrollToNextSection} 
         aria-label="Scroll down"
       >
