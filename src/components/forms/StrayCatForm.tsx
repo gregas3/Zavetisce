@@ -3,16 +3,17 @@ import { useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Cat, User, Mail, Phone, MapPin, SendHorizontal, Calendar } from "lucide-react";
+import { Cat, Send, MapPin, Info, Upload } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import FileUpload from "@/components/shared/FileUpload";
+import LocationPicker from "@/components/shared/LocationPicker";
 
 const formSchema = z.object({
   fullName: z.string().min(2, { message: "Ime in priimek sta obvezna." }),
@@ -28,15 +29,9 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-interface StrayCatFormProps {
-  open: boolean;
-  onClose: () => void;
-}
-
-export default function StrayCatForm({ open, onClose }: StrayCatFormProps) {
+export default function StrayCatForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
   const { toast } = useToast();
 
   const form = useForm<FormData>({
@@ -60,30 +55,19 @@ export default function StrayCatForm({ open, onClose }: StrayCatFormProps) {
     setIsSubmitting(true);
     
     try {
-      const formData = new FormData();
-      
-      Object.entries(data).forEach(([key, value]) => {
-        if (typeof value === 'boolean') {
-          formData.append(key, value ? 'true' : 'false');
-        } else {
-          formData.append(key, value as string);
-        }
-      });
-      
-      uploadedFiles.forEach((file, index) => {
-        formData.append(`file-${index}`, file);
-      });
-      
-      // Add email recipient
-      formData.append('emailTo', 'zavetisce.mb@snaga-mb.si');
-      formData.append('formType', 'stray-cat');
-      
-      console.log("Form data would be sent:", Object.fromEntries(formData));
+      // In a real application, you would send this data to your backend
+      // For now, we'll simulate a successful submission
+      console.log("Form data:", data);
+      console.log("Uploaded files:", uploadedFiles);
       
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1500));
       
-      setSubmitSuccess(true);
+      toast({
+        title: "Prijava poslana",
+        description: "Vaša prijava za odlov prostoživečih mačk je bila uspešno poslana.",
+      });
+      
       form.reset();
       setUploadedFiles([]);
     } catch (error) {
@@ -97,49 +81,21 @@ export default function StrayCatForm({ open, onClose }: StrayCatFormProps) {
     }
   };
 
-  if (submitSuccess) {
-    return (
-      <Dialog open={open} onOpenChange={() => {
-        setSubmitSuccess(false);
-        onClose();
-      }}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-center text-teal-800">Prijava poslana</DialogTitle>
-            <DialogDescription className="text-center">
-              Vaša prijava za odlov prostoživečih mačk je bila uspešno poslana.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="flex justify-center pt-4">
-            <Button onClick={() => {
-              setSubmitSuccess(false);
-              onClose();
-            }}>
-              Zapri
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
-    );
-  }
-
   return (
-    <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md md:max-w-lg overflow-y-auto max-h-[90vh]">
-        <DialogHeader>
-          <div className="flex items-center gap-2 mb-1">
-            <div className="h-8 w-8 rounded-full bg-teal-50 flex items-center justify-center">
-              <Cat className="h-5 w-5 text-teal-600" />
-            </div>
-            <DialogTitle>Prijava za odlov prostoživečih mačk</DialogTitle>
-          </div>
-          <DialogDescription>
-            Izpolnite obrazec za prijavo potrebe po odlovu prostoživečih mačk na vaši lokaciji.
-          </DialogDescription>
-        </DialogHeader>
+    <Card className="w-full max-w-3xl mx-auto">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2 text-teal-800">
+          <Cat className="h-6 w-6 text-teal-600" />
+          Prijava za odlov prostoživečih mačk
+        </CardTitle>
+        <CardDescription>
+          Izpolnite obrazec za prijavo potrebe po odlovu prostoživečih mačk na vaši lokaciji.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 pt-2">
-            <div className="grid gap-4 grid-cols-2">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <div className="grid gap-4 md:grid-cols-2">
               <FormField
                 control={form.control}
                 name="fullName"
@@ -147,10 +103,7 @@ export default function StrayCatForm({ open, onClose }: StrayCatFormProps) {
                   <FormItem>
                     <FormLabel>Ime in priimek</FormLabel>
                     <FormControl>
-                      <div className="relative">
-                        <Input placeholder="Vnesite vaše ime in priimek" {...field} className="pl-8" />
-                        <User className="absolute left-2.5 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                      </div>
+                      <Input placeholder="Vnesite vaše ime in priimek" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -164,10 +117,7 @@ export default function StrayCatForm({ open, onClose }: StrayCatFormProps) {
                   <FormItem>
                     <FormLabel>Kontaktna telefonska številka</FormLabel>
                     <FormControl>
-                      <div className="relative">
-                        <Input type="tel" placeholder="npr. 041 123 456" {...field} className="pl-8" />
-                        <Phone className="absolute left-2.5 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                      </div>
+                      <Input type="tel" placeholder="npr. 041 123 456" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -182,10 +132,7 @@ export default function StrayCatForm({ open, onClose }: StrayCatFormProps) {
                 <FormItem>
                   <FormLabel>E-poštni naslov</FormLabel>
                   <FormControl>
-                    <div className="relative">
-                      <Input type="email" placeholder="npr. ime.priimek@email.com" {...field} className="pl-8" />
-                      <Mail className="absolute left-2.5 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                    </div>
+                    <Input type="email" placeholder="npr. ime.priimek@email.com" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -197,12 +144,12 @@ export default function StrayCatForm({ open, onClose }: StrayCatFormProps) {
               name="location"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Točna lokacija odlova</FormLabel>
+                  <FormLabel className="flex items-center gap-1">
+                    <MapPin className="h-4 w-4 text-teal-600" />
+                    Točna lokacija odlova
+                  </FormLabel>
                   <FormControl>
-                    <div className="relative">
-                      <Input placeholder="Vnesite natančen naslov lokacije" {...field} className="pl-8" />
-                      <MapPin className="absolute left-2.5 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                    </div>
+                    <Input placeholder="Vnesite natančen naslov lokacije" {...field} />
                   </FormControl>
                   <FormDescription>
                     Vpišite točen naslov, kjer ste opazili prostoživeče mačke.
@@ -231,13 +178,15 @@ export default function StrayCatForm({ open, onClose }: StrayCatFormProps) {
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Opis situacije</FormLabel>
+                  <FormLabel className="flex items-center gap-1">
+                    <Info className="h-4 w-4 text-teal-600" />
+                    Opis situacije
+                  </FormLabel>
                   <FormControl>
                     <Textarea 
                       placeholder="Opišite stanje živali, nujnost odlova in druge relevantne podatke..." 
                       rows={4}
                       {...field} 
-                      className="resize-none min-h-24"
                     />
                   </FormControl>
                   <FormMessage />
@@ -245,21 +194,27 @@ export default function StrayCatForm({ open, onClose }: StrayCatFormProps) {
               )}
             />
 
-            <div className="space-y-2">
-              <FormLabel>Priloži fotografije lokacije ali mačk (opcijsko)</FormLabel>
+            <div>
+              <div className="mb-2 flex items-center gap-1">
+                <Upload className="h-4 w-4 text-teal-600" />
+                <p className="text-sm font-medium">Priloži fotografije lokacije ali mačk (opcijsko)</p>
+              </div>
               <FileUpload 
                 onChange={handleFileChange} 
                 value={uploadedFiles}
                 accept="image/*"
-                maxFiles={3}
+                maxFiles={5}
               />
+              <p className="text-xs text-muted-foreground mt-2">
+                Priložite lahko do 5 fotografij (jpg, png), velikosti do 5MB.
+              </p>
             </div>
 
             <FormField
               control={form.control}
               name="consent"
               render={({ field }) => (
-                <FormItem className="flex items-start space-x-3 space-y-0 pt-2">
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
                   <FormControl>
                     <Checkbox
                       checked={field.value}
@@ -274,27 +229,27 @@ export default function StrayCatForm({ open, onClose }: StrayCatFormProps) {
                       Vaši podatki bodo uporabljeni izključno za namen prijave in odlova prostoživečih mačk.
                     </FormDescription>
                   </div>
+                  <FormMessage />
                 </FormItem>
               )}
             />
 
-            <div className="pt-2">
-              <Button 
-                type="submit" 
-                className="w-full bg-teal-600 hover:bg-teal-700"
-                disabled={isSubmitting}
-              >
-                <SendHorizontal className="mr-2 h-4 w-4" />
-                {isSubmitting ? "Pošiljam..." : "Oddaj prijavo"}
-              </Button>
-              
-              <p className="text-xs text-center text-gray-500 mt-2">
-                Prijava bo poslana na uradni email zavetišča: zavetisce.mb@snaga-mb.si
-              </p>
-            </div>
+            <Button 
+              type="submit" 
+              disabled={isSubmitting}
+              className="w-full md:w-auto flex items-center gap-2"
+            >
+              <Send className="h-4 w-4" />
+              {isSubmitting ? "Pošiljanje..." : "Pošlji prijavo"}
+            </Button>
           </form>
         </Form>
-      </DialogContent>
-    </Dialog>
+      </CardContent>
+      <CardFooter className="flex flex-col items-start border-t pt-4">
+        <p className="text-sm text-muted-foreground">
+          Prijava bo poslana na uradni email zavetišča: zavetisce.mb@snaga-mb.si
+        </p>
+      </CardFooter>
+    </Card>
   );
 }
