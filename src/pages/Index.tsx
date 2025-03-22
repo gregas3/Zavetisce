@@ -18,7 +18,7 @@ const Index = () => {
       
       <HeroSection />
       <div className="bg-gradient-to-b from-[#e2efed]/80 to-[#dfecea]/80">
-        <div className="pt-8">
+        <div className="pt-0">
           <FeaturedAnimals />
         </div>
         <QuickLinks />
