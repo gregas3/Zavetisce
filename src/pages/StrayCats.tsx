@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Helmet } from "react-helmet";
 import { PawPrint, Cat, Heart, Info, FileText } from "lucide-react";
@@ -6,10 +5,8 @@ import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import Section from "@/components/shared/Section";
 import Layout from "@/components/layout/Layout";
 import StrayCatForm from "@/components/forms/StrayCatForm";
-
 export default function StrayCats() {
-  return (
-    <Layout>
+  return <Layout>
       <Helmet>
         <title>Prostoživeče mačke – pomoč in nadzor populacije | Zavetišče za živali</title>
         <meta name="description" content="Informacije o prostoživečih mačkah in naših programih za njihov odlov, sterilizacijo/kastracijo in vrnitev v okolje." />
@@ -80,28 +77,7 @@ export default function StrayCats() {
               </AnimatedWrapper>
             </div>
 
-            <div className="md:col-span-5">
-              <AnimatedWrapper animation="slide-up" delay={100}>
-                <div className="bg-teal-50 p-6 rounded-lg border border-teal-100 shadow-sm">
-                  <img 
-                    src="/lovable-uploads/b9feb369-2229-4950-b40a-1444f8ab7a24.png" 
-                    alt="Prostoživeče mačke" 
-                    className="w-full h-auto rounded-lg mb-6 shadow-md"
-                  />
-                  
-                  <div className="bg-white p-4 rounded-lg border border-teal-100 shadow-inner">
-                    <h3 className="font-semibold text-teal-800 mb-2">Pomembne informacije</h3>
-                    <ul className="list-disc list-inside text-sm space-y-2 text-slate-700">
-                      <li>Program TNR je humana metoda nadzora populacije prostoživečih mačk</li>
-                      <li>Vse mačke so po veterinarskem posegu označene</li>
-                      <li>Sterilizacija in kastracija preprečujeta trpljenje živali</li>
-                      <li>Naša služba deluje po celotnem območju občine</li>
-                      <li>Kolonije prostoživečih mačk so zakonsko zaščitene</li>
-                    </ul>
-                  </div>
-                </div>
-              </AnimatedWrapper>
-            </div>
+            
           </div>
 
           <div className="mt-16">
@@ -120,6 +96,5 @@ export default function StrayCats() {
           </div>
         </div>
       </Section>
-    </Layout>
-  );
+    </Layout>;
 }
