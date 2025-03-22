@@ -66,9 +66,9 @@ const DogContactInfo = ({
         </div>
       </CardContent>
       <CardFooter className="flex flex-col gap-3">
-        <Button onClick={handleScheduleAppointment} className="w-full">
+        <Button onClick={handleScheduleAppointment} className="w-full text-black">
           <Calendar className="mr-2 h-4 w-4" />
-          Rezerviraj termin za obisk
+          Prijava na ogled
         </Button>
         <Button onClick={handleFillQuestionnaire} variant="teal" className="w-full">
           <FileText className="mr-2 h-4 w-4" />

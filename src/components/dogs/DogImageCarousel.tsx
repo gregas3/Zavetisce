@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Play, X } from "lucide-react";
+import { Play, X, Share } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import {
   Carousel,
@@ -90,11 +90,11 @@ const DogImageCarousel = ({
                   className="w-full h-full p-0 m-0 bg-transparent border-0 cursor-pointer"
                   onClick={handleImageClick}
                 >
-                  <AspectRatio ratio={16 / 9} className="bg-muted">
+                  <AspectRatio ratio={4 / 3} className="bg-muted">
                     <img
                       src={image}
                       alt={`${dogName} - slika ${index + 1}`}
-                      className="object-contain w-full h-full hover:opacity-95 transition-opacity"
+                      className="object-cover w-full h-full hover:opacity-95 transition-opacity"
                     />
                   </AspectRatio>
                 </button>

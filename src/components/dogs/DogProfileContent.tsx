@@ -2,7 +2,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { FileText } from "lucide-react";
+import { FileText, Share } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/components/ui/use-toast";
@@ -15,6 +15,13 @@ import DogRequirementsTab from "./DogRequirementsTab";
 import DogHealthTab from "./DogHealthTab";
 import DogContactInfo from "./DogContactInfo";
 import DogProfileBreadcrumb from "./DogProfileBreadcrumb";
+import { useToast } from "@/components/ui/use-toast";
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+} from "@/components/ui/context-menu";
 
 interface DogProfileContentProps {
   dog: DogData;
@@ -22,6 +29,7 @@ interface DogProfileContentProps {
 
 const DogProfileContent = ({ dog }: DogProfileContentProps) => {
   const navigate = useNavigate();
+  const { toast } = useToast();
 
   const handleScheduleAppointment = () => {
     navigate(`/termini?animalId=${dog?.id}&animalName=${dog?.name}&animalType=Pes`);
@@ -39,13 +47,64 @@ const DogProfileContent = ({ dog }: DogProfileContentProps) => {
     });
   };
 
+  const handleShare = (platform: string) => {
+    const url = window.location.href;
+    const text = `Spoznajte ${dog.name}, psa, ki išče nov dom v Zavetišču za živali Maribor.`;
+    
+    switch (platform) {
+      case 'facebook':
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
+        break;
+      case 'twitter':
+        window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`);
+        break;
+      case 'whatsapp':
+        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + url)}`);
+        break;
+      case 'copy':
+        navigator.clipboard.writeText(url).then(() => {
+          toast({
+            title: "Povezava kopirana",
+            description: "Povezava do profila psa je bila kopirana v odložišče."
+          });
+        });
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <div className="container">
       <DogProfileBreadcrumb dogName={dog.name} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
-          <DogProfileHeader name={dog.name} status={dog.status} />
+          <div className="flex justify-between items-center mb-4">
+            <DogProfileHeader name={dog.name} status={dog.status} />
+            
+            <ContextMenu>
+              <ContextMenuTrigger asChild>
+                <Button variant="outline" size="icon" className="rounded-full">
+                  <Share className="h-4 w-4" />
+                </Button>
+              </ContextMenuTrigger>
+              <ContextMenuContent className="w-48">
+                <ContextMenuItem onClick={() => handleShare('facebook')}>
+                  Deli na Facebook
+                </ContextMenuItem>
+                <ContextMenuItem onClick={() => handleShare('twitter')}>
+                  Deli na Twitter
+                </ContextMenuItem>
+                <ContextMenuItem onClick={() => handleShare('whatsapp')}>
+                  Pošlji preko WhatsApp
+                </ContextMenuItem>
+                <ContextMenuItem onClick={() => handleShare('copy')}>
+                  Kopiraj povezavo
+                </ContextMenuItem>
+              </ContextMenuContent>
+            </ContextMenu>
+          </div>
           
           <DogImageCarousel 
             dogName={dog.name} 
@@ -91,8 +150,8 @@ const DogProfileContent = ({ dog }: DogProfileContentProps) => {
           </Tabs>
           
           <div className="flex flex-col mt-6 space-y-4">
-            <Button className="w-full" onClick={handleScheduleAppointment}>
-              Rezerviraj termin za obisk
+            <Button className="w-full text-black" onClick={handleScheduleAppointment}>
+              Prijava na ogled
             </Button>
             <Button variant="teal" className="w-full" onClick={handleFillQuestionnaire}>
               <FileText className="mr-2 h-5 w-5" />

@@ -1,7 +1,8 @@
+
 import { Helmet } from 'react-helmet';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Search } from 'lucide-react';
+import { Search, Share, Play } from 'lucide-react';
 import Layout from "@/components/layout/Layout";
 import Section from "@/components/shared/Section";
 import { Input } from "@/components/ui/input";
@@ -10,10 +11,18 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { dogs, Dog } from "@/data/dogsData";
+import { useToast } from "@/components/ui/use-toast";
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+} from "@/components/ui/context-menu";
 
 const DogsAdoption = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredDogs, setFilteredDogs] = useState(dogs);
+  const { toast } = useToast();
   
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value.toLowerCase();
@@ -137,10 +146,43 @@ interface DogCardProps {
 
 const DogCard = ({ dog }: DogCardProps) => {
   const navigate = useNavigate();
+  const { toast } = useToast();
   
   const handleCardClick = () => {
     navigate(`/posvojitev/psi/${dog.id}`);
   };
+  
+  const handleShare = (e: React.MouseEvent, platform: string) => {
+    e.stopPropagation();
+    
+    const url = `${window.location.origin}/posvojitev/psi/${dog.id}`;
+    const text = `Spoznajte ${dog.name}, psa, ki išče nov dom v Zavetišču za živali Maribor.`;
+    
+    switch (platform) {
+      case 'facebook':
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
+        break;
+      case 'twitter':
+        window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`);
+        break;
+      case 'whatsapp':
+        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + url)}`);
+        break;
+      case 'copy':
+        navigator.clipboard.writeText(url).then(() => {
+          toast({
+            title: "Povezava kopirana",
+            description: "Povezava do profila psa je bila kopirana v odložišče."
+          });
+        });
+        break;
+      default:
+        break;
+    }
+  };
+  
+  // Determine if the dog has a video (for demo purposes, we'll show it for some dogs)
+  const hasVideo = dog.id % 2 === 0;
   
   return (
     <Card 
@@ -154,6 +196,43 @@ const DogCard = ({ dog }: DogCardProps) => {
           className="object-cover w-full h-full transition-normal group-hover:scale-105"
           loading="lazy"
         />
+        <div className="absolute top-3 right-3 flex flex-col gap-2">
+          <ContextMenu>
+            <ContextMenuTrigger asChild>
+              <Button
+                variant="outline"
+                size="icon"
+                className="rounded-full bg-white/70 hover:bg-white"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <Share className="h-4 w-4" />
+              </Button>
+            </ContextMenuTrigger>
+            <ContextMenuContent className="w-48">
+              <ContextMenuItem onClick={(e) => handleShare(e, 'facebook')}>
+                Deli na Facebook
+              </ContextMenuItem>
+              <ContextMenuItem onClick={(e) => handleShare(e, 'twitter')}>
+                Deli na Twitter
+              </ContextMenuItem>
+              <ContextMenuItem onClick={(e) => handleShare(e, 'whatsapp')}>
+                Pošlji preko WhatsApp
+              </ContextMenuItem>
+              <ContextMenuItem onClick={(e) => handleShare(e, 'copy')}>
+                Kopiraj povezavo
+              </ContextMenuItem>
+            </ContextMenuContent>
+          </ContextMenu>
+        </div>
+        
+        {hasVideo && (
+          <div className="absolute bottom-3 right-3">
+            <Badge className="bg-primary/90 backdrop-blur-sm text-white flex items-center gap-1 hover:bg-primary cursor-pointer px-3 py-1">
+              <Play size={14} />
+              Video
+            </Badge>
+          </div>
+        )}
       </div>
       <CardContent className="p-5">
         <div className="flex justify-between items-start mb-2">

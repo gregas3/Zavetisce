@@ -19,7 +19,7 @@ const Layout = ({ children }: LayoutProps) => {
   }, [location.pathname]);
   
   return (
-    <div className="flex flex-col min-h-screen w-full">
+    <div className="flex flex-col min-h-screen w-full overflow-x-hidden">
       <Navbar />
       <main className="flex-grow w-full pt-14 md:pt-16" id="top">
         {children}

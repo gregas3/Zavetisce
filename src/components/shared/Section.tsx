@@ -30,10 +30,10 @@ export default function Section({
   animation = 'fade-in',
 }: SectionProps) {
   const content = (
-    <section id={id} className={`py-10 md:py-14 relative ${className}`} tabIndex={-1}>
+    <section id={id} className={`py-8 md:py-12 relative ${className}`} tabIndex={-1}>
       <div className="container mx-auto px-4 md:px-6">
         {(title || description || subtitle) && (
-          <div className={`mb-6 md:mb-10 ${centered ? 'text-center mx-auto max-w-3xl' : ''}`}>
+          <div className={`mb-6 md:mb-8 ${centered ? 'text-center mx-auto max-w-3xl' : ''}`}>
             {title && (
               <h2 className={`text-xl md:text-2xl lg:text-3xl font-bold mb-2.5 ${titleClassName}`}>
                 {title}
