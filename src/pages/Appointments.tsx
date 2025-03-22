@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { CalendarIcon, Clock, Phone, Mail, Calendar, Info, PawPrint } from "lucide-react";
@@ -46,11 +45,15 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
-// Working hours
 const workingHours = {
   monday: { open: "8:00", close: "16:00" },
   tuesday: { open: "8:00", close: "16:00" },
@@ -61,13 +64,11 @@ const workingHours = {
   sunday: { open: "9:00", close: "13:00" }
 };
 
-// Available time slots
 const timeSlots = [
   "9:00", "9:30", "10:00", "10:30", "11:00", "11:30", 
   "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00"
 ];
 
-// Mock booked appointments - in a real app, this would come from a backend
 const bookedAppointments = [
   { date: new Date(2023, 10, 15), time: "10:00", type: "Posvojitev" },
   { date: new Date(2023, 10, 15), time: "11:30", type: "Posvojitev" },
@@ -75,9 +76,7 @@ const bookedAppointments = [
   { date: new Date(2023, 10, 18), time: "14:00", type: "Posvojitev" },
 ];
 
-// Mock available animals data
 const fetchAvailableAnimals = async () => {
-  // In a real app, this would be a fetch call to an API
   return [
     { id: "1", name: "Rex", type: "Pes", breed: "Mešanec" },
     { id: "2", name: "Luna", type: "Pes", breed: "Nemški ovčar" },
@@ -95,7 +94,6 @@ const isSlotBooked = (date: Date, time: string) => {
   );
 };
 
-// Form schema for validation
 const formSchema = z.object({
   appointmentType: z.string({
     required_error: "Izberite vrsto termina",
@@ -111,6 +109,9 @@ const formSchema = z.object({
     message: "Vnesite veljaven telefonski številko",
   }),
   notes: z.string().optional(),
+  date: z.date({
+    required_error: "Izbira datuma je obvezna",
+  }),
 });
 
 const Appointments = () => {
@@ -131,16 +132,21 @@ const Appointments = () => {
       email: "",
       phone: "",
       notes: "",
+      date: new Date(),
     },
   });
 
-  // Fetch available animals
+  useEffect(() => {
+    if (date) {
+      form.setValue("date", date);
+    }
+  }, [date, form]);
+
   const { data: animals = [] } = useQuery({
     queryKey: ["animals"],
     queryFn: fetchAvailableAnimals,
   });
 
-  // Check if we came from a specific animal page
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const animalId = params.get("animalId");
@@ -155,10 +161,10 @@ const Appointments = () => {
   }, [location.search, form]);
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    if (!date || !selectedTime) {
+    if (!selectedTime) {
       toast({
         title: "Napaka",
-        description: "Izberite datum in čas termina.",
+        description: "Izberite čas termina.",
         variant: "destructive"
       });
       return;
@@ -166,24 +172,20 @@ const Appointments = () => {
 
     setIsSubmitting(true);
 
-    // Simulate API call
     setTimeout(() => {
       setIsSubmitting(false);
       
-      // Success notification
       toast({
         title: "Termin uspešno rezerviran!",
-        description: `Vaš termin za ${format(date, "d. MMMM yyyy", { locale: sl })} ob ${selectedTime} je bil uspešno rezerviran. Na vaš e-naslov smo poslali potrditev.`,
+        description: `Vaš termin za ${format(values.date, "d. MMMM yyyy", { locale: sl })} ob ${selectedTime} je bil uspešno rezerviran. Na vaš e-naslov smo poslali potrditev.`,
       });
 
-      // Reset form
       form.reset();
       setSelectedTime(null);
       setSelectedAnimalName("");
     }, 1500);
   };
 
-  // Disable past dates in calendar
   const disabledDays = (date: Date) => {
     return isBefore(date, new Date()) && !isSameDay(date, new Date());
   };
@@ -362,19 +364,47 @@ const Appointments = () => {
                             </div>
                             
                             <div className="md:col-span-1 space-y-6">
-                              <div>
-                                <Label className="mb-2 block">Izberite datum*</Label>
-                                <div className="border rounded-md p-2 overflow-visible touch-manipulation max-w-full">
-                                  <CalendarComponent
-                                    mode="single"
-                                    selected={date}
-                                    onSelect={setDate}
-                                    disabled={disabledDays}
-                                    className="mx-auto max-w-full"
-                                    locale={sl}
-                                  />
-                                </div>
-                              </div>
+                              <FormField
+                                control={form.control}
+                                name="date"
+                                render={({ field }) => (
+                                  <FormItem className="flex flex-col">
+                                    <FormLabel>Izberite datum*</FormLabel>
+                                    <Popover>
+                                      <PopoverTrigger asChild>
+                                        <FormControl>
+                                          <Button
+                                            variant="outline"
+                                            className={`w-full pl-3 text-left font-normal flex justify-between items-center ${!field.value && "text-muted-foreground"}`}
+                                          >
+                                            {field.value ? (
+                                              format(field.value, "d. MMMM yyyy", { locale: sl })
+                                            ) : (
+                                              <span>Izberite datum</span>
+                                            )}
+                                            <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                          </Button>
+                                        </FormControl>
+                                      </PopoverTrigger>
+                                      <PopoverContent className="w-auto p-0" align="start">
+                                        <CalendarComponent
+                                          mode="single"
+                                          selected={field.value}
+                                          onSelect={(date) => {
+                                            if (date) {
+                                              field.onChange(date);
+                                              setDate(date);
+                                            }
+                                          }}
+                                          disabled={disabledDays}
+                                          initialFocus
+                                        />
+                                      </PopoverContent>
+                                    </Popover>
+                                    <FormMessage />
+                                  </FormItem>
+                                )}
+                              />
                               
                               {date && (
                                 <div className="space-y-3">
@@ -389,7 +419,7 @@ const Appointments = () => {
                                           variant={selectedTime === time ? "default" : "outline"}
                                           className={`
                                             ${selectedTime === time 
-                                              ? "bg-emerald-500 hover:bg-emerald-600 text-white border-emerald-600" 
+                                              ? "bg-green-500 hover:bg-green-600 text-white border-green-600" 
                                               : isBooked 
                                                 ? "bg-red-50 text-red-500 border-red-200 hover:bg-red-50 opacity-60 cursor-not-allowed" 
                                                 : "bg-blue-50 hover:bg-blue-100 text-blue-700 border-blue-200"
@@ -405,7 +435,7 @@ const Appointments = () => {
                                   </div>
                                   <div className="flex flex-wrap gap-4 text-sm mt-3 border rounded-md p-3 bg-gray-50">
                                     <div className="flex items-center gap-2">
-                                      <div className="w-4 h-4 bg-emerald-500 rounded-full"></div>
+                                      <div className="w-4 h-4 bg-green-500 rounded-full"></div>
                                       <span>Izbrano</span>
                                     </div>
                                     <div className="flex items-center gap-2">
@@ -522,7 +552,7 @@ const Appointments = () => {
                   <div>
                     <h3 className="font-semibold">Ali moram rezervirati termin?</h3>
                     <p className="text-sm text-muted-foreground mt-1">
-                      Da, za kakovostno obravnavo obiskovalcev in dobrobit živali je potrebna rezervacija termina.
+                      Da, za kakovostno obravnave obiskovalcev in dobrobit živali je potrebna rezervacija termina.
                     </p>
                   </div>
                   <div>

@@ -1,3 +1,4 @@
+
 import React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -10,16 +11,21 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "@/components/ui/use-toast";
 import { CalendarIcon, Dog, Mail, User, Phone, Clock, CheckCircle } from "lucide-react";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { format } from "date-fns";
+import { sl } from "date-fns/locale";
 
 // Define the form validation schema using Zod
 const formSchema = z.object({
   fullName: z.string().min(3, {
     message: "Ime in priimek mora vsebovati vsaj 3 znake.",
   }),
-  dateOfBirth: z.string().refine((value) => {
-    const date = new Date(value);
+  dateOfBirth: z.date({
+    required_error: "Izbira datuma rojstva je obvezna.",
+  }).refine((value) => {
     const today = new Date();
-    const age = today.getFullYear() - date.getFullYear();
+    const age = today.getFullYear() - value.getFullYear();
     return age >= 18;
   }, {
     message: "Prostovoljec mora biti polnoleten (18+).",
@@ -56,7 +62,7 @@ const DogWalkerForm = ({ open, onClose }: DogWalkerFormProps) => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       fullName: "",
-      dateOfBirth: "",
+      dateOfBirth: undefined,
       phone: "",
       email: "",
       experience: "",
@@ -92,6 +98,15 @@ const DogWalkerForm = ({ open, onClose }: DogWalkerFormProps) => {
         variant: "destructive",
       });
     }
+  };
+
+  // Function to disable future dates and dates under 18 years ago
+  const disabledDays = (date: Date) => {
+    const today = new Date();
+    const eighteenYearsAgo = new Date();
+    eighteenYearsAgo.setFullYear(today.getFullYear() - 18);
+    
+    return date > eighteenYearsAgo;
   };
 
   return (
@@ -130,14 +145,35 @@ const DogWalkerForm = ({ open, onClose }: DogWalkerFormProps) => {
               control={form.control}
               name="dateOfBirth"
               render={({ field }) => (
-                <FormItem>
+                <FormItem className="flex flex-col">
                   <FormLabel>Datum rojstva</FormLabel>
-                  <FormControl>
-                    <div className="relative">
-                      <Input type="date" {...field} className="pl-10" />
-                      <CalendarIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-teal-500" />
-                    </div>
-                  </FormControl>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button
+                          variant="outline"
+                          className={`w-full pl-10 text-left font-normal flex justify-between items-center ${!field.value && "text-muted-foreground"}`}
+                        >
+                          {field.value ? (
+                            format(field.value, "d. MMMM yyyy", { locale: sl })
+                          ) : (
+                            <span>Izberite datum rojstva</span>
+                          )}
+                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={field.onChange}
+                        disabled={disabledDays}
+                        initialFocus
+                        className="pointer-events-auto"
+                      />
+                    </PopoverContent>
+                  </Popover>
                   <FormDescription>
                     Potrditev polnoletnosti (starost vsaj 18 let).
                   </FormDescription>
