@@ -55,14 +55,6 @@ export const DesktopNavigation = ({
                 </li>
                 <li>
                   <NavigationMenuLink asChild>
-                    <Link to="/prostozivece-macke" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
-                      <Cat size={16} className="text-teal-500" />
-                      <span>Prostoživeče mačke</span>
-                    </Link>
-                  </NavigationMenuLink>
-                </li>
-                <li>
-                  <NavigationMenuLink asChild>
                     <Link to="/termini" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
                       <Calendar size={16} className="text-teal-500" />
                       <span>Prijava na ogled</span>
