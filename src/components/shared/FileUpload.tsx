@@ -1,8 +1,6 @@
 
 import { useState, useRef } from 'react';
-import { Upload, X, Image, Check } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
+import { Upload } from 'lucide-react';
 
 interface FileUploadProps {
   onChange: (files: File[]) => void;
@@ -73,17 +71,12 @@ const FileUpload = ({
     onChange(newFiles);
   };
 
-  const getFilePreview = (file: File) => {
-    if (file.type.startsWith('image/')) {
-      return URL.createObjectURL(file);
-    }
-    return null;
-  };
-
   return (
     <div className="space-y-2">
       <div 
-        className={`border-2 border-dashed rounded-lg p-6 text-center ${dragActive ? 'border-teal-500 bg-teal-50' : 'border-gray-300'} ${error ? 'border-destructive' : ''}`}
+        className={`border border-teal-100 rounded-md p-4 text-center ${
+          dragActive ? 'bg-teal-50' : 'bg-white'
+        } ${error ? 'border-red-300' : ''}`}
         onDragEnter={handleDrag}
         onDragLeave={handleDrag}
         onDragOver={handleDrag}
@@ -99,45 +92,30 @@ const FileUpload = ({
           id="file-upload"
         />
         
-        <Label htmlFor="file-upload" className="cursor-pointer flex flex-col items-center">
-          <Upload size={24} className="mb-2 text-teal-500" />
-          <span className="text-sm font-medium mb-1">Kliknite za nalaganje ali povlecite datoteke sem</span>
-          <span className="text-xs text-muted-foreground">
+        <label htmlFor="file-upload" className="cursor-pointer flex flex-col items-center">
+          <Upload size={24} className="text-teal-500 mb-2" />
+          <span className="text-sm font-medium text-gray-700">
+            Kliknite za nalaganje ali povlecite datoteke sem
+          </span>
+          <span className="text-xs text-gray-500 mt-1">
             {value.length}/{maxFiles} slik, največ 10MB na sliko
           </span>
-        </Label>
+        </label>
       </div>
       
-      {error && <p className="text-sm text-destructive">{error}</p>}
+      {error && <p className="text-sm text-red-500">{error}</p>}
       
       {value.length > 0 && (
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-3">
+        <div className="flex gap-2 mt-2 flex-wrap">
           {value.map((file, index) => (
-            <div key={index} className="relative border rounded-md overflow-hidden group">
-              {getFilePreview(file) ? (
-                <div className="aspect-square bg-gray-100">
-                  <img 
-                    src={getFilePreview(file)} 
-                    alt={`preview ${index}`}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              ) : (
-                <div className="aspect-square bg-gray-100 flex items-center justify-center">
-                  <Image size={24} className="text-gray-400" />
-                </div>
-              )}
-              
-              <div className="p-2 bg-white border-t border-gray-100 text-xs truncate">
-                {file.name}
-              </div>
-              
+            <div key={index} className="text-xs text-gray-500">
+              {file.name}
               <button
                 type="button"
                 onClick={() => removeFile(index)}
-                className="absolute top-1 right-1 bg-white rounded-full p-1 shadow-md opacity-70 hover:opacity-100"
+                className="ml-2 text-red-500"
               >
-                <X size={14} />
+                ×
               </button>
             </div>
           ))}

@@ -8,9 +8,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
-import { toast } from "@/components/ui/use-toast";
-import { CalendarIcon, Dog, Mail, User, Phone, Clock, CheckCircle } from "lucide-react";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { toast } from "@/hooks/use-toast";
+import { CalendarIcon, Dog, Mail, User, Phone, Clock, SendHorizontal } from "lucide-react";
 
 // Define the form validation schema using Zod
 const formSchema = z.object({
@@ -47,11 +47,11 @@ const formSchema = z.object({
 
 // Define the props for the DogWalkerForm component
 interface DogWalkerFormProps {
-  isOpen: boolean;
+  open: boolean;
   onClose: () => void;
 }
 
-const DogWalkerForm = ({ isOpen, onClose }: DogWalkerFormProps) => {
+const DogWalkerForm = ({ open, onClose }: DogWalkerFormProps) => {
   // Initialize the form with react-hook-form and zod validation
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -69,22 +69,41 @@ const DogWalkerForm = ({ isOpen, onClose }: DogWalkerFormProps) => {
     },
   });
 
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [submitSuccess, setSubmitSuccess] = React.useState(false);
+
   // Handle form submission
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsSubmitting(true);
+    
     try {
       // In a real application, you would send the form data to a server here
       console.log("Form values:", values);
       
-      // Simulate sending email (in a real app, this would be handled by a server)
-      // Here we're just showing a success message
-      toast({
-        title: "Prijava poslana!",
-        description: "Vaša prijava za prostovoljca sprehajalca je bila uspešno poslana.",
+      const formData = new FormData();
+      
+      // Convert nested object to flat key-value pairs
+      Object.entries(values).forEach(([key, value]) => {
+        if (key === 'preferredTimes') {
+          Object.entries(value).forEach(([timeKey, timeValue]) => {
+            formData.append(`preferredTimes.${timeKey}`, timeValue ? 'true' : 'false');
+          });
+        } else if (typeof value === 'boolean') {
+          formData.append(key, value ? 'true' : 'false');
+        } else {
+          formData.append(key, value as string);
+        }
       });
       
-      // Reset the form and close the sheet
+      // Add email recipient
+      formData.append('emailTo', 'zavetisce.mb@snaga-mb.si');
+      formData.append('formType', 'dog-walker-volunteer');
+      
+      // Simulate sending email
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      setSubmitSuccess(true);
       form.reset();
-      onClose();
     } catch (error) {
       console.error("Error submitting form:", error);
       toast({
@@ -92,24 +111,54 @@ const DogWalkerForm = ({ isOpen, onClose }: DogWalkerFormProps) => {
         description: "Prišlo je do napake pri pošiljanju obrazca. Poskusite ponovno.",
         variant: "destructive",
       });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
+  if (submitSuccess) {
+    return (
+      <Dialog open={open} onOpenChange={() => {
+        setSubmitSuccess(false);
+        onClose();
+      }}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-center text-teal-800">Prijava poslana!</DialogTitle>
+            <DialogDescription className="text-center">
+              Vaša prijava za prostovoljca sprehajalca je bila uspešno poslana.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex justify-center pt-4">
+            <Button onClick={() => {
+              setSubmitSuccess(false);
+              onClose();
+            }}>
+              Zapri
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+    );
+  }
+
   return (
-    <Sheet open={isOpen} onOpenChange={onClose}>
-      <SheetContent className="w-full sm:max-w-md md:max-w-lg overflow-y-auto">
-        <SheetHeader className="mb-6">
-          <SheetTitle className="text-2xl font-bold text-teal-800 flex items-center gap-2">
-            <Dog className="text-teal-600" />
-            Postani prostovoljec sprehajalec
-          </SheetTitle>
-          <SheetDescription>
+    <Dialog open={open} onOpenChange={onClose}>
+      <DialogContent className="sm:max-w-md md:max-w-lg overflow-y-auto max-h-[90vh]">
+        <DialogHeader>
+          <div className="flex items-center gap-2 mb-1">
+            <div className="h-8 w-8 rounded-full bg-teal-50 flex items-center justify-center">
+              <Dog className="h-5 w-5 text-teal-600" />
+            </div>
+            <DialogTitle>Postani prostovoljec sprehajalec</DialogTitle>
+          </div>
+          <DialogDescription>
             Izpolnite obrazec za prijavo kot prostovoljec za sprehajanje psov v zavetišču.
-          </SheetDescription>
-        </SheetHeader>
+          </DialogDescription>
+        </DialogHeader>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 pt-2">
             <FormField
               control={form.control}
               name="fullName"
@@ -118,8 +167,8 @@ const DogWalkerForm = ({ isOpen, onClose }: DogWalkerFormProps) => {
                   <FormLabel>Ime in priimek</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <Input placeholder="Vnesite ime in priimek" {...field} className="pl-10" />
-                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-teal-500" />
+                      <Input placeholder="Vnesite ime in priimek" {...field} className="pl-8" />
+                      <User className="absolute left-2.5 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                     </div>
                   </FormControl>
                   <FormMessage />
@@ -135,8 +184,8 @@ const DogWalkerForm = ({ isOpen, onClose }: DogWalkerFormProps) => {
                   <FormLabel>Datum rojstva</FormLabel>
                   <FormControl>
                     <div className="relative">
-                      <Input type="date" {...field} className="pl-10" />
-                      <CalendarIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-teal-500" />
+                      <Input type="date" {...field} className="pl-8" />
+                      <CalendarIcon className="absolute left-2.5 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                     </div>
                   </FormControl>
                   <FormDescription>
@@ -147,39 +196,41 @@ const DogWalkerForm = ({ isOpen, onClose }: DogWalkerFormProps) => {
               )}
             />
 
-            <FormField
-              control={form.control}
-              name="phone"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Telefonska številka</FormLabel>
-                  <FormControl>
-                    <div className="relative">
-                      <Input placeholder="Vnesite telefonsko številko" {...field} className="pl-10" />
-                      <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-teal-500" />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div className="grid gap-4 grid-cols-2">
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Telefonska številka</FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <Input placeholder="Vnesite telefonsko številko" {...field} className="pl-8" />
+                        <Phone className="absolute left-2.5 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>E-poštni naslov</FormLabel>
-                  <FormControl>
-                    <div className="relative">
-                      <Input placeholder="Vnesite e-poštni naslov" {...field} className="pl-10" />
-                      <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-teal-500" />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>E-poštni naslov</FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <Input placeholder="Vnesite e-poštni naslov" {...field} className="pl-8" />
+                        <Mail className="absolute left-2.5 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
             <FormField
               control={form.control}
@@ -191,7 +242,7 @@ const DogWalkerForm = ({ isOpen, onClose }: DogWalkerFormProps) => {
                     <Textarea 
                       placeholder="Opišite vaše izkušnje s psi..." 
                       {...field} 
-                      className="min-h-[120px]"
+                      className="min-h-[100px] resize-none"
                     />
                   </FormControl>
                   <FormDescription>
@@ -203,13 +254,13 @@ const DogWalkerForm = ({ isOpen, onClose }: DogWalkerFormProps) => {
             />
 
             <div className="space-y-3">
-              <div className="text-sm font-medium">Želeni termini za sprehajanje</div>
+              <FormLabel>Želeni termini za sprehajanje</FormLabel>
               
               <FormField
                 control={form.control}
                 name="preferredTimes.weekdayMornings"
                 render={({ field }) => (
-                  <FormItem className="flex items-start space-x-3 space-y-0 rounded-md p-2 border border-muted">
+                  <FormItem className="flex items-start space-x-3 space-y-0 p-2 border border-input rounded-md">
                     <FormControl>
                       <Checkbox 
                         checked={field.value} 
@@ -233,7 +284,7 @@ const DogWalkerForm = ({ isOpen, onClose }: DogWalkerFormProps) => {
                 control={form.control}
                 name="preferredTimes.weekendMornings"
                 render={({ field }) => (
-                  <FormItem className="flex items-start space-x-3 space-y-0 rounded-md p-2 border border-muted">
+                  <FormItem className="flex items-start space-x-3 space-y-0 p-2 border border-input rounded-md">
                     <FormControl>
                       <Checkbox 
                         checked={field.value} 
@@ -260,7 +311,7 @@ const DogWalkerForm = ({ isOpen, onClose }: DogWalkerFormProps) => {
               control={form.control}
               name="agreement"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md p-4 border border-teal-100 bg-teal-50/50">
+                <FormItem className="flex items-start space-x-3 space-y-0 p-2 border border-teal-100 bg-teal-50/50 rounded-md">
                   <FormControl>
                     <Checkbox 
                       checked={field.value} 
@@ -268,8 +319,7 @@ const DogWalkerForm = ({ isOpen, onClose }: DogWalkerFormProps) => {
                     />
                   </FormControl>
                   <div className="space-y-1 leading-none">
-                    <FormLabel className="flex items-center gap-1">
-                      <CheckCircle className="h-4 w-4 text-teal-500" />
+                    <FormLabel>
                       Potrjujem, da sem polnoleten/polnoletna in sprehajam pse na lastno odgovornost
                     </FormLabel>
                     <FormDescription>
@@ -280,18 +330,24 @@ const DogWalkerForm = ({ isOpen, onClose }: DogWalkerFormProps) => {
               )}
             />
 
-            <div className="flex gap-3 pt-4">
-              <Button type="submit" variant="primary" className="flex-1">
-                Pošlji prijavo
+            <div className="pt-2">
+              <Button 
+                type="submit" 
+                className="w-full bg-teal-600 hover:bg-teal-700"
+                disabled={isSubmitting}
+              >
+                <SendHorizontal className="mr-2 h-4 w-4" />
+                {isSubmitting ? "Pošiljam..." : "Oddaj prijavo"}
               </Button>
-              <Button type="button" variant="outline" onClick={onClose} className="flex-1">
-                Prekliči
-              </Button>
+              
+              <p className="text-xs text-center text-gray-500 mt-2">
+                Prijava bo poslana na uradni email zavetišča: zavetisce.mb@snaga-mb.si
+              </p>
             </div>
           </form>
         </Form>
-      </SheetContent>
-    </Sheet>
+      </DialogContent>
+    </Dialog>
   );
 };
 
