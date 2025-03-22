@@ -38,11 +38,11 @@ export default function Kontakt() {
   
   return <Layout>
       <Section id="kontakt-hero" title="Kontakt" description="Stopite v stik z nami za vse informacije o posvojitvah, prostovoljstvu ali drugih vprašanjih." centered className="pt-24 md:pt-32" animation="fade-in-up">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-6 md:mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
           <AnimatedWrapper animation="slide-in-right" delay={300}>
-            <Card className="glass-card p-5 md:p-6 overflow-hidden relative h-full">
+            <Card className="glass-card p-6 overflow-hidden relative h-full">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-300 to-teal-500"></div>
-              <h3 className="text-xl md:text-2xl font-bold mb-5 md:mb-6 text-teal-800">Zavetišče za živali Maribor</h3>
+              <h3 className="text-2xl font-bold mb-6 text-teal-800">Zavetišče za živali Maribor</h3>
               
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
@@ -61,8 +61,8 @@ export default function Kontakt() {
                   </div>
                 </div>
                 
-                <div className="flex items-start gap-3">
-                  <Phone className="text-teal-600 flex-shrink-0 mt-0.5" />
+                <div className="flex items-center gap-3">
+                  <Phone className="text-teal-600 flex-shrink-0" />
                   <div>
                     <a 
                       href="tel:+38624801660" 
@@ -74,8 +74,8 @@ export default function Kontakt() {
                   </div>
                 </div>
                 
-                <div className="flex items-start gap-3">
-                  <AlertTriangle className="text-amber-500 flex-shrink-0 mt-0.5" />
+                <div className="flex items-center gap-3">
+                  <AlertTriangle className="text-amber-500 flex-shrink-0" />
                   <div>
                     <a 
                       href="tel:+38631788822" 
@@ -87,8 +87,8 @@ export default function Kontakt() {
                   </div>
                 </div>
                 
-                <div className="flex items-start gap-3">
-                  <Mail className="text-teal-600 flex-shrink-0 mt-0.5" />
+                <div className="flex items-center gap-3">
+                  <Mail className="text-teal-600 flex-shrink-0" />
                   <a 
                     href="mailto:zavetisce.mb@snaga-mb.si" 
                     className="font-medium hover:text-teal-600 transition-colors"
@@ -98,8 +98,8 @@ export default function Kontakt() {
                 </div>
               </div>
               
-              <div className="mt-6 md:mt-8 pt-5 md:pt-6 border-t border-teal-100">
-                <h4 className="text-lg md:text-xl font-bold mb-4 text-teal-800">Uradne ure</h4>
+              <div className="mt-8 pt-6 border-t border-teal-100">
+                <h4 className="text-xl font-bold mb-4 text-teal-800">Uradne ure</h4>
                 
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
@@ -130,9 +130,9 @@ export default function Kontakt() {
           </AnimatedWrapper>
           
           <AnimatedWrapper animation="fade-in" delay={600}>
-            <Card className="glass-card p-5 md:p-6 overflow-hidden relative h-full">
+            <Card className="glass-card p-6 overflow-hidden relative h-full">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-300 to-teal-500"></div>
-              <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-teal-800">Pišite nam</h3>
+              <h3 className="text-2xl font-bold mb-6 text-teal-800">Pišite nam</h3>
               
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
@@ -172,9 +172,9 @@ export default function Kontakt() {
         </div>
       </Section>
       
-      <Section id="location-map" className="py-8 md:py-16 pb-16 md:pb-24" animation="fade-in">
+      <Section id="location-map" className="pb-24" animation="fade-in">
         <AnimatedWrapper animation="zoom-in" delay={300}>
-          <Card className="glass-card overflow-hidden shadow-md h-[300px] md:h-[400px] relative">
+          <Card className="glass-card overflow-hidden shadow-md h-[400px] relative">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-300 to-teal-500"></div>
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2744.3333936849866!2d15.637945912413895!3d46.55484246280721!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476f778fb02fd879%3A0x13b1d05e2cf13a3c!2sAvtomobilska%20ulica%2025%2C%202000%20Maribor!5e0!3m2!1sen!2ssi!4v1717270120012!5m2!1sen!2ssi&maptype=satellite" width="100%" height="100%" style={{
             border: 0

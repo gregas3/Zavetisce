@@ -21,7 +21,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="flex flex-col min-h-screen w-full">
       <Navbar />
-      <main className="flex-grow w-full pt-12 md:pt-16" id="top">
+      <main className="flex-grow w-full pt-14 md:pt-16" id="top">
         {children}
       </main>
       {isHomePage && <FloatingContactButton />}
