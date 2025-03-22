@@ -1,5 +1,5 @@
 
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, Dog, Cat } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import AnimatedWrapper from "../shared/AnimatedWrapper";
@@ -55,9 +55,14 @@ export default function HeroSection() {
                   Podpri zavetišče
                 </Link>
               </Button>
-              <Button size="lg" variant="teal" asChild className="rounded-full font-medium text-base animate-fade-in delay-100 button-pulse">
+              <Button size="lg" variant="teal" asChild className="rounded-full font-medium text-base">
                 <Link to="/posvojitev/psi">
-                  Posvoji zdaj <ArrowRight className="ml-2 h-4 w-4" />
+                  Posvoji <Dog className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button size="lg" variant="teal" asChild className="rounded-full font-medium text-base">
+                <Link to="/posvojitev/mačke">
+                  Posvoji <Cat className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </div>
