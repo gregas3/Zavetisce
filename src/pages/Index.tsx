@@ -18,10 +18,10 @@ const Index = () => {
       
       <div className="min-h-screen bg-gradient-to-b from-[#e2efed]/80 to-[#dfecea]/80">
         <HeroSection />
-        <QuickLinks />
         <div className="bg-gradient-to-b from-[#e2efed]/80 to-[#dfecea]/80 py-8">
           <FeaturedAnimals />
         </div>
+        <QuickLinks />
         <StatsSection />
         <CtaSection />
         <TestimonialsSection />
