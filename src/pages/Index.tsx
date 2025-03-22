@@ -7,6 +7,7 @@ import TestimonialsSection from "@/components/home/TestimonialsSection";
 import StatsSection from "@/components/home/StatsSection";
 import CtaSection from "@/components/home/CtaSection";
 import Layout from "@/components/layout/Layout";
+import FloatingContactButton from "@/components/shared/FloatingContactButton";
 
 const Index = () => {
   return (
@@ -26,6 +27,8 @@ const Index = () => {
         <CtaSection />
         <TestimonialsSection />
       </div>
+      
+      <FloatingContactButton />
     </Layout>
   );
 };

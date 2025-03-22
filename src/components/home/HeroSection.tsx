@@ -3,8 +3,11 @@ import { ArrowRight, ChevronDown, Dog, Cat } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import AnimatedWrapper from "../shared/AnimatedWrapper";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function HeroSection() {
+  const isMobile = useIsMobile();
+  
   const scrollToNextSection = () => {
     // Specifically target the FeaturedAnimals section by ID
     const featuredAnimalsSection = document.getElementById('featured-animals-section');
@@ -85,16 +88,18 @@ export default function HeroSection() {
         </div>
       </div>
       
-      {/* Scroll button positioned higher (bottom-16 instead of bottom-8) */}
-      <button 
-        className="absolute bottom-16 left-1/2 transform -translate-x-1/2 cursor-pointer z-20 animate-bounce" 
-        onClick={scrollToNextSection} 
-        aria-label="Scroll down"
-      >
-        <div className="w-16 h-16 rounded-full bg-teal-700/80 flex items-center justify-center shadow-lg backdrop-blur-sm border border-teal-600/40 hover:bg-teal-600/90 transition-all duration-300">
-          <ChevronDown className="h-10 w-10 text-teal-200" />
-        </div>
-      </button>
+      {/* Scroll button - only shown on desktop */}
+      {!isMobile && (
+        <button 
+          className="absolute bottom-16 left-1/2 transform -translate-x-1/2 cursor-pointer z-20 animate-bounce" 
+          onClick={scrollToNextSection} 
+          aria-label="Scroll down"
+        >
+          <div className="w-16 h-16 rounded-full bg-teal-700/80 flex items-center justify-center shadow-lg backdrop-blur-sm border border-teal-600/40 hover:bg-teal-600/90 transition-all duration-300">
+            <ChevronDown className="h-10 w-10 text-teal-200" />
+          </div>
+        </button>
+      )}
     </div>
   );
 }
