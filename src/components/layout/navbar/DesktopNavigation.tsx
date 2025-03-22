@@ -1,17 +1,14 @@
-
 import { Link } from "react-router-dom";
 import { Dog, Cat, Heart, Calendar } from "lucide-react";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { NavbarActions } from "./NavbarActions";
 import { NavbarBranding } from "./NavbarBranding";
-
 type DesktopNavigationProps = {
   closeMenu: () => void;
   toggleSearch: () => void;
   handleHomeClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
-
 export const DesktopNavigation = ({
   closeMenu,
   toggleSearch,
@@ -54,7 +51,7 @@ export const DesktopNavigation = ({
                   <NavigationMenuLink asChild>
                     <Link to="/termini" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
                       <Calendar size={16} className="text-teal-500" />
-                      <span>Ogledi</span>
+                      <span>Prijava na ogled</span>
                     </Link>
                   </NavigationMenuLink>
                 </li>
