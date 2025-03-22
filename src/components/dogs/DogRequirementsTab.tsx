@@ -1,7 +1,7 @@
 
 import React from "react";
-import { FileText, Info } from "lucide-react";
-import { Link } from "react-router-dom";
+import { FileText, Info, Dog } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { 
   Card, 
@@ -23,6 +23,16 @@ const DogRequirementsTab = ({
   adoptionRequirements, 
   handleFillQuestionnaire 
 }: DogRequirementsTabProps) => {
+  const navigate = useNavigate();
+  
+  const handleScheduleAppointment = () => {
+    navigate(`/termini?animalName=${name}&animalType=Pes`);
+  };
+  
+  const handleVolunteerClick = () => {
+    navigate('/prostovoljstvo');
+  };
+  
   return (
     <Card>
       <CardHeader>
@@ -49,15 +59,25 @@ const DogRequirementsTab = ({
           </div>
         </div>
         
-        <div className="flex flex-col sm:flex-row gap-3 w-full">
-          <Button className="w-full" onClick={handleFillQuestionnaire}>
+        <div className="flex flex-col gap-3 w-full">
+          <Button asChild variant="outline" className="w-full">
+            <Link to="/posvojitev/psi">
+              Nazaj na seznam psov
+            </Link>
+          </Button>
+          
+          <Button className="w-full text-black" onClick={handleScheduleAppointment}>
+            Prijava na ogled
+          </Button>
+          
+          <Button className="w-full" variant="teal" onClick={handleFillQuestionnaire}>
             <FileText className="mr-2 h-4 w-4" />
             Izpolni vprašalnik
           </Button>
-          <Button asChild variant="outline" className="w-full">
-            <Link to="/posvojitev/postopek">
-              Več o postopku
-            </Link>
+          
+          <Button onClick={handleVolunteerClick} variant="lightTeal" className="w-full">
+            <Dog className="mr-2 h-4 w-4" />
+            Postani sprehajalec
           </Button>
         </div>
       </CardFooter>
