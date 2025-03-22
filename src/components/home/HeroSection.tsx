@@ -1,9 +1,7 @@
-
 import { ArrowRight, ChevronDown, Dog, Cat } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import AnimatedWrapper from "../shared/AnimatedWrapper";
-
 export default function HeroSection() {
   const scrollToNextSection = () => {
     // Find the first section after the hero section
@@ -16,7 +14,9 @@ export default function HeroSection() {
       // Fallback if the section-padding class is not found
       const sections = document.querySelectorAll('section');
       if (sections.length > 1) {
-        sections[1].scrollIntoView({ behavior: 'smooth' });
+        sections[1].scrollIntoView({
+          behavior: 'smooth'
+        });
       } else {
         // If no sections are found, scroll down 100vh
         window.scrollTo({
@@ -26,13 +26,12 @@ export default function HeroSection() {
       }
     }
   };
-  
   return <div className="relative pt-24 min-h-[100vh] flex items-center overflow-hidden">
       {/* Background image with overlay */}
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
       backgroundImage: "url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80')"
     }}>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0f2a2d]/90 via-[#0f2a2d]/70 to-[#0f2a2d]/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0f2a2d]/90 via-[#0f2a2d]/70 to-[#0f2a2d]/50 my-[132px]"></div>
       </div>
       
       {/* Content */}
@@ -43,15 +42,8 @@ export default function HeroSection() {
               <span className="inline-block bg-teal-500/20 text-teal-100 px-4 py-1.5 rounded-full text-lg font-medium">
                 Zavetišče za živali Maribor
               </span>
-              <AnimatedWrapper 
-                animation="bounce-slow" 
-                className="h-12 w-auto" 
-              >
-                <img 
-                  src="/lovable-uploads/48b0f5a4-0bee-4f96-af30-5157149e0517.png" 
-                  alt="Zavetišče za živali Maribor Logo" 
-                  className="h-12 w-auto drop-shadow-md" 
-                />
+              <AnimatedWrapper animation="bounce-slow" className="h-12 w-auto">
+                <img src="/lovable-uploads/48b0f5a4-0bee-4f96-af30-5157149e0517.png" alt="Zavetišče za živali Maribor Logo" className="h-12 w-auto drop-shadow-md" />
               </AnimatedWrapper>
             </div>
 
@@ -85,11 +77,7 @@ export default function HeroSection() {
       </div>
       
       {/* Scroll button with better styling to match image */}
-      <button 
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer z-10"
-        onClick={scrollToNextSection}
-        aria-label="Scroll down"
-      >
+      <button className="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer z-10" onClick={scrollToNextSection} aria-label="Scroll down">
         <div className="w-12 h-12 rounded-full bg-teal-700/70 flex items-center justify-center shadow-lg backdrop-blur-sm border border-teal-600/30 transition-all duration-300 hover:bg-teal-600/80">
           <ChevronDown className="h-8 w-8 text-teal-300 animate-bounce" />
         </div>
