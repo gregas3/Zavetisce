@@ -1,11 +1,8 @@
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { FileText, Share } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Share } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { toast } from "@/components/ui/use-toast";
 import { type DogData } from "@/services/dogService";
 import DogProfileHeader from "./DogProfileHeader";
 import DogImageCarousel from "./DogImageCarousel";
@@ -148,21 +145,6 @@ const DogProfileContent = ({ dog }: DogProfileContentProps) => {
               />
             </TabsContent>
           </Tabs>
-          
-          <div className="flex flex-col mt-6 space-y-4">
-            <Button className="w-full text-black" onClick={handleScheduleAppointment}>
-              Prijava na ogled
-            </Button>
-            <Button variant="teal" className="w-full" onClick={handleFillQuestionnaire}>
-              <FileText className="mr-2 h-5 w-5" />
-              Izpolni vprašalnik
-            </Button>
-            <Button asChild variant="outline" className="w-full">
-              <Link to="/posvojitev/psi">
-                Nazaj na seznam psov
-              </Link>
-            </Button>
-          </div>
         </div>
         
         <div className="space-y-6">
@@ -178,7 +160,6 @@ const DogProfileContent = ({ dog }: DogProfileContentProps) => {
           <DogContactInfo 
             name={dog.name}
             contactInfo={dog.contactInfo}
-            handleScheduleAppointment={handleScheduleAppointment}
           />
         </div>
       </div>
