@@ -16,7 +16,6 @@ interface DogContactInfoProps {
     phone: string;
     email: string;
   };
-  handleScheduleAppointment: () => void;
 }
 
 const DogContactInfo = ({ 
