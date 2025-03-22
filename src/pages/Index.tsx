@@ -16,9 +16,9 @@ const Index = () => {
         <meta name="description" content="Zavetišče za zapuščene živali v Mariboru nudi dom izgubljenim, zapuščenim in odvzetim živalim. Posvojitev psov in mačk, prijava izgubljene ali najdene živali." />
       </Helmet>
       
-      <div className="min-h-screen bg-gradient-to-b from-[#e2efed]/80 to-[#dfecea]/80">
-        <HeroSection />
-        <div className="bg-gradient-to-b from-[#e2efed]/80 to-[#dfecea]/80 py-8">
+      <HeroSection />
+      <div className="bg-gradient-to-b from-[#e2efed]/80 to-[#dfecea]/80">
+        <div className="pt-8">
           <FeaturedAnimals />
         </div>
         <QuickLinks />
