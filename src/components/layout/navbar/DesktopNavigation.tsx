@@ -1,14 +1,17 @@
+
 import { Link } from "react-router-dom";
-import { Dog, Cat, Heart } from "lucide-react";
+import { Dog, Cat, Heart, Calendar } from "lucide-react";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { NavbarActions } from "./NavbarActions";
 import { NavbarBranding } from "./NavbarBranding";
+
 type DesktopNavigationProps = {
   closeMenu: () => void;
   toggleSearch: () => void;
   handleHomeClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
+
 export const DesktopNavigation = ({
   closeMenu,
   toggleSearch,
@@ -19,7 +22,7 @@ export const DesktopNavigation = ({
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuTrigger className="bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white data-[state=open]:bg-teal-600/50">
-              Posvojitev
+              Posvojitve
             </NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid gap-3 p-4 md:w-[200px] bg-white border border-teal-100 shadow-lg rounded-lg">
@@ -47,6 +50,14 @@ export const DesktopNavigation = ({
                     </Link>
                   </NavigationMenuLink>
                 </li>
+                <li>
+                  <NavigationMenuLink asChild>
+                    <Link to="/termini" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
+                      <Calendar size={16} className="text-teal-500" />
+                      <span>Ogledi</span>
+                    </Link>
+                  </NavigationMenuLink>
+                </li>
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
@@ -66,12 +77,6 @@ export const DesktopNavigation = ({
           <NavigationMenuItem>
             <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
               <Link to="/kontakt">Kontakt</Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-          
-          <NavigationMenuItem>
-            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
-              <Link to="/termini">Ogledi</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           

@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, ChevronDown, Dog, Cat, Heart, Calendar, Users, Phone, HelpCircle } from "lucide-react";
@@ -5,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { NavbarActions } from "./NavbarActions";
 import { NavbarBranding } from "./NavbarBranding";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
+import { MobileNavItem } from "./MobileNavItem";
 
 type MobileNavigationProps = {
   isOpen: boolean;
@@ -42,7 +44,7 @@ export const MobileNavigation = ({
           <nav className="flex flex-col h-full overflow-y-auto">
             <div className="flex flex-col space-y-0.5 flex-1 px-0 py-[6px] bg-green-100 rounded-sm my-0">
               <AnimatedWrapper animation="fade-in" delay={50} className="mb-1">
-                <MobileNavItem title="Posvojitev" hasSubmenu icon={<Heart size={18} className="text-teal-500" />}>
+                <MobileNavItem title="Posvojitve" hasSubmenu icon={<Heart size={18} className="text-teal-500" />}>
                   <Link to="/posvojitev/psi" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
                     <Dog size={15} className="text-teal-500" />
                     <span className="font-medium text-sm">Psi</span>
@@ -54,6 +56,10 @@ export const MobileNavigation = ({
                   <Link to="/posvojitev/postopek" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
                     <Heart size={15} className="text-teal-500" />
                     <span className="font-medium text-sm">Postopek posvojitve</span>
+                  </Link>
+                  <Link to="/termini" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
+                    <Calendar size={15} className="text-teal-500" />
+                    <span className="font-medium text-sm">Ogledi</span>
                   </Link>
                 </MobileNavItem>
               </AnimatedWrapper>
@@ -79,13 +85,6 @@ export const MobileNavigation = ({
                 </Link>
               </AnimatedWrapper>
               
-              <AnimatedWrapper animation="fade-in" delay={250}>
-                <Link to="/termini" className="flex items-center gap-2 text-sm py-2.5 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" onClick={closeMenu}>
-                  <Calendar size={16} className="text-teal-500" />
-                  <span>Termini</span>
-                </Link>
-              </AnimatedWrapper>
-              
               <AnimatedWrapper animation="fade-in" delay={300}>
                 <Link to="/o-nas" className="flex items-center gap-2 text-sm py-2.5 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" onClick={closeMenu}>
                   <Users size={16} className="text-teal-500" />
@@ -103,40 +102,4 @@ export const MobileNavigation = ({
         </div>
       </div>
     </>;
-};
-
-type MobileNavItemProps = {
-  title: string;
-  hasSubmenu?: boolean;
-  children?: React.ReactNode;
-  icon?: React.ReactNode;
-};
-
-export const MobileNavItem = ({
-  title,
-  hasSubmenu = false,
-  children,
-  icon
-}: MobileNavItemProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  
-  const toggleSubmenu = (e: React.MouseEvent) => {
-    if (hasSubmenu) {
-      e.preventDefault();
-      setIsOpen(!isOpen);
-    }
-  };
-  
-  return <div className="rounded-lg overflow-hidden hover:bg-teal-50/80 transition-normal">
-      <button className="flex items-center justify-between w-full text-sm py-2.5 px-3 font-medium text-left text-teal-800 hover:text-teal-600 transition-normal" onClick={toggleSubmenu}>
-        <span className="flex items-center gap-2">
-          {icon}
-          {title}
-        </span>
-        {hasSubmenu && <ChevronDown size={16} className={`text-teal-500 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />}
-      </button>
-      {hasSubmenu && <div className={`pl-2 space-y-0.5 overflow-hidden transition-all duration-300 ${isOpen ? "max-h-[200px] opacity-100 pb-1.5" : "max-h-0 opacity-0"}`}>
-          {children}
-        </div>}
-    </div>;
 };
