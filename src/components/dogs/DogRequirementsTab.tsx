@@ -49,12 +49,12 @@ const DogRequirementsTab = ({
           </div>
         </div>
         
-        <div className="flex gap-4 w-full">
-          <Button className="flex-1" onClick={handleFillQuestionnaire}>
+        <div className="flex flex-col sm:flex-row gap-3 w-full">
+          <Button className="w-full" onClick={handleFillQuestionnaire}>
             <FileText className="mr-2 h-4 w-4" />
             Izpolni vprašalnik
           </Button>
-          <Button asChild variant="outline" className="flex-1">
+          <Button asChild variant="outline" className="w-full">
             <Link to="/posvojitev/postopek">
               Več o postopku
             </Link>

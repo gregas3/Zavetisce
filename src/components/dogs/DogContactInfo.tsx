@@ -74,7 +74,7 @@ const DogContactInfo = ({
           <FileText className="mr-2 h-4 w-4" />
           Izpolni vprašalnik
         </Button>
-        <Button onClick={handleVolunteerClick} variant="lightTeal" className="w-full">
+        <Button onClick={handleVolunteerClick} variant="lightTeal" className="w-full text-sm sm:text-base">
           <Dog className="mr-2 h-4 w-4" />
           Postani prostovoljec sprehajalec
         </Button>
