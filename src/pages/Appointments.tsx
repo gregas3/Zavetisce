@@ -7,6 +7,7 @@ import { sl } from "date-fns/locale";
 import { useToast } from "@/hooks/use-toast";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -116,6 +117,7 @@ const Appointments = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
   const location = useLocation();
+  const isMobile = useIsMobile();
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -362,13 +364,13 @@ const Appointments = () => {
                             <div className="md:col-span-1 space-y-6">
                               <div>
                                 <Label className="mb-2 block">Izberite datum*</Label>
-                                <div className="border rounded-md p-2">
+                                <div className="border rounded-md p-2 overflow-visible touch-manipulation max-w-full">
                                   <CalendarComponent
                                     mode="single"
                                     selected={date}
                                     onSelect={setDate}
                                     disabled={disabledDays}
-                                    className="mx-auto"
+                                    className="mx-auto max-w-full"
                                     locale={sl}
                                   />
                                 </div>
@@ -384,14 +386,15 @@ const Appointments = () => {
                                         <Button
                                           key={time}
                                           type="button"
-                                          variant={selectedTime === time ? "default" : isBooked ? "outline" : "outline"}
-                                          className={`${
-                                            isBooked 
-                                              ? "opacity-50 cursor-not-allowed bg-red-50 text-red-500 hover:bg-red-50" 
-                                              : selectedTime === time 
-                                                ? "bg-green-500 hover:bg-green-600 text-white" 
-                                                : "hover:bg-green-50"
-                                          }`}
+                                          variant={selectedTime === time ? "default" : "outline"}
+                                          className={`
+                                            ${selectedTime === time 
+                                              ? "bg-emerald-500 hover:bg-emerald-600 text-white border-emerald-600" 
+                                              : isBooked 
+                                                ? "bg-red-50 text-red-500 border-red-200 hover:bg-red-50 opacity-60 cursor-not-allowed" 
+                                                : "bg-blue-50 hover:bg-blue-100 text-blue-700 border-blue-200"
+                                            }
+                                          `}
                                           onClick={() => !isBooked && setSelectedTime(time)}
                                           disabled={isBooked}
                                         >
@@ -400,17 +403,17 @@ const Appointments = () => {
                                       );
                                     })}
                                   </div>
-                                  <div className="flex items-center gap-3 text-sm mt-2">
-                                    <div className="flex items-center gap-1">
-                                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                                  <div className="flex flex-wrap gap-4 text-sm mt-3 border rounded-md p-3 bg-gray-50">
+                                    <div className="flex items-center gap-2">
+                                      <div className="w-4 h-4 bg-emerald-500 rounded-full"></div>
                                       <span>Izbrano</span>
                                     </div>
-                                    <div className="flex items-center gap-1">
-                                      <div className="w-3 h-3 bg-red-50 border border-red-200 rounded-full"></div>
+                                    <div className="flex items-center gap-2">
+                                      <div className="w-4 h-4 bg-red-50 border border-red-200 rounded-full"></div>
                                       <span>Zasedeno</span>
                                     </div>
-                                    <div className="flex items-center gap-1">
-                                      <div className="w-3 h-3 bg-white border rounded-full"></div>
+                                    <div className="flex items-center gap-2">
+                                      <div className="w-4 h-4 bg-blue-50 border border-blue-200 rounded-full"></div>
                                       <span>Prosto</span>
                                     </div>
                                   </div>
@@ -421,7 +424,7 @@ const Appointments = () => {
                           
                           <Button 
                             type="submit" 
-                            className="w-full md:w-auto"
+                            className="w-full md:w-auto bg-emerald-600 hover:bg-emerald-700"
                             disabled={isSubmitting}
                           >
                             {isSubmitting ? "Shranjujem..." : "Potrdi rezervacijo"}
