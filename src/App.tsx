@@ -49,8 +49,11 @@ const App = () => {
             <Route path="/posvojitev/psi/:id" element={<DogProfile />} />
             <Route path="/posvojitev/mačke" element={<CatsAdoption />} />
             <Route path="/posvojitev/mačke/:id" element={<CatProfile />} />
-            <Route path="/posvojitev/vprašalnik" element={<Questionnaire />} />
             <Route path="/posvojitev/postopek" element={<AdoptionProcess />} />
+            
+            {/* Questionnaire route - adding both paths for compatibility */}
+            <Route path="/vprasalnik" element={<Questionnaire />} />
+            <Route path="/posvojitev/vprašalnik" element={<Questionnaire />} />
             
             {/* Stray cats route */}
             <Route path="/prostozivece-macke" element={<StrayCats />} />
