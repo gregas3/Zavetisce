@@ -138,7 +138,6 @@ const DogProfileContent = ({ dog }: DogProfileContentProps) => {
               <DogRequirementsTab 
                 name={dog.name}
                 adoptionRequirements={dog.adoptionRequirements}
-                handleFillQuestionnaire={handleFillQuestionnaire}
               />
             </TabsContent>
             
@@ -152,28 +151,46 @@ const DogProfileContent = ({ dog }: DogProfileContentProps) => {
               />
             </TabsContent>
           </Tabs>
-          
-          <div className="flex flex-col mt-6 space-y-4">
-            <Button asChild variant="outline" className="w-full">
+        </div>
+        
+        <div className="space-y-6">
+          <div className="flex flex-col gap-2 p-3 bg-teal-50/80 rounded-lg shadow-sm border border-teal-100">
+            <Button asChild variant="outline" size="sm" className="h-9 justify-start">
               <Link to="/posvojitev/psi">
                 Nazaj na seznam psov
               </Link>
             </Button>
-            <Button className="w-full text-black" onClick={handleScheduleAppointment}>
+            
+            <Button 
+              variant="teal" 
+              size="sm" 
+              className="h-9 justify-start text-black" 
+              onClick={handleScheduleAppointment}
+            >
               Prijava na ogled
             </Button>
-            <Button variant="teal" className="w-full" onClick={handleFillQuestionnaire}>
-              <FileText className="mr-2 h-5 w-5" />
+            
+            <Button 
+              variant="teal" 
+              size="sm" 
+              className="h-9 justify-start" 
+              onClick={handleFillQuestionnaire}
+            >
+              <FileText className="mr-2 h-4 w-4" />
               Izpolni vprašalnik
             </Button>
-            <Button variant="lightTeal" className="w-full" onClick={handleVolunteerClick}>
-              <Dog className="mr-2 h-5 w-5" />
+            
+            <Button 
+              variant="lightTeal" 
+              size="sm" 
+              className="h-9 justify-start text-teal-800" 
+              onClick={handleVolunteerClick}
+            >
+              <Dog className="mr-2 h-4 w-4" />
               Postani sprehajalec
             </Button>
           </div>
-        </div>
-        
-        <div className="space-y-6">
+          
           <DogBasicInfo 
             age={dog.age}
             breed={dog.breed}
