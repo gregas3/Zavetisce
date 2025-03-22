@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, ChevronDown, Dog, Cat, Heart, Calendar, Users, Phone, HelpCircle, PawPrint } from "lucide-react";
+import { Menu, X, ChevronDown, Dog, Cat, Heart, Calendar, Users, Phone, HelpCircle, PawPrint, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NavbarActions } from "./NavbarActions";
 import { NavbarBranding } from "./NavbarBranding";
@@ -70,7 +70,7 @@ export const MobileNavigation = ({
               
               <AnimatedWrapper animation="fade-in" delay={100}>
                 <Link to="/izgubljeni-najdeni" className="flex items-center gap-2 text-sm py-2.5 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" onClick={closeMenu}>
-                  <HelpCircle size={16} className="text-teal-500" />
+                  <AlertCircle size={16} className="text-teal-500" />
                   <span>Izgubljene in najdene živali</span>
                 </Link>
               </AnimatedWrapper>
@@ -98,7 +98,7 @@ export const MobileNavigation = ({
               
               <AnimatedWrapper animation="fade-in" delay={300}>
                 <Link to="/o-nas" className="flex items-center gap-2 text-sm py-2.5 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" onClick={closeMenu}>
-                  <Users size={16} className="text-teal-500" />
+                  <HelpCircle size={16} className="text-teal-500" />
                   <span>O nas</span>
                 </Link>
               </AnimatedWrapper>

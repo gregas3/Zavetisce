@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { Dog, Cat, Heart, Calendar, PawPrint, Users, Phone, HelpCircle } from "lucide-react";
+import { Dog, Cat, Heart, Calendar, PawPrint, Users, Phone, HelpCircle, Search, Map, AlertCircle } from "lucide-react";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { NavbarActions } from "./NavbarActions";
@@ -22,7 +22,10 @@ export const DesktopNavigation = ({
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuTrigger className="bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white data-[state=open]:bg-teal-600/50">
-              Posvojitve
+              <span className="flex items-center gap-1">
+                <Heart size={16} />
+                Posvojitve
+              </span>
             </NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid gap-3 p-4 md:w-[200px] bg-white border border-teal-100 shadow-lg rounded-lg">
@@ -72,7 +75,12 @@ export const DesktopNavigation = ({
           
           <NavigationMenuItem>
             <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
-              <Link to="/izgubljeni-najdeni">Najdeno in Pogrešano</Link>
+              <Link to="/izgubljeni-najdeni">
+                <span className="flex items-center gap-1">
+                  <AlertCircle size={16} />
+                  Najdeno in Pogrešano
+                </span>
+              </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           
@@ -89,19 +97,34 @@ export const DesktopNavigation = ({
           
           <NavigationMenuItem>
             <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
-              <Link to="/prostovoljstvo">Prostovoljstvo</Link>
+              <Link to="/prostovoljstvo">
+                <span className="flex items-center gap-1">
+                  <Users size={16} />
+                  Prostovoljstvo
+                </span>
+              </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           
           <NavigationMenuItem>
             <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
-              <Link to="/kontakt">Kontakt</Link>
+              <Link to="/kontakt">
+                <span className="flex items-center gap-1">
+                  <Phone size={16} />
+                  Kontakt
+                </span>
+              </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           
           <NavigationMenuItem>
             <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
-              <Link to="/o-nas">O nas</Link>
+              <Link to="/o-nas">
+                <span className="flex items-center gap-1">
+                  <HelpCircle size={16} />
+                  O nas
+                </span>
+              </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
