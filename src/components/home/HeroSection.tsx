@@ -45,26 +45,26 @@ export default function HeroSection() {
       
       {/* Content */}
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-3xl">
+        <div className="max-w-2xl">
           <div className="animate-fade-in">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="inline-block bg-teal-500/20 text-teal-100 px-3 py-1 rounded-full text-sm font-medium">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="inline-block bg-teal-500/20 text-teal-100 px-2 py-0.5 rounded-full text-xs font-medium">
                 Zavetišče za živali Maribor
               </span>
-              <AnimatedWrapper animation="bounce-slow" className="h-10 w-auto">
-                <img src="/lovable-uploads/48b0f5a4-0bee-4f96-af30-5157149e0517.png" alt="Zavetišče za živali Maribor Logo" className="h-10 w-auto drop-shadow-md" />
+              <AnimatedWrapper animation="bounce-slow" className="h-8 w-auto">
+                <img src="/lovable-uploads/48b0f5a4-0bee-4f96-af30-5157149e0517.png" alt="Zavetišče za živali Maribor Logo" className="h-8 w-auto drop-shadow-md" />
               </AnimatedWrapper>
             </div>
 
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 text-white">
+            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-3 text-white">
               Pomagajte nam ustvariti srečne zgodbe za zapuščene živali
             </h1>
-            <p className="text-base md:text-lg text-teal-100/80 mb-6 max-w-2xl">
+            <p className="text-sm md:text-base text-teal-100/80 mb-5 max-w-xl">
               V našem zavetišču nudimo dom izgubljenim, zapuščenim in odvzetim živalim. 
               Vsaka žival si zasluži ljubeč dom in z vašo pomočjo lahko to uresničimo.
             </p>
             
-            <div className="flex flex-wrap gap-4 mb-16 md:mb-24">
+            <div className="flex flex-wrap gap-4 mb-12 md:mb-20">
               <Button size="lg" variant="darkTeal" asChild className="rounded-full font-medium text-base">
                 <Link to="/donacije">
                   Podpri zavetišče
