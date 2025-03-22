@@ -9,21 +9,25 @@ import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import Section from "@/components/shared/Section";
 import Layout from "@/components/layout/Layout";
 import DogWalkerForm from '@/components/volunteer/DogWalkerForm';
+import { useIsMobile } from "@/hooks/use-mobile";
+
 const Volunteer = () => {
   const [showDogWalkerForm, setShowDogWalkerForm] = useState(false);
+  const isMobile = useIsMobile();
+  
   return <Layout>
       <Helmet>
         <title>Prostovoljstvo | Zavetišče za živali Maribor</title>
         <meta name="description" content="Postanite prostovoljec v Zavetišču za živali Maribor in pomagajte živalim do boljšega življenja. Sprehajanje psov, pomoč pri oskrbi, sodelovanje na dogodkih in druge možnosti prostovoljstva." />
       </Helmet>
       
-      <main className="min-h-screen pt-24">
+      <main className="min-h-screen pt-20 md:pt-24">
         {/* Hero Section */}
-        <section className="bg-gradient-to-b from-teal-50 to-white py-16 md:py-24">
+        <section className="bg-gradient-to-b from-teal-50 to-white py-12 md:py-24">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold text-teal-800 mb-6">Prostovoljstvo</h1>
-              <p className="text-lg md:text-xl text-teal-700 mb-8">
+              <h1 className="text-3xl md:text-5xl font-bold text-teal-800 mb-6">Prostovoljstvo</h1>
+              <p className="text-base md:text-xl text-teal-700 mb-8">
                 Postanite del naše skupnosti prostovoljcev in pomagajte živalim do boljšega življenja. 
                 Z vašo pomočjo lahko živalim omogočimo več gibanja, socializacije in ljubezni.
               </p>
@@ -37,7 +41,7 @@ const Volunteer = () => {
             <div className="lg:col-span-2">
               <AnimatedWrapper animation="fade-in" delay={100}>
                 <div className="prose prose-lg max-w-none">
-                  <p>
+                  <p className="text-base md:text-lg">
                     Zavetišče omogoča prostovoljcem, da prihajajo sprehajat zavetiške pse, s čimer psom nudijo prepotrebno dnevno gibanje in socializacijo. 
                     To je izjemno pomembno za dobro počutje naših varovancev in njihovo pripravo na nov dom.
                   </p>
@@ -84,15 +88,10 @@ const Volunteer = () => {
                 </div>
               </AnimatedWrapper>
               
-              <AnimatedWrapper animation="fade-in" delay={200} className="mt-8 flex gap-4">
-                <Link to="/termini">
-                  <Button variant="primary" size="lg" className="gap-2">
-                    Rezerviraj termin za sprehod <ArrowRight className="h-4 w-4" />
-                  </Button>
-                </Link>
-                <Button variant="teal" size="lg" className="gap-2" onClick={() => setShowDogWalkerForm(true)}>
+              <AnimatedWrapper animation="fade-in" delay={200} className="mt-8 flex">
+                <Button variant="teal" size={isMobile ? "default" : "lg"} className="gap-2 w-full md:w-auto" onClick={() => setShowDogWalkerForm(true)}>
                   <Dog className="h-4 w-4" />
-                  Postani sprehajalec - Izpolni obrazec
+                  Postani sprehajalec
                 </Button>
               </AnimatedWrapper>
             </div>
@@ -153,7 +152,7 @@ const Volunteer = () => {
         </Section>
         
         {/* Dog Walker Form */}
-        <DogWalkerForm isOpen={showDogWalkerForm} onClose={() => setShowDogWalkerForm(false)} />
+        <DogWalkerForm open={showDogWalkerForm} onClose={() => setShowDogWalkerForm(false)} />
         
         {/* Other Ways to Help Section */}
         <Section className="bg-teal-50/50" title="Druge oblike prostovoljstva" subtitle="Pomagajte na različne načine">
@@ -203,16 +202,16 @@ const Volunteer = () => {
         </Section>
         
         {/* CTA Section - Become a volunteer */}
-        <section className="bg-teal-600 py-16">
+        <section className="bg-teal-600 py-12 md:py-16">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <AnimatedWrapper animation="fade-in">
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">Postani prostovoljec</h2>
-                <p className="text-lg text-white/90 mb-8">
+                <h2 className="text-2xl md:text-4xl font-bold text-white mb-6">Postani prostovoljec</h2>
+                <p className="text-base md:text-lg text-white/90 mb-8">
                   Izpolnite kratek obrazec in nam sporočite, kako bi želeli pomagati. Kontaktirali vas bomo s podrobnostmi.
                 </p>
                 
-                <form className="max-w-xl mx-auto space-y-4 bg-white/10 backdrop-blur-sm p-6 rounded-lg">
+                <form className="max-w-xl mx-auto space-y-4 bg-white/10 backdrop-blur-sm p-4 md:p-6 rounded-lg">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <input type="text" placeholder="Ime in priimek" className="w-full p-3 rounded-md border border-teal-400/30 bg-white/90 focus:border-white focus:ring-1 focus:ring-white" />
