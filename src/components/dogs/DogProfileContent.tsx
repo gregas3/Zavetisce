@@ -2,7 +2,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { FileText, Share } from "lucide-react";
+import { FileText, Share, Dog } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/components/ui/use-toast";
@@ -45,6 +45,10 @@ const DogProfileContent = ({ dog }: DogProfileContentProps) => {
       title: "Vprašalnik za posvojitev",
       description: `Izpolnjevanje vprašalnika za posvojitev psa ${dog?.name}`,
     });
+  };
+
+  const handleVolunteerClick = () => {
+    navigate('/prostovoljstvo');
   };
 
   const handleShare = (platform: string) => {
@@ -150,6 +154,11 @@ const DogProfileContent = ({ dog }: DogProfileContentProps) => {
           </Tabs>
           
           <div className="flex flex-col mt-6 space-y-4">
+            <Button asChild variant="outline" className="w-full">
+              <Link to="/posvojitev/psi">
+                Nazaj na seznam psov
+              </Link>
+            </Button>
             <Button className="w-full text-black" onClick={handleScheduleAppointment}>
               Prijava na ogled
             </Button>
@@ -157,10 +166,9 @@ const DogProfileContent = ({ dog }: DogProfileContentProps) => {
               <FileText className="mr-2 h-5 w-5" />
               Izpolni vprašalnik
             </Button>
-            <Button asChild variant="outline" className="w-full">
-              <Link to="/posvojitev/psi">
-                Nazaj na seznam psov
-              </Link>
+            <Button variant="lightTeal" className="w-full" onClick={handleVolunteerClick}>
+              <Dog className="mr-2 h-5 w-5" />
+              Postani prostovoljec sprehajalec
             </Button>
           </div>
         </div>
