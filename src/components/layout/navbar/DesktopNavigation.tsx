@@ -55,14 +55,6 @@ export const DesktopNavigation = ({
                 </li>
                 <li>
                   <NavigationMenuLink asChild>
-                    <Link to="/prostozivece-macke" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
-                      <Cat size={16} className="text-teal-500" />
-                      <span>Prostoživeče mačke</span>
-                    </Link>
-                  </NavigationMenuLink>
-                </li>
-                <li>
-                  <NavigationMenuLink asChild>
                     <Link to="/termini" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
                       <Calendar size={16} className="text-teal-500" />
                       <span>Prijava na ogled</span>
@@ -79,17 +71,6 @@ export const DesktopNavigation = ({
                 <span className="flex items-center gap-1">
                   <AlertCircle size={16} />
                   Najdeno in Pogrešano
-                </span>
-              </Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-          
-          <NavigationMenuItem>
-            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
-              <Link to="/prostozivece-macke">
-                <span className="flex items-center gap-1">
-                  <Cat size={16} />
-                  Prostoživeče mačke
                 </span>
               </Link>
             </NavigationMenuLink>

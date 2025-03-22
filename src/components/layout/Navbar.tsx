@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -28,44 +27,37 @@ export default function Navbar() {
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
       
-      // Set scrolling state
       setIsScrolling(true);
       
-      // Clear previous timeout if it exists
       if (scrollTimeout.current) {
         clearTimeout(scrollTimeout.current);
       }
       
-      // Set timeout to detect when scrolling stops
       scrollTimeout.current = setTimeout(() => {
         setIsScrolling(false);
         setShowNavbar(true);
       }, 300);
       
-      // Detect scroll direction
       if (currentScrollY < lastScrollY) {
         setScrollingUp(true);
         setShowNavbar(true);
       } else {
         setScrollingUp(false);
-        // Only hide when not in mobile menu mode
-        if (!isOpen && currentScrollY > 100) { // Only hide after scrolling down a bit
+        if (!isOpen && currentScrollY > 100) {
           setShowNavbar(false);
         }
       }
       
-      // Check if scrolled more than 10px
       if (currentScrollY > 10) {
         setScrolled(true);
       } else {
         setScrolled(false);
-        setShowNavbar(true); // Always show at top
+        setShowNavbar(true);
       }
       
-      // Check if at bottom of page
       if (windowHeight + currentScrollY >= documentHeight - 50) {
         setAtBottom(true);
-        setShowNavbar(true); // Always show at bottom
+        setShowNavbar(true);
       } else {
         setAtBottom(false);
       }
@@ -84,7 +76,6 @@ export default function Navbar() {
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
-    // Always show navbar when menu is open
     if (!isOpen) {
       setShowNavbar(true);
     }
@@ -107,11 +98,9 @@ export default function Navbar() {
     }
   };
 
-  // Force navbar to be visible when mobile menu is open
   useEffect(() => {
     if (isOpen) {
       setShowNavbar(true);
-      // Prevent body scrolling when mobile menu is open
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
@@ -127,12 +116,12 @@ export default function Navbar() {
       animation="none" 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isOpen 
-          ? "py-2 bg-gradient-to-b from-teal-700/95 to-teal-800/85 backdrop-blur-md shadow-md" // Fully visible when menu is open
+          ? "py-2 bg-gradient-to-b from-teal-700/95 to-teal-800/85 backdrop-blur-md shadow-md"
           : scrolled 
             ? isScrolling && !scrollingUp && !atBottom && !showNavbar
-              ? "py-0 -translate-y-full opacity-0" // Hide when scrolling down
-              : "py-2 bg-gradient-to-b from-teal-700/90 to-teal-800/80 backdrop-blur-md shadow-md" // Show when scrolling up, stopped, or at bottom
-            : "py-3 bg-gradient-to-b from-teal-700/80 to-teal-800/70 backdrop-blur-md" // At top
+              ? "py-0 -translate-y-full opacity-0"
+              : "py-2 bg-gradient-to-b from-teal-700/90 to-teal-800/80 backdrop-blur-md shadow-md"
+            : "py-3 bg-gradient-to-b from-teal-700/80 to-teal-800/70 backdrop-blur-md"
       }`}
       style={{ borderBottom: 'none' }}
     >
