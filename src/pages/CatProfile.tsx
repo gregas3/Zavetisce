@@ -157,7 +157,7 @@ const CatProfile = () => {
                   </ContextMenu>
                 </div>
                 
-                <CatImageCarousel images={[cat.image]} />
+                <CatImageCarousel images={[cat.image]} catName={cat.name} />
 
                 <Tabs defaultValue="about" className="mt-6">
                   <TabsList className="grid w-full grid-cols-2">

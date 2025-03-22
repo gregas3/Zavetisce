@@ -1,68 +1,93 @@
 
 import { useState } from "react";
-import { ChevronLeft, ChevronRight, Maximize } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import CatImageModal from "./CatImageModal";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 interface CatImageCarouselProps {
   images: string[];
+  catName?: string;
 }
 
-const CatImageCarousel = ({ images }: CatImageCarouselProps) => {
-  const [currentImage, setCurrentImage] = useState(0);
+const CatImageCarousel = ({ images, catName = "Cat" }: CatImageCarouselProps) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentImage, setCurrentImage] = useState("");
+
+  const handleImageClick = (image: string) => {
+    setCurrentImage(image);
+    setIsModalOpen(true);
+  };
+
+  if (!images || images.length === 0) {
+    return (
+      <div className="w-full aspect-video bg-muted flex items-center justify-center rounded-lg">
+        <p className="text-muted-foreground">No images available</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="relative rounded-lg overflow-hidden border border-border">
-      <Carousel
-        className="w-full"
-        onSelect={(index) => setCurrentImage(index)}
-      >
-        <CarouselContent>
+    <>
+      <div className="relative group">
+        <Swiper
+          modules={[Navigation, Pagination]}
+          spaceBetween={10}
+          slidesPerView={1}
+          navigation={{
+            prevEl: ".swiper-button-prev",
+            nextEl: ".swiper-button-next",
+          }}
+          pagination={{ clickable: true }}
+          loop={images.length > 1}
+          className="rounded-lg overflow-hidden cursor-pointer"
+        >
           {images.map((image, index) => (
-            <CarouselItem key={index}>
-              <div className="aspect-[4/3] relative overflow-hidden">
+            <SwiperSlide key={index} onClick={() => handleImageClick(image)}>
+              <div className="relative aspect-[4/3] w-full bg-muted">
                 <img
                   src={image}
-                  alt={`Slika mačke ${index + 1}`}
-                  className="object-cover w-full h-full"
+                  alt={`${catName} - image ${index + 1}`}
+                  className="w-full h-full object-cover"
                 />
               </div>
-            </CarouselItem>
+            </SwiperSlide>
           ))}
-        </CarouselContent>
-        
+        </Swiper>
+
         {images.length > 1 && (
           <>
-            <CarouselPrevious className="left-2" />
-            <CarouselNext className="right-2" />
+            <Button
+              variant="outline"
+              size="icon"
+              className="swiper-button-prev absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+            >
+              <ChevronLeft className="h-4 w-4" />
+            </Button>
+            <Button
+              variant="outline"
+              size="icon"
+              className="swiper-button-next absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+            >
+              <ChevronRight className="h-4 w-4" />
+            </Button>
           </>
         )}
-      </Carousel>
-      
-      {images.length > 1 && (
-        <div className="absolute bottom-2 left-0 right-0 flex justify-center gap-1">
-          {images.map((_, index) => (
-            <Button
-              key={index}
-              variant="ghost"
-              size="icon"
-              className={`w-2 h-2 rounded-full p-0 ${
-                currentImage === index
-                  ? "bg-primary"
-                  : "bg-primary/30"
-              }`}
-              onClick={() => setCurrentImage(index)}
-            />
-          ))}
-        </div>
-      )}
-    </div>
+      </div>
+
+      <CatImageModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        imageUrl={currentImage}
+        catName={catName}
+      />
+    </>
   );
 };
 
