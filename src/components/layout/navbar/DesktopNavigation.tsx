@@ -17,44 +17,44 @@ export const DesktopNavigation = ({
   toggleSearch,
   handleHomeClick
 }: DesktopNavigationProps) => {
-  return <div className="hidden lg:flex items-center gap-2">
+  return <div className="hidden lg:flex items-center gap-1">
       <NavigationMenu className="mr-0">
-        <NavigationMenuList className="space-x-0.5">
+        <NavigationMenuList className="space-x-0">
           <NavigationMenuItem>
-            <NavigationMenuTrigger className="bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white data-[state=open]:bg-teal-600/50 h-8 px-3 py-1">
+            <NavigationMenuTrigger className="bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white data-[state=open]:bg-teal-600/50 h-7 px-2 py-0.5 text-sm">
               Posvojitve
             </NavigationMenuTrigger>
             <NavigationMenuContent>
-              <ul className="grid gap-2 p-3 md:w-[200px] bg-white border border-teal-100 shadow-lg rounded-lg">
+              <ul className="grid gap-1 p-2 md:w-[180px] bg-white border border-teal-100 shadow-lg rounded-lg">
                 <li>
                   <NavigationMenuLink asChild>
-                    <Link to="/posvojitev/psi" className="flex items-center gap-2 p-1.5 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
-                      <Dog size={14} className="text-teal-500" />
-                      <span className="text-sm">Psi</span>
+                    <Link to="/posvojitev/psi" className="flex items-center gap-1.5 p-1 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
+                      <Dog size={12} className="text-teal-500" />
+                      <span className="text-xs">Psi</span>
                     </Link>
                   </NavigationMenuLink>
                 </li>
                 <li>
                   <NavigationMenuLink asChild>
-                    <Link to="/posvojitev/mačke" className="flex items-center gap-2 p-1.5 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
-                      <Cat size={14} className="text-teal-500" />
-                      <span className="text-sm">Mačke</span>
+                    <Link to="/posvojitev/mačke" className="flex items-center gap-1.5 p-1 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
+                      <Cat size={12} className="text-teal-500" />
+                      <span className="text-xs">Mačke</span>
                     </Link>
                   </NavigationMenuLink>
                 </li>
                 <li>
                   <NavigationMenuLink asChild>
-                    <Link to="/posvojitev/postopek" className="flex items-center gap-2 p-1.5 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
-                      <Heart size={14} className="text-teal-500" />
-                      <span className="text-sm">Postopek posvojitve</span>
+                    <Link to="/posvojitev/postopek" className="flex items-center gap-1.5 p-1 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
+                      <Heart size={12} className="text-teal-500" />
+                      <span className="text-xs">Postopek posvojitve</span>
                     </Link>
                   </NavigationMenuLink>
                 </li>
                 <li>
                   <NavigationMenuLink asChild>
-                    <Link to="/termini" className="flex items-center gap-2 p-1.5 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
-                      <Calendar size={14} className="text-teal-500" />
-                      <span className="text-sm">Ogledi</span>
+                    <Link to="/termini" className="flex items-center gap-1.5 p-1 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
+                      <Calendar size={12} className="text-teal-500" />
+                      <span className="text-xs">Ogledi</span>
                     </Link>
                   </NavigationMenuLink>
                 </li>
@@ -63,32 +63,32 @@ export const DesktopNavigation = ({
           </NavigationMenuItem>
           
           <NavigationMenuItem>
-            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white h-8 px-3 py-1")}>
+            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white h-7 px-2 py-0.5 text-sm")}>
               <Link to="/izgubljeni-najdeni">Najdeno in Pogrešano</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           
           <NavigationMenuItem>
-            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white h-8 px-3 py-1")}>
+            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white h-7 px-2 py-0.5 text-sm")}>
               <Link to="/prostovoljstvo">Prostovoljstvo</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           
           <NavigationMenuItem>
-            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white h-8 px-3 py-1")}>
+            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white h-7 px-2 py-0.5 text-sm")}>
               <Link to="/kontakt">Kontakt</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
           
           <NavigationMenuItem>
-            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white h-8 px-3 py-1")}>
+            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white h-7 px-2 py-0.5 text-sm")}>
               <Link to="/o-nas">O nas</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
       
-      <div className="flex items-center gap-2 ml-2">
+      <div className="flex items-center gap-1 ml-1">
         <NavbarActions toggleSearch={toggleSearch} handleHomeClick={handleHomeClick} isMobile={false} />
         <NavbarBranding />
       </div>
