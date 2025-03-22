@@ -152,57 +152,60 @@ interface CatCardProps {
 
 const CatCard = ({ cat }: CatCardProps) => {
   return (
-    <Card className="overflow-hidden group hover-lift transition-normal h-full">
-      <div className="aspect-square relative overflow-hidden">
-        <img
-          src={cat.image}
-          alt={cat.name}
-          className="object-cover w-full h-full transition-normal group-hover:scale-105"
-          loading="lazy"
-        />
-        <Button
-          variant="ghost"
-          size="icon"
-          className="absolute top-3 right-3 bg-background/80 backdrop-blur-sm hover:bg-background/90 hover:text-primary"
-          aria-label="Dodaj med priljubljene"
-        >
-          <Heart size={18} />
-        </Button>
-      </div>
-      <CardContent className="p-5">
-        <div className="flex justify-between items-start mb-2">
-          <h3 className="text-xl font-bold group-hover:text-primary transition-normal">
-            {cat.name}
-          </h3>
-          <Badge variant={cat.gender === 'samec' ? 'default' : 'secondary'}>
-            {cat.gender}
-          </Badge>
+    <Link to={`/posvojitev/mačke/${cat.id}`} className="block h-full">
+      <Card className="overflow-hidden group hover-lift transition-normal h-full cursor-pointer">
+        <div className="aspect-square relative overflow-hidden">
+          <img
+            src={cat.image}
+            alt={cat.name}
+            className="object-cover w-full h-full transition-normal group-hover:scale-105"
+            loading="lazy"
+          />
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute top-3 right-3 bg-background/80 backdrop-blur-sm hover:bg-background/90 hover:text-primary z-10"
+            aria-label="Dodaj med priljubljene"
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+          >
+            <Heart size={18} />
+          </Button>
         </div>
-        <div className="text-sm text-muted-foreground mb-3">
-          {cat.color} • {cat.age}
-        </div>
-        <p className="line-clamp-3 mb-4 text-muted-foreground">
-          {cat.description}
-        </p>
-        <div className="flex flex-wrap gap-1 mb-4">
-          {cat.characteristics.slice(0, 3).map((char, i) => (
-            <Badge key={i} variant="outline" className="bg-primary/5">
-              {char}
+        <CardContent className="p-5">
+          <div className="flex justify-between items-start mb-2">
+            <h3 className="text-xl font-bold group-hover:text-primary transition-normal">
+              {cat.name}
+            </h3>
+            <Badge variant={cat.gender === 'samec' ? 'default' : 'secondary'}>
+              {cat.gender}
             </Badge>
-          ))}
-          {cat.characteristics.length > 3 && (
-            <Badge variant="outline" className="bg-primary/5">
-              +{cat.characteristics.length - 3}
-            </Badge>
-          )}
-        </div>
-        <Button asChild className="w-full">
-          <Link to={`/posvojitev/mačke/${cat.id}`}>
+          </div>
+          <div className="text-sm text-muted-foreground mb-3">
+            {cat.color} • {cat.age}
+          </div>
+          <p className="line-clamp-3 mb-4 text-muted-foreground">
+            {cat.description}
+          </p>
+          <div className="flex flex-wrap gap-1 mb-4">
+            {cat.characteristics.slice(0, 3).map((char, i) => (
+              <Badge key={i} variant="outline" className="bg-primary/5">
+                {char}
+              </Badge>
+            ))}
+            {cat.characteristics.length > 3 && (
+              <Badge variant="outline" className="bg-primary/5">
+                +{cat.characteristics.length - 3}
+              </Badge>
+            )}
+          </div>
+          <Button className="w-full">
             Več informacij
-          </Link>
-        </Button>
-      </CardContent>
-    </Card>
+          </Button>
+        </CardContent>
+      </Card>
+    </Link>
   );
 };
 

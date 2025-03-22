@@ -1,10 +1,10 @@
 
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Calendar, Mail, Phone, FileText, Share } from "lucide-react";
+import { Calendar, FileText, Share, Cat } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import Layout from "@/components/layout/Layout";
 import Section from "@/components/shared/Section";
@@ -17,20 +17,22 @@ import CatAboutTab from "@/components/cats/CatAboutTab";
 import CatHealthTab from "@/components/cats/CatHealthTab";
 import CatProfileSkeleton from "@/components/cats/CatProfileSkeleton";
 import CatProfileError from "@/components/cats/CatProfileError";
-import { Cat, cats } from "@/data/catsData";
+import { Cat as CatType, cats } from "@/data/catsData";
 import {
   ContextMenu,
   ContextMenuContent,
   ContextMenuItem,
   ContextMenuTrigger,
 } from "@/components/ui/context-menu";
+import { useToast } from "@/components/ui/use-toast";
 
 const CatProfile = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [cat, setCat] = useState<Cat | null>(null);
+  const [cat, setCat] = useState<CatType | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const { toast } = useToast();
 
   useEffect(() => {
     const loadCat = async () => {
@@ -63,7 +65,7 @@ const CatProfile = () => {
   }, [id]);
 
   const handleScheduleAppointment = () => {
-    navigate("/termini", { state: { petName: cat?.name, petType: "mačka" } });
+    navigate(`/termini?animalId=${cat?.id}&animalName=${cat?.name}&animalType=Mačka`);
     toast({
       title: "Termin za ogled",
       description: `Ustvarjanje termina za ogled mačke ${cat?.name}`,
@@ -76,6 +78,10 @@ const CatProfile = () => {
       title: "Vprašalnik za posvojitev",
       description: `Izpolnjevanje vprašalnika za posvojitev mačke ${cat?.name}`,
     });
+  };
+
+  const handleVolunteerClick = () => {
+    navigate('/prostovoljstvo');
   };
 
   const handleShare = (platform: string) => {
@@ -107,140 +113,144 @@ const CatProfile = () => {
     }
   };
 
-  // Mock contact info for the shelter
-  const contactInfo = {
-    phone: "+386 2 480 1660",
-    email: "info@zavetisce-maribor.si",
-  };
-
   if (loading) return <CatProfileSkeleton />;
   if (error || !cat) return <CatProfileError />;
 
   return (
     <Layout>
       <Helmet>
-        <title>{cat?.name || 'Loading...'} | Zavetišče za živali Maribor</title>
-        <meta name="description" content={`Spoznajte ${cat?.name || 'mačko'}, ${cat?.gender || ''} mačka, ki išče nov dom.`} />
+        <title>{cat.name} | Zavetišče za živali Maribor</title>
+        <meta name="description" content={`Spoznajte ${cat.name}, ${cat.gender} mačko, ki išče nov dom.`} />
       </Helmet>
 
       <main className="pt-20 pb-10">
         <Section>
-          <CatProfileBreadcrumb catName={cat.name} />
-          
-          <div className="flex justify-between items-center mb-4">
-            <CatProfileHeader name={cat.name} status="Na voljo za posvojitev" />
-            
-            <ContextMenu>
-              <ContextMenuTrigger asChild>
-                <Button variant="outline" size="icon" className="rounded-full">
-                  <Share className="h-4 w-4" />
-                </Button>
-              </ContextMenuTrigger>
-              <ContextMenuContent className="w-48">
-                <ContextMenuItem onClick={() => handleShare('facebook')}>
-                  Deli na Facebook
-                </ContextMenuItem>
-                <ContextMenuItem onClick={() => handleShare('twitter')}>
-                  Deli na Twitter
-                </ContextMenuItem>
-                <ContextMenuItem onClick={() => handleShare('whatsapp')}>
-                  Pošlji preko WhatsApp
-                </ContextMenuItem>
-                <ContextMenuItem onClick={() => handleShare('copy')}>
-                  Kopiraj povezavo
-                </ContextMenuItem>
-              </ContextMenuContent>
-            </ContextMenu>
-          </div>
+          <div className="container">
+            <CatProfileBreadcrumb catName={cat.name} />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-            <div className="md:col-span-2">
-              <CatImageCarousel images={[cat.image]} />
-            </div>
-            <div className="space-y-6">
-              <CatBasicInfo
-                age={cat.age}
-                color={cat.color}
-                gender={cat.gender}
-                size={cat.size}
-                dateArrived="2023-06-15"
-              />
-              
-              <CatContactInfo
-                name={cat.name}
-                contactInfo={{
-                  phone: "+386 2 480 1660",
-                  email: "info@zavetisce-maribor.si",
-                }}
-                handleScheduleAppointment={handleScheduleAppointment}
-              />
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div className="lg:col-span-2">
+                <div className="flex justify-between items-center mb-4">
+                  <CatProfileHeader name={cat.name} status="Na voljo za posvojitev" />
+                  
+                  <ContextMenu>
+                    <ContextMenuTrigger asChild>
+                      <Button variant="outline" size="icon" className="rounded-full">
+                        <Share className="h-4 w-4" />
+                      </Button>
+                    </ContextMenuTrigger>
+                    <ContextMenuContent className="w-48">
+                      <ContextMenuItem onClick={() => handleShare('facebook')}>
+                        Deli na Facebook
+                      </ContextMenuItem>
+                      <ContextMenuItem onClick={() => handleShare('twitter')}>
+                        Deli na Twitter
+                      </ContextMenuItem>
+                      <ContextMenuItem onClick={() => handleShare('whatsapp')}>
+                        Pošlji preko WhatsApp
+                      </ContextMenuItem>
+                      <ContextMenuItem onClick={() => handleShare('copy')}>
+                        Kopiraj povezavo
+                      </ContextMenuItem>
+                    </ContextMenuContent>
+                  </ContextMenu>
+                </div>
+                
+                <CatImageCarousel 
+                  images={[cat.image]} 
+                  videos={[]}
+                  isDetailPage
+                />
 
-              <div className="flex flex-wrap gap-2 mt-4">
-                {cat.characteristics.map((trait, i) => (
-                  <span
-                    key={i}
-                    className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
-                  >
-                    {trait}
-                  </span>
-                ))}
+                <Tabs defaultValue="about" className="mt-6">
+                  <TabsList className="grid w-full grid-cols-2">
+                    <TabsTrigger value="about">O mački</TabsTrigger>
+                    <TabsTrigger value="health">Zdravje</TabsTrigger>
+                  </TabsList>
+                  
+                  <TabsContent value="about" className="mt-4">
+                    <CatAboutTab
+                      name={cat.name}
+                      description={cat.description}
+                      suitableFor={cat.goodWith.join(", ") || ""}
+                      notSuitableFor={cat.gender === "samec" ? "nervozna okolja, majhni otroci brez nadzora" : "hrupna okolja, zelo aktivne družine"}
+                      additionalInfo="Mačka je bila najdena kot zapuščena in ima za seboj težko preteklost, vendar je zdaj pripravljena na nov začetek v ljubečem domu."
+                    />
+                  </TabsContent>
+                  
+                  <TabsContent value="health" className="mt-4">
+                    <CatHealthTab
+                      name={cat.name}
+                      vaccinated={cat.vaccinated}
+                      neutered={cat.neutered}
+                      microchipped={true}
+                      gender={cat.gender}
+                    />
+                  </TabsContent>
+                </Tabs>
               </div>
-            </div>
-          </div>
-
-          <Tabs defaultValue="about" className="mt-8">
-            <TabsList className="grid w-full grid-cols-2 mb-8">
-              <TabsTrigger value="about">O mački</TabsTrigger>
-              <TabsTrigger value="health">Zdravstveno stanje</TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="about" className="mt-0">
-              <CatAboutTab
-                name={cat.name}
-                description={cat.description}
-                suitableFor={cat.goodWith.join(", ") || ""}
-                notSuitableFor={cat.gender === "samec" ? "nervozna okolja, majhni otroci brez nadzora" : "hrupna okolja, zelo aktivne družine"}
-                additionalInfo="Mačka je bila najdena kot zapuščena in ima za seboj težko preteklost, vendar je zdaj pripravljena na nov začetek v ljubečem domu."
-              />
-            </TabsContent>
-            
-            <TabsContent value="health" className="mt-0">
-              <CatHealthTab
-                name={cat.name}
-                vaccinated={cat.vaccinated}
-                neutered={cat.neutered}
-                microchipped={true}
-                gender={cat.gender}
-              />
-            </TabsContent>
-          </Tabs>
-
-          <div className="mt-8 text-center">
-            <Button size="lg" className="text-black" onClick={handleScheduleAppointment}>
-              <Calendar className="mr-2 h-5 w-5" />
-              Prijava na ogled
-            </Button>
-            
-            <div className="mt-4">
-              <Button variant="teal" size="lg" onClick={handleFillQuestionnaire}>
-                <FileText className="mr-2 h-5 w-5" />
-                Izpolni vprašalnik
-              </Button>
-            </div>
-            
-            <div className="mt-6 flex justify-center gap-4">
-              <Button variant="outline" size="sm" asChild>
-                <a href="tel:+38624801660">
-                  <Phone className="mr-2 h-4 w-4" />
-                  +386 2 480 1660
-                </a>
-              </Button>
-              <Button variant="outline" size="sm" asChild>
-                <a href="mailto:info@zavetisce-maribor.si">
-                  <Mail className="mr-2 h-4 w-4" />
-                  info@zavetisce-maribor.si
-                </a>
-              </Button>
+              
+              <div className="space-y-6">
+                <CatBasicInfo
+                  age={cat.age}
+                  color={cat.color}
+                  gender={cat.gender}
+                  size={cat.size}
+                  dateArrived="2023-06-15"
+                />
+                
+                {/* Action buttons moved here, between basic info and contact */}
+                <div className="flex flex-col gap-2 p-3 bg-teal-50/80 rounded-lg shadow-sm border border-teal-100">
+                  <Button asChild variant="outline" size="sm" className="h-8 justify-start text-sm">
+                    <Link to="/posvojitev/mačke">
+                      Nazaj na seznam mačk
+                    </Link>
+                  </Button>
+                  
+                  <Button 
+                    variant="teal" 
+                    size="sm" 
+                    className="h-8 justify-start text-black text-sm" 
+                    onClick={handleScheduleAppointment}
+                  >
+                    <Calendar className="mr-2 h-3.5 w-3.5" />
+                    Prijava na ogled
+                  </Button>
+                  
+                  <Button 
+                    variant="teal" 
+                    size="sm" 
+                    className="h-8 justify-start text-sm" 
+                    onClick={handleFillQuestionnaire}
+                  >
+                    <FileText className="mr-2 h-3.5 w-3.5" />
+                    Izpolni vprašalnik
+                  </Button>
+                </div>
+                
+                <CatContactInfo 
+                  name={cat.name}
+                  contactInfo={{
+                    phone: "+386 2 480 1660",
+                    email: "info@zavetisce-maribor.si",
+                  }}
+                />
+                
+                <div className="bg-card rounded-xl border border-border p-4">
+                  <h3 className="text-base font-semibold mb-2">Lastnosti</h3>
+                  <div className="flex flex-wrap gap-1.5">
+                    {cat.characteristics.map((trait, i) => (
+                      <Badge 
+                        key={i}
+                        variant="outline" 
+                        className="bg-primary/5 text-xs"
+                      >
+                        {trait}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </Section>
