@@ -18,7 +18,7 @@ const AboutUs = () => {
         <meta name="description" content="Informacije o zavetišču za živali Maribor, našem poslanstvu, viziji in ciljih. Spoznajte našo zgodovino in delovanje zavetišča za zapuščene živali." />
       </Helmet>
       
-      <main className="min-h-screen pt-24">
+      <main className="min-h-screen pt-20">
         {/* Hero Section */}
         <AboutHero />
         
