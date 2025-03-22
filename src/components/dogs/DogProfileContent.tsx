@@ -40,10 +40,10 @@ const DogProfileContent = ({ dog }: DogProfileContentProps) => {
   };
 
   return (
-    <div className="container max-w-5xl px-3">
+    <div className="container">
       <DogProfileBreadcrumb dogName={dog.name} />
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
           <DogProfileHeader name={dog.name} status={dog.status} />
           
@@ -54,14 +54,14 @@ const DogProfileContent = ({ dog }: DogProfileContentProps) => {
             isDetailPage
           />
 
-          <Tabs defaultValue="about" className="mt-4">
+          <Tabs defaultValue="about" className="mt-6">
             <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="about" className="text-xs py-1">O psu</TabsTrigger>
-              <TabsTrigger value="requirements" className="text-xs py-1">Posvojitev</TabsTrigger>
-              <TabsTrigger value="health" className="text-xs py-1">Zdravje</TabsTrigger>
+              <TabsTrigger value="about">O psu</TabsTrigger>
+              <TabsTrigger value="requirements">Posvojitev</TabsTrigger>
+              <TabsTrigger value="health">Zdravje</TabsTrigger>
             </TabsList>
             
-            <TabsContent value="about" className="mt-3">
+            <TabsContent value="about" className="mt-4">
               <DogAboutTab 
                 name={dog.name}
                 description={dog.description}
@@ -71,7 +71,7 @@ const DogProfileContent = ({ dog }: DogProfileContentProps) => {
               />
             </TabsContent>
             
-            <TabsContent value="requirements" className="mt-3">
+            <TabsContent value="requirements" className="mt-4">
               <DogRequirementsTab 
                 name={dog.name}
                 adoptionRequirements={dog.adoptionRequirements}
@@ -79,7 +79,7 @@ const DogProfileContent = ({ dog }: DogProfileContentProps) => {
               />
             </TabsContent>
             
-            <TabsContent value="health" className="mt-3">
+            <TabsContent value="health" className="mt-4">
               <DogHealthTab 
                 name={dog.name}
                 vaccinated={dog.vaccinated}
@@ -90,15 +90,15 @@ const DogProfileContent = ({ dog }: DogProfileContentProps) => {
             </TabsContent>
           </Tabs>
           
-          <div className="flex flex-col mt-4 space-y-2">
-            <Button size="sm" className="w-full text-xs" onClick={handleScheduleAppointment}>
+          <div className="flex flex-col mt-6 space-y-4">
+            <Button className="w-full" onClick={handleScheduleAppointment}>
               Rezerviraj termin za obisk
             </Button>
-            <Button size="sm" variant="teal" className="w-full text-xs" onClick={handleFillQuestionnaire}>
-              <FileText className="mr-1.5 h-4 w-4" />
+            <Button variant="teal" className="w-full" onClick={handleFillQuestionnaire}>
+              <FileText className="mr-2 h-5 w-5" />
               Izpolni vprašalnik
             </Button>
-            <Button size="sm" asChild variant="outline" className="w-full text-xs">
+            <Button asChild variant="outline" className="w-full">
               <Link to="/posvojitev/psi">
                 Nazaj na seznam psov
               </Link>
@@ -106,7 +106,7 @@ const DogProfileContent = ({ dog }: DogProfileContentProps) => {
           </div>
         </div>
         
-        <div className="space-y-4">
+        <div className="space-y-6">
           <DogBasicInfo 
             age={dog.age}
             breed={dog.breed}
