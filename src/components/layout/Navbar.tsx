@@ -49,7 +49,7 @@ export default function Navbar() {
       } else {
         setScrollingUp(false);
         // Only hide when not in mobile menu mode
-        if (!isOpen) {
+        if (!isOpen && currentScrollY > 100) { // Only hide after scrolling down a bit
           setShowNavbar(false);
         }
       }
@@ -127,12 +127,12 @@ export default function Navbar() {
       animation="none" 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isOpen 
-          ? "py-3 bg-gradient-to-b from-teal-700/90 to-teal-800/80 backdrop-blur-[4px] shadow-md" // Always fully visible when menu is open
+          ? "py-2 bg-gradient-to-b from-teal-700/95 to-teal-800/85 backdrop-blur-md shadow-md" // Fully visible when menu is open
           : scrolled 
             ? isScrolling && !scrollingUp && !atBottom && !showNavbar
               ? "py-0 -translate-y-full opacity-0" // Hide when scrolling down
-              : "py-3 bg-gradient-to-b from-teal-700/80 to-teal-800/70 backdrop-blur-[4px] shadow-md" // Show when scrolling up, stopped, or at bottom
-            : "py-4 bg-gradient-to-b from-teal-700/70 to-teal-800/60 backdrop-blur-[4px]" // At top
+              : "py-2 bg-gradient-to-b from-teal-700/90 to-teal-800/80 backdrop-blur-md shadow-md" // Show when scrolling up, stopped, or at bottom
+            : "py-3 bg-gradient-to-b from-teal-700/80 to-teal-800/70 backdrop-blur-md" // At top
       }`}
       style={{ borderBottom: 'none' }}
     >
