@@ -1,5 +1,6 @@
 
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 type NavbarLogoProps = {
   closeMenu: () => void;
@@ -8,8 +9,26 @@ type NavbarLogoProps = {
 export const NavbarLogo = ({
   closeMenu
 }: NavbarLogoProps) => {
+  const location = useLocation();
+
+  const handleClick = (e: React.MouseEvent) => {
+    closeMenu();
+    
+    // If already on home page, scroll to top
+    if (location.pathname === '/') {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
-    <Link to="/" className="text-2xl font-display font-bold text-teal-600 flex items-center gap-2 transition-normal hover-scale" onClick={closeMenu}>
+    <Link 
+      to="/" 
+      className="text-2xl font-display font-bold text-teal-600 flex items-center gap-2 transition-normal hover-scale" 
+      onClick={handleClick}
+    >
       <span className="sr-only">Zavetišče za živali Maribor</span>
       <img 
         alt="Logo" 
