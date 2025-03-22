@@ -200,11 +200,10 @@ export default function StrayCatForm() {
                 <p className="text-sm font-medium">Priloži fotografije lokacije ali mačk (opcijsko)</p>
               </div>
               <FileUpload 
-                onFilesChange={handleFileChange} 
-                multiple={true} 
+                onChange={handleFileChange} 
+                value={uploadedFiles}
                 accept="image/*"
                 maxFiles={5}
-                maxSize={5 * 1024 * 1024} // 5MB
               />
               <p className="text-xs text-muted-foreground mt-2">
                 Priložite lahko do 5 fotografij (jpg, png), velikosti do 5MB.
