@@ -168,7 +168,7 @@ const DogProfileContent = ({ dog }: DogProfileContentProps) => {
             </Button>
             <Button variant="lightTeal" className="w-full" onClick={handleVolunteerClick}>
               <Dog className="mr-2 h-5 w-5" />
-              Postani prostovoljec sprehajalec
+              Postani sprehajalec
             </Button>
           </div>
         </div>
