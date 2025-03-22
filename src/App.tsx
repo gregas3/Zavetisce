@@ -21,6 +21,7 @@ import Volunteer from "./pages/Volunteer";
 import Kontakt from "./pages/Kontakt";
 import AboutUs from "./pages/AboutUs";
 import LostAndFound from "./pages/LostAndFound";
+import StrayCats from "./pages/StrayCats";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +51,9 @@ const App = () => {
             <Route path="/posvojitev/mačke/:id" element={<CatProfile />} />
             <Route path="/posvojitev/vprašalnik" element={<Questionnaire />} />
             <Route path="/posvojitev/postopek" element={<AdoptionProcess />} />
+            
+            {/* Stray cats route */}
+            <Route path="/prostozivece-macke" element={<StrayCats />} />
             
             {/* Appointments route */}
             <Route path="/termini" element={<Appointments />} />

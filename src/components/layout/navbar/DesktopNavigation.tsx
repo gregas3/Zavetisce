@@ -1,5 +1,6 @@
+
 import { Link } from "react-router-dom";
-import { Dog, Cat, Heart, Calendar } from "lucide-react";
+import { Dog, Cat, Heart, Calendar, PawPrint } from "lucide-react";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { NavbarActions } from "./NavbarActions";
@@ -44,6 +45,14 @@ export const DesktopNavigation = ({
                     <Link to="/posvojitev/postopek" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
                       <Heart size={16} className="text-teal-500" />
                       <span>Postopek posvojitve</span>
+                    </Link>
+                  </NavigationMenuLink>
+                </li>
+                <li>
+                  <NavigationMenuLink asChild>
+                    <Link to="/prostozivece-macke" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
+                      <PawPrint size={16} className="text-teal-500" />
+                      <span>Prostoživeče mačke</span>
                     </Link>
                   </NavigationMenuLink>
                 </li>
