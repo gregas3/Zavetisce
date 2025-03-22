@@ -17,6 +17,7 @@ import CatAboutTab from "@/components/cats/CatAboutTab";
 import CatHealthTab from "@/components/cats/CatHealthTab";
 import CatProfileSkeleton from "@/components/cats/CatProfileSkeleton";
 import CatProfileError from "@/components/cats/CatProfileError";
+import { Badge } from "@/components/ui/badge";
 import { Cat as CatType, cats } from "@/data/catsData";
 import {
   ContextMenu,
@@ -156,11 +157,7 @@ const CatProfile = () => {
                   </ContextMenu>
                 </div>
                 
-                <CatImageCarousel 
-                  images={[cat.image]} 
-                  videos={[]}
-                  isDetailPage
-                />
+                <CatImageCarousel images={[cat.image]} />
 
                 <Tabs defaultValue="about" className="mt-6">
                   <TabsList className="grid w-full grid-cols-2">
