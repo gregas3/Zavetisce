@@ -21,25 +21,25 @@ const FloatingContactButton = () => {
 
   return <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <Button variant="primary" size="icon" className="fixed right-4 bottom-16 z-50 rounded-full w-14 h-14 shadow-lg hover:shadow-xl transition-all duration-700 animate-pulse" aria-label="Contact Us">
-          <Phone className="w-6 h-6" />
+        <Button variant="primary" size="icon" className="fixed right-4 bottom-20 md:bottom-16 z-50 rounded-full w-12 h-12 md:w-14 md:h-14 shadow-lg hover:shadow-xl transition-all duration-700 animate-pulse" aria-label="Contact Us">
+          <Phone className="w-5 h-5 md:w-6 md:h-6" />
         </Button>
       </PopoverTrigger>
       
-      <PopoverContent side={isMobile ? "top" : "left"} sideOffset={isMobile ? 16 : 30} align={isMobile ? "end" : "center"} className="w-80 p-0 bg-white border-2 border-teal-200 shadow-lg rounded-xl">
-        <div className="p-4 bg-white rounded-t-xl border-b border-teal-100">
-          <h3 className="font-semibold text-lg text-teal-800 mb-3">
+      <PopoverContent side={isMobile ? "top" : "left"} sideOffset={isMobile ? 16 : 30} align={isMobile ? "end" : "center"} className="w-[280px] md:w-80 p-0 bg-white border-2 border-teal-200 shadow-lg rounded-xl">
+        <div className="p-3 md:p-4 bg-white rounded-t-xl border-b border-teal-100">
+          <h3 className="font-semibold text-base md:text-lg text-teal-800 mb-2 md:mb-3">
             Kontaktne informacije
           </h3>
           
-          <div className="font-semibold text-teal-700 mb-3">
+          <div className="font-semibold text-sm md:text-base text-teal-700 mb-2 md:mb-3">
             Zavetišče za živali Maribor
           </div>
 
-          <div className="space-y-3 text-sm">
-            <button onClick={navigateToLocation} className="flex items-center w-full text-left gap-3 p-2 rounded-md hover:bg-teal-50 transition-colors">
-              <div className="bg-teal-100 p-2 rounded-full">
-                <MapPin className="w-5 h-5 text-teal-600" />
+          <div className="space-y-2 md:space-y-3 text-sm">
+            <button onClick={navigateToLocation} className="flex items-start w-full text-left gap-2 md:gap-3 p-2 rounded-md hover:bg-teal-50 transition-colors">
+              <div className="bg-teal-100 p-1.5 md:p-2 rounded-full mt-0.5">
+                <MapPin className="w-4 h-4 md:w-5 md:h-5 text-teal-600" />
               </div>
               <div className="flex flex-col">
                 <span>Avtomobilska ulica 25, 2000 Maribor, Slovenia</span>
@@ -49,9 +49,9 @@ const FloatingContactButton = () => {
               </div>
             </button>
 
-            <a href="tel:024801660" className="flex items-center gap-3 p-2 rounded-md hover:bg-teal-50 transition-colors">
-              <div className="bg-teal-100 p-2 rounded-full">
-                <Phone className="w-5 h-5 text-teal-600" />
+            <a href="tel:024801660" className="flex items-start gap-2 md:gap-3 p-2 rounded-md hover:bg-teal-50 transition-colors">
+              <div className="bg-teal-100 p-1.5 md:p-2 rounded-full mt-0.5">
+                <Phone className="w-4 h-4 md:w-5 md:h-5 text-teal-600" />
               </div>
               <div className="flex flex-col">
                 <span>02 480 16 60</span>
@@ -59,9 +59,9 @@ const FloatingContactButton = () => {
               </div>
             </a>
 
-            <a href="tel:031788822" className="flex items-center gap-3 p-2 rounded-md hover:bg-teal-50 transition-colors">
-              <div className="bg-teal-100 p-2 rounded-full">
-                <Phone className="w-5 h-5 text-teal-600" />
+            <a href="tel:031788822" className="flex items-start gap-2 md:gap-3 p-2 rounded-md hover:bg-teal-50 transition-colors">
+              <div className="bg-teal-100 p-1.5 md:p-2 rounded-full mt-0.5">
+                <Phone className="w-4 h-4 md:w-5 md:h-5 text-teal-600" />
               </div>
               <div className="flex flex-col">
                 <span>031-788-822</span>
@@ -69,19 +69,19 @@ const FloatingContactButton = () => {
               </div>
             </a>
 
-            <a href="mailto:zavetisce.mb@snaga-mb.si" className="flex items-center gap-3 p-2 rounded-md hover:bg-teal-50 transition-colors">
-              <div className="bg-teal-100 p-2 rounded-full">
-                <Mail className="w-5 h-5 text-teal-600" />
+            <a href="mailto:zavetisce.mb@snaga-mb.si" className="flex items-start gap-2 md:gap-3 p-2 rounded-md hover:bg-teal-50 transition-colors">
+              <div className="bg-teal-100 p-1.5 md:p-2 rounded-full mt-0.5">
+                <Mail className="w-4 h-4 md:w-5 md:h-5 text-teal-600" />
               </div>
               <span>zavetisce.mb@snaga-mb.si</span>
             </a>
             
             <div className="flex justify-center gap-4 mt-2">
-              <a href="https://www.facebook.com/profile.php?id=100064510547105" target="_blank" rel="noopener noreferrer" className="bg-teal-100 p-2 rounded-full hover:bg-teal-200 transition-colors">
-                <Facebook className="w-5 h-5 text-teal-600" />
+              <a href="https://www.facebook.com/profile.php?id=100064510547105" target="_blank" rel="noopener noreferrer" className="bg-teal-100 p-1.5 md:p-2 rounded-full hover:bg-teal-200 transition-colors">
+                <Facebook className="w-4 h-4 md:w-5 md:h-5 text-teal-600" />
               </a>
-              <a href="https://www.instagram.com/zavetisce_za_zivali_maribor/" target="_blank" rel="noopener noreferrer" className="bg-teal-100 p-2 rounded-full hover:bg-teal-200 transition-colors">
-                <Instagram className="w-5 h-5 text-teal-600" />
+              <a href="https://www.instagram.com/zavetisce_za_zivali_maribor/" target="_blank" rel="noopener noreferrer" className="bg-teal-100 p-1.5 md:p-2 rounded-full hover:bg-teal-200 transition-colors">
+                <Instagram className="w-4 h-4 md:w-5 md:h-5 text-teal-600" />
               </a>
             </div>
           </div>
