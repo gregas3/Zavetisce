@@ -6,13 +6,27 @@ import AnimatedWrapper from "../shared/AnimatedWrapper";
 
 export default function HeroSection() {
   const scrollToNextSection = () => {
+    // Find the first section after the hero section
     const nextSection = document.querySelector('.section-padding');
     if (nextSection) {
       nextSection.scrollIntoView({
         behavior: 'smooth'
       });
+    } else {
+      // Fallback if the section-padding class is not found
+      const sections = document.querySelectorAll('section');
+      if (sections.length > 1) {
+        sections[1].scrollIntoView({ behavior: 'smooth' });
+      } else {
+        // If no sections are found, scroll down 100vh
+        window.scrollTo({
+          top: window.innerHeight,
+          behavior: 'smooth'
+        });
+      }
     }
   };
+  
   return <div className="relative pt-24 min-h-[100vh] flex items-center overflow-hidden">
       {/* Background image with overlay */}
       <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
@@ -70,11 +84,15 @@ export default function HeroSection() {
         </div>
       </div>
       
-      {/* Animated arrow replacing scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer" onClick={scrollToNextSection} aria-label="Scroll down">
-        <div className="w-16 h-16 rounded-full bg-teal-400/20 flex items-center justify-center border border-teal-400/30 shadow-lg backdrop-blur-sm">
-          <ChevronDown className="h-12 w-12 text-teal-300 animate-bounce" />
+      {/* Scroll button with better styling to match image */}
+      <button 
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer z-10"
+        onClick={scrollToNextSection}
+        aria-label="Scroll down"
+      >
+        <div className="w-12 h-12 rounded-full bg-teal-700/70 flex items-center justify-center shadow-lg backdrop-blur-sm border border-teal-600/30 transition-all duration-300 hover:bg-teal-600/80">
+          <ChevronDown className="h-8 w-8 text-teal-300 animate-bounce" />
         </div>
-      </div>
+      </button>
     </div>;
 }
