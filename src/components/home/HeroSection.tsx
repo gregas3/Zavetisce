@@ -57,12 +57,12 @@ export default function HeroSection() {
               </Button>
               <Button size="lg" variant="teal" asChild className="rounded-full font-medium text-base">
                 <Link to="/posvojitev/psi">
-                  Posvoji <Dog className="ml-2 h-8 w-8" />
+                  Posvoji me: <Dog className="ml-2 h-8 w-8" />
                 </Link>
               </Button>
               <Button size="lg" variant="teal" asChild className="rounded-full font-medium text-base">
                 <Link to="/posvojitev/mačke">
-                  Posvoji <Cat className="ml-2 h-8 w-8" />
+                  Posvoji me: <Cat className="ml-2 h-8 w-8" />
                 </Link>
               </Button>
             </div>
