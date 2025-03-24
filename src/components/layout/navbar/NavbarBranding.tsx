@@ -1,12 +1,14 @@
 
 import { Link } from "react-router-dom";
-import { Building } from "lucide-react";
 
 export const NavbarBranding = () => {
   return (
-    <Link to="/o-nas" className="ml-4 flex items-center gap-2 text-white/90 hover:text-white transition-colors">
-      <Building size={20} />
-      <span className="text-sm font-medium hidden md:block">Javni zavod</span>
+    <Link to="https://snaga-mb.si/" target="_blank" rel="noopener noreferrer" className="ml-4">
+      <img 
+        src="/lovable-uploads/072fa08a-6143-4c19-8c93-afd108144826.png" 
+        alt="Skupina JHMB" 
+        className="h-12 lg:h-14 object-contain" 
+      />
     </Link>
   );
 };
