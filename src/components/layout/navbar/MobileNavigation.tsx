@@ -1,7 +1,6 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, ChevronDown, Dog, Cat, Heart, Calendar, Users, Phone, HelpCircle, PawPrint, AlertCircle, FileQuestion, Stethoscope, BookMedical } from "lucide-react";
+import { Menu, X, ChevronDown, Dog, Cat, Heart, Calendar, Users, Phone, HelpCircle, PawPrint, AlertCircle, FileQuestion, Stethoscope, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NavbarActions } from "./NavbarActions";
 import { NavbarBranding } from "./NavbarBranding";
@@ -107,7 +106,7 @@ export const MobileNavigation = ({
                     <span className="font-medium text-sm">Veterinarski kotiček</span>
                   </Link>
                   <Link to="/about/oskrba-zivali" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
-                    <BookMedical size={15} className="text-teal-500" />
+                    <BookOpen size={15} className="text-teal-500" />
                     <span className="font-medium text-sm">Oskrba živali</span>
                   </Link>
                 </MobileNavItem>

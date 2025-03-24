@@ -1,6 +1,5 @@
-
 import { Link } from "react-router-dom";
-import { Dog, Cat, Heart, Calendar, PawPrint, Users, Phone, HelpCircle, Search, Map, AlertCircle, FileQuestion, Stethoscope, BookMedical } from "lucide-react";
+import { Dog, Cat, Heart, Calendar, PawPrint, Users, Phone, HelpCircle, Search, Map, AlertCircle, FileQuestion, Stethoscope, BookOpen } from "lucide-react";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { NavbarActions } from "./NavbarActions";
@@ -145,7 +144,7 @@ export const DesktopNavigation = ({
                 <li>
                   <NavigationMenuLink asChild>
                     <Link to="/about/oskrba-zivali" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
-                      <BookMedical size={16} className="text-teal-500" />
+                      <BookOpen size={16} className="text-teal-500" />
                       <span>Oskrba živali po sprejemu</span>
                     </Link>
                   </NavigationMenuLink>

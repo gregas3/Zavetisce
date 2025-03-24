@@ -1,7 +1,7 @@
 
 import { Helmet } from 'react-helmet';
 import { useState, useEffect } from 'react';
-import { BookMedical, CheckCircle, Dog, Cat, ArrowRight } from 'lucide-react';
+import { BookOpen, CheckCircle, Dog, Cat, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Layout from "@/components/layout/Layout";
 import { Button } from "@/components/ui/button";
@@ -29,7 +29,7 @@ export default function AnimalCare() {
           <AnimatedWrapper animation={isLoaded ? "fade-in" : "none"} delay={100}>
             <div className="flex flex-col items-center text-center">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-teal-600/40 rounded-full mb-4">
-                <BookMedical className="h-8 w-8 text-teal-100" />
+                <BookOpen className="h-8 w-8 text-teal-100" />
               </div>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4">
                 Oskrba živali po sprejemu
