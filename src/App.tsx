@@ -36,6 +36,8 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <Helmet>
+        <title>Zavetišče Maribor – Pomoč za živali</title>
+        <meta name="description" content="Spletni portal za posvojitve, donacije in informacije o živalih v Zavetišču Maribor." />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=SF+Pro+Display:wght@400;500;600;700&display=swap" />
       </Helmet>
       <TooltipProvider>
