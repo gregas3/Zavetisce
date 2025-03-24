@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import { Separator } from "@/components/ui/separator";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Card, CardContent } from "@/components/ui/card";
+import Section from "@/components/shared/Section";
 
 export default function AnimalCare() {
   const isMobile = useIsMobile();
@@ -47,133 +49,135 @@ export default function AnimalCare() {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <AnimatedWrapper animation={isLoaded ? "fade-in" : "none"} delay={200}>
-              <div className="bg-white rounded-xl shadow-md p-6 md:p-8 mb-8">
-                <h2 className="text-2xl font-bold text-teal-800 mb-4">Proces oskrbe po sprejemu</h2>
-                
-                <p className="text-gray-700 mb-6 leading-relaxed">
-                  V veterinarski ambulanti vse živali, ki pridejo v zavetišče, primerno oskrbimo. Postopek se izvaja po naslednjem vrstnem redu:
-                </p>
-                
-                <ul className="space-y-4 mb-6">
-                  <li className="flex items-start">
-                    <span className="bg-teal-100 text-teal-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">1</span>
-                    <span className="text-gray-700">vpis živali v evidenco</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="bg-teal-100 text-teal-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">2</span>
-                    <span className="text-gray-700">preverjanje med pogrešanimi živalmi</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="bg-teal-100 text-teal-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">3</span>
-                    <span className="text-gray-700">preverjanje nezamenljivih označb (iskanje čipa)</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="bg-teal-100 text-teal-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">4</span>
-                    <span className="text-gray-700">postopek za živali, ki jim nismo našli lastnika</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="bg-teal-100 text-teal-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">5</span>
-                    <span className="text-gray-700">oskrba živali v skladu s predpisi in internimi akti Zavetišča Maribor</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="bg-teal-100 text-teal-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">6</span>
-                    <span className="text-gray-700">živalim v roku 24 ur nudimo primerno veterinarsko oskrbo</span>
-                  </li>
-                </ul>
-                
-                <p className="text-gray-700 mb-4 leading-relaxed">
-                  Ob sprejemu vsako žival veterinarsko pregledamo in stehtamo.
-                </p>
-                
-                <Separator className="my-6 bg-teal-100" />
-                
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="bg-teal-50 p-5 rounded-lg border border-teal-100">
-                    <div className="flex items-center mb-4">
-                      <Dog className="h-6 w-6 text-teal-600 mr-3" />
-                      <h3 className="text-lg font-semibold text-teal-700">Psi na voljo za posvojitev</h3>
-                    </div>
+              <Section title="Proces oskrbe po sprejemu" className="p-0">
+                <Card className="mb-8 shadow-md">
+                  <CardContent className="p-6 md:p-8">
+                    <p className="text-gray-700 mb-6 leading-relaxed">
+                      V veterinarski ambulanti vse živali, ki pridejo v zavetišče, primerno oskrbimo. Postopek se izvaja po naslednjem vrstnem redu:
+                    </p>
                     
-                    <ul className="space-y-2">
-                      <li className="flex items-center">
-                        <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
-                        <span className="text-gray-700 text-sm">Veterinarski pregled</span>
+                    <ul className="space-y-4 mb-6">
+                      <li className="flex items-start">
+                        <span className="bg-teal-100 text-teal-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">1</span>
+                        <span className="text-gray-700 capitalize">Vpis živali v evidenco</span>
                       </li>
-                      <li className="flex items-center">
-                        <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
-                        <span className="text-gray-700 text-sm">Cepljeni proti kužnim boleznim</span>
+                      <li className="flex items-start">
+                        <span className="bg-teal-100 text-teal-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">2</span>
+                        <span className="text-gray-700 capitalize">Preverjanje med pogrešanimi živalmi</span>
                       </li>
-                      <li className="flex items-center">
-                        <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
-                        <span className="text-gray-700 text-sm">Psi starejši od 3 mesecev so cepljeni proti steklini</span>
+                      <li className="flex items-start">
+                        <span className="bg-teal-100 text-teal-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">3</span>
+                        <span className="text-gray-700 capitalize">Preverjanje nezamenljivih označb (iskanje čipa)</span>
                       </li>
-                      <li className="flex items-center">
-                        <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
-                        <span className="text-gray-700 text-sm">Sterilizirane psičke</span>
+                      <li className="flex items-start">
+                        <span className="bg-teal-100 text-teal-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">4</span>
+                        <span className="text-gray-700 capitalize">Postopek za živali, ki jim nismo našli lastnika</span>
                       </li>
-                      <li className="flex items-center">
-                        <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
-                        <span className="text-gray-700 text-sm">Mikročipirani</span>
+                      <li className="flex items-start">
+                        <span className="bg-teal-100 text-teal-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">5</span>
+                        <span className="text-gray-700 capitalize">Oskrba živali v skladu s predpisi in internimi akti Zavetišča Maribor</span>
                       </li>
-                      <li className="flex items-center">
-                        <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
-                        <span className="text-gray-700 text-sm">Imajo EU potni list</span>
-                      </li>
-                      <li className="flex items-center">
-                        <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
-                        <span className="text-gray-700 text-sm">Zajamčena sredstva proti zajedalcem</span>
+                      <li className="flex items-start">
+                        <span className="bg-teal-100 text-teal-800 rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">6</span>
+                        <span className="text-gray-700 capitalize">Živalim v roku 24 ur nudimo primerno veterinarsko oskrbo</span>
                       </li>
                     </ul>
-                  </div>
-                  
-                  <div className="bg-teal-50 p-5 rounded-lg border border-teal-100">
-                    <div className="flex items-center mb-4">
-                      <Cat className="h-6 w-6 text-teal-600 mr-3" />
-                      <h3 className="text-lg font-semibold text-teal-700">Mačke na voljo za posvojitev</h3>
-                    </div>
                     
-                    <ul className="space-y-2">
-                      <li className="flex items-center">
-                        <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
-                        <span className="text-gray-700 text-sm">Veterinarski pregled</span>
-                      </li>
-                      <li className="flex items-center">
-                        <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
-                        <span className="text-gray-700 text-sm">Cepljene proti kužnim boleznim</span>
-                      </li>
-                      <li className="flex items-center">
-                        <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
-                        <span className="text-gray-700 text-sm">Sredstva proti zajedalcem</span>
-                      </li>
-                      <li className="flex items-center">
-                        <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
-                        <span className="text-gray-700 text-sm">Mikročipirane</span>
-                      </li>
-                      <li className="flex items-center">
-                        <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
-                        <span className="text-gray-700 text-sm">Sterilizirane / kastrirani samci</span>
-                      </li>
-                      <li className="flex items-center">
-                        <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
-                        <span className="text-gray-700 text-sm">EU potni list</span>
-                      </li>
-                      <li className="flex items-center">
-                        <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
-                        <span className="text-gray-700 text-sm">Mačke nad 6 mesecev pregledane na FIV (mačji AIDS)</span>
-                      </li>
-                      <li className="flex items-center">
-                        <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
-                        <span className="text-gray-700 text-sm">Uporabljajo mačje stranišče</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+                    <p className="text-gray-700 mb-4 leading-relaxed font-medium">
+                      Ob sprejemu vsako žival veterinarsko pregledamo in stehtamo.
+                    </p>
+                    
+                    <Separator className="my-6 bg-teal-100" />
+                    
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="bg-teal-50 p-5 rounded-lg border border-teal-100 shadow-sm">
+                        <div className="flex items-center mb-4">
+                          <Dog className="h-6 w-6 text-teal-600 mr-3" />
+                          <h3 className="text-lg font-semibold text-teal-700">Psi na voljo za posvojitev</h3>
+                        </div>
+                        
+                        <ul className="space-y-2">
+                          <li className="flex items-center">
+                            <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
+                            <span className="text-gray-700 text-sm">Veterinarski pregled</span>
+                          </li>
+                          <li className="flex items-center">
+                            <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
+                            <span className="text-gray-700 text-sm">Cepljeni proti kužnim boleznim</span>
+                          </li>
+                          <li className="flex items-center">
+                            <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
+                            <span className="text-gray-700 text-sm">Psi starejši od 3 mesecev so cepljeni proti steklini</span>
+                          </li>
+                          <li className="flex items-center">
+                            <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
+                            <span className="text-gray-700 text-sm">Sterilizirane psičke</span>
+                          </li>
+                          <li className="flex items-center">
+                            <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
+                            <span className="text-gray-700 text-sm">Mikročipirani</span>
+                          </li>
+                          <li className="flex items-center">
+                            <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
+                            <span className="text-gray-700 text-sm">Imajo EU potni list</span>
+                          </li>
+                          <li className="flex items-center">
+                            <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
+                            <span className="text-gray-700 text-sm">Zajamčena sredstva proti zajedalcem</span>
+                          </li>
+                        </ul>
+                      </div>
+                      
+                      <div className="bg-teal-50 p-5 rounded-lg border border-teal-100 shadow-sm">
+                        <div className="flex items-center mb-4">
+                          <Cat className="h-6 w-6 text-teal-600 mr-3" />
+                          <h3 className="text-lg font-semibold text-teal-700">Mačke na voljo za posvojitev</h3>
+                        </div>
+                        
+                        <ul className="space-y-2">
+                          <li className="flex items-center">
+                            <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
+                            <span className="text-gray-700 text-sm">Veterinarski pregled</span>
+                          </li>
+                          <li className="flex items-center">
+                            <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
+                            <span className="text-gray-700 text-sm">Cepljene proti kužnim boleznim</span>
+                          </li>
+                          <li className="flex items-center">
+                            <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
+                            <span className="text-gray-700 text-sm">Sredstva proti zajedalcem</span>
+                          </li>
+                          <li className="flex items-center">
+                            <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
+                            <span className="text-gray-700 text-sm">Mikročipirane</span>
+                          </li>
+                          <li className="flex items-center">
+                            <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
+                            <span className="text-gray-700 text-sm">Sterilizirane / kastrirani samci</span>
+                          </li>
+                          <li className="flex items-center">
+                            <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
+                            <span className="text-gray-700 text-sm">EU potni list</span>
+                          </li>
+                          <li className="flex items-center">
+                            <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
+                            <span className="text-gray-700 text-sm">Mačke nad 6 mesecev pregledane na FIV (mačji AIDS)</span>
+                          </li>
+                          <li className="flex items-center">
+                            <CheckCircle className="h-4 w-4 text-teal-500 mr-2 flex-shrink-0" />
+                            <span className="text-gray-700 text-sm">Uporabljajo mačje stranišče</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </Section>
             </AnimatedWrapper>
             
             <AnimatedWrapper animation={isLoaded ? "fade-in" : "none"} delay={300}>
               <div className="flex justify-center">
-                <Button asChild variant="outline" className="bg-white border-teal-200 hover:bg-teal-50">
+                <Button asChild variant="outline" className="bg-white border-teal-200 hover:bg-teal-50 shadow-sm">
                   <Link to="/about/veterinarski-koticek" className="flex items-center gap-2">
                     <span>Preberi več o veterinarskem kotičku</span>
                     <ArrowRight className="h-4 w-4" />
