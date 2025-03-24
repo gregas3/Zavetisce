@@ -1,5 +1,6 @@
+
 import { Link } from "react-router-dom";
-import { Dog, Cat, Heart, Calendar, PawPrint, Users, Phone, HelpCircle, Search, Map, AlertCircle, FileQuestion, Stethoscope, BookOpen } from "lucide-react";
+import { Dog, Cat, Heart, Calendar, Users, Phone, HelpCircle, AlertCircle, FileQuestion, Stethoscope, BookOpen } from "lucide-react";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { NavbarActions } from "./NavbarActions";
@@ -17,7 +18,7 @@ export const DesktopNavigation = ({
   handleHomeClick
 }: DesktopNavigationProps) => {
   return <div className="hidden lg:flex items-center gap-3">
-      <NavigationMenu>
+      <NavigationMenu className="z-50">
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuTrigger className="bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white data-[state=open]:bg-teal-600/50">
@@ -116,7 +117,7 @@ export const DesktopNavigation = ({
             </NavigationMenuLink>
           </NavigationMenuItem>
           
-          <NavigationMenuItem>
+          <NavigationMenuItem className="relative">
             <NavigationMenuTrigger className="bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white data-[state=open]:bg-teal-600/50">
               <span className="flex items-center gap-1">
                 <HelpCircle size={16} />
