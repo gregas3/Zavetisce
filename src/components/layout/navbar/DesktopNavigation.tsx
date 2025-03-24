@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { Dog, Cat, Heart, Calendar, PawPrint, Users, Phone, HelpCircle, Search, Map, AlertCircle, FileQuestion } from "lucide-react";
+import { Dog, Cat, Heart, Calendar, PawPrint, Users, Phone, HelpCircle, Search, Map, AlertCircle, FileQuestion, Stethoscope, BookMedical } from "lucide-react";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { NavbarActions } from "./NavbarActions";
@@ -118,14 +118,40 @@ export const DesktopNavigation = ({
           </NavigationMenuItem>
           
           <NavigationMenuItem>
-            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
-              <Link to="/o-nas">
-                <span className="flex items-center gap-1">
-                  <HelpCircle size={16} />
-                  O nas
-                </span>
-              </Link>
-            </NavigationMenuLink>
+            <NavigationMenuTrigger className="bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white data-[state=open]:bg-teal-600/50">
+              <span className="flex items-center gap-1">
+                <HelpCircle size={16} />
+                O nas
+              </span>
+            </NavigationMenuTrigger>
+            <NavigationMenuContent>
+              <ul className="grid gap-3 p-4 md:w-[230px] bg-white border border-teal-100 shadow-lg rounded-lg">
+                <li>
+                  <NavigationMenuLink asChild>
+                    <Link to="/o-nas" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
+                      <HelpCircle size={16} className="text-teal-500" />
+                      <span>O zavetišču</span>
+                    </Link>
+                  </NavigationMenuLink>
+                </li>
+                <li>
+                  <NavigationMenuLink asChild>
+                    <Link to="/about/veterinarski-koticek" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
+                      <Stethoscope size={16} className="text-teal-500" />
+                      <span>Veterinarski kotiček</span>
+                    </Link>
+                  </NavigationMenuLink>
+                </li>
+                <li>
+                  <NavigationMenuLink asChild>
+                    <Link to="/about/oskrba-zivali" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
+                      <BookMedical size={16} className="text-teal-500" />
+                      <span>Oskrba živali po sprejemu</span>
+                    </Link>
+                  </NavigationMenuLink>
+                </li>
+              </ul>
+            </NavigationMenuContent>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
