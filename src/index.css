@@ -306,5 +306,32 @@
   [data-radix-navigation-menu-root] {
     @apply relative z-50;
   }
+  
+  /* Improved navigation menu positioning */
+  div[class*='NavigationMenuViewport'] {
+    @apply !z-50 !overflow-visible !rounded-md;
+  }
+  
+  /* Correct positioning for navigation dropdown menus */
+  [data-state="open"] > [data-radix-navigation-menu-content] {
+    @apply !left-0 !transform-none;
+    animation: dropdown-fade-in 0.2s ease-out;
+  }
+  
+  /* Ensure content is properly aligned with its parent trigger */
+  [data-radix-navigation-menu-content] {
+    @apply transform-none;
+  }
+  
+  /* Navigation menu viewport positioning */
+  [data-radix-navigation-menu-viewport] {
+    @apply !w-auto;
+  }
+  
+  /* Fix for popper content positioning */
+  [data-radix-popper-content-wrapper] {
+    @apply !z-50 transform-none;
+    left: var(--radix-popper-anchor-width) !important;
+    transform: translateX(-50%) !important;
+  }
 }
-
