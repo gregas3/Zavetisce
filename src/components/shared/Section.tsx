@@ -14,9 +14,6 @@ interface SectionProps {
   centered?: boolean;
   animate?: boolean;
   animation?: 'fade-in' | 'zoom-in' | 'slide-up' | 'slide-in-right' | 'fade-in-up' | 'none' | 'float' | 'bounce-slow' | 'shake';
-  backgroundImage?: string;
-  backgroundOverlay?: string;
-  backgroundFilter?: string;
 }
 
 export default function Section({
@@ -31,48 +28,10 @@ export default function Section({
   centered = false,
   animate = true,
   animation = 'fade-in',
-  backgroundImage,
-  backgroundOverlay = 'rgba(240, 249, 247, 0.85)',
-  backgroundFilter = 'blur(4px) brightness(0.8)',
 }: SectionProps) {
-
-  // Create styling for the background if a background image is provided
-  const backgroundStyle = backgroundImage ? {
-    backgroundImage: `url('${backgroundImage}')`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    position: 'relative' as const,
-  } : {};
-
   const content = (
-    <section 
-      id={id} 
-      className={`py-8 md:py-12 px-4 md:px-0 relative ${className}`} 
-      style={backgroundStyle}
-      tabIndex={-1}
-    >
-      {backgroundImage && (
-        <div 
-          className="absolute inset-0 z-0" 
-          style={{ 
-            backgroundImage: `url('${backgroundImage}')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            filter: backgroundFilter,
-          }}
-        />
-      )}
-      
-      {backgroundImage && (
-        <div 
-          className="absolute inset-0 z-0"
-          style={{ backgroundColor: backgroundOverlay }}
-        />
-      )}
-      
-      <div className={`container mx-auto relative z-10 ${backgroundImage ? 'relative' : ''}`}>
+    <section id={id} className={`py-8 md:py-12 px-4 md:px-0 relative ${className}`} tabIndex={-1}>
+      <div className="container mx-auto">
         {(title || description || subtitle) && (
           <div className={`mb-6 md:mb-8 ${centered ? 'text-center mx-auto max-w-3xl' : ''}`}>
             {title && (
