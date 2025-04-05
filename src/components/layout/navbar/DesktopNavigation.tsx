@@ -124,22 +124,8 @@ export const DesktopNavigation = ({
           </NavigationMenuList>
         </NavigationMenu>
         
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
-                <Link to="/kontakt">
-                  <span className="flex items-center gap-1">
-                    <Phone size={16} />
-                    Kontakt
-                  </span>
-                </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-        
-        {/* Second dropdown - O nas */}
+        {/* Swapped positions - O nas now comes before Kontakt */}
+        {/* O nas dropdown */}
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
@@ -188,6 +174,22 @@ export const DesktopNavigation = ({
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
+
+        {/* Moved Kontakt to the end */}
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
+                <Link to="/kontakt">
+                  <span className="flex items-center gap-1">
+                    <Phone size={16} />
+                    Kontakt
+                  </span>
+                </Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
       </div>
       
       <div className="flex items-center gap-3 ml-3">
@@ -197,3 +199,4 @@ export const DesktopNavigation = ({
       </div>
     </div>;
 };
+
