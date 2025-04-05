@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ChevronRight, Play, Info, Cat, Dog } from "lucide-react";
+import { ChevronRight, Play, Info, Cat, Dog, Share2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import AnimatedWrapper from "../shared/AnimatedWrapper";

@@ -2,7 +2,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { FileText, Dog } from "lucide-react";
+import { FileText, Dog, Share2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { type DogData } from "@/services/dogService";
@@ -57,9 +57,10 @@ const DogProfileContent = ({ dog }: DogProfileContentProps) => {
             <ShareModal 
               animalName={dog.name} 
               animalType="pes" 
-              animalId={dog.id}
+              animalId={parseInt(dog.id)}
               trigger={
                 <Button variant="outline" size="icon" className="rounded-full">
+                  <Share2 className="h-4 w-4" />
                   <span className="sr-only">Deli žival</span>
                 </Button>
               }
