@@ -409,15 +409,28 @@ const Donations = () => {
               </CardHeader>
               
               <CardContent className="space-y-6">
-                <div className="bg-teal-50/70 p-5 rounded-lg">
-                  <p className="text-lg mb-4">
-                    Vaša letna članarina v višini 30€ neposredno podpira oskrbo, hrano in zdravljenje naših živali v zavetišču.
-                  </p>
-                  <div className="flex items-center gap-3 bg-teal-100/50 p-3 rounded-md">
-                    <Gift className="text-teal-600 flex-shrink-0" />
-                    <p className="font-medium">
-                      Ob včlanitvi vsak član prejme darilno majico z logotipom našega zavetišča kot znak zahvale.
+                <div className="flex flex-col md:flex-row gap-6 items-start">
+                  <div className="bg-teal-50/70 p-5 rounded-lg flex-grow">
+                    <p className="text-lg mb-4">
+                      Vaša letna članarina v višini 30€ neposredno podpira oskrbo, hrano in zdravljenje naših živali v zavetišču.
                     </p>
+                    <div className="flex items-center gap-3 bg-teal-100/50 p-3 rounded-md">
+                      <Gift className="text-teal-600 flex-shrink-0" />
+                      <p className="font-medium">
+                        Ob včlanitvi vsak član prejme darilno majico z logotipom našega zavetišča kot znak zahvale.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex justify-center md:justify-end md:pt-2">
+                    <div className="relative group">
+                      <img 
+                        src="/public/lovable-uploads/e9a594a1-cdaf-4a53-b920-e237f505df4f.png" 
+                        alt="Official 2025 Member Badge – Animal Shelter Maribor" 
+                        className="w-[150px] md:w-[180px] max-w-full h-auto transition-transform duration-300 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 rounded-full bg-teal-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
                   </div>
                 </div>
                 
