@@ -11,7 +11,6 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
   const location = useLocation();
-  const isHomePage = location.pathname === "/";
   const isDogProfile = location.pathname.includes("/posvojitev/psi/");
   const isCatProfile = location.pathname.includes("/posvojitev/mačke/");
   
@@ -26,7 +25,7 @@ const Layout = ({ children }: LayoutProps) => {
       <main className={`flex-grow w-full pt-14 md:pt-16 ${(isDogProfile || isCatProfile) ? 'pb-16' : 'pb-10'}`} id="top">
         {children}
       </main>
-      {isHomePage && <FloatingContactButton />}
+      <FloatingContactButton />
       <Footer />
     </div>
   );
