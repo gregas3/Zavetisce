@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { Dog, Cat, Heart, Calendar, Users, Phone, HelpCircle, AlertCircle, FileQuestion, Stethoscope, BookOpen } from "lucide-react";
+import { Dog, Cat, Heart, Calendar, PawPrint, Users, Phone, HelpCircle, Search, Map, AlertCircle, FileQuestion } from "lucide-react";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { NavbarActions } from "./NavbarActions";
@@ -18,7 +18,7 @@ export const DesktopNavigation = ({
   handleHomeClick
 }: DesktopNavigationProps) => {
   return <div className="hidden lg:flex items-center gap-3">
-      <NavigationMenu className="z-50">
+      <NavigationMenu>
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuTrigger className="bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white data-[state=open]:bg-teal-600/50">
@@ -117,41 +117,15 @@ export const DesktopNavigation = ({
             </NavigationMenuLink>
           </NavigationMenuItem>
           
-          <NavigationMenuItem className="relative">
-            <NavigationMenuTrigger className="bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white data-[state=open]:bg-teal-600/50">
-              <span className="flex items-center gap-1">
-                <HelpCircle size={16} />
-                O nas
-              </span>
-            </NavigationMenuTrigger>
-            <NavigationMenuContent className="absolute">
-              <ul className="grid gap-3 p-4 md:w-[230px] bg-white border border-teal-100 shadow-lg rounded-lg">
-                <li>
-                  <NavigationMenuLink asChild>
-                    <Link to="/o-nas" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
-                      <HelpCircle size={16} className="text-teal-500" />
-                      <span>O zavetišču</span>
-                    </Link>
-                  </NavigationMenuLink>
-                </li>
-                <li>
-                  <NavigationMenuLink asChild>
-                    <Link to="/about/veterinarski-koticek" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
-                      <Stethoscope size={16} className="text-teal-500" />
-                      <span>Veterinarski kotiček</span>
-                    </Link>
-                  </NavigationMenuLink>
-                </li>
-                <li>
-                  <NavigationMenuLink asChild>
-                    <Link to="/about/oskrba-zivali" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
-                      <BookOpen size={16} className="text-teal-500" />
-                      <span>Oskrba živali po sprejemu</span>
-                    </Link>
-                  </NavigationMenuLink>
-                </li>
-              </ul>
-            </NavigationMenuContent>
+          <NavigationMenuItem>
+            <NavigationMenuLink asChild className={cn(navigationMenuTriggerStyle(), "bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white")}>
+              <Link to="/o-nas">
+                <span className="flex items-center gap-1">
+                  <HelpCircle size={16} />
+                  O nas
+                </span>
+              </Link>
+            </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>

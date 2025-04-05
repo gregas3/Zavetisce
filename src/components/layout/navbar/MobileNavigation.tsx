@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, ChevronDown, Dog, Cat, Heart, Calendar, Users, Phone, HelpCircle, PawPrint, AlertCircle, FileQuestion, Stethoscope, BookOpen } from "lucide-react";
+import { Menu, X, ChevronDown, Dog, Cat, Heart, Calendar, Users, Phone, HelpCircle, PawPrint, AlertCircle, FileQuestion } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NavbarActions } from "./NavbarActions";
 import { NavbarBranding } from "./NavbarBranding";
@@ -97,20 +97,10 @@ export const MobileNavigation = ({
               </AnimatedWrapper>
               
               <AnimatedWrapper animation="fade-in" delay={300}>
-                <MobileNavItem title="O nas" hasSubmenu icon={<HelpCircle size={18} className="text-teal-500" />}>
-                  <Link to="/o-nas" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
-                    <HelpCircle size={15} className="text-teal-500" />
-                    <span className="font-medium text-sm">O zavetišču</span>
-                  </Link>
-                  <Link to="/about/veterinarski-koticek" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
-                    <Stethoscope size={15} className="text-teal-500" />
-                    <span className="font-medium text-sm">Veterinarski kotiček</span>
-                  </Link>
-                  <Link to="/about/oskrba-zivali" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
-                    <BookOpen size={15} className="text-teal-500" />
-                    <span className="font-medium text-sm">Oskrba živali</span>
-                  </Link>
-                </MobileNavItem>
+                <Link to="/o-nas" className="flex items-center gap-2 text-sm py-2.5 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" onClick={closeMenu}>
+                  <HelpCircle size={16} className="text-teal-500" />
+                  <span>O nas</span>
+                </Link>
               </AnimatedWrapper>
             </div>
             

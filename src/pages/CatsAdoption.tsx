@@ -1,8 +1,7 @@
-
 import { Helmet } from 'react-helmet';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Play } from 'lucide-react';
+import { Search, Heart } from 'lucide-react';
 import Layout from "@/components/layout/Layout";
 import Footer from "@/components/layout/Footer";
 import Section from "@/components/shared/Section";
@@ -12,7 +11,6 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { cats } from "@/data/catsData";
-import ShareModal from "@/components/shared/ShareModal";
 
 const CatsAdoption = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -163,9 +161,17 @@ const CatCard = ({ cat }: CatCardProps) => {
             className="object-cover w-full h-full transition-normal group-hover:scale-105"
             loading="lazy"
           />
-          <div className="absolute top-3 right-3" onClick={(e) => e.preventDefault()}>
-            <ShareModal animalName={cat.name} animalType="mačka" animalId={cat.id} />
-          </div>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute top-3 right-3 bg-background/80 backdrop-blur-sm hover:bg-background/90 hover:text-primary z-10"
+            aria-label="Dodaj med priljubljene"
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+          >
+            <Heart size={18} />
+          </Button>
         </div>
         <CardContent className="p-5">
           <div className="flex justify-between items-start mb-2">

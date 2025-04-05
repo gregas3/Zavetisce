@@ -11,6 +11,7 @@ type LayoutProps = {
 
 const Layout = ({ children }: LayoutProps) => {
   const location = useLocation();
+  const isHomePage = location.pathname === "/";
   const isDogProfile = location.pathname.includes("/posvojitev/psi/");
   const isCatProfile = location.pathname.includes("/posvojitev/mačke/");
   
@@ -20,12 +21,12 @@ const Layout = ({ children }: LayoutProps) => {
   }, [location.pathname]);
   
   return (
-    <div className="flex flex-col min-h-screen w-full overflow-x-hidden relative">
+    <div className="flex flex-col min-h-screen w-full overflow-x-hidden">
       <Navbar />
       <main className={`flex-grow w-full pt-14 md:pt-16 ${(isDogProfile || isCatProfile) ? 'pb-16' : 'pb-10'}`} id="top">
         {children}
       </main>
-      <FloatingContactButton />
+      {isHomePage && <FloatingContactButton />}
       <Footer />
     </div>
   );

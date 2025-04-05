@@ -84,7 +84,9 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+}
 
+@layer base {
   * {
     @apply border-border;
   }
@@ -269,69 +271,5 @@
   
   .mobile-menu-exit-active {
     @apply transform translate-x-full transition-transform duration-300 ease-in;
-  }
-  
-  /* Navigation menu specific styles */
-  .navigation-dropdown {
-    @apply absolute top-full mt-1 z-50 rounded-md shadow-lg bg-white border border-teal-100 
-    animate-in fade-in slide-in-from-top-2 duration-200;
-  }
-  
-  .dropdown-item {
-    @apply flex items-center gap-2 p-2 text-teal-800 rounded-md hover:bg-teal-50 
-    transition-all duration-150 focus:bg-teal-50 focus:outline-none;
-  }
-  
-  /* Ensure dropdown aligns properly with parent */
-  [data-radix-popper-content-wrapper] {
-    @apply !z-50;
-  }
-  
-  /* Fix for Radix UI's NavigationMenu viewport alignment */
-  div[class*='NavigationMenuViewport'] {
-    @apply !mt-1 !z-50 !left-1/2 !-translate-x-1/2 !shadow-lg !overflow-visible !rounded-md;
-  }
-  
-  /* Navigation menu animation */
-  @keyframes dropdown-fade-in {
-    from { opacity: 0; transform: translateY(-5px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
-  [data-state="open"] > [data-radix-navigation-menu-content] {
-    animation: dropdown-fade-in 0.15s ease-out;
-  }
-  
-  /* Fix z-index for navigation menu when opened */
-  [data-radix-navigation-menu-root] {
-    @apply relative z-50;
-  }
-  
-  /* Improved navigation menu positioning */
-  div[class*='NavigationMenuViewport'] {
-    @apply !z-50 !overflow-visible !rounded-md;
-  }
-  
-  /* Correct positioning for navigation dropdown menus */
-  [data-state="open"] > [data-radix-navigation-menu-content] {
-    @apply !left-0 !transform-none;
-    animation: dropdown-fade-in 0.2s ease-out;
-  }
-  
-  /* Ensure content is properly aligned with its parent trigger */
-  [data-radix-navigation-menu-content] {
-    @apply transform-none;
-  }
-  
-  /* Navigation menu viewport positioning */
-  [data-radix-navigation-menu-viewport] {
-    @apply !w-auto;
-  }
-  
-  /* Fix for popper content positioning */
-  [data-radix-popper-content-wrapper] {
-    @apply !z-50 transform-none;
-    left: var(--radix-popper-anchor-width) !important;
-    transform: translateX(-50%) !important;
   }
 }

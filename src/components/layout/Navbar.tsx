@@ -117,23 +117,8 @@ export default function Navbar() {
       document.body.style.overflow = '';
     }
     
-    // Fix dropdown positioning when using Radix Navigation Menu
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      if (!target.closest('[data-radix-navigation-menu-root]') && 
-          !target.closest('[data-radix-navigation-menu-content]')) {
-        const openTriggers = document.querySelectorAll('[data-state="open"]');
-        if (openTriggers.length > 0) {
-          // Let Radix handle its own closing
-        }
-      }
-    };
-    
-    document.addEventListener('click', handleClickOutside);
-    
     return () => {
       document.body.style.overflow = '';
-      document.removeEventListener('click', handleClickOutside);
     };
   }, [isOpen]);
 
