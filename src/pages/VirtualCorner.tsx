@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { CreditCard, Users, Video, Gift, Copy, CheckCircle, ExternalLink } from 'lucide-react';
@@ -10,12 +9,13 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import { useToast } from "@/hooks/use-toast";
-
 const VirtualCorner = () => {
   const [activePaymentMethod, setActivePaymentMethod] = useState<'card' | 'bank'>('card');
   const [paymentInProgress, setPaymentInProgress] = useState(false);
   const [bankDetailsCopied, setBankDetailsCopied] = useState<string | null>(null);
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
 
   // Bank transfer details
   const bankDetails = {
@@ -24,10 +24,9 @@ const VirtualCorner = () => {
     purposeCode: 'CHAR',
     reference: 'Donacija zavetišču'
   };
-
   const handleStripePayment = () => {
     setPaymentInProgress(true);
-    
+
     // Simulate payment process
     setTimeout(() => {
       setPaymentInProgress(false);
@@ -38,36 +37,25 @@ const VirtualCorner = () => {
       });
     }, 1500);
   };
-  
   const copyToClipboard = (text: string, field: string) => {
     navigator.clipboard.writeText(text);
     setBankDetailsCopied(field);
-    
     toast({
       title: "Kopirano",
       description: `${field} je bil kopiran v odložišče.`,
       variant: "default"
     });
-    
     setTimeout(() => setBankDetailsCopied(null), 3000);
   };
-
-  return (
-    <Layout>
+  return <Layout>
       <Helmet>
         <title>Virtualen kotiček | Zavetišče za živali Maribor</title>
         <meta name="description" content="Postanite član Zavetišča za živali Maribor in podprite naše živali. Doživite zavetišče skozi oči psa s 360° izkušnjo." />
       </Helmet>
 
-      <main className="min-h-screen pt-24">
+      <main className="min-h-screen pt-24 py-0">
         {/* Hero Section */}
-        <Section 
-          title="Virtualen kotiček" 
-          description="Doživite zavetišče na nov način in podprite naše poslanstvo"
-          centered 
-          className="pt-24 md:pt-32" 
-          animation="fade-in-up"
-        >
+        <Section title="Virtualen kotiček" description="Doživite zavetišče na nov način in podprite naše poslanstvo" centered className="pt-24 md:pt-32" animation="fade-in-up">
           {/* Membership Section */}
           <AnimatedWrapper animation="fade-in" delay={100}>
             <Card className="glass-card mb-16 overflow-hidden relative max-w-5xl mx-auto">
@@ -104,7 +92,7 @@ const VirtualCorner = () => {
                     Plačilne možnosti
                   </h3>
                   
-                  <Tabs value={activePaymentMethod} onValueChange={(value) => setActivePaymentMethod(value as 'card' | 'bank')} className="w-full">
+                  <Tabs value={activePaymentMethod} onValueChange={value => setActivePaymentMethod(value as 'card' | 'bank')} className="w-full">
                     <TabsList className="grid w-full grid-cols-2 mb-6">
                       <TabsTrigger value="card" className="text-base">Plačilna kartica</TabsTrigger>
                       <TabsTrigger value="bank" className="text-base">Bančno nakazilo</TabsTrigger>
@@ -116,13 +104,7 @@ const VirtualCorner = () => {
                           Za hitro in enostavno plačilo z uporabo kreditne ali debetne kartice kliknite spodaj.
                         </p>
                         <div className="flex justify-center mt-4">
-                          <Button 
-                            variant="teal" 
-                            size="lg"
-                            className="w-full md:w-auto"
-                            onClick={handleStripePayment}
-                            disabled={paymentInProgress}
-                          >
+                          <Button variant="teal" size="lg" className="w-full md:w-auto" onClick={handleStripePayment} disabled={paymentInProgress}>
                             <CreditCard className="mr-2" /> 
                             {paymentInProgress ? "Obdelava..." : "Plačaj s kartico"}
                           </Button>
@@ -142,12 +124,7 @@ const VirtualCorner = () => {
                               <p className="text-sm text-gray-600">Prejemnik:</p>
                               <p className="font-medium">{bankDetails.recipient}</p>
                             </div>
-                            <Button 
-                              variant="ghost" 
-                              size="sm"
-                              onClick={() => copyToClipboard(bankDetails.recipient, 'Prejemnik')}
-                              className="text-teal-600 hover:text-teal-700 hover:bg-teal-50"
-                            >
+                            <Button variant="ghost" size="sm" onClick={() => copyToClipboard(bankDetails.recipient, 'Prejemnik')} className="text-teal-600 hover:text-teal-700 hover:bg-teal-50">
                               {bankDetailsCopied === 'Prejemnik' ? <CheckCircle size={18} /> : <Copy size={18} />}
                             </Button>
                           </div>
@@ -157,12 +134,7 @@ const VirtualCorner = () => {
                               <p className="text-sm text-gray-600">IBAN:</p>
                               <p className="font-medium font-mono">{bankDetails.iban}</p>
                             </div>
-                            <Button 
-                              variant="ghost" 
-                              size="sm"
-                              onClick={() => copyToClipboard(bankDetails.iban, 'IBAN')}
-                              className="text-teal-600 hover:text-teal-700 hover:bg-teal-50"
-                            >
+                            <Button variant="ghost" size="sm" onClick={() => copyToClipboard(bankDetails.iban, 'IBAN')} className="text-teal-600 hover:text-teal-700 hover:bg-teal-50">
                               {bankDetailsCopied === 'IBAN' ? <CheckCircle size={18} /> : <Copy size={18} />}
                             </Button>
                           </div>
@@ -172,12 +144,7 @@ const VirtualCorner = () => {
                               <p className="text-sm text-gray-600">Namen plačila:</p>
                               <p className="font-medium">{bankDetails.purposeCode}</p>
                             </div>
-                            <Button 
-                              variant="ghost" 
-                              size="sm"
-                              onClick={() => copyToClipboard(bankDetails.purposeCode, 'Namen plačila')}
-                              className="text-teal-600 hover:text-teal-700 hover:bg-teal-50"
-                            >
+                            <Button variant="ghost" size="sm" onClick={() => copyToClipboard(bankDetails.purposeCode, 'Namen plačila')} className="text-teal-600 hover:text-teal-700 hover:bg-teal-50">
                               {bankDetailsCopied === 'Namen plačila' ? <CheckCircle size={18} /> : <Copy size={18} />}
                             </Button>
                           </div>
@@ -187,12 +154,7 @@ const VirtualCorner = () => {
                               <p className="text-sm text-gray-600">Sklic:</p>
                               <p className="font-medium">{bankDetails.reference}</p>
                             </div>
-                            <Button 
-                              variant="ghost" 
-                              size="sm"
-                              onClick={() => copyToClipboard(bankDetails.reference, 'Sklic')}
-                              className="text-teal-600 hover:text-teal-700 hover:bg-teal-50"
-                            >
+                            <Button variant="ghost" size="sm" onClick={() => copyToClipboard(bankDetails.reference, 'Sklic')} className="text-teal-600 hover:text-teal-700 hover:bg-teal-50">
                               {bankDetailsCopied === 'Sklic' ? <CheckCircle size={18} /> : <Copy size={18} />}
                             </Button>
                           </div>
@@ -240,7 +202,7 @@ const VirtualCorner = () => {
                   
                   {/* Placeholder for actual 360° video iframe */}
                   {/* 
-                  <iframe 
+                   <iframe 
                     width="100%" 
                     height="100%" 
                     src="https://www.youtube.com/embed/VIDEO_ID" 
@@ -248,8 +210,8 @@ const VirtualCorner = () => {
                     frameBorder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowFullScreen
-                  ></iframe> 
-                  */}
+                   ></iframe> 
+                   */}
                 </div>
                 
                 <div className="bg-teal-50 p-4 rounded-lg">
@@ -269,8 +231,6 @@ const VirtualCorner = () => {
           </AnimatedWrapper>
         </Section>
       </main>
-    </Layout>
-  );
+    </Layout>;
 };
-
 export default VirtualCorner;
