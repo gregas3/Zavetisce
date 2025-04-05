@@ -1,93 +1,170 @@
 
-import { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import CatImageModal from "./CatImageModal";
+import React from "react";
+import { Play, X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+} from "@/components/ui/carousel";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogTrigger,
+  DialogClose,
+} from "@/components/ui/dialog";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { Badge } from "@/components/ui/badge";
 
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-
-interface CatImageCarouselProps {
-  images: string[];
-  catName?: string;
+interface CatVideo {
+  thumbnail: string;
+  url: string;
+  title: string;
 }
 
-const CatImageCarousel = ({ images, catName = "Cat" }: CatImageCarouselProps) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentImage, setCurrentImage] = useState("");
+interface CatImageCarouselProps {
+  catName: string;
+  images: string[];
+  videos?: CatVideo[];
+  catId?: string | number;
+  isDetailPage?: boolean;
+}
 
-  const handleImageClick = (image: string) => {
-    setCurrentImage(image);
-    setIsModalOpen(true);
+const CatImageCarousel = ({ 
+  catName, 
+  images, 
+  videos, 
+  catId, 
+  isDetailPage = false 
+}: CatImageCarouselProps) => {
+  const navigate = useNavigate();
+
+  // If only one image is provided, convert it to an array
+  const imageArray = Array.isArray(images) ? images : [images];
+
+  const handleImageClick = (e: React.MouseEvent) => {
+    if (!isDetailPage && catId) {
+      e.preventDefault();
+      navigate(`/posvojitev/mačke/${catId}`);
+    }
   };
 
-  if (!images || images.length === 0) {
-    return (
-      <div className="w-full aspect-video bg-muted flex items-center justify-center rounded-lg">
-        <p className="text-muted-foreground">No images available</p>
-      </div>
-    );
-  }
-
   return (
-    <>
-      <div className="relative group">
-        <Swiper
-          modules={[Navigation, Pagination]}
-          spaceBetween={10}
-          slidesPerView={1}
-          navigation={{
-            prevEl: ".swiper-button-prev",
-            nextEl: ".swiper-button-next",
-          }}
-          pagination={{ clickable: true }}
-          loop={images.length > 1}
-          className="rounded-lg overflow-hidden cursor-pointer"
-        >
-          {images.map((image, index) => (
-            <SwiperSlide key={index} onClick={() => handleImageClick(image)}>
-              <div className="relative aspect-[4/3] w-full bg-muted">
+    <Carousel className="mb-8 w-full" opts={{ loop: true }}>
+      <CarouselContent>
+        {imageArray.map((image, index) => (
+          <CarouselItem key={`image-${index}`}>
+            <div className="overflow-hidden rounded-xl">
+              {isDetailPage ? (
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button className="w-full h-full p-0 m-0 bg-transparent border-0 cursor-pointer">
+                      <AspectRatio ratio={16 / 9} className="bg-muted">
+                        <img
+                          src={image}
+                          alt={`${catName} - slika ${index + 1}`}
+                          className="object-contain w-full h-full hover:opacity-95 transition-opacity"
+                        />
+                      </AspectRatio>
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-5xl p-1 bg-transparent border-0">
+                    <div className="relative">
+                      <DialogClose className="absolute top-2 right-2 z-10 rounded-full bg-black/60 p-2 text-white hover:bg-black/80">
+                        <X size={20} />
+                      </DialogClose>
+                      <img 
+                        src={image} 
+                        alt={`${catName} - slika ${index + 1}`} 
+                        className="w-full h-auto max-h-[85vh] object-contain rounded-md" 
+                      />
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              ) : (
+                <button 
+                  className="w-full h-full p-0 m-0 bg-transparent border-0 cursor-pointer"
+                  onClick={handleImageClick}
+                >
+                  <AspectRatio ratio={4 / 3} className="bg-muted">
+                    <img
+                      src={image}
+                      alt={`${catName} - slika ${index + 1}`}
+                      className="object-cover w-full h-full hover:opacity-95 transition-opacity"
+                    />
+                  </AspectRatio>
+                </button>
+              )}
+            </div>
+          </CarouselItem>
+        ))}
+        
+        {videos && videos.map((video, index) => (
+          <CarouselItem key={`video-${index}`}>
+            <div className="overflow-hidden rounded-xl relative group">
+              <AspectRatio ratio={16 / 9} className="bg-muted">
                 <img
-                  src={image}
-                  alt={`${catName} - image ${index + 1}`}
-                  className="w-full h-full object-cover"
+                  src={video.thumbnail}
+                  alt={`${catName} - ${video.title}`}
+                  className="object-contain w-full h-full"
                 />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-
-        {images.length > 1 && (
-          <>
-            <Button
-              variant="outline"
-              size="icon"
-              className="swiper-button-prev absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
-            <Button
-              variant="outline"
-              size="icon"
-              className="swiper-button-next absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-background/80 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </Button>
-          </>
-        )}
-      </div>
-
-      <CatImageModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        imageUrl={currentImage}
-        catName={catName}
-      />
-    </>
+                {isDetailPage ? (
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <button className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition-all">
+                        <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center text-white transform transition-transform group-hover:scale-110">
+                          <Play size={32} fill="white" />
+                        </div>
+                        <span className="absolute bottom-4 left-4 text-white font-medium px-3 py-1 bg-black/50 rounded-lg">
+                          {video.title}
+                        </span>
+                      </button>
+                    </DialogTrigger>
+                    <DialogContent className="sm:max-w-4xl">
+                      <DialogHeader>
+                        <DialogTitle>{catName} - {video.title}</DialogTitle>
+                        <DialogDescription>Video posnetek mačke</DialogDescription>
+                      </DialogHeader>
+                      <div className="aspect-video w-full">
+                        <video 
+                          src={video.url} 
+                          controls
+                          className="w-full h-full rounded-md"
+                          autoPlay
+                        />
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                ) : (
+                  <button 
+                    className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/50 transition-all"
+                    onClick={handleImageClick}
+                  >
+                    <div className="w-16 h-16 rounded-full bg-primary/90 flex items-center justify-center text-white transform transition-transform group-hover:scale-110">
+                      <Play size={32} fill="white" />
+                    </div>
+                    <span className="absolute bottom-4 left-4 text-white font-medium px-3 py-1 bg-black/50 rounded-lg">
+                      {video.title}
+                    </span>
+                  </button>
+                )}
+              </AspectRatio>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      {(imageArray.length > 1 || (videos && videos.length > 0)) && (
+        <>
+          <CarouselPrevious className="left-2" />
+          <CarouselNext className="right-2" />
+        </>
+      )}
+    </Carousel>
   );
 };
 

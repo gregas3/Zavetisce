@@ -146,6 +146,11 @@ interface CatCardProps {
     vaccinated: boolean;
     neutered: boolean;
     goodWith: string[];
+    videos?: {
+      thumbnail: string;
+      url: string;
+      title: string;
+    }[];
   };
 }
 
@@ -156,8 +161,8 @@ const CatCard = ({ cat }: CatCardProps) => {
     navigate(`/posvojitev/mačke/${cat.id}`);
   };
   
-  // Determine if the cat has a video (for demo purposes, we'll show it for some cats)
-  const hasVideo = cat.id % 3 === 0;
+  // Check if the cat has videos
+  const hasVideo = cat.videos && cat.videos.length > 0;
   
   return (
     <Card 

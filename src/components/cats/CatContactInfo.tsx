@@ -23,7 +23,7 @@ const CatContactInfo = ({
   contactInfo
 }: CatContactInfoProps) => {
   return (
-    <Card>
+    <Card className="mx-auto w-full">
       <CardHeader>
         <CardTitle>Kontakt</CardTitle>
         <CardDescription>

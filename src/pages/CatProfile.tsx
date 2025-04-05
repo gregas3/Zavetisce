@@ -95,11 +95,20 @@ const CatProfile = () => {
       case 'facebook':
         window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
         break;
-      case 'twitter':
+      case 'x':
         window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`);
+        break;
+      case 'instagram':
+        toast({
+          title: "Instagram sharing",
+          description: "Za Instagram deljenje uporabite mobilno aplikacijo in kopirajte povezavo."
+        });
         break;
       case 'whatsapp':
         window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + url)}`);
+        break;
+      case 'viber':
+        window.open(`viber://forward?text=${encodeURIComponent(text + ' ' + url)}`);
         break;
       case 'copy':
         navigator.clipboard.writeText(url).then(() => {
@@ -116,6 +125,9 @@ const CatProfile = () => {
 
   if (loading) return <CatProfileSkeleton />;
   if (error || !cat) return <CatProfileError />;
+
+  // Use images array if available, otherwise fallback to single image in an array
+  const catImages = cat.images || [cat.image];
 
   return (
     <Layout>
@@ -144,11 +156,17 @@ const CatProfile = () => {
                       <ContextMenuItem onClick={() => handleShare('facebook')}>
                         Deli na Facebook
                       </ContextMenuItem>
-                      <ContextMenuItem onClick={() => handleShare('twitter')}>
-                        Deli na Twitter
+                      <ContextMenuItem onClick={() => handleShare('instagram')}>
+                        Deli na Instagram
+                      </ContextMenuItem>
+                      <ContextMenuItem onClick={() => handleShare('x')}>
+                        Deli na X
                       </ContextMenuItem>
                       <ContextMenuItem onClick={() => handleShare('whatsapp')}>
                         Pošlji preko WhatsApp
+                      </ContextMenuItem>
+                      <ContextMenuItem onClick={() => handleShare('viber')}>
+                        Pošlji preko Viber
                       </ContextMenuItem>
                       <ContextMenuItem onClick={() => handleShare('copy')}>
                         Kopiraj povezavo
@@ -157,7 +175,12 @@ const CatProfile = () => {
                   </ContextMenu>
                 </div>
                 
-                <CatImageCarousel images={[cat.image]} catName={cat.name} />
+                <CatImageCarousel 
+                  images={catImages} 
+                  videos={cat.videos} 
+                  catName={cat.name}
+                  isDetailPage={true}
+                />
 
                 <Tabs defaultValue="about" className="mt-6">
                   <TabsList className="grid w-full grid-cols-2">
