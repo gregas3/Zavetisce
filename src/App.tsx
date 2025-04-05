@@ -24,7 +24,6 @@ import LostAndFound from "./pages/LostAndFound";
 import StrayCats from "./pages/StrayCats";
 import VeterinaryCorner from "./pages/about/VeterinaryCorner";
 import AnimalCare from "./pages/about/AnimalCare";
-import SearchResults from "./pages/SearchResults";
 
 const queryClient = new QueryClient();
 
@@ -46,9 +45,6 @@ const App = () => {
           <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
-            
-            {/* Search results route */}
-            <Route path="/iskanje" element={<SearchResults />} />
             
             {/* Adoption routes */}
             <Route path="/posvojitev/psi" element={<DogsAdoption />} />

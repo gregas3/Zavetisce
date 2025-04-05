@@ -82,18 +82,11 @@ export default function Navbar() {
     };
   }, [lastScrollY, isOpen]);
 
-  useEffect(() => {
-    // Close search bar when route changes
-    setSearchActive(false);
-  }, [location.pathname]);
-
   const toggleMenu = () => {
     setIsOpen(!isOpen);
     // Always show navbar when menu is open
     if (!isOpen) {
       setShowNavbar(true);
-      // Close search when opening menu
-      setSearchActive(false);
     }
   };
 
@@ -103,14 +96,6 @@ export default function Navbar() {
 
   const toggleSearch = () => {
     setSearchActive(!searchActive);
-    // Close menu when opening search
-    if (!searchActive) {
-      setIsOpen(false);
-    }
-  };
-  
-  const handleCloseSearch = () => {
-    setSearchActive(false);
   };
   
   const handleHomeClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -120,17 +105,14 @@ export default function Navbar() {
     } else {
       navigate('/');
     }
-    // Close search and menu when going home
-    setSearchActive(false);
-    setIsOpen(false);
   };
 
-  // Force navbar to be visible when mobile menu is open or search is active
+  // Force navbar to be visible when mobile menu is open
   useEffect(() => {
-    if (isOpen || searchActive) {
+    if (isOpen) {
       setShowNavbar(true);
       // Prevent body scrolling when mobile menu is open
-      document.body.style.overflow = isOpen ? 'hidden' : '';
+      document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = '';
     }
@@ -153,14 +135,14 @@ export default function Navbar() {
       document.body.style.overflow = '';
       document.removeEventListener('click', handleClickOutside);
     };
-  }, [isOpen, searchActive]);
+  }, [isOpen]);
 
   return (
     <AnimatedWrapper 
       animation="none" 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isOpen || searchActive
-          ? "py-2 bg-gradient-to-b from-teal-700/95 to-teal-800/85 backdrop-blur-md shadow-md" // Fully visible when menu or search is open
+        isOpen 
+          ? "py-2 bg-gradient-to-b from-teal-700/95 to-teal-800/85 backdrop-blur-md shadow-md" // Fully visible when menu is open
           : scrolled 
             ? isScrolling && !scrollingUp && !atBottom && !showNavbar
               ? "py-0 -translate-y-full opacity-0" // Hide when scrolling down
@@ -189,7 +171,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      <SearchBar searchActive={searchActive} onClose={handleCloseSearch} />
+      <SearchBar searchActive={searchActive} />
     </AnimatedWrapper>
   );
 }
