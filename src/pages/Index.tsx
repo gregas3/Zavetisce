@@ -22,6 +22,7 @@ const Index = () => {
         <div className="pt-0">
           <FeaturedAnimals />
         </div>
+        {/* Removed background styling from QuickLinks wrapper */}
         <QuickLinks />
         <StatsSection />
         <HomeStoriesSection />
