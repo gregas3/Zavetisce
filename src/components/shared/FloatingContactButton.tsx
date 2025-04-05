@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Phone, MapPin, Mail, Facebook, Instagram, Navigation } from 'lucide-react';
+import { Phone, MapPin, Mail, Facebook, Instagram, Navigation, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
@@ -18,6 +18,10 @@ const FloatingContactButton = () => {
       // For desktop, just open Google Maps with the location
       window.open('https://www.google.com/maps/place/Avtomobilska+ulica+25,+2000+Maribor,+Slovenia', '_blank');
     }
+  };
+
+  const handleClosePopover = () => {
+    setOpen(false);
   };
 
   return (
@@ -42,12 +46,25 @@ const FloatingContactButton = () => {
         </Tooltip>
         
         <PopoverContent 
-          side="left"
-          align="start"
-          alignOffset={-20}
-          sideOffset={20}
-          className="w-80 p-0 bg-white border-2 border-teal-200 shadow-lg rounded-xl z-[100]"
+          side="top"
+          align="end"
+          alignOffset={20}
+          sideOffset={16}
+          className="w-80 p-0 bg-white border-2 border-teal-200 shadow-lg rounded-xl z-[100] relative"
+          onInteractOutside={handleClosePopover}
+          onEscapeKeyDown={handleClosePopover}
         >
+          <div className="absolute right-2 top-2">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="h-7 w-7 rounded-full hover:bg-teal-100" 
+              onClick={handleClosePopover}
+            >
+              <X className="h-4 w-4 text-teal-700" />
+            </Button>
+          </div>
+          
           <div className="p-4 bg-white rounded-t-xl border-b border-teal-100">
             <h3 className="font-semibold text-lg text-teal-800 mb-3">
               Kontaktne informacije
@@ -107,6 +124,9 @@ const FloatingContactButton = () => {
               </div>
             </div>
           </div>
+
+          {/* Adding a visual arrow pointer that connects to the button */}
+          <div className="absolute bottom-[-8px] right-[56px] w-4 h-4 bg-white border-r-2 border-b-2 border-teal-200 transform rotate-45"></div>
         </PopoverContent>
       </Popover>
     </TooltipProvider>
