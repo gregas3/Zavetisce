@@ -1,14 +1,17 @@
+
 import { Link } from "react-router-dom";
 import { Dog, Cat, Heart, Calendar, Users, Phone, HelpCircle, AlertCircle, FileQuestion, Stethoscope, BookOpen } from "lucide-react";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { NavbarActions } from "./NavbarActions";
 import { NavbarBranding } from "./NavbarBranding";
+
 type DesktopNavigationProps = {
   closeMenu: () => void;
   toggleSearch: () => void;
   handleHomeClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
+
 export const DesktopNavigation = ({
   closeMenu,
   toggleSearch,
@@ -121,8 +124,33 @@ export const DesktopNavigation = ({
                 O nas
               </span>
             </NavigationMenuTrigger>
-            <NavigationMenuContent className="absolute">
-              
+            <NavigationMenuContent className="absolute z-50">
+              <ul className="grid gap-3 p-4 md:w-[240px] bg-white border border-teal-100 shadow-lg rounded-lg">
+                <li>
+                  <NavigationMenuLink asChild>
+                    <Link to="/o-nas" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
+                      <HelpCircle size={16} className="text-teal-500" />
+                      <span>O zavetišču</span>
+                    </Link>
+                  </NavigationMenuLink>
+                </li>
+                <li>
+                  <NavigationMenuLink asChild>
+                    <Link to="/about/veterinarski-koticek" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
+                      <Stethoscope size={16} className="text-teal-500" />
+                      <span>Veterinarski kotiček</span>
+                    </Link>
+                  </NavigationMenuLink>
+                </li>
+                <li>
+                  <NavigationMenuLink asChild>
+                    <Link to="/about/oskrba-zivali" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
+                      <BookOpen size={16} className="text-teal-500" />
+                      <span>Oskrba živali po sprejemu</span>
+                    </Link>
+                  </NavigationMenuLink>
+                </li>
+              </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
         </NavigationMenuList>
