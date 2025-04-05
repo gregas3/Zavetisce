@@ -47,7 +47,7 @@ const VirtualCorner = () => {
     });
     setTimeout(() => setBankDetailsCopied(null), 3000);
   };
-  return <Layout>
+  return <Layout className="py-0 my-0">
       <Helmet>
         <title>Virtualen kotiček | Zavetišče za živali Maribor</title>
         <meta name="description" content="Postanite član Zavetišča za živali Maribor in podprite naše živali. Doživite zavetišče skozi oči psa s 360° izkušnjo." />
