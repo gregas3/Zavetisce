@@ -117,14 +117,14 @@ export const DesktopNavigation = ({
             </NavigationMenuLink>
           </NavigationMenuItem>
           
-          <NavigationMenuItem className="relative">
+          <NavigationMenuItem>
             <NavigationMenuTrigger className="bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white data-[state=open]:bg-teal-600/50">
               <span className="flex items-center gap-1">
                 <HelpCircle size={16} />
                 O nas
               </span>
             </NavigationMenuTrigger>
-            <NavigationMenuContent className="absolute">
+            <NavigationMenuContent>
               <ul className="grid gap-3 p-4 md:w-[230px] bg-white border border-teal-100 shadow-lg rounded-lg">
                 <li>
                   <NavigationMenuLink asChild>
