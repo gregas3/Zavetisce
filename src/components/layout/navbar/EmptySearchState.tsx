@@ -9,8 +9,8 @@ type EmptySearchStateProps = {
 
 export const EmptySearchState = ({ query, onClearSearch }: EmptySearchStateProps) => {
   return (
-    <div className="flex flex-col items-center justify-center py-8 px-4">
-      <div className="w-full flex justify-between items-center mb-6">
+    <div className="flex flex-col items-center justify-center py-6 px-4">
+      <div className="w-full flex justify-between items-center mb-4">
         <h3 className="text-lg font-medium text-teal-800">
           Ni zadetkov za iskano besedo "{query}"
         </h3>
@@ -20,11 +20,11 @@ export const EmptySearchState = ({ query, onClearSearch }: EmptySearchStateProps
       </div>
       
       <div className="text-center">
-        <p className="text-gray-600 mb-4">
+        <p className="text-gray-600 mb-3">
           Poskusite spremeniti iskalni niz ali preverite spodnje predloge
         </p>
         
-        <ul className="text-sm text-gray-500 list-disc text-left inline-block mb-6">
+        <ul className="text-sm text-gray-500 list-disc text-left inline-block mb-4">
           <li>Preverite, če je besedilo pravilno zapisano</li>
           <li>Uporabite bolj splošne besede</li>
           <li>Poskusite z manj besedami</li>

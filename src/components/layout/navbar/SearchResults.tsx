@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Cat, Dog, File, X } from "lucide-react";
 import { SearchResult, highlightMatch } from "@/services/searchService";
 import { Button } from "@/components/ui/button";
+import { EmptySearchState } from "./EmptySearchState";
 
 type SearchResultsProps = {
   results: SearchResult[];
@@ -24,7 +25,7 @@ export const SearchResults = ({
   const navigate = useNavigate();
   
   // Get unique categories
-  const categories = groupByCategory
+  const categories = groupByCategory && results.length > 0
     ? Array.from(new Set(results.map(result => result.category || "Ostalo")))
     : [];
   
@@ -59,19 +60,8 @@ export const SearchResults = ({
   
   if (results.length === 0 && query.trim()) {
     return (
-      <div className="bg-white rounded-lg shadow-lg p-4 max-h-[70vh] overflow-y-auto">
-        <div className="flex justify-between items-center mb-4">
-          <p className="text-teal-800 font-medium">Ni zadetkov za iskano besedo "{query}"</p>
-          <Button variant="ghost" size="sm" onClick={onClearSearch} className="text-teal-600 hover:text-teal-700">
-            <X className="w-4 h-4" />
-          </Button>
-        </div>
-        <p className="text-sm text-gray-500 mb-2">Poskusite z:</p>
-        <ul className="list-disc pl-5 text-sm text-gray-500">
-          <li>Drugačnim zapisom</li>
-          <li>Manj besedami</li>
-          <li>Bolj splošnim izrazom</li>
-        </ul>
+      <div className="bg-white rounded-lg shadow-lg max-h-[70vh] overflow-y-auto">
+        <EmptySearchState query={query} onClearSearch={onClearSearch} />
       </div>
     );
   }

@@ -57,6 +57,7 @@ export const SearchBar = ({ searchActive, onClose }: SearchBarProps) => {
     // Debounce search for better performance
     searchTimeout.current = setTimeout(() => {
       const searchResults = searchContent(value);
+      console.log("Search results for:", value, searchResults.length, searchResults);
       setResults(searchResults);
       setIsLoading(false);
     }, 300);
@@ -82,7 +83,7 @@ export const SearchBar = ({ searchActive, onClose }: SearchBarProps) => {
   return (
     <div 
       className={`container mx-auto px-4 overflow-hidden transition-all duration-300 ${
-        searchActive ? "max-h-16 opacity-100 py-4" : "max-h-0 opacity-0"
+        searchActive ? "max-h-screen opacity-100 py-4" : "max-h-0 opacity-0"
       }`}
       ref={searchRef}
     >
