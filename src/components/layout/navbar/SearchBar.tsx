@@ -16,7 +16,7 @@ export const SearchBar = ({ searchActive }: SearchBarProps) => {
   return (
     <div className={`container mx-auto px-4 overflow-hidden transition-all duration-300 ${
       searchActive ? "max-h-16 opacity-100 py-4" : "max-h-0 opacity-0"
-    }`}>
+    }`} style={{ zIndex: 40 }}>
       <div className="relative">
         <input 
           type="text" 
