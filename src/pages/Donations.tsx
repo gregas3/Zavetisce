@@ -10,7 +10,6 @@ import Section from "@/components/shared/Section";
 import { toast } from "@/components/ui/use-toast";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import CardDonationForm from "@/components/donations/CardDonationForm";
-import { Separator } from "@/components/ui/separator";
 
 const DonationNeeds = [
   {
@@ -81,10 +80,6 @@ const Donations = () => {
     setTimeout(() => {
       setCopied(null);
     }, 2000);
-  };
-
-  const getQRCodeUrl = (address: string) => {
-    return `https://chart.googleapis.com/chart?cht=qr&chl=${encodeURIComponent(address)}&chs=200x200&choe=UTF-8&chld=L|2`;
   };
 
   return (
@@ -315,49 +310,15 @@ const Donations = () => {
                             <div className="flex justify-center mt-4">
                               <div className="bg-white p-4 rounded-lg border">
                                 <img 
-                                  src={getQRCodeUrl(crypto.address)}
+                                  src={`https://chart.googleapis.com/chart?cht=qr&chl=${crypto.address}&chs=200x200&choe=UTF-8&chld=L|2`} 
                                   alt={`QR koda za ${crypto.currency}`}
                                   className="w-32 h-32"
-                                  title={`QR koda za ${crypto.currency}`}
                                 />
                               </div>
                             </div>
                           </div>
                         </div>
                       ))}
-                    </div>
-                    
-                    <Separator className="my-6" />
-                    
-                    <div className="bg-blue-50 p-6 rounded-lg border border-blue-100">
-                      <h3 className="text-lg font-semibold mb-3 text-blue-800">Testni QR kodi</h3>
-                      <p className="text-sm text-blue-700 mb-4">
-                        Spodaj sta testni QR kodi za donacije v kriptovalutah. Za testiranje preprosto skenirajte QR kodo.
-                      </p>
-                      
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div className="bg-white p-4 rounded-lg border text-center">
-                          <h4 className="font-medium mb-3">QR koda za Bitcoin (BTC)</h4>
-                          <div className="flex justify-center">
-                            <img 
-                              src={getQRCodeUrl("bitcoin:bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh?amount=0.001")}
-                              alt="QR koda za Bitcoin (BTC)" 
-                              className="w-44 h-44"
-                            />
-                          </div>
-                        </div>
-                        
-                        <div className="bg-white p-4 rounded-lg border text-center">
-                          <h4 className="font-medium mb-3">QR koda za Ethereum (ETH)</h4>
-                          <div className="flex justify-center">
-                            <img 
-                              src={getQRCodeUrl("ethereum:0x71C7656EC7ab88b098defB751B7401B5f6d8976F")}
-                              alt="QR koda za Ethereum (ETH)" 
-                              className="w-44 h-44"
-                            />
-                          </div>
-                        </div>
-                      </div>
                     </div>
                     
                     <div className="rounded-lg border p-4 bg-amber-50 border-amber-100 mt-6">
