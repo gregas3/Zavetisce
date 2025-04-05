@@ -4,11 +4,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Heart, SmartphoneNfc, ShoppingBag, AlertCircle, Copy, Check, Bitcoin, Wallet } from "lucide-react";
+import { Heart, SmartphoneNfc, ShoppingBag, AlertCircle, Copy, Check, Bitcoin, Wallet, CreditCard } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import Section from "@/components/shared/Section";
 import { toast } from "@/components/ui/use-toast";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
+import CardDonationForm from "@/components/donations/CardDonationForm";
 
 const DonationNeeds = [
   {
@@ -67,6 +68,7 @@ const CryptoAddresses = [
 
 const Donations = () => {
   const [copied, setCopied] = useState<string | null>(null);
+  const [showCardForm, setShowCardForm] = useState(false);
   
   const handleCopy = (text: string, type: string) => {
     navigator.clipboard.writeText(text);
@@ -116,7 +118,7 @@ const Donations = () => {
             </TabsList>
             
             <AnimatedWrapper animation="fade-in">
-              <TabsContent value="material" className="mt-0">
+              <TabsContent value="material">
                 <Card>
                   <CardHeader>
                     <CardTitle>Materialne donacije</CardTitle>
@@ -206,6 +208,26 @@ const Donations = () => {
                           <p className="font-medium">Donacija zavetišču</p>
                         </div>
                       </div>
+                    </div>
+                    
+                    <div className="bg-[#f0f9f7] p-6 rounded-lg border border-[#dff0ed]">
+                      <h3 className="text-lg font-semibold mb-2">Doniraj s kartico</h3>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        Donirajte enostavno s svojo kartico – hitro, varno in neposredno preko spleta.
+                      </p>
+                      
+                      {showCardForm ? (
+                        <CardDonationForm />
+                      ) : (
+                        <Button 
+                          onClick={() => setShowCardForm(true)}
+                          variant="primary"
+                          className="w-full sm:w-auto"
+                        >
+                          <CreditCard className="mr-2 h-4 w-4" />
+                          Doniraj s kartico
+                        </Button>
+                      )}
                     </div>
                     
                     <div className="rounded-lg border p-4 bg-amber-50 border-amber-100">
