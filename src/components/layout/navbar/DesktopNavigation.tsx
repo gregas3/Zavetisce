@@ -124,8 +124,8 @@ export const DesktopNavigation = ({
                 O nas
               </span>
             </NavigationMenuTrigger>
-            <NavigationMenuContent className="absolute z-50">
-              <ul className="grid gap-3 p-4 md:w-[240px] bg-white border border-teal-100 shadow-lg rounded-lg">
+            <NavigationMenuContent className="absolute">
+              <ul className="grid gap-3 p-4 md:w-[230px] bg-white border border-teal-100 shadow-lg rounded-lg">
                 <li>
                   <NavigationMenuLink asChild>
                     <Link to="/o-nas" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>

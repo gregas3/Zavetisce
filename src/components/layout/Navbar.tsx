@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -106,7 +107,7 @@ export default function Navbar() {
     }
   };
 
-  // Fix dropdown positioning when using Radix Navigation Menu
+  // Force navbar to be visible when mobile menu is open
   useEffect(() => {
     if (isOpen) {
       setShowNavbar(true);
@@ -116,20 +117,7 @@ export default function Navbar() {
       document.body.style.overflow = '';
     }
     
-    // Make sure navigation menu items position their content correctly
-    const style = document.createElement('style');
-    style.innerHTML = `
-      [data-radix-popper-content-wrapper] {
-        position: absolute !important;
-        top: 100% !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        z-index: 100 !important;
-      }
-    `;
-    document.head.appendChild(style);
-    
-    // Fix dropdown positioning
+    // Fix dropdown positioning when using Radix Navigation Menu
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
       if (!target.closest('[data-radix-navigation-menu-root]') && 
@@ -146,7 +134,6 @@ export default function Navbar() {
     return () => {
       document.body.style.overflow = '';
       document.removeEventListener('click', handleClickOutside);
-      document.head.removeChild(style);
     };
   }, [isOpen]);
 
