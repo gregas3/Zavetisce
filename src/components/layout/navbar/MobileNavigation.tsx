@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Menu, X, ChevronDown, Dog, Cat, Heart, Calendar, Users, Phone, HelpCircle, FileQuestion, PawPrint, AlertCircle, Stethoscope, Scissors, Sparkles } from "lucide-react";
+import { Menu, X, ChevronDown, Dog, Cat, Heart, Calendar, Users, Phone, HelpCircle, FileQuestion, PawPrint, AlertCircle, Stethoscope, Scissors, Sparkles, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { NavbarActions } from "./NavbarActions";
 import { NavbarBranding } from "./NavbarBranding";
@@ -89,7 +89,6 @@ export const MobileNavigation = ({
                 </Link>
               </AnimatedWrapper>
               
-              {/* Swapped positions - "O nas" now comes before "Kontakt" */}
               <AnimatedWrapper animation="fade-in" delay={250}>
                 <MobileNavItem title="O nas" hasSubmenu icon={<HelpCircle size={16} className="text-teal-500" />}>
                   <Link to="/about/virtualni-koticek" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
@@ -104,6 +103,10 @@ export const MobileNavigation = ({
                     <Scissors size={15} className="text-teal-500" />
                     <span className="font-medium text-sm">Oskrba živali</span>
                   </Link>
+                  <Link to="/about/zgodbe-ljudi" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
+                    <Quote size={15} className="text-teal-500" />
+                    <span className="font-medium text-sm">Zgodbe ljudi</span>
+                  </Link>
                   <Link to="/o-nas" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
                     <HelpCircle size={15} className="text-teal-500" />
                     <span className="font-medium text-sm">O nas</span>
@@ -111,7 +114,6 @@ export const MobileNavigation = ({
                 </MobileNavItem>
               </AnimatedWrapper>
               
-              {/* Moved Kontakt to the end */}
               <AnimatedWrapper animation="fade-in" delay={300}>
                 <Link to="/kontakt" className="flex items-center gap-2 text-sm py-2.5 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" onClick={closeMenu}>
                   <Phone size={16} className="text-teal-500" />

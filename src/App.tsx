@@ -25,6 +25,7 @@ import StrayCats from "./pages/StrayCats";
 import VeterinaryCorner from "./pages/VeterinaryCorner";
 import AnimalCare from "./pages/AnimalCare";
 import VirtualCorner from "./pages/VirtualCorner";
+import ZgodbeLjudi from "./pages/ZgodbeLjudi";
 
 const queryClient = new QueryClient();
 
@@ -78,6 +79,7 @@ const App = () => {
             <Route path="/about/veterinarski-koticek" element={<VeterinaryCorner />} />
             <Route path="/about/oskrba-zivali" element={<AnimalCare />} />
             <Route path="/about/virtualni-koticek" element={<VirtualCorner />} />
+            <Route path="/about/zgodbe-ljudi" element={<ZgodbeLjudi />} />
             
             {/* Lost and Found route */}
             <Route path="/izgubljeni-najdeni" element={<LostAndFound />} />

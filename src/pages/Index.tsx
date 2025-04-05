@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import HeroSection from "@/components/home/HeroSection";
 import QuickLinks from "@/components/home/QuickLinks";
 import FeaturedAnimals from "@/components/home/FeaturedAnimals";
-import TestimonialsSection from "@/components/home/TestimonialsSection";
+import HomeStoriesSection from "@/components/home/HomeStoriesSection";
 import StatsSection from "@/components/home/StatsSection";
 import CtaSection from "@/components/home/CtaSection";
 import Layout from "@/components/layout/Layout";
@@ -24,8 +24,8 @@ const Index = () => {
         </div>
         <QuickLinks />
         <StatsSection />
+        <HomeStoriesSection />
         <CtaSection />
-        <TestimonialsSection />
       </div>
       
       <FloatingContactButton />
