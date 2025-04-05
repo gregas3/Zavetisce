@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { Dog, Cat, Heart, Calendar, Users, Phone, HelpCircle, FileQuestion, Stethoscope, Scissors } from "lucide-react";
+import { Dog, Cat, Heart, Calendar, Users, Phone, HelpCircle, FileQuestion, Stethoscope, Scissors, Sparkles } from "lucide-react";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { NavbarActions } from "./NavbarActions";
@@ -172,6 +172,14 @@ export const DesktopNavigation = ({
                       <Link to="/about/oskrba-zivali" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
                         <Scissors size={16} className="text-teal-500" />
                         <span>Oskrba živali po sprejemu</span>
+                      </Link>
+                    </NavigationMenuLink>
+                  </li>
+                  <li>
+                    <NavigationMenuLink asChild>
+                      <Link to="/about/virtualni-koticek" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
+                        <Sparkles size={16} className="text-teal-500" />
+                        <span>Virtualen kotiček</span>
                       </Link>
                     </NavigationMenuLink>
                   </li>
