@@ -153,9 +153,9 @@ export const DesktopNavigation = ({
                 <ul className="grid gap-3 p-4 md:w-[230px] bg-white border border-teal-100 shadow-lg rounded-lg">
                   <li>
                     <NavigationMenuLink asChild>
-                      <Link to="/o-nas" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
-                        <HelpCircle size={16} className="text-teal-500" />
-                        <span>O nas</span>
+                      <Link to="/about/virtualni-koticek" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
+                        <Sparkles size={16} className="text-teal-500" />
+                        <span>Virtualen kotiček</span>
                       </Link>
                     </NavigationMenuLink>
                   </li>
@@ -177,9 +177,9 @@ export const DesktopNavigation = ({
                   </li>
                   <li>
                     <NavigationMenuLink asChild>
-                      <Link to="/about/virtualni-koticek" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
-                        <Sparkles size={16} className="text-teal-500" />
-                        <span>Virtualen kotiček</span>
+                      <Link to="/o-nas" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
+                        <HelpCircle size={16} className="text-teal-500" />
+                        <span>O nas</span>
                       </Link>
                     </NavigationMenuLink>
                   </li>
