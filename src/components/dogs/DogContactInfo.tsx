@@ -23,7 +23,7 @@ const DogContactInfo = ({
   contactInfo
 }: DogContactInfoProps) => {
   return (
-    <Card>
+    <Card className="mx-auto">
       <CardHeader>
         <CardTitle>Kontakt</CardTitle>
         <CardDescription>

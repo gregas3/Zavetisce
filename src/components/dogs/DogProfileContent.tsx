@@ -46,7 +46,7 @@ const DogProfileContent = ({ dog }: DogProfileContentProps) => {
   };
 
   return (
-    <div className="container">
+    <div className="container mx-auto">
       <DogProfileBreadcrumb dogName={dog.name} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
