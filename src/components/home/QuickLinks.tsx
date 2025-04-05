@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import { Dog, Search, Heart, Calendar, Euro, Mail, Users, Video } from "lucide-react";
 import AnimatedWrapper from "../shared/AnimatedWrapper";
+import Section from "../shared/Section";
 
 const links = [
   {
@@ -88,7 +89,12 @@ const links = [
 
 export default function QuickLinks() {
   return (
-    <div className="py-12 bg-gradient-to-b from-[#dfecea]/80 to-[#dcebe9]/80 backdrop-blur-sm">
+    <Section 
+      className="py-12"
+      backgroundImage="/lovable-uploads/5e4c93ee-a934-45dc-9066-ff0333cdfcf5.png"
+      backgroundOverlay="rgba(222, 235, 233, 0.88)"
+      backgroundFilter="blur(4px) brightness(0.8)"
+    >
       <div className="container mx-auto px-4">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-teal-800">Naše storitve</h2>
         
@@ -123,6 +129,6 @@ export default function QuickLinks() {
           ))}
         </div>
       </div>
-    </div>
+    </Section>
   );
 }

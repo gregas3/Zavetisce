@@ -22,7 +22,10 @@ const Index = () => {
         <div className="pt-0">
           <FeaturedAnimals />
         </div>
+        
+        {/* QuickLinks now has its own background */}
         <QuickLinks />
+        
         <StatsSection />
         <HomeStoriesSection />
         <CtaSection />
