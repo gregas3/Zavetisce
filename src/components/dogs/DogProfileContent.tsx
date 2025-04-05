@@ -2,10 +2,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { FileText, Share, Dog } from "lucide-react";
+import { FileText, Dog } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { toast } from "@/components/ui/use-toast";
 import { type DogData } from "@/services/dogService";
 import DogProfileHeader from "./DogProfileHeader";
 import DogImageCarousel from "./DogImageCarousel";
@@ -16,12 +15,7 @@ import DogHealthTab from "./DogHealthTab";
 import DogContactInfo from "./DogContactInfo";
 import DogProfileBreadcrumb from "./DogProfileBreadcrumb";
 import { useToast } from "@/components/ui/use-toast";
-import {
-  ContextMenu,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuTrigger,
-} from "@/components/ui/context-menu";
+import ShareModal from "@/components/shared/ShareModal";
 
 interface DogProfileContentProps {
   dog: DogData;
@@ -51,33 +45,6 @@ const DogProfileContent = ({ dog }: DogProfileContentProps) => {
     navigate('/prostovoljstvo');
   };
 
-  const handleShare = (platform: string) => {
-    const url = window.location.href;
-    const text = `Spoznajte ${dog.name}, psa, ki išče nov dom v Zavetišču za živali Maribor.`;
-    
-    switch (platform) {
-      case 'facebook':
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
-        break;
-      case 'twitter':
-        window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`);
-        break;
-      case 'whatsapp':
-        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + url)}`);
-        break;
-      case 'copy':
-        navigator.clipboard.writeText(url).then(() => {
-          toast({
-            title: "Povezava kopirana",
-            description: "Povezava do profila psa je bila kopirana v odložišče."
-          });
-        });
-        break;
-      default:
-        break;
-    }
-  };
-
   return (
     <div className="container">
       <DogProfileBreadcrumb dogName={dog.name} />
@@ -87,27 +54,16 @@ const DogProfileContent = ({ dog }: DogProfileContentProps) => {
           <div className="flex justify-between items-center mb-4">
             <DogProfileHeader name={dog.name} status={dog.status} />
             
-            <ContextMenu>
-              <ContextMenuTrigger asChild>
+            <ShareModal 
+              animalName={dog.name} 
+              animalType="pes" 
+              animalId={dog.id}
+              trigger={
                 <Button variant="outline" size="icon" className="rounded-full">
-                  <Share className="h-4 w-4" />
+                  <span className="sr-only">Deli žival</span>
                 </Button>
-              </ContextMenuTrigger>
-              <ContextMenuContent className="w-48">
-                <ContextMenuItem onClick={() => handleShare('facebook')}>
-                  Deli na Facebook
-                </ContextMenuItem>
-                <ContextMenuItem onClick={() => handleShare('twitter')}>
-                  Deli na Twitter
-                </ContextMenuItem>
-                <ContextMenuItem onClick={() => handleShare('whatsapp')}>
-                  Pošlji preko WhatsApp
-                </ContextMenuItem>
-                <ContextMenuItem onClick={() => handleShare('copy')}>
-                  Kopiraj povezavo
-                </ContextMenuItem>
-              </ContextMenuContent>
-            </ContextMenu>
+              }
+            />
           </div>
           
           <DogImageCarousel 

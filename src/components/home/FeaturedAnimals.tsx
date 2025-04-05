@@ -14,6 +14,7 @@ import {
   CarouselPrevious, 
   CarouselNext 
 } from "@/components/ui/carousel";
+import ShareModal from "@/components/shared/ShareModal";
 
 export default function FeaturedAnimals() {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -64,6 +65,14 @@ export default function FeaturedAnimals() {
                         {animal.type === 'pes' ? <Dog size={14} /> : <Cat size={14} />}
                         {animal.type === 'pes' ? 'Pes' : 'Mačka'}
                       </Badge>
+                      
+                      <div className="absolute top-3 right-3" onClick={(e) => e.preventDefault()}>
+                        <ShareModal 
+                          animalName={animal.name} 
+                          animalType={animal.type} 
+                          animalId={animal.id} 
+                        />
+                      </div>
                       
                       {/* Video badge only shown as an example, would need real video data */}
                       {index % 3 === 0 && (
