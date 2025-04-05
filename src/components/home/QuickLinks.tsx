@@ -88,22 +88,8 @@ const links = [
 
 export default function QuickLinks() {
   return (
-    <div className="relative py-12 overflow-hidden">
-      {/* Background image with overlay */}
-      <div 
-        className="absolute inset-0 z-[-1]"
-        style={{
-          backgroundImage: "url('/lovable-uploads/36933f88-7c65-47ab-9c6c-dc1e12a4a25b.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        {/* Semi-transparent overlay */}
-        <div className="absolute inset-0 bg-[#f0f9f7]/85 backdrop-blur-[4px]"></div>
-      </div>
-      
-      <div className="container mx-auto px-4 relative z-10">
+    <div className="py-12 bg-gradient-to-b from-[#dfecea]/80 to-[#dcebe9]/80 backdrop-blur-sm">
+      <div className="container mx-auto px-4">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-teal-800">Naše storitve</h2>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
