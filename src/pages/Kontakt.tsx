@@ -1,3 +1,4 @@
+
 import { Mail, Phone, Clock, MapPin, AlertTriangle, Navigation } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -38,9 +39,9 @@ export default function Kontakt() {
   return <Layout>
       <Section id="kontakt-hero" title="Kontakt" description="Stopite v stik z nami za vse informacije o posvojitvah, prostovoljstvu ali drugih vprašanjih." centered className="pt-24 md:pt-32" animation="fade-in-up">
         <div className="flex flex-col items-center w-full mt-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl">
-            <AnimatedWrapper animation="slide-in-right" delay={300}>
-              <Card className="glass-card p-6 overflow-hidden relative h-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-5xl mx-auto">
+            <AnimatedWrapper animation="slide-in-right" delay={300} className="w-full flex justify-center">
+              <Card className="glass-card p-6 overflow-hidden relative h-full w-full max-w-full">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-300 to-teal-500"></div>
                 <h3 className="text-2xl font-bold mb-6 text-teal-800">Zavetišče za živali Maribor</h3>
                 
@@ -129,7 +130,7 @@ export default function Kontakt() {
               </Card>
             </AnimatedWrapper>
             
-            <AnimatedWrapper animation="fade-in" delay={600}>
+            <AnimatedWrapper animation="fade-in" delay={600} className="w-full">
               <Card className="glass-card p-6 overflow-hidden relative h-full">
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-300 to-teal-500"></div>
                 <h3 className="text-2xl font-bold mb-6 text-teal-800">Pišite nam</h3>
