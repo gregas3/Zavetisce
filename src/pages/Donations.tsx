@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { Helmet } from 'react-helmet';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Heart, SmartphoneNfc, ShoppingBag, AlertCircle, Copy, Check, Bitcoin, Wallet, CreditCard } from "lucide-react";
+import { Heart, SmartphoneNfc, ShoppingBag, AlertCircle, Copy, Check, Bitcoin, Wallet, CreditCard, Users, Gift } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import Section from "@/components/shared/Section";
 import { toast } from "@/components/ui/use-toast";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import CardDonationForm from "@/components/donations/CardDonationForm";
+import { Separator } from "@/components/ui/separator";
 
 const DonationNeeds = [
   {
@@ -69,7 +70,17 @@ const CryptoAddresses = [
 const Donations = () => {
   const [copied, setCopied] = useState<string | null>(null);
   const [showCardForm, setShowCardForm] = useState(false);
+  const [activePaymentMethod, setActivePaymentMethod] = useState<'card' | 'bank'>('card');
+  const [paymentInProgress, setPaymentInProgress] = useState(false);
+  const [bankDetailsCopied, setBankDetailsCopied] = useState<string | null>(null);
   
+  const bankDetails = {
+    recipient: 'Javno podjetje Snaga d.o.o.',
+    iban: 'SI56 0451 5000 0175 787',
+    purposeCode: 'CHAR',
+    reference: 'Donacija zavetišču'
+  };
+
   const handleCopy = (text: string, type: string) => {
     navigator.clipboard.writeText(text);
     setCopied(type);
@@ -81,6 +92,30 @@ const Donations = () => {
     setTimeout(() => {
       setCopied(null);
     }, 2000);
+  };
+
+  const copyToClipboard = (text: string, field: string) => {
+    navigator.clipboard.writeText(text);
+    setBankDetailsCopied(field);
+    toast({
+      title: "Kopirano",
+      description: `${field} je bil kopiran v odložišče.`,
+      variant: "default"
+    });
+    setTimeout(() => setBankDetailsCopied(null), 3000);
+  };
+
+  const handleStripePayment = () => {
+    setPaymentInProgress(true);
+
+    setTimeout(() => {
+      setPaymentInProgress(false);
+      toast({
+        title: "Plačilo uspešno",
+        description: "Hvala za vašo podporo! Prejeli boste potrdilo po e-pošti.",
+        variant: "default"
+      });
+    }, 1500);
   };
 
   return (
@@ -114,6 +149,10 @@ const Donations = () => {
               <TabsTrigger value="crypto" className="flex-1 py-3">
                 <Bitcoin className="mr-2 h-4 w-4" />
                 Kripto donacije
+              </TabsTrigger>
+              <TabsTrigger value="membership" className="flex-1 py-3">
+                <Users className="mr-2 h-4 w-4" />
+                Članstvo
               </TabsTrigger>
             </TabsList>
             
@@ -352,6 +391,118 @@ const Donations = () => {
                           </p>
                         </div>
                       </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+
+              <TabsContent value="membership" className="mt-0">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-2xl font-bold text-teal-800">
+                      <Users className="text-teal-600" />
+                      Postanite član Zavetišča za živali Maribor
+                    </CardTitle>
+                    <CardDescription className="text-base">
+                      Postanite del našega poslanstva in podpirajte živali Zavetišča za živali Maribor s članstvom.
+                    </CardDescription>
+                  </CardHeader>
+                  
+                  <CardContent className="space-y-6">
+                    <div className="bg-teal-50/70 p-5 rounded-lg">
+                      <p className="text-lg mb-4">
+                        Vaša letna članarina v višini 30€ neposredno podpira oskrbo, hrano in zdravljenje naših živali v zavetišču.
+                      </p>
+                      <div className="flex items-center gap-3 bg-teal-100/50 p-3 rounded-md">
+                        <Gift className="text-teal-600 flex-shrink-0" />
+                        <p className="font-medium">
+                          Ob včlanitvi vsak član prejme darilno majico z logotipom našega zavetišča kot znak zahvale.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <Separator className="my-6" />
+                    
+                    <div>
+                      <h3 className="text-xl font-semibold text-teal-800 mb-4 flex items-center gap-2">
+                        <CreditCard className="text-teal-600" />
+                        Plačilne možnosti
+                      </h3>
+                      
+                      <Tabs value={activePaymentMethod} onValueChange={value => setActivePaymentMethod(value as 'card' | 'bank')} className="w-full">
+                        <TabsList className="grid w-full grid-cols-2 mb-6">
+                          <TabsTrigger value="card" className="text-base">Plačilna kartica</TabsTrigger>
+                          <TabsTrigger value="bank" className="text-base">Bančno nakazilo</TabsTrigger>
+                        </TabsList>
+                        
+                        <TabsContent value="card">
+                          <div className="bg-white p-5 rounded-lg border border-teal-100 shadow-sm space-y-4">
+                            <p>
+                              Za hitro in enostavno plačilo z uporabo kreditne ali debetne kartice kliknite spodaj.
+                            </p>
+                            <div className="flex justify-center mt-4">
+                              <Button variant="teal" size="lg" className="w-full md:w-auto" onClick={handleStripePayment} disabled={paymentInProgress}>
+                                <CreditCard className="mr-2" /> 
+                                {paymentInProgress ? "Obdelava..." : "Plačaj s kartico"}
+                              </Button>
+                            </div>
+                          </div>
+                        </TabsContent>
+                        
+                        <TabsContent value="bank">
+                          <div className="bg-white p-5 rounded-lg border border-teal-100 shadow-sm">
+                            <p className="mb-4">
+                              Za bančno nakazilo uporabite spodnje podatke:
+                            </p>
+                            
+                            <div className="space-y-3 mb-4">
+                              <div className="flex justify-between items-center bg-gray-50 p-3 rounded-md">
+                                <div>
+                                  <p className="text-sm text-gray-600">Prejemnik:</p>
+                                  <p className="font-medium">{bankDetails.recipient}</p>
+                                </div>
+                                <Button variant="ghost" size="sm" onClick={() => copyToClipboard(bankDetails.recipient, 'Prejemnik')} className="text-teal-600 hover:text-teal-700 hover:bg-teal-50">
+                                  {bankDetailsCopied === 'Prejemnik' ? <Check size={18} /> : <Copy size={18} />}
+                                </Button>
+                              </div>
+                              
+                              <div className="flex justify-between items-center bg-gray-50 p-3 rounded-md">
+                                <div>
+                                  <p className="text-sm text-gray-600">IBAN:</p>
+                                  <p className="font-medium font-mono">{bankDetails.iban}</p>
+                                </div>
+                                <Button variant="ghost" size="sm" onClick={() => copyToClipboard(bankDetails.iban, 'IBAN')} className="text-teal-600 hover:text-teal-700 hover:bg-teal-50">
+                                  {bankDetailsCopied === 'IBAN' ? <Check size={18} /> : <Copy size={18} />}
+                                </Button>
+                              </div>
+                              
+                              <div className="flex justify-between items-center bg-gray-50 p-3 rounded-md">
+                                <div>
+                                  <p className="text-sm text-gray-600">Namen plačila:</p>
+                                  <p className="font-medium">{bankDetails.purposeCode}</p>
+                                </div>
+                                <Button variant="ghost" size="sm" onClick={() => copyToClipboard(bankDetails.purposeCode, 'Namen plačila')} className="text-teal-600 hover:text-teal-700 hover:bg-teal-50">
+                                  {bankDetailsCopied === 'Namen plačila' ? <Check size={18} /> : <Copy size={18} />}
+                                </Button>
+                              </div>
+                              
+                              <div className="flex justify-between items-center bg-gray-50 p-3 rounded-md">
+                                <div>
+                                  <p className="text-sm text-gray-600">Sklic:</p>
+                                  <p className="font-medium">{bankDetails.reference}</p>
+                                </div>
+                                <Button variant="ghost" size="sm" onClick={() => copyToClipboard(bankDetails.reference, 'Sklic')} className="text-teal-600 hover:text-teal-700 hover:bg-teal-50">
+                                  {bankDetailsCopied === 'Sklic' ? <Check size={18} /> : <Copy size={18} />}
+                                </Button>
+                              </div>
+                            </div>
+                            
+                            <div className="bg-teal-50 p-3 rounded-md text-sm text-teal-700">
+                              <p>Po izvedbi nakazila nam prosimo pošljite potrdilo na <strong>zavetisce.mb@snaga-mb.si</strong>, da vam lahko pošljemo darilno majico.</p>
+                            </div>
+                          </div>
+                        </TabsContent>
+                      </Tabs>
                     </div>
                   </CardContent>
                 </Card>
