@@ -20,14 +20,14 @@ export const DesktopNavigation = ({
   return <div className="hidden lg:flex items-center gap-3">
       <NavigationMenu className="z-50">
         <NavigationMenuList>
-          <NavigationMenuItem className="relative">
+          <NavigationMenuItem>
             <NavigationMenuTrigger className="bg-transparent font-medium text-white hover:bg-teal-600/50 hover:text-white data-[state=open]:bg-teal-600/50">
               <span className="flex items-center gap-1">
                 <Heart size={16} />
                 Posvojitve
               </span>
             </NavigationMenuTrigger>
-            <NavigationMenuContent className="absolute">
+            <NavigationMenuContent>
               <ul className="grid gap-3 p-4 md:w-[200px] bg-white border border-teal-100 shadow-lg rounded-lg">
                 <li>
                   <NavigationMenuLink asChild>
