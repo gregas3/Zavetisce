@@ -124,7 +124,7 @@ export const DesktopNavigation = ({
                 O nas
               </span>
             </NavigationMenuTrigger>
-            <NavigationMenuContent className="absolute">
+            <NavigationMenuContent>
               <ul className="grid gap-3 p-4 md:w-[230px] bg-white border border-teal-100 shadow-lg rounded-lg">
                 <li>
                   <NavigationMenuLink asChild>
