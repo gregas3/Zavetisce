@@ -28,7 +28,14 @@ const AboutUs = () => {
         </Section>
         
         {/* History Section */}
-        <Section className="bg-teal-50/50" title="Naša zgodovina" animation="slide-up">
+        <Section 
+          className="bg-teal-50/50" 
+          title="Naša zgodovina" 
+          animation="slide-up"
+          backgroundImage="/lovable-uploads/060e39f4-153d-459c-ab6c-323995a50012.png"
+          backgroundOverlay="rgba(226, 245, 237, 0.92)"
+          backgroundFilter="brightness(1.05)"
+        >
           <HistorySection />
         </Section>
         
