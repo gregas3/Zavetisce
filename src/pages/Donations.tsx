@@ -150,10 +150,6 @@ const Donations = () => {
                 <Bitcoin className="mr-2 h-4 w-4" />
                 Kripto donacije
               </TabsTrigger>
-              <TabsTrigger value="membership" className="flex-1 py-3">
-                <Users className="mr-2 h-4 w-4" />
-                Članstvo
-              </TabsTrigger>
             </TabsList>
             
             <AnimatedWrapper animation="fade-in">
@@ -395,120 +391,115 @@ const Donations = () => {
                   </CardContent>
                 </Card>
               </TabsContent>
-
-              <TabsContent value="membership" className="mt-0">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2 text-2xl font-bold text-teal-800">
-                      <Users className="text-teal-600" />
-                      Postanite član Zavetišča za živali Maribor
-                    </CardTitle>
-                    <CardDescription className="text-base">
-                      Postanite del našega poslanstva in podpirajte živali Zavetišča za živali Maribor s članstvom.
-                    </CardDescription>
-                  </CardHeader>
+            </AnimatedWrapper>
+          </Tabs>
+          
+          <AnimatedWrapper animation="fade-in" delay={300}>
+            <Card className="mt-16 overflow-hidden relative max-w-4xl mx-auto border-teal-100 bg-white/95">
+              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-300 to-teal-500" />
+              
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-2xl font-bold text-teal-800">
+                  <Users className="text-teal-600" />
+                  Postanite član Zavetišča za živali Maribor
+                </CardTitle>
+                <CardDescription className="text-base">
+                  Postanite del našega poslanstva in podpirajte živali Zavetišča za živali Maribor s članstvom.
+                </CardDescription>
+              </CardHeader>
+              
+              <CardContent className="space-y-6">
+                <div className="bg-teal-50/70 p-5 rounded-lg">
+                  <p className="text-lg mb-4">
+                    Vaša letna članarina v višini 30€ neposredno podpira oskrbo, hrano in zdravljenje naših živali v zavetišču.
+                  </p>
+                  <div className="flex items-center gap-3 bg-teal-100/50 p-3 rounded-md">
+                    <Gift className="text-teal-600 flex-shrink-0" />
+                    <p className="font-medium">
+                      Ob včlanitvi vsak član prejme darilno majico z logotipom našega zavetišča kot znak zahvale.
+                    </p>
+                  </div>
+                </div>
+                
+                <Separator className="my-6" />
+                
+                <div>
+                  <h3 className="text-xl font-semibold text-teal-800 mb-4 flex items-center gap-2">
+                    <CreditCard className="text-teal-600" />
+                    Plačilne možnosti
+                  </h3>
                   
-                  <CardContent className="space-y-6">
-                    <div className="bg-teal-50/70 p-5 rounded-lg">
-                      <p className="text-lg mb-4">
-                        Vaša letna članarina v višini 30€ neposredno podpira oskrbo, hrano in zdravljenje naših živali v zavetišču.
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="bg-white p-5 rounded-lg border border-teal-100 shadow-sm">
+                      <h4 className="text-lg font-medium mb-3 text-teal-800">Plačilna kartica</h4>
+                      <p className="mb-4">
+                        Za hitro in enostavno plačilo z uporabo kreditne ali debetne kartice kliknite spodaj.
                       </p>
-                      <div className="flex items-center gap-3 bg-teal-100/50 p-3 rounded-md">
-                        <Gift className="text-teal-600 flex-shrink-0" />
-                        <p className="font-medium">
-                          Ob včlanitvi vsak član prejme darilno majico z logotipom našega zavetišča kot znak zahvale.
-                        </p>
+                      <div className="flex justify-center mt-4">
+                        <Button variant="teal" size="lg" onClick={handleStripePayment} disabled={paymentInProgress}>
+                          <CreditCard className="mr-2" /> 
+                          {paymentInProgress ? "Obdelava..." : "Plačaj s kartico"}
+                        </Button>
                       </div>
                     </div>
                     
-                    <Separator className="my-6" />
-                    
-                    <div>
-                      <h3 className="text-xl font-semibold text-teal-800 mb-4 flex items-center gap-2">
-                        <CreditCard className="text-teal-600" />
-                        Plačilne možnosti
-                      </h3>
+                    <div className="bg-white p-5 rounded-lg border border-teal-100 shadow-sm">
+                      <h4 className="text-lg font-medium mb-3 text-teal-800">Bančno nakazilo</h4>
+                      <p className="mb-4">
+                        Za bančno nakazilo uporabite spodnje podatke:
+                      </p>
                       
-                      <Tabs value={activePaymentMethod} onValueChange={value => setActivePaymentMethod(value as 'card' | 'bank')} className="w-full">
-                        <TabsList className="grid w-full grid-cols-2 mb-6">
-                          <TabsTrigger value="card" className="text-base">Plačilna kartica</TabsTrigger>
-                          <TabsTrigger value="bank" className="text-base">Bančno nakazilo</TabsTrigger>
-                        </TabsList>
-                        
-                        <TabsContent value="card">
-                          <div className="bg-white p-5 rounded-lg border border-teal-100 shadow-sm space-y-4">
-                            <p>
-                              Za hitro in enostavno plačilo z uporabo kreditne ali debetne kartice kliknite spodaj.
-                            </p>
-                            <div className="flex justify-center mt-4">
-                              <Button variant="teal" size="lg" className="w-full md:w-auto" onClick={handleStripePayment} disabled={paymentInProgress}>
-                                <CreditCard className="mr-2" /> 
-                                {paymentInProgress ? "Obdelava..." : "Plačaj s kartico"}
-                              </Button>
-                            </div>
+                      <div className="space-y-3 mb-4">
+                        <div className="flex justify-between items-center bg-gray-50 p-3 rounded-md">
+                          <div>
+                            <p className="text-sm text-gray-600">Prejemnik:</p>
+                            <p className="font-medium">{bankDetails.recipient}</p>
                           </div>
-                        </TabsContent>
+                          <Button variant="ghost" size="sm" onClick={() => copyToClipboard(bankDetails.recipient, 'Prejemnik')} className="text-teal-600 hover:text-teal-700 hover:bg-teal-50">
+                            {bankDetailsCopied === 'Prejemnik' ? <Check size={18} /> : <Copy size={18} />}
+                          </Button>
+                        </div>
                         
-                        <TabsContent value="bank">
-                          <div className="bg-white p-5 rounded-lg border border-teal-100 shadow-sm">
-                            <p className="mb-4">
-                              Za bančno nakazilo uporabite spodnje podatke:
-                            </p>
-                            
-                            <div className="space-y-3 mb-4">
-                              <div className="flex justify-between items-center bg-gray-50 p-3 rounded-md">
-                                <div>
-                                  <p className="text-sm text-gray-600">Prejemnik:</p>
-                                  <p className="font-medium">{bankDetails.recipient}</p>
-                                </div>
-                                <Button variant="ghost" size="sm" onClick={() => copyToClipboard(bankDetails.recipient, 'Prejemnik')} className="text-teal-600 hover:text-teal-700 hover:bg-teal-50">
-                                  {bankDetailsCopied === 'Prejemnik' ? <Check size={18} /> : <Copy size={18} />}
-                                </Button>
-                              </div>
-                              
-                              <div className="flex justify-between items-center bg-gray-50 p-3 rounded-md">
-                                <div>
-                                  <p className="text-sm text-gray-600">IBAN:</p>
-                                  <p className="font-medium font-mono">{bankDetails.iban}</p>
-                                </div>
-                                <Button variant="ghost" size="sm" onClick={() => copyToClipboard(bankDetails.iban, 'IBAN')} className="text-teal-600 hover:text-teal-700 hover:bg-teal-50">
-                                  {bankDetailsCopied === 'IBAN' ? <Check size={18} /> : <Copy size={18} />}
-                                </Button>
-                              </div>
-                              
-                              <div className="flex justify-between items-center bg-gray-50 p-3 rounded-md">
-                                <div>
-                                  <p className="text-sm text-gray-600">Namen plačila:</p>
-                                  <p className="font-medium">{bankDetails.purposeCode}</p>
-                                </div>
-                                <Button variant="ghost" size="sm" onClick={() => copyToClipboard(bankDetails.purposeCode, 'Namen plačila')} className="text-teal-600 hover:text-teal-700 hover:bg-teal-50">
-                                  {bankDetailsCopied === 'Namen plačila' ? <Check size={18} /> : <Copy size={18} />}
-                                </Button>
-                              </div>
-                              
-                              <div className="flex justify-between items-center bg-gray-50 p-3 rounded-md">
-                                <div>
-                                  <p className="text-sm text-gray-600">Sklic:</p>
-                                  <p className="font-medium">{bankDetails.reference}</p>
-                                </div>
-                                <Button variant="ghost" size="sm" onClick={() => copyToClipboard(bankDetails.reference, 'Sklic')} className="text-teal-600 hover:text-teal-700 hover:bg-teal-50">
-                                  {bankDetailsCopied === 'Sklic' ? <Check size={18} /> : <Copy size={18} />}
-                                </Button>
-                              </div>
-                            </div>
-                            
-                            <div className="bg-teal-50 p-3 rounded-md text-sm text-teal-700">
-                              <p>Po izvedbi nakazila nam prosimo pošljite potrdilo na <strong>zavetisce.mb@snaga-mb.si</strong>, da vam lahko pošljemo darilno majico.</p>
-                            </div>
+                        <div className="flex justify-between items-center bg-gray-50 p-3 rounded-md">
+                          <div>
+                            <p className="text-sm text-gray-600">IBAN:</p>
+                            <p className="font-medium font-mono">{bankDetails.iban}</p>
                           </div>
-                        </TabsContent>
-                      </Tabs>
+                          <Button variant="ghost" size="sm" onClick={() => copyToClipboard(bankDetails.iban, 'IBAN')} className="text-teal-600 hover:text-teal-700 hover:bg-teal-50">
+                            {bankDetailsCopied === 'IBAN' ? <Check size={18} /> : <Copy size={18} />}
+                          </Button>
+                        </div>
+                        
+                        <div className="flex justify-between items-center bg-gray-50 p-3 rounded-md">
+                          <div>
+                            <p className="text-sm text-gray-600">Namen plačila:</p>
+                            <p className="font-medium">{bankDetails.purposeCode}</p>
+                          </div>
+                          <Button variant="ghost" size="sm" onClick={() => copyToClipboard(bankDetails.purposeCode, 'Namen plačila')} className="text-teal-600 hover:text-teal-700 hover:bg-teal-50">
+                            {bankDetailsCopied === 'Namen plačila' ? <Check size={18} /> : <Copy size={18} />}
+                          </Button>
+                        </div>
+                        
+                        <div className="flex justify-between items-center bg-gray-50 p-3 rounded-md">
+                          <div>
+                            <p className="text-sm text-gray-600">Sklic:</p>
+                            <p className="font-medium">{bankDetails.reference}</p>
+                          </div>
+                          <Button variant="ghost" size="sm" onClick={() => copyToClipboard(bankDetails.reference, 'Sklic')} className="text-teal-600 hover:text-teal-700 hover:bg-teal-50">
+                            {bankDetailsCopied === 'Sklic' ? <Check size={18} /> : <Copy size={18} />}
+                          </Button>
+                        </div>
+                      </div>
+                      
+                      <div className="bg-teal-50 p-3 rounded-md text-sm text-teal-700">
+                        <p>Po izvedbi nakazila nam prosimo pošljite potrdilo na <strong>zavetisce.mb@snaga-mb.si</strong>, da vam lahko pošljemo darilno majico.</p>
+                      </div>
                     </div>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-            </AnimatedWrapper>
-          </Tabs>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </AnimatedWrapper>
         </Section>
       </main>
     </Layout>
