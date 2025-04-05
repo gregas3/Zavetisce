@@ -34,7 +34,7 @@ const VirtualCorner = () => {
       toast({
         title: "Plačilo uspešno",
         description: "Hvala za vašo podporo! Prejeli boste potrdilo po e-pošti.",
-        variant: "success"
+        variant: "default"
       });
     }, 1500);
   };
@@ -46,7 +46,7 @@ const VirtualCorner = () => {
     toast({
       title: "Kopirano",
       description: `${field} je bil kopiran v odložišče.`,
-      variant: "success"
+      variant: "default"
     });
     
     setTimeout(() => setBankDetailsCopied(null), 3000);
