@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { CreditCard, Users, Video, Gift, Copy, CheckCircle, ExternalLink } from 'lucide-react';
@@ -9,13 +10,12 @@ import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import { useToast } from "@/hooks/use-toast";
+
 const VirtualCorner = () => {
   const [activePaymentMethod, setActivePaymentMethod] = useState<'card' | 'bank'>('card');
   const [paymentInProgress, setPaymentInProgress] = useState(false);
   const [bankDetailsCopied, setBankDetailsCopied] = useState<string | null>(null);
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
 
   // Bank transfer details
   const bankDetails = {
@@ -24,6 +24,7 @@ const VirtualCorner = () => {
     purposeCode: 'CHAR',
     reference: 'Donacija zavetišču'
   };
+
   const handleStripePayment = () => {
     setPaymentInProgress(true);
 
@@ -37,6 +38,7 @@ const VirtualCorner = () => {
       });
     }, 1500);
   };
+
   const copyToClipboard = (text: string, field: string) => {
     navigator.clipboard.writeText(text);
     setBankDetailsCopied(field);
@@ -47,7 +49,9 @@ const VirtualCorner = () => {
     });
     setTimeout(() => setBankDetailsCopied(null), 3000);
   };
-  return <Layout className="py-0 my-0">
+
+  return (
+    <Layout>
       <Helmet>
         <title>Virtualen kotiček | Zavetišče za živali Maribor</title>
         <meta name="description" content="Postanite član Zavetišča za živali Maribor in podprite naše živali. Doživite zavetišče skozi oči psa s 360° izkušnjo." />
@@ -231,6 +235,8 @@ const VirtualCorner = () => {
           </AnimatedWrapper>
         </Section>
       </main>
-    </Layout>;
+    </Layout>
+  );
 };
+
 export default VirtualCorner;

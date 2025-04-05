@@ -7,9 +7,10 @@ import FloatingContactButton from '../shared/FloatingContactButton';
 
 type LayoutProps = {
   children: React.ReactNode;
+  className?: string;  // Adding the optional className prop
 };
 
-const Layout = ({ children }: LayoutProps) => {
+const Layout = ({ children, className = '' }: LayoutProps) => {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   const isDogProfile = location.pathname.includes("/posvojitev/psi/");
@@ -21,7 +22,7 @@ const Layout = ({ children }: LayoutProps) => {
   }, [location.pathname]);
   
   return (
-    <div className="flex flex-col min-h-screen w-full overflow-x-hidden">
+    <div className={`flex flex-col min-h-screen w-full overflow-x-hidden ${className}`}>
       <Navbar />
       <main className={`flex-grow w-full pt-14 md:pt-16 ${(isDogProfile || isCatProfile) ? 'pb-16' : 'pb-10'}`} id="top">
         {children}
