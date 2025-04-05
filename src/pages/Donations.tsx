@@ -9,6 +9,7 @@ import Layout from "@/components/layout/Layout";
 import Section from "@/components/shared/Section";
 import { toast } from "@/components/ui/use-toast";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
+import CardDonationForm from "@/components/donations/CardDonationForm";
 
 const DonationNeeds = [
   {
@@ -207,6 +208,8 @@ const Donations = () => {
                         </div>
                       </div>
                     </div>
+                    
+                    <CardDonationForm />
                     
                     <div className="rounded-lg border p-4 bg-amber-50 border-amber-100">
                       <div className="flex gap-3">
