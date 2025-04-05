@@ -14,6 +14,7 @@ import {
   CarouselPrevious, 
   CarouselNext 
 } from "@/components/ui/carousel";
+import ShareAnimalDialog from "../shared/ShareAnimalDialog";
 
 export default function FeaturedAnimals() {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -49,21 +50,30 @@ export default function FeaturedAnimals() {
                   delay={index * 100}
                   className="h-full"
                 >
-                  <Link
-                    to={`/posvojitev/${animal.type === 'pes' ? 'psi' : 'mačke'}/${animal.id}`}
-                    className="group flex flex-col h-full rounded-xl overflow-hidden border border-border bg-card hover-lift"
-                  >
+                  <div className="group flex flex-col h-full rounded-xl overflow-hidden border border-border bg-card hover-lift">
                     <div className="aspect-square relative overflow-hidden">
-                      <img
-                        src={animal.image}
-                        alt={animal.name}
-                        className="object-cover w-full h-full transition-normal group-hover:scale-105"
-                        loading="lazy"
-                      />
+                      <Link
+                        to={`/posvojitev/${animal.type === 'pes' ? 'psi' : 'mačke'}/${animal.id}`}
+                      >
+                        <img
+                          src={animal.image}
+                          alt={animal.name}
+                          className="object-cover w-full h-full transition-normal group-hover:scale-105"
+                          loading="lazy"
+                        />
+                      </Link>
                       <Badge className="absolute top-3 left-3 bg-background/80 backdrop-blur-sm text-foreground flex items-center gap-1.5">
                         {animal.type === 'pes' ? <Dog size={14} /> : <Cat size={14} />}
                         {animal.type === 'pes' ? 'Pes' : 'Mačka'}
                       </Badge>
+                      
+                      <div className="absolute top-3 right-3">
+                        <ShareAnimalDialog
+                          animalName={animal.name}
+                          animalType={animal.type === 'pes' ? 'pes' : 'mačka'}
+                          animalId={animal.id}
+                        />
+                      </div>
                       
                       {/* Video badge only shown as an example, would need real video data */}
                       {index % 3 === 0 && (
@@ -77,7 +87,9 @@ export default function FeaturedAnimals() {
                     </div>
                     <div className="p-5 flex flex-col flex-grow">
                       <h3 className="text-xl font-bold mb-1 group-hover:text-primary transition-normal">
-                        {animal.name}
+                        <Link to={`/posvojitev/${animal.type === 'pes' ? 'psi' : 'mačke'}/${animal.id}`}>
+                          {animal.name}
+                        </Link>
                       </h3>
                       <div className="text-sm text-muted-foreground mb-3">
                         {animal.breed} • {animal.age} • {animal.gender}
@@ -86,13 +98,13 @@ export default function FeaturedAnimals() {
                         {animal.description}
                       </p>
                       <div className="flex items-center justify-between">
-                        <div className="text-sm flex items-center gap-1 text-primary font-medium">
+                        <Link to={`/posvojitev/${animal.type === 'pes' ? 'psi' : 'mačke'}/${animal.id}`} className="text-sm flex items-center gap-1 text-primary font-medium">
                           <Info size={14} />
                           Več informacij
-                        </div>
+                        </Link>
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 </AnimatedWrapper>
               </CarouselItem>
             ))}

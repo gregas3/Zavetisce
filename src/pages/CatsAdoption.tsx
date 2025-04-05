@@ -1,9 +1,9 @@
+
 import { Helmet } from 'react-helmet';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Search, Heart } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Search, Play } from 'lucide-react';
 import Layout from "@/components/layout/Layout";
-import Footer from "@/components/layout/Footer";
 import Section from "@/components/shared/Section";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { cats } from "@/data/catsData";
+import ShareAnimalDialog from "@/components/shared/ShareAnimalDialog";
 
 const CatsAdoption = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -128,8 +129,6 @@ const CatsAdoption = () => {
           </div>
         </Section>
       </main>
-      
-      <Footer />
     </Layout>
   );
 };
@@ -151,61 +150,80 @@ interface CatCardProps {
 }
 
 const CatCard = ({ cat }: CatCardProps) => {
+  const navigate = useNavigate();
+  
+  const handleCardClick = () => {
+    navigate(`/posvojitev/mačke/${cat.id}`);
+  };
+  
+  // Determine if the cat has a video (for demo purposes, we'll show it for some cats)
+  const hasVideo = cat.id % 3 === 0;
+  
   return (
-    <Link to={`/posvojitev/mačke/${cat.id}`} className="block h-full">
-      <Card className="overflow-hidden group hover-lift transition-normal h-full cursor-pointer">
-        <div className="aspect-square relative overflow-hidden">
-          <img
-            src={cat.image}
-            alt={cat.name}
-            className="object-cover w-full h-full transition-normal group-hover:scale-105"
-            loading="lazy"
-          />
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute top-3 right-3 bg-background/80 backdrop-blur-sm hover:bg-background/90 hover:text-primary z-10"
-            aria-label="Dodaj med priljubljene"
-            onClick={(e) => {
-              e.preventDefault();
-            }}
-          >
-            <Heart size={18} />
-          </Button>
+    <Card 
+      className="overflow-hidden group hover-lift transition-normal h-full cursor-pointer"
+      onClick={handleCardClick}
+    >
+      <div className="aspect-square relative overflow-hidden">
+        <img
+          src={cat.image}
+          alt={cat.name}
+          className="object-cover w-full h-full transition-normal group-hover:scale-105"
+          loading="lazy"
+        />
+        <div className="absolute top-3 right-3">
+          <div onClick={(e) => e.stopPropagation()}>
+            <ShareAnimalDialog
+              animalName={cat.name}
+              animalType="mačka"
+              animalId={cat.id}
+            />
+          </div>
         </div>
-        <CardContent className="p-5">
-          <div className="flex justify-between items-start mb-2">
-            <h3 className="text-xl font-bold group-hover:text-primary transition-normal">
-              {cat.name}
-            </h3>
-            <Badge variant={cat.gender === 'samec' ? 'default' : 'secondary'}>
-              {cat.gender}
+        
+        {hasVideo && (
+          <div className="absolute bottom-3 right-3">
+            <Badge className="bg-primary/90 backdrop-blur-sm text-white flex items-center gap-1 hover:bg-primary cursor-pointer px-3 py-1">
+              <Play size={14} />
+              Video
             </Badge>
           </div>
-          <div className="text-sm text-muted-foreground mb-3">
-            {cat.color} • {cat.age}
-          </div>
-          <p className="line-clamp-3 mb-4 text-muted-foreground">
-            {cat.description}
-          </p>
-          <div className="flex flex-wrap gap-1 mb-4">
-            {cat.characteristics.slice(0, 3).map((char, i) => (
-              <Badge key={i} variant="outline" className="bg-primary/5">
-                {char}
-              </Badge>
-            ))}
-            {cat.characteristics.length > 3 && (
-              <Badge variant="outline" className="bg-primary/5">
-                +{cat.characteristics.length - 3}
-              </Badge>
-            )}
-          </div>
-          <Button className="w-full">
+        )}
+      </div>
+      <CardContent className="p-5">
+        <div className="flex justify-between items-start mb-2">
+          <h3 className="text-xl font-bold group-hover:text-primary transition-normal">
+            {cat.name}
+          </h3>
+          <Badge variant={cat.gender === 'samec' ? 'default' : 'secondary'}>
+            {cat.gender}
+          </Badge>
+        </div>
+        <div className="text-sm text-muted-foreground mb-3">
+          {cat.color} • {cat.age}
+        </div>
+        <p className="line-clamp-3 mb-4 text-muted-foreground">
+          {cat.description}
+        </p>
+        <div className="flex flex-wrap gap-1 mb-4">
+          {cat.characteristics.slice(0, 3).map((char, i) => (
+            <Badge key={i} variant="outline" className="bg-primary/5">
+              {char}
+            </Badge>
+          ))}
+          {cat.characteristics.length > 3 && (
+            <Badge variant="outline" className="bg-primary/5">
+              +{cat.characteristics.length - 3}
+            </Badge>
+          )}
+        </div>
+        <Button asChild className="w-full">
+          <Link to={`/posvojitev/mačke/${cat.id}`} onClick={(e) => e.stopPropagation()}>
             Več informacij
-          </Button>
-        </CardContent>
-      </Card>
-    </Link>
+          </Link>
+        </Button>
+      </CardContent>
+    </Card>
   );
 };
 
