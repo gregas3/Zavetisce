@@ -16,22 +16,22 @@ interface DogProfileBreadcrumbProps {
 
 const DogProfileBreadcrumb = ({ dogName }: DogProfileBreadcrumbProps) => {
   return (
-    <Breadcrumb className="mb-6">
-      <BreadcrumbList>
+    <Breadcrumb className="mb-6 overflow-x-auto md:overflow-visible">
+      <BreadcrumbList className="flex-nowrap whitespace-nowrap min-w-0 pb-2 md:pb-0">
         <BreadcrumbItem>
           <BreadcrumbLink>
-            <Link to="/">Domov</Link>
+            <Link to="/" className="text-sm">Domov</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbLink>
-            <Link to="/posvojitev/psi">Psi</Link>
+            <Link to="/posvojitev/psi" className="text-sm">Psi</Link>
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbPage>{dogName}</BreadcrumbPage>
+          <BreadcrumbPage className="text-sm truncate max-w-[150px]">{dogName}</BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
