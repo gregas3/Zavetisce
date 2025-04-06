@@ -14,6 +14,7 @@ const Index = () => {
       <Helmet>
         <title>Zavetišče za živali Maribor</title>
         <meta name="description" content="Zavetišče za zapuščene živali v Mariboru nudi dom izgubljenim, zapuščenim in odvzetim živalim. Posvojitev psov in mačk, prijava izgubljene ali najdene živali." />
+        <meta name="keywords" content="zavetišče, živalsko zavetišče, posvojitev živali, posvojitev psov, posvojitev mačk, Maribor, zapuščene živali, donacije za živali, prostovoljstvo" />
       </Helmet>
       
       <HeroSection />

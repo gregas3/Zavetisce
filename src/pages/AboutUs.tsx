@@ -9,6 +9,7 @@ import MissionVision from "@/components/about/MissionVision";
 import GoalsSection from "@/components/about/GoalsSection";
 import ReportsSection from "@/components/about/ReportsSection";
 import SupportCta from "@/components/about/SupportCta";
+import SponsorsSection from "@/components/about/SponsorsSection";
 
 const AboutUs = () => {
   return (
@@ -52,6 +53,16 @@ const AboutUs = () => {
         {/* Reports Section */}
         <Section title="Poročila o delu" subtitle="Transparentnost je za nas pomembna" animation="fade-in">
           <ReportsSection />
+        </Section>
+        
+        {/* Sponsors Section - New section */}
+        <Section 
+          className="bg-teal-50/50" 
+          title="Sponzorji" 
+          animation="fade-in"
+          description="Zahvala sponzorjem Zavetišča za živali Maribor"
+        >
+          <SponsorsSection />
         </Section>
         
         {/* CTA Section */}

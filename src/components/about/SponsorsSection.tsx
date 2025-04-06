@@ -1,0 +1,158 @@
+
+import { ExternalLink } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+} from "@/components/ui/card";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
+import AnimatedWrapper from "../shared/AnimatedWrapper";
+
+// Sponsors data
+const sponsors = [
+  {
+    id: 1,
+    name: "Zavarovalnica Sava",
+    logoUrl: "/lovable-uploads/sponsor-sava.svg", // Placeholder, we'll use a div with text for now
+    description: "Velika slovenska zavarovalnica, ki je zavetišču donirala 5.000 € v praznični kampanji.",
+    supportType: "Finančna donacija",
+    website: "https://www.zav-sava.si",
+    delay: 0,
+  },
+  {
+    id: 2,
+    name: "Priori Zavarovanje d.o.o.",
+    logoUrl: "/lovable-uploads/sponsor-priori.svg", // Placeholder
+    description: "Lokalni zavarovalni posrednik, ki je podprl zavetišče z nakupom veterinarske opreme.",
+    supportType: "Finančna donacija za opremo",
+    website: "https://www.priori.si",
+    delay: 150,
+  },
+  {
+    id: 3,
+    name: "Nova KBM d.d.",
+    logoUrl: "/lovable-uploads/sponsor-nkbm.svg", // Placeholder
+    description: "Zaposleni banke so donirali hrano in pomagali pri zasaditvi dreves v zavetišču.",
+    supportType: "Materialna donacija in prostovoljstvo",
+    website: "https://www.nkbm.si",
+    delay: 300,
+  },
+  {
+    id: 4,
+    name: "SKB banka d.d.",
+    logoUrl: "/lovable-uploads/sponsor-skb.svg", // Placeholder
+    description: "Pomagali so z donacijami hrane in prostovoljsko pomočjo pri urejanju okolice.",
+    supportType: "Materialna donacija in prostovoljstvo",
+    website: "https://www.skb.si",
+    delay: 450,
+  },
+  {
+    id: 5,
+    name: "Marprom d.o.o.",
+    logoUrl: "/lovable-uploads/sponsor-marprom.svg", // Placeholder
+    description: "Mestni prevoznik, ki je postal boter živali v zavetišču in doniral hrano ter opremo.",
+    supportType: "Botrstvo, materialna pomoč, prostovoljstvo",
+    website: "https://www.marprom.si",
+    delay: 600,
+  },
+];
+
+export default function SponsorsSection() {
+  return (
+    <div className="py-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+        {sponsors.map((sponsor) => (
+          <AnimatedWrapper 
+            key={sponsor.id} 
+            animation="zoom-in"
+            delay={sponsor.delay}
+            className="h-full"
+          >
+            {/* For larger screens use HoverCard */}
+            <div className="hidden md:block h-full">
+              <HoverCard>
+                <HoverCardTrigger asChild>
+                  <a
+                    href={sponsor.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block h-full"
+                    aria-label={`Obiščite spletno stran ${sponsor.name}`}
+                  >
+                    <Card className="h-full transition-all duration-300 hover:shadow-md hover:scale-105 flex flex-col border border-teal-200 bg-white/80">
+                      <CardContent className="p-4 flex items-center justify-center flex-grow">
+                        {/* Logo placeholder - In a real app, use actual images */}
+                        <div className="w-full h-24 bg-teal-50/70 rounded-md flex items-center justify-center text-teal-700 font-medium text-center px-2">
+                          {sponsor.name}
+                        </div>
+                      </CardContent>
+                      <CardFooter className="p-2 bg-teal-50/50 flex justify-end">
+                        <ExternalLink size={14} className="text-teal-600" />
+                      </CardFooter>
+                    </Card>
+                  </a>
+                </HoverCardTrigger>
+                <HoverCardContent className="w-80 bg-white border-teal-200 shadow-md">
+                  <div className="flex flex-col gap-2">
+                    <h3 className="font-semibold text-teal-800">{sponsor.name}</h3>
+                    <p className="text-sm text-gray-600">{sponsor.description}</p>
+                    <div className="flex items-center gap-2 mt-1">
+                      <span className="text-xs px-2 py-1 rounded-full bg-teal-100/50 text-teal-700">
+                        {sponsor.supportType}
+                      </span>
+                    </div>
+                  </div>
+                </HoverCardContent>
+              </HoverCard>
+            </div>
+            
+            {/* For mobile use tooltip */}
+            <div className="block md:hidden h-full">
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <a
+                      href={sponsor.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block h-full"
+                      aria-label={`Obiščite spletno stran ${sponsor.name}`}
+                    >
+                      <Card className="h-full transition-all duration-300 hover:shadow-md border border-teal-200 bg-white/80">
+                        <CardContent className="p-3 flex items-center justify-center">
+                          <div className="w-full h-20 bg-teal-50/70 rounded-md flex items-center justify-center text-teal-700 font-medium text-center px-2 text-sm">
+                            {sponsor.name}
+                          </div>
+                        </CardContent>
+                        <CardFooter className="p-2 bg-teal-50/50 flex justify-between items-center">
+                          <CardDescription className="text-xs truncate max-w-[80%]">
+                            {sponsor.supportType}
+                          </CardDescription>
+                          <ExternalLink size={14} className="text-teal-600 flex-shrink-0" />
+                        </CardFooter>
+                      </Card>
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p className="text-xs max-w-xs">{sponsor.description}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+          </AnimatedWrapper>
+        ))}
+      </div>
+      
+      <div className="mt-8 text-center text-sm text-teal-700 italic">
+        Hvala vsem, ki s svojo podporo pomagate našemu zavetišču ustvarjati boljši svet za živali.
+      </div>
+    </div>
+  );
+}
