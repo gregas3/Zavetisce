@@ -457,7 +457,7 @@ const Donations = () => {
                   <div className="flex justify-center py-6">
                     <div className={`relative group membership-badge ${highlightMembership ? 'animate-bounce-once' : ''}`}>
                       <img 
-                        src="/public/lovable-uploads/d4c898dd-8689-4de6-9053-b74fc8b74810.png" 
+                        src="/public/lovable-uploads/782fd201-dead-4383-afcc-cd75cf85d6a9.png" 
                         alt="Official 2025 Member Badge – Animal Shelter Maribor" 
                         className={`w-[200px] md:w-[240px] max-w-full h-auto transition-transform duration-300 ${
                           highlightMembership ? 'scale-110' : ''
