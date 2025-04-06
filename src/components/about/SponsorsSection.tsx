@@ -160,12 +160,6 @@ export default function SponsorsSection() {
                             {sponsor.name}
                           </div>
                         </CardContent>
-                        <CardFooter className="p-2 bg-teal-50/50 flex justify-between items-center">
-                          <CardDescription className="text-xs truncate max-w-[80%]">
-                            {sponsor.supportType}
-                          </CardDescription>
-                          <ExternalLink size={14} className="text-teal-600 flex-shrink-0" />
-                        </CardFooter>
                       </Card>
                     </a>
                   </TooltipTrigger>
