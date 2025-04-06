@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Helmet } from "react-helmet";
 import { PawPrint, Cat, Heart, Info, FileText } from "lucide-react";
@@ -90,7 +89,7 @@ export default function StrayCats() {
           <div className="mt-10 md:mt-12">
             <AnimatedWrapper animation="fade-in" delay={150}>
               <div className="text-center mb-5">
-                <h2 className="text-2xl md:text-3xl font-bold text-teal-800">Prijavite prostoživeče mačke</h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-teal-800">Prijavite se za odlov prostoživečih mačk</h2>
                 <p className="text-slate-600 mt-2 max-w-2xl mx-auto">
                   Izpolnite spodnji obrazec za prijavo potrebe po odlovu prostoživečih mačk
                 </p>
