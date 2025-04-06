@@ -470,37 +470,3 @@
     transition: max-height 300ms ease-in, opacity 300ms ease-in;
   }
 }
-
-@layer utilities {
-  .tab-active-indicator {
-    @apply absolute bottom-0 left-0 h-0.5 bg-primary transform transition-all duration-300;
-    width: 0;
-  }
-  
-  .tab-active .tab-active-indicator {
-    @apply w-full;
-  }
-  
-  .tab-selected-scale {
-    @apply transform transition-transform duration-200;
-  }
-  
-  .tab-selected-scale:active {
-    @apply scale-95;
-  }
-  
-  .tab-selected-scale[data-state="active"] {
-    @apply scale-100;
-  }
-  
-  /* Make sure tab triggers are properly styled on mobile */
-  @media (max-width: 640px) {
-    [role="tablist"] {
-      @apply flex-wrap gap-1.5 justify-center;
-    }
-    
-    [role="tab"] {
-      @apply text-sm py-2.5 px-3 flex-grow min-h-11;
-    }
-  }
-}
