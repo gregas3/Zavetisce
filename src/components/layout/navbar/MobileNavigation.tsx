@@ -53,9 +53,9 @@ export const MobileNavigation = ({
           aria-modal="true"
           aria-label="Navigation menu"
         >
-          <ScrollArea className="h-full">
-            <nav className="flex flex-col h-full overflow-y-auto">
-              <div className="flex flex-col space-y-0.5 flex-1 px-0 py-[6px] bg-green-100 rounded-sm my-0">
+          <div className="h-full overflow-y-auto">
+            <nav className="flex flex-col h-full">
+              <div className="flex flex-col space-y-0.5 flex-1 px-0 py-[6px] bg-green-100 rounded-sm my-0 overflow-y-auto">
                 <AnimatedWrapper animation="fade-in" delay={50} className="mb-1">
                   <MobileNavItem title="Posvojitve" hasSubmenu icon={<Heart size={18} className="text-teal-500" />}>
                     <Link to="/posvojitev/psi" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
@@ -141,7 +141,7 @@ export const MobileNavigation = ({
                 </div>
               </AnimatedWrapper>
             </nav>
-          </ScrollArea>
+          </div>
         </div>
       </div>
     </>;

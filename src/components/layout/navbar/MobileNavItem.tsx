@@ -60,16 +60,12 @@ export const MobileNavItem = ({
             isOpen ? "opacity-100" : "max-h-0 opacity-0"
           }`}
           style={{ 
-            maxHeight: isOpen ? `${Math.min(contentHeight, 200)}px` : 0 
+            maxHeight: isOpen ? `${contentHeight}px` : 0 
           }}
         >
-          <ScrollArea 
-            className={`${isOpen ? 'max-h-[200px]' : 'max-h-0'}`}
-          >
-            <div ref={contentRef} className="space-y-0.5 pb-1.5">
-              {children}
-            </div>
-          </ScrollArea>
+          <div ref={contentRef} className="space-y-0.5 pb-1.5">
+            {children}
+          </div>
         </div>
       )}
     </div>
