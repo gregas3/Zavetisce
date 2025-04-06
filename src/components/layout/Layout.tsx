@@ -16,6 +16,7 @@ const Layout = ({ children, className = '' }: LayoutProps) => {
   const isDogProfile = location.pathname.includes("/posvojitev/psi/");
   const isCatProfile = location.pathname.includes("/posvojitev/mačke/");
   const isDonationsPage = location.pathname === "/donacije";
+  const isNewsEventsPage = location.pathname === "/about/novice-dogodki";
   
   // Ensure page scrolls to top when route changes
   useEffect(() => {
@@ -47,7 +48,7 @@ const Layout = ({ children, className = '' }: LayoutProps) => {
       <main className={`flex-grow w-full pt-14 md:pt-16 ${(isDogProfile || isCatProfile) ? 'pb-16' : 'pb-10'}`} id="top">
         {children}
       </main>
-      {(isHomePage || isDonationsPage) && <FloatingContactButton />}
+      {(isHomePage || isDonationsPage || isNewsEventsPage) && <FloatingContactButton />}
       <Footer />
     </div>
   );
