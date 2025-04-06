@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Story } from '@/data/storiesData';
 import { Dog, Heart, Users, ExternalLink, Play } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogTrigger } from '@/components/ui/dialog';
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
