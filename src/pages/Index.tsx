@@ -23,8 +23,8 @@ const Index = () => {
           <FeaturedAnimals />
         </div>
         <QuickLinks />
-        <StatsSection />
         <HomeStoriesSection />
+        <StatsSection />
         <CtaSection />
       </div>
     </Layout>
