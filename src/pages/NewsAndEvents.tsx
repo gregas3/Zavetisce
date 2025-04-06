@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import Layout from "@/components/layout/Layout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Calendar, CalendarCheck, CalendarDays, Newspaper, PawPrint, ExternalLink } from "lucide-react";
 import Section from "@/components/shared/Section";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
@@ -10,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Facebook, X } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface NewsOrEventItem {
   date: string;
@@ -25,6 +25,7 @@ interface NewsOrEventItem {
 const NewsAndEvents = () => {
   const [email, setEmail] = useState("");
   const [gdprConsent, setGdprConsent] = useState(false);
+  const isMobile = useIsMobile();
 
   const upcomingEvents: NewsOrEventItem[] = [];
   
@@ -143,27 +144,27 @@ const NewsAndEvents = () => {
     <Layout>
       <Section className="bg-white">
         <AnimatedWrapper animation="fade-in" delay={100}>
-          <div className="container mx-auto px-4 py-8">
+          <div className="container mx-auto px-4 py-6 md:py-8">
             <div className="flex items-center mb-6">
               <Newspaper className="w-6 h-6 text-teal-600 mr-3" />
-              <h1 className="text-3xl md:text-4xl font-bold text-teal-800">Novice & Dogodki</h1>
+              <h1 className="text-2xl md:text-4xl font-bold text-teal-800">Novice & Dogodki</h1>
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
               <div className="lg:col-span-2">
                 <Tabs defaultValue="dogodki" className="w-full">
-                  <TabsList className="w-full bg-teal-50 mb-6">
-                    <TabsTrigger value="dogodki" className="flex-1 data-[state=active]:bg-white data-[state=active]:text-teal-700">
+                  <TabsList className="w-full bg-teal-50 mb-5">
+                    <TabsTrigger value="dogodki" className="flex-1 data-[state=active]:bg-white data-[state=active]:text-teal-700 py-2.5">
                       <CalendarCheck className="w-4 h-4 mr-2" />
                       Dogodki
                     </TabsTrigger>
-                    <TabsTrigger value="novice" className="flex-1 data-[state=active]:bg-white data-[state=active]:text-teal-700">
+                    <TabsTrigger value="novice" className="flex-1 data-[state=active]:bg-white data-[state=active]:text-teal-700 py-2.5">
                       <Newspaper className="w-4 h-4 mr-2" />
                       Novice
                     </TabsTrigger>
                   </TabsList>
                   
-                  <TabsContent value="dogodki" className="bg-white rounded-lg p-6 shadow-sm border border-teal-100">
+                  <TabsContent value="dogodki" className="bg-white rounded-lg p-4 md:p-6 shadow-sm border border-teal-100 transition-all duration-300">
                     <div className="mb-6">
                       <h2 className="text-xl font-bold text-teal-800 flex items-center">
                         <CalendarDays className="w-5 h-5 text-teal-600 mr-2" />
@@ -184,7 +185,7 @@ const NewsAndEvents = () => {
                                   <p className="text-gray-700">{event.summary}</p>
                                 </div>
                               </div>
-                              <div className="mt-3 flex space-x-2">
+                              <div className="mt-3 flex flex-wrap gap-2">
                                 <Button 
                                   variant="outline" 
                                   size="sm" 
@@ -224,7 +225,7 @@ const NewsAndEvents = () => {
                       )}
                     </div>
                     
-                    <Separator className="my-6" />
+                    <Separator className="my-5 md:my-6" />
                     
                     <div>
                       <h2 className="text-xl font-bold text-teal-800 flex items-center">
@@ -235,42 +236,41 @@ const NewsAndEvents = () => {
                       <div className="mt-4 space-y-4">
                         {pastEvents.map((event) => (
                           <div key={event.id} className="p-4 border border-teal-100 rounded-lg hover:border-teal-200 transition-colors">
-                            <div className="flex justify-between items-start">
-                              <div>
-                                <div className="font-semibold text-teal-700 flex items-center">
-                                  <PawPrint className="w-4 h-4 text-teal-500 mr-2" />
-                                  {event.date}
-                                </div>
-                                <h3 className="text-lg font-bold mt-1 mb-2">{event.title}</h3>
-                                <p className="text-gray-700">{event.summary}</p>
+                            <div className="w-full">
+                              <div className="font-semibold text-teal-700 flex items-center">
+                                <PawPrint className="w-4 h-4 text-teal-500 mr-2 flex-shrink-0" />
+                                <span className="text-sm md:text-base">{event.date}</span>
                               </div>
+                              <h3 className="text-lg font-bold mt-1 mb-2">{event.title}</h3>
+                              <p className="text-gray-700 text-sm md:text-base">{event.summary}</p>
                             </div>
-                            <div className="mt-3 flex space-x-2">
+                            <div className="mt-3 flex flex-wrap gap-2">
                               <Button 
                                 variant="outline" 
                                 size="sm" 
                                 onClick={() => shareItem(event, 'facebook')} 
-                                className="text-blue-600 border-blue-200 hover:bg-blue-50"
+                                className="text-blue-600 border-blue-200 hover:bg-blue-50 h-9 min-w-[80px] md:min-w-0"
                               >
                                 <Facebook className="w-4 h-4 mr-1" />
-                                Deli
+                                <span className="text-sm">Deli</span>
                               </Button>
                               <Button 
                                 variant="outline" 
                                 size="sm" 
                                 onClick={() => shareItem(event, 'twitter')} 
-                                className="text-sky-500 border-sky-200 hover:bg-sky-50"
+                                className="text-sky-500 border-sky-200 hover:bg-sky-50 h-9"
                                 aria-label="Share on X"
                               >
                                 <X className="w-4 h-4 mr-1" />
-                                Deli na X
+                                <span className="text-sm">Deli na X</span>
                               </Button>
                               <Button 
                                 variant="outline" 
                                 size="sm" 
                                 onClick={() => shareItem(event, 'copy')}
+                                className="h-9"
                               >
-                                Kopiraj povezavo
+                                <span className="text-sm">Kopiraj povezavo</span>
                               </Button>
                             </div>
                           </div>
@@ -279,7 +279,7 @@ const NewsAndEvents = () => {
                     </div>
                   </TabsContent>
                   
-                  <TabsContent value="novice" className="bg-white rounded-lg p-6 shadow-sm border border-teal-100">
+                  <TabsContent value="novice" className="bg-white rounded-lg p-4 md:p-6 shadow-sm border border-teal-100 transition-all duration-300">
                     <h2 className="text-xl font-bold text-teal-800 mb-4 flex items-center">
                       <Newspaper className="w-5 h-5 text-teal-600 mr-2" />
                       Medijske novice
@@ -288,55 +288,54 @@ const NewsAndEvents = () => {
                     <div className="space-y-4">
                       {newsItems.map((item) => (
                         <div key={item.id} className="p-4 border border-teal-100 rounded-lg hover:border-teal-200 transition-colors">
-                          <div className="flex justify-between items-start">
-                            <div>
-                              <div className="font-semibold text-teal-700 flex items-center">
-                                <Calendar className="w-4 h-4 text-teal-500 mr-2" />
-                                {item.date}
-                              </div>
-                              <h3 className="text-lg font-bold mt-1 mb-2">{item.title}</h3>
-                              <p className="text-gray-700">{item.summary}</p>
-                              
-                              {item.source && (
-                                <a 
-                                  href={item.source.url} 
-                                  target="_blank" 
-                                  rel="noopener noreferrer"
-                                  className="mt-2 mb-3 inline-flex items-center text-teal-600 hover:text-teal-800 hover:font-semibold transition-all"
-                                >
-                                  <Newspaper className="w-4 h-4 mr-1" />
-                                  Vir: {item.source.name}
-                                  <ExternalLink className="w-3 h-3 ml-1" />
-                                </a>
-                              )}
+                          <div className="w-full">
+                            <div className="font-semibold text-teal-700 flex items-center">
+                              <Calendar className="w-4 h-4 text-teal-500 mr-2 flex-shrink-0" />
+                              <span className="text-sm md:text-base">{item.date}</span>
                             </div>
+                            <h3 className="text-lg font-bold mt-1 mb-2">{item.title}</h3>
+                            <p className="text-gray-700 text-sm md:text-base">{item.summary}</p>
+                            
+                            {item.source && (
+                              <a 
+                                href={item.source.url} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="mt-2 mb-3 inline-flex items-center text-teal-600 hover:text-teal-800 hover:font-semibold transition-all"
+                              >
+                                <Newspaper className="w-4 h-4 mr-1" />
+                                Vir: {item.source.name}
+                                <ExternalLink className="w-3 h-3 ml-1" />
+                              </a>
+                            )}
                           </div>
-                          <div className="mt-3 flex space-x-2">
+                          <div className="mt-3 flex flex-wrap gap-2">
                             <Button 
                               variant="outline" 
                               size="sm" 
                               onClick={() => shareItem(item, 'facebook')} 
-                              className="text-blue-600 border-blue-200 hover:bg-blue-50"
+                              className="text-blue-600 border-blue-200 hover:bg-blue-50 h-9 min-w-[80px] md:min-w-0"
                             >
                               <Facebook className="w-4 h-4 mr-1" />
-                              Deli
+                              <span className="text-sm">Deli</span>
                             </Button>
                             <Button 
                               variant="outline" 
                               size="sm" 
                               onClick={() => shareItem(item, 'twitter')} 
-                              className="text-sky-500 border-sky-200 hover:bg-sky-50"
+                              className="text-sky-500 border-sky-200 hover:bg-sky-50 h-9"
                               aria-label="Share on X"
                             >
                               <X className="w-4 h-4 mr-1" />
-                              Deli na X
+                              <span className="text-sm">Deli na X</span>
                             </Button>
                             <Button 
                               variant="outline" 
                               size="sm" 
                               onClick={() => shareItem(item, 'copy')}
+                              className="h-9"
                             >
-                              Kopiraj povezavo
+                              <span className="text-sm">Kopiraj povezavo</span>
                             </Button>
                           </div>
                         </div>
@@ -353,9 +352,9 @@ const NewsAndEvents = () => {
               </div>
               
               <div className="lg:col-span-1">
-                <div className="bg-teal-50 p-6 rounded-lg border border-teal-100 shadow-sm">
-                  <h3 className="text-xl font-bold text-teal-800 mb-4">Prijava na e-novice</h3>
-                  <p className="text-teal-700 mb-4">Bodite obveščeni o vseh dogodkih in novicah iz zavetišča.</p>
+                <div className="bg-teal-50 p-5 rounded-lg border border-teal-100 shadow-sm mb-6">
+                  <h3 className="text-lg md:text-xl font-bold text-teal-800 mb-4">Prijava na e-novice</h3>
+                  <p className="text-teal-700 mb-4 text-sm md:text-base">Bodite obveščeni o vseh dogodkih in novicah iz zavetišča.</p>
                   
                   <form onSubmit={handleNewsletterSubmit} className="space-y-4">
                     <div>
@@ -390,8 +389,8 @@ const NewsAndEvents = () => {
                   </form>
                 </div>
                 
-                <div className="mt-6 bg-white p-6 rounded-lg border border-teal-100 shadow-sm">
-                  <h3 className="text-xl font-bold text-teal-800 mb-4">Povezane vsebine</h3>
+                <div className="bg-white p-5 rounded-lg border border-teal-100 shadow-sm">
+                  <h3 className="text-lg md:text-xl font-bold text-teal-800 mb-4">Povezane vsebine</h3>
                   
                   <ul className="space-y-3">
                     <li>
