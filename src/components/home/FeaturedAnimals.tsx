@@ -15,10 +15,12 @@ import {
   CarouselNext 
 } from "@/components/ui/carousel";
 import ShareAnimalDialog from "../shared/ShareAnimalDialog";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function FeaturedAnimals() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [featuredAnimals, setFeaturedAnimals] = useState<Animal[]>([]);
+  const isMobile = useIsMobile();
   
   useEffect(() => {
     // Get featured animals when component mounts
@@ -116,18 +118,20 @@ export default function FeaturedAnimals() {
           </div>
         </Carousel>
         
-        {/* Pagination dots for mobile and visual reference */}
-        <div className="flex justify-center gap-2 mt-6">
-          {featuredAnimals.slice(0, Math.ceil(featuredAnimals.length / 3)).map((_, index) => (
-            <button
-              key={index}
-              className={`h-2 rounded-full transition-normal ${
-                Math.floor(activeSlide / 3) === index ? "w-8 bg-primary" : "w-2 bg-muted"
-              }`}
-              aria-label={`Pojdi na diapozitiv ${index + 1}`}
-            />
-          ))}
-        </div>
+        {/* Pagination dots - hidden on mobile */}
+        {!isMobile && (
+          <div className="flex justify-center gap-2 mt-6">
+            {featuredAnimals.slice(0, Math.ceil(featuredAnimals.length / 3)).map((_, index) => (
+              <button
+                key={index}
+                className={`h-2 rounded-full transition-normal ${
+                  Math.floor(activeSlide / 3) === index ? "w-8 bg-primary" : "w-2 bg-muted"
+                }`}
+                aria-label={`Pojdi na diapozitiv ${index + 1}`}
+              />
+            ))}
+          </div>
+        )}
       </div>
       
       <div className="flex justify-center mt-8"> 
