@@ -96,12 +96,11 @@ export default function SponsorsSection() {
                             className="w-full h-24 mb-2 object-contain"
                           />
                         ) : (
-                          // For other sponsors, use the sprite technique
+                          // For other sponsors, use a different approach without relying on logoPosition
                           <div 
                             className="w-full h-24 mb-2 bg-contain bg-no-repeat bg-center"
                             style={{ 
-                              backgroundImage: `url(${sponsor.logoUrl})`,
-                              backgroundPosition: sponsor.logoPosition 
+                              backgroundImage: `url(${sponsor.logoUrl})`
                             }}
                             aria-label={`Logo ${sponsor.name}`}
                           />
@@ -152,12 +151,11 @@ export default function SponsorsSection() {
                               className="w-full h-16 mb-1 object-contain"
                             />
                           ) : (
-                            // For other sponsors, use the sprite technique
+                            // For other sponsors, use a different approach without relying on logoPosition
                             <div 
                               className="w-full h-16 mb-1 bg-contain bg-no-repeat bg-center"
                               style={{ 
-                                backgroundImage: `url(${sponsor.logoUrl})`,
-                                backgroundPosition: sponsor.logoPosition 
+                                backgroundImage: `url(${sponsor.logoUrl})`
                               }}
                               aria-label={`Logo ${sponsor.name}`}
                             />
