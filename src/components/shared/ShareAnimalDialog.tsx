@@ -150,6 +150,7 @@ const ShareAnimalDialog = ({
                 variant="outline"
                 onClick={() => option.action(url, text)}
                 className={`flex flex-col items-center space-y-1 p-3 h-[80px] w-[80px] ${option.color} text-white hover:opacity-90 hover:text-white border-none`}
+                aria-label={`Share on ${option.name}`}
               >
                 <span className="p-1">{option.icon}</span>
                 <span className="text-xs font-medium">{option.name}</span>

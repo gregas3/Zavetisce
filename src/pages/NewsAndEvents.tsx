@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import Layout from "@/components/layout/Layout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -6,7 +7,7 @@ import { Calendar, CalendarCheck, CalendarDays, Newspaper, PawPrint, ExternalLin
 import Section from "@/components/shared/Section";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import { Button } from "@/components/ui/button";
-import { Facebook, Twitter } from "lucide-react";
+import { Facebook, X } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
 
@@ -198,9 +199,10 @@ const NewsAndEvents = () => {
                                   size="sm" 
                                   onClick={() => shareItem(event, 'twitter')} 
                                   className="text-sky-500 border-sky-200 hover:bg-sky-50"
+                                  aria-label="Share on X"
                                 >
-                                  <Twitter className="w-4 h-4 mr-1" />
-                                  Tweet
+                                  <X className="w-4 h-4 mr-1" />
+                                  Deli na X
                                 </Button>
                                 <Button 
                                   variant="outline" 
@@ -258,9 +260,10 @@ const NewsAndEvents = () => {
                                 size="sm" 
                                 onClick={() => shareItem(event, 'twitter')} 
                                 className="text-sky-500 border-sky-200 hover:bg-sky-50"
+                                aria-label="Share on X"
                               >
-                                <Twitter className="w-4 h-4 mr-1" />
-                                Tweet
+                                <X className="w-4 h-4 mr-1" />
+                                Deli na X
                               </Button>
                               <Button 
                                 variant="outline" 
@@ -323,9 +326,10 @@ const NewsAndEvents = () => {
                               size="sm" 
                               onClick={() => shareItem(item, 'twitter')} 
                               className="text-sky-500 border-sky-200 hover:bg-sky-50"
+                              aria-label="Share on X"
                             >
-                              <Twitter className="w-4 h-4 mr-1" />
-                              Tweet
+                              <X className="w-4 h-4 mr-1" />
+                              Deli na X
                             </Button>
                             <Button 
                               variant="outline" 
