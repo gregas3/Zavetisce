@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { MapPin, Search, PawPrint, Calendar, Info, Plus, Cat, Dog, Mail, Building, ArrowUpRight } from "lucide-react";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import Layout from "@/components/layout/Layout";
 import Section from "@/components/shared/Section";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
@@ -222,8 +224,8 @@ export default function LostAndFound() {
           
           <TabsContent value="listings">
             <AnimatedWrapper animation="fade-in-up" className="mb-8">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-8">
-                <div className="w-full md:w-1/2">
+              <div className="flex flex-col gap-4 mb-8">
+                <div className="w-full">
                   <div className="relative">
                     <Input
                       type="text"
@@ -235,34 +237,21 @@ export default function LostAndFound() {
                     <Search size={18} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-teal-500" />
                   </div>
                 </div>
-                <div className="flex items-center gap-2 w-full md:w-auto">
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className={`${filterType === 'all' ? 'bg-teal-100 text-teal-800 border-teal-200' : ''}`}
-                    onClick={() => setFilterType('all')}
-                  >
-                    <PawPrint size={16} />
-                    Vse živali
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className={`${filterType === 'dog' ? 'bg-teal-100 text-teal-800 border-teal-200' : ''}`}
-                    onClick={() => setFilterType('dog')}
-                  >
-                    <Dog size={16} />
-                    Psi
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className={`${filterType === 'cat' ? 'bg-teal-100 text-teal-800 border-teal-200' : ''}`}
-                    onClick={() => setFilterType('cat')}
-                  >
-                    <Cat size={16} />
-                    Mačke
-                  </Button>
+                <div className="w-full">
+                  <ToggleGroup type="single" value={filterType} onValueChange={(value) => value && setFilterType(value)} className="flex flex-wrap gap-2 justify-center">
+                    <ToggleGroupItem value="all" variant="outline" size="sm" className={`flex items-center gap-1 h-11 min-w-24 px-4 rounded-md ${filterType === 'all' ? 'bg-teal-100 text-teal-800 border-teal-200' : 'bg-white'}`}>
+                      <PawPrint size={16} />
+                      <span>Vse živali</span>
+                    </ToggleGroupItem>
+                    <ToggleGroupItem value="dog" variant="outline" size="sm" className={`flex items-center gap-1 h-11 min-w-24 px-4 rounded-md ${filterType === 'dog' ? 'bg-teal-100 text-teal-800 border-teal-200' : 'bg-white'}`}>
+                      <Dog size={16} />
+                      <span>Psi</span>
+                    </ToggleGroupItem>
+                    <ToggleGroupItem value="cat" variant="outline" size="sm" className={`flex items-center gap-1 h-11 min-w-24 px-4 rounded-md ${filterType === 'cat' ? 'bg-teal-100 text-teal-800 border-teal-200' : 'bg-white'}`}>
+                      <Cat size={16} />
+                      <span>Mačke</span>
+                    </ToggleGroupItem>
+                  </ToggleGroup>
                 </div>
               </div>
             </AnimatedWrapper>
@@ -270,10 +259,16 @@ export default function LostAndFound() {
             <AnimatedWrapper animation="fade-in">
               <div className="mb-8">
                 <Tabs defaultValue="lost" className="w-full">
-                  <TabsList className="w-full sm:w-auto mb-6 bg-teal-50">
-                    <TabsTrigger value="lost" className="flex-1 sm:flex-initial data-[state=active]:bg-teal-100 data-[state=active]:text-teal-800">Izgubljene živali</TabsTrigger>
-                    <TabsTrigger value="found" className="flex-1 sm:flex-initial data-[state=active]:bg-teal-100 data-[state=active]:text-teal-800">Najdene živali</TabsTrigger>
-                  </TabsList>
+                  <ScrollArea className="pb-2">
+                    <TabsList className="w-full inline-flex mb-6 bg-teal-50 overflow-x-auto">
+                      <TabsTrigger value="lost" className="flex-1 py-3 data-[state=active]:bg-teal-100 data-[state=active]:text-teal-800">
+                        Izgubljene živali
+                      </TabsTrigger>
+                      <TabsTrigger value="found" className="flex-1 py-3 data-[state=active]:bg-teal-100 data-[state=active]:text-teal-800">
+                        Najdene živali
+                      </TabsTrigger>
+                    </TabsList>
+                  </ScrollArea>
                   
                   <TabsContent value="lost" className="focus-visible:outline-none focus-visible:ring-0">
                     <AnimatedWrapper animation="fade-in">
@@ -677,4 +672,3 @@ export default function LostAndFound() {
     </Layout>
   );
 }
-
