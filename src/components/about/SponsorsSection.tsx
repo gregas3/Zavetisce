@@ -1,9 +1,9 @@
-
 import { ExternalLink } from "lucide-react";
 import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
 } from "@/components/ui/card";
 import {
   Tooltip,
