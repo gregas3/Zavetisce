@@ -57,8 +57,7 @@ const sponsors = [
   {
     id: 5,
     name: "Marprom d.o.o.",
-    logoUrl: "/lovable-uploads/26024ab8-81da-451e-96d2-00032e7c132e.png",
-    logoPosition: "100% 0%",
+    logoUrl: "/lovable-uploads/b3252ad0-d343-40a2-b7cc-6adf6741a967.png",
     description: "Mestni prevoznik, ki je postal boter živali v zavetišču in doniral hrano ter opremo.",
     supportType: "Botrstvo, materialna pomoč, prostovoljstvo",
     website: "https://www.marprom.si",
@@ -106,6 +105,13 @@ export default function SponsorsSection() {
                           />
                         ) : sponsor.id === 3 ? (
                           // Use the new OTP Banka logo
+                          <img 
+                            src={sponsor.logoUrl} 
+                            alt={`Logo ${sponsor.name}`}
+                            className="w-full h-24 mb-2 object-contain"
+                          />
+                        ) : sponsor.id === 5 ? (
+                          // Use the new Marprom logo
                           <img 
                             src={sponsor.logoUrl} 
                             alt={`Logo ${sponsor.name}`}
@@ -176,6 +182,13 @@ export default function SponsorsSection() {
                             />
                           ) : sponsor.id === 3 ? (
                             // Use the new OTP Banka logo for mobile too
+                            <img 
+                              src={sponsor.logoUrl} 
+                              alt={`Logo ${sponsor.name}`}
+                              className="w-full h-16 mb-1 object-contain"
+                            />
+                          ) : sponsor.id === 5 ? (
+                            // Use the new Marprom logo for mobile too
                             <img 
                               src={sponsor.logoUrl} 
                               alt={`Logo ${sponsor.name}`}
