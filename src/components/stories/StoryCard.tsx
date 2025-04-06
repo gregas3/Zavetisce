@@ -3,9 +3,8 @@ import React, { useState } from 'react';
 import { Story } from '@/data/storiesData';
 import { Dog, Heart, Users, ExternalLink, Play } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogTrigger } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 interface StoryCardProps {
   story: Story;
@@ -53,9 +52,6 @@ const StoryCard = ({ story }: StoryCardProps) => {
     }
   };
   
-  // Use animal image as primary image if available
-  const displayImage = story.animalImage || story.image;
-  
   return (
     <AnimatedWrapper animation="fade-in">
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -67,8 +63,8 @@ const StoryCard = ({ story }: StoryCardProps) => {
             <div className="relative">
               <div className="overflow-hidden" style={{ height: '200px' }}>
                 <img 
-                  src={displayImage} 
-                  alt={`Žival od ${story.name}`}
+                  src={story.image} 
+                  alt={story.name}
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                 />
               </div>
@@ -83,10 +79,9 @@ const StoryCard = ({ story }: StoryCardProps) => {
             <CardContent className="pt-6">
               <blockquote className="italic text-gray-700 mb-4">"{story.text.length > 100 ? `${story.text.substring(0, 100)}...` : story.text}"</blockquote>
               <div className="flex items-center gap-3">
-                <Avatar className="w-10 h-10">
-                  <AvatarImage src={story.image} alt={story.name} />
-                  <AvatarFallback>{story.name.charAt(0)}</AvatarFallback>
-                </Avatar>
+                <div className="w-10 h-10 rounded-full overflow-hidden">
+                  <img src={story.image} alt={story.name} className="w-full h-full object-cover" />
+                </div>
                 <p className="font-medium text-teal-900">{story.name}</p>
               </div>
               
@@ -106,9 +101,6 @@ const StoryCard = ({ story }: StoryCardProps) => {
         </DialogTrigger>
         
         <DialogContent className="sm:max-w-2xl">
-          <DialogTitle className="sr-only">Zgodba od {story.name}</DialogTitle>
-          <DialogDescription className="sr-only">Preberite celotno zgodbo od {story.name}</DialogDescription>
-          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <div className="mb-4">
@@ -121,10 +113,9 @@ const StoryCard = ({ story }: StoryCardProps) => {
               <blockquote className="italic text-gray-700 mb-4 text-lg">"{story.text}"</blockquote>
               
               <div className="flex items-center gap-3 mb-6">
-                <Avatar className="w-12 h-12">
-                  <AvatarImage src={story.image} alt={story.name} />
-                  <AvatarFallback>{story.name.charAt(0)}</AvatarFallback>
-                </Avatar>
+                <div className="w-12 h-12 rounded-full overflow-hidden">
+                  <img src={story.image} alt={story.name} className="w-full h-full object-cover" />
+                </div>
                 <p className="font-medium text-teal-900 text-lg">{story.name}</p>
               </div>
               
@@ -143,7 +134,6 @@ const StoryCard = ({ story }: StoryCardProps) => {
               )}
             </div>
             
-            {/* Always show animal image in modal if available */}
             {story.animalImage && (
               <div>
                 <h3 className="text-sm font-medium text-gray-700 mb-2">Fotografija</h3>
