@@ -409,8 +409,8 @@ const Donations = () => {
               </CardHeader>
               
               <CardContent className="space-y-6">
-                <div className="flex flex-col md:flex-row gap-6 items-start">
-                  <div className="bg-teal-50/70 p-5 rounded-lg flex-grow">
+                <div className="flex flex-col gap-6 items-center">
+                  <div className="bg-teal-50/70 p-5 rounded-lg w-full">
                     <p className="text-lg mb-4">
                       Vaša letna članarina v višini 30€ neposredno podpira oskrbo, hrano in zdravljenje naših živali v zavetišču.
                     </p>
@@ -422,17 +422,33 @@ const Donations = () => {
                     </div>
                   </div>
                   
-                  <div className="flex justify-center md:justify-end md:pt-2">
-                    <div className="relative group">
+                  <div className="flex justify-center py-4">
+                    <div className="relative group membership-badge">
                       <img 
                         src="/public/lovable-uploads/d4c898dd-8689-4de6-9053-b74fc8b74810.png" 
                         alt="Official 2025 Member Badge – Animal Shelter Maribor" 
-                        className="w-[200px] md:w-[240px] max-w-full h-auto transition-transform duration-300 group-hover:scale-105"
+                        className="w-[200px] md:w-[240px] max-w-full h-auto transition-transform duration-300"
                       />
                       <div className="absolute inset-0 rounded-full bg-teal-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                   </div>
                 </div>
+                
+                <style jsx global>{`
+                  @keyframes gentle-pulse {
+                    0% { transform: scale(1); }
+                    50% { transform: scale(1.05); }
+                    100% { transform: scale(1); }
+                  }
+                  
+                  .membership-badge {
+                    animation: gentle-pulse 3s infinite ease-in-out;
+                  }
+                  
+                  .membership-badge:hover {
+                    animation-play-state: paused;
+                  }
+                `}</style>
                 
                 <Separator className="my-6" />
                 
