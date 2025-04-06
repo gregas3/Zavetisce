@@ -29,8 +29,7 @@ const sponsors = [
   {
     id: 2,
     name: "Priori Zavarovanje d.o.o.",
-    logoUrl: "/lovable-uploads/26024ab8-81da-451e-96d2-00032e7c132e.png",
-    logoPosition: "25% 0%",
+    logoUrl: "/lovable-uploads/520622a8-48e0-48b5-844f-1cf058dabae4.png",
     description: "Lokalni zavarovalni posrednik, ki je podprl zavetišče z nakupom veterinarske opreme.",
     supportType: "Finančna donacija za opremo",
     website: "https://www.priori.si",
@@ -99,6 +98,13 @@ export default function SponsorsSection() {
                             alt={`Logo ${sponsor.name}`}
                             className="w-full h-24 mb-2 object-contain"
                           />
+                        ) : sponsor.id === 2 ? (
+                          // Use the new Priori Zavarovanje logo
+                          <img 
+                            src={sponsor.logoUrl} 
+                            alt={`Logo ${sponsor.name}`}
+                            className="w-full h-24 mb-2 object-contain"
+                          />
                         ) : (
                           // For other sponsors, use the sprite technique
                           <div 
@@ -150,6 +156,13 @@ export default function SponsorsSection() {
                         <CardContent className="p-3 flex flex-col items-center justify-center">
                           {sponsor.id === 1 ? (
                             // Use the new Zavarovalnica Sava logo for mobile too
+                            <img 
+                              src={sponsor.logoUrl} 
+                              alt={`Logo ${sponsor.name}`}
+                              className="w-full h-16 mb-1 object-contain"
+                            />
+                          ) : sponsor.id === 2 ? (
+                            // Use the new Priori Zavarovanje logo for mobile too
                             <img 
                               src={sponsor.logoUrl} 
                               alt={`Logo ${sponsor.name}`}
