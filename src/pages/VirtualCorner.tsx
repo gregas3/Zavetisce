@@ -29,7 +29,7 @@ const VirtualCorner = () => {
                   <CardTitle className="text-2xl font-bold text-teal-800">Doživite zavetišče skozi pasje oči (360° izkušnja)</CardTitle>
                 </div>
                 <CardDescription className="text-base">
-                  Vstopite v tačke naših zavetniških psov in spoznajte njihov vsakdan.
+                  Vstopite v tačke naših zavetiških psov in spoznajte njihov vsakdan.
                 </CardDescription>
               </CardHeader>
               
