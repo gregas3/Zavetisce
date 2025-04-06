@@ -1,5 +1,5 @@
 
-import { Mail, Phone, Clock, MapPin, AlertTriangle, Navigation } from "lucide-react";
+import { Mail, Phone, Clock, MapPin, AlertTriangle, Navigation, Facebook, Instagram } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
