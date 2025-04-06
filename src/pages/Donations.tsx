@@ -425,7 +425,7 @@ const Donations = () => {
                   <div className="flex justify-center md:justify-end md:pt-2">
                     <div className="relative group">
                       <img 
-                        src="/public/lovable-uploads/e9a594a1-cdaf-4a53-b920-e237f505df4f.png" 
+                        src="/public/lovable-uploads/d4c898dd-8689-4de6-9053-b74fc8b74810.png" 
                         alt="Official 2025 Member Badge – Animal Shelter Maribor" 
                         className="w-[150px] md:w-[180px] max-w-full h-auto transition-transform duration-300 group-hover:scale-105"
                       />
