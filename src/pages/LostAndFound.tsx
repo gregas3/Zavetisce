@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
@@ -245,13 +244,13 @@ export default function LostAndFound() {
                     type="single" 
                     value={filterType} 
                     onValueChange={(value) => value && setFilterType(value)} 
-                    className={`flex ${isMobile ? 'flex-wrap justify-center' : 'gap-2 justify-center'}`}
+                    className={`flex ${isMobile ? 'flex-wrap justify-center mb-4' : 'gap-2 justify-center'}`}
                   >
                     <ToggleGroupItem 
                       value="all" 
                       variant="outline" 
                       size="sm" 
-                      className={`flex items-center gap-1 ${isMobile ? 'flex-grow my-1 min-w-[90px] h-11' : 'min-w-24 px-4 rounded-md'} ${filterType === 'all' ? 'bg-teal-100 text-teal-800 border-teal-200' : 'bg-white'}`}
+                      className={`flex items-center gap-1 ${isMobile ? 'flex-grow my-1 min-w-[80px] h-10' : 'min-w-24 px-4 rounded-md'} ${filterType === 'all' ? 'bg-teal-100 text-teal-800 border-teal-200' : 'bg-white'}`}
                     >
                       <PawPrint size={16} />
                       <span>Vse živali</span>
@@ -260,7 +259,7 @@ export default function LostAndFound() {
                       value="dog" 
                       variant="outline" 
                       size="sm" 
-                      className={`flex items-center gap-1 ${isMobile ? 'flex-grow my-1 min-w-[90px] h-11' : 'min-w-24 px-4 rounded-md'} ${filterType === 'dog' ? 'bg-teal-100 text-teal-800 border-teal-200' : 'bg-white'}`}
+                      className={`flex items-center gap-1 ${isMobile ? 'flex-grow my-1 min-w-[80px] h-10' : 'min-w-24 px-4 rounded-md'} ${filterType === 'dog' ? 'bg-teal-100 text-teal-800 border-teal-200' : 'bg-white'}`}
                     >
                       <Dog size={16} />
                       <span>Psi</span>
@@ -269,7 +268,7 @@ export default function LostAndFound() {
                       value="cat" 
                       variant="outline" 
                       size="sm" 
-                      className={`flex items-center gap-1 ${isMobile ? 'flex-grow my-1 min-w-[90px] h-11' : 'min-w-24 px-4 rounded-md'} ${filterType === 'cat' ? 'bg-teal-100 text-teal-800 border-teal-200' : 'bg-white'}`}
+                      className={`flex items-center gap-1 ${isMobile ? 'flex-grow my-1 min-w-[80px] h-10' : 'min-w-24 px-4 rounded-md'} ${filterType === 'cat' ? 'bg-teal-100 text-teal-800 border-teal-200' : 'bg-white'}`}
                     >
                       <Cat size={16} />
                       <span>Mačke</span>
@@ -282,18 +281,18 @@ export default function LostAndFound() {
             <AnimatedWrapper animation="fade-in">
               <div className="mb-8">
                 <Tabs defaultValue="lost" className="w-full">
-                  <ScrollArea className="pb-4">
+                  <ScrollArea className="w-full pb-4 z-0">
                     <div className="min-w-full overflow-visible">
                       <TabsList className="inline-flex mb-6 bg-teal-50 min-w-full">
                         <TabsTrigger 
                           value="lost" 
-                          className="flex-1 py-3 min-w-[150px] data-[state=active]:bg-teal-100 data-[state=active]:text-teal-800"
+                          className="flex-1 py-3 px-4 min-w-[150px] data-[state=active]:bg-teal-100 data-[state=active]:text-teal-800"
                         >
                           Izgubljene živali
                         </TabsTrigger>
                         <TabsTrigger 
                           value="found" 
-                          className="flex-1 py-3 min-w-[150px] data-[state=active]:bg-teal-100 data-[state=active]:text-teal-800"
+                          className="flex-1 py-3 px-4 min-w-[150px] data-[state=active]:bg-teal-100 data-[state=active]:text-teal-800"
                         >
                           Najdene živali
                         </TabsTrigger>

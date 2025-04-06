@@ -56,7 +56,7 @@ const ToggleGroupItem = React.forwardRef<
           variant: context.variant || variant,
           size: context.size || size,
         }),
-        isMobile ? "flex-grow h-11 min-h-11 min-w-[90px] my-1" : "",
+        isMobile ? "flex-grow h-10 min-h-10 min-w-[80px] my-1" : "",
         className
       )}
       {...props}
