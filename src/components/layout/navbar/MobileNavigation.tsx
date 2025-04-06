@@ -7,6 +7,7 @@ import { NavbarActions } from "./NavbarActions";
 import { NavbarBranding } from "./NavbarBranding";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import { MobileNavItem } from "./MobileNavItem";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 type MobileNavigationProps = {
   isOpen: boolean;
@@ -52,93 +53,95 @@ export const MobileNavigation = ({
           aria-modal="true"
           aria-label="Navigation menu"
         >
-          <nav className="flex flex-col h-full overflow-y-auto">
-            <div className="flex flex-col space-y-0.5 flex-1 px-0 py-[6px] bg-green-100 rounded-sm my-0">
-              <AnimatedWrapper animation="fade-in" delay={50} className="mb-1">
-                <MobileNavItem title="Posvojitve" hasSubmenu icon={<Heart size={18} className="text-teal-500" />}>
-                  <Link to="/posvojitev/psi" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
-                    <Dog size={15} className="text-teal-500" />
-                    <span className="font-medium text-sm">Psi</span>
+          <ScrollArea className="h-full">
+            <nav className="flex flex-col h-full overflow-y-auto">
+              <div className="flex flex-col space-y-0.5 flex-1 px-0 py-[6px] bg-green-100 rounded-sm my-0">
+                <AnimatedWrapper animation="fade-in" delay={50} className="mb-1">
+                  <MobileNavItem title="Posvojitve" hasSubmenu icon={<Heart size={18} className="text-teal-500" />}>
+                    <Link to="/posvojitev/psi" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
+                      <Dog size={15} className="text-teal-500" />
+                      <span className="font-medium text-sm">Psi</span>
+                    </Link>
+                    <Link to="/posvojitev/mačke" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
+                      <Cat size={15} className="text-teal-500" />
+                      <span className="font-medium text-sm">Mačke</span>
+                    </Link>
+                    <Link to="/posvojitev/postopek" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
+                      <Heart size={15} className="text-teal-500" />
+                      <span className="font-medium text-sm">Postopek posvojitve</span>
+                    </Link>
+                    <Link to="/termini" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
+                      <Calendar size={15} className="text-teal-500" />
+                      <span className="font-medium text-sm">Ogledi</span>
+                    </Link>
+                    <Link to="/vprasalnik" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
+                      <FileQuestion size={15} className="text-teal-500" />
+                      <span className="font-medium text-sm">Vprašalnik</span>
+                    </Link>
+                  </MobileNavItem>
+                </AnimatedWrapper>
+                
+                <AnimatedWrapper animation="fade-in" delay={100}>
+                  <Link to="/izgubljeni-najdeni" className="flex items-center gap-2 text-sm py-2.5 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" onClick={closeMenu}>
+                    <AlertCircle size={16} className="text-teal-500" />
+                    <span>Izgubljene in najdene živali</span>
                   </Link>
-                  <Link to="/posvojitev/mačke" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
-                    <Cat size={15} className="text-teal-500" />
-                    <span className="font-medium text-sm">Mačke</span>
+                </AnimatedWrapper>
+                
+                <AnimatedWrapper animation="fade-in" delay={150}>
+                  <Link to="/prostozivece-macke" className="flex items-center gap-2 text-sm py-2.5 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" onClick={closeMenu}>
+                    <Cat size={16} className="text-teal-500" />
+                    <span>Prostoživeče mačke</span>
                   </Link>
-                  <Link to="/posvojitev/postopek" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
-                    <Heart size={15} className="text-teal-500" />
-                    <span className="font-medium text-sm">Postopek posvojitve</span>
+                </AnimatedWrapper>
+                
+                <AnimatedWrapper animation="fade-in" delay={200}>
+                  <Link to="/prostovoljstvo" className="flex items-center gap-2 text-sm py-2.5 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" onClick={closeMenu}>
+                    <Users size={16} className="text-teal-500" />
+                    <span>Prostovoljstvo</span>
                   </Link>
-                  <Link to="/termini" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
-                    <Calendar size={15} className="text-teal-500" />
-                    <span className="font-medium text-sm">Ogledi</span>
+                </AnimatedWrapper>
+                
+                <AnimatedWrapper animation="fade-in" delay={250}>
+                  <MobileNavItem title="O nas" hasSubmenu icon={<HelpCircle size={16} className="text-teal-500" />}>
+                    <Link to="/about/virtualni-koticek" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
+                      <Sparkles size={15} className="text-teal-500" />
+                      <span className="font-medium text-sm">Virtualen kotiček</span>
+                    </Link>
+                    <Link to="/about/veterinarski-koticek" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
+                      <Stethoscope size={15} className="text-teal-500" />
+                      <span className="font-medium text-sm">Veterinarski kotiček</span>
+                    </Link>
+                    <Link to="/about/oskrba-zivali" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
+                      <Scissors size={15} className="text-teal-500" />
+                      <span className="font-medium text-sm">Oskrba živali</span>
+                    </Link>
+                    <Link to="/about/zgodbe-ljudi" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
+                      <Quote size={15} className="text-teal-500" />
+                      <span className="font-medium text-sm">Zgodbe ljudi</span>
+                    </Link>
+                    <Link to="/o-nas" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
+                      <HelpCircle size={15} className="text-teal-500" />
+                      <span className="font-medium text-sm">O nas</span>
+                    </Link>
+                  </MobileNavItem>
+                </AnimatedWrapper>
+                
+                <AnimatedWrapper animation="fade-in" delay={300}>
+                  <Link to="/kontakt" className="flex items-center gap-2 text-sm py-2.5 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" onClick={closeMenu}>
+                    <Phone size={16} className="text-teal-500" />
+                    <span>Kontakt</span>
                   </Link>
-                  <Link to="/vprasalnik" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
-                    <FileQuestion size={15} className="text-teal-500" />
-                    <span className="font-medium text-sm">Vprašalnik</span>
-                  </Link>
-                </MobileNavItem>
-              </AnimatedWrapper>
-              
-              <AnimatedWrapper animation="fade-in" delay={100}>
-                <Link to="/izgubljeni-najdeni" className="flex items-center gap-2 text-sm py-2.5 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" onClick={closeMenu}>
-                  <AlertCircle size={16} className="text-teal-500" />
-                  <span>Izgubljene in najdene živali</span>
-                </Link>
-              </AnimatedWrapper>
-              
-              <AnimatedWrapper animation="fade-in" delay={150}>
-                <Link to="/prostozivece-macke" className="flex items-center gap-2 text-sm py-2.5 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" onClick={closeMenu}>
-                  <Cat size={16} className="text-teal-500" />
-                  <span>Prostoživeče mačke</span>
-                </Link>
-              </AnimatedWrapper>
-              
-              <AnimatedWrapper animation="fade-in" delay={200}>
-                <Link to="/prostovoljstvo" className="flex items-center gap-2 text-sm py-2.5 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" onClick={closeMenu}>
-                  <Users size={16} className="text-teal-500" />
-                  <span>Prostovoljstvo</span>
-                </Link>
-              </AnimatedWrapper>
-              
-              <AnimatedWrapper animation="fade-in" delay={250}>
-                <MobileNavItem title="O nas" hasSubmenu icon={<HelpCircle size={16} className="text-teal-500" />}>
-                  <Link to="/about/virtualni-koticek" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
-                    <Sparkles size={15} className="text-teal-500" />
-                    <span className="font-medium text-sm">Virtualen kotiček</span>
-                  </Link>
-                  <Link to="/about/veterinarski-koticek" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
-                    <Stethoscope size={15} className="text-teal-500" />
-                    <span className="font-medium text-sm">Veterinarski kotiček</span>
-                  </Link>
-                  <Link to="/about/oskrba-zivali" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
-                    <Scissors size={15} className="text-teal-500" />
-                    <span className="font-medium text-sm">Oskrba živali</span>
-                  </Link>
-                  <Link to="/about/zgodbe-ljudi" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
-                    <Quote size={15} className="text-teal-500" />
-                    <span className="font-medium text-sm">Zgodbe ljudi</span>
-                  </Link>
-                  <Link to="/o-nas" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
-                    <HelpCircle size={15} className="text-teal-500" />
-                    <span className="font-medium text-sm">O nas</span>
-                  </Link>
-                </MobileNavItem>
-              </AnimatedWrapper>
-              
-              <AnimatedWrapper animation="fade-in" delay={300}>
-                <Link to="/kontakt" className="flex items-center gap-2 text-sm py-2.5 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" onClick={closeMenu}>
-                  <Phone size={16} className="text-teal-500" />
-                  <span>Kontakt</span>
-                </Link>
-              </AnimatedWrapper>
-            </div>
-            
-            <AnimatedWrapper animation="fade-in" delay={350}>
-              <div className="p-3">
-                {/* Footer content here if needed */}
+                </AnimatedWrapper>
               </div>
-            </AnimatedWrapper>
-          </nav>
+              
+              <AnimatedWrapper animation="fade-in" delay={350}>
+                <div className="p-3">
+                  {/* Footer content here if needed */}
+                </div>
+              </AnimatedWrapper>
+            </nav>
+          </ScrollArea>
         </div>
       </div>
     </>;

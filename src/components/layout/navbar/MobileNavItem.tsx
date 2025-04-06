@@ -1,7 +1,8 @@
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 type MobileNavItemProps = {
   title: string;
@@ -17,6 +18,15 @@ export const MobileNavItem = ({
   icon
 }: MobileNavItemProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [contentHeight, setContentHeight] = useState(0);
+  const contentRef = useRef<HTMLDivElement>(null);
+  
+  // Measure content height when contents or open state changes
+  useEffect(() => {
+    if (contentRef.current && isOpen) {
+      setContentHeight(contentRef.current.scrollHeight);
+    }
+  }, [isOpen, children]);
   
   const toggleSubmenu = (e: React.MouseEvent) => {
     if (hasSubmenu) {
@@ -30,6 +40,7 @@ export const MobileNavItem = ({
       <button 
         className="flex items-center justify-between w-full text-sm py-2.5 px-3 font-medium text-left text-teal-800 hover:text-teal-600 transition-normal" 
         onClick={toggleSubmenu}
+        aria-expanded={isOpen}
       >
         <span className="flex items-center gap-2">
           {icon}
@@ -45,11 +56,20 @@ export const MobileNavItem = ({
       
       {hasSubmenu && (
         <div 
-          className={`pl-2 space-y-0.5 overflow-hidden transition-all duration-300 ${
-            isOpen ? "max-h-[200px] opacity-100 pb-1.5" : "max-h-0 opacity-0"
+          className={`pl-2 overflow-hidden transition-all duration-300 ${
+            isOpen ? "opacity-100" : "max-h-0 opacity-0"
           }`}
+          style={{ 
+            maxHeight: isOpen ? `${Math.min(contentHeight, 200)}px` : 0 
+          }}
         >
-          {children}
+          <ScrollArea 
+            className={`${isOpen ? 'max-h-[200px]' : 'max-h-0'}`}
+          >
+            <div ref={contentRef} className="space-y-0.5 pb-1.5">
+              {children}
+            </div>
+          </ScrollArea>
         </div>
       )}
     </div>

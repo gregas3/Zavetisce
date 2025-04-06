@@ -405,4 +405,68 @@
   .adopt-glow:hover::before {
     opacity: 1;
   }
+
+  /* No-scrollbar utility for elements that should hide scrollbars */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  .no-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+  
+  /* Animation for collapsible elements */
+  @keyframes collapsible-down {
+    from {
+      height: 0;
+      opacity: 0;
+    }
+    to {
+      height: var(--radix-collapsible-content-height);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes collapsible-up {
+    from {
+      height: var(--radix-collapsible-content-height);
+      opacity: 1;
+    }
+    to {
+      height: 0;
+      opacity: 0;
+    }
+  }
+  
+  .animate-collapsible-down {
+    animation: collapsible-down 300ms ease-out;
+  }
+  
+  .animate-collapsible-up {
+    animation: collapsible-up 300ms ease-out;
+  }
+  
+  /* Mobile dropdown transition animations */
+  .dropdown-expand-enter {
+    max-height: 0;
+    opacity: 0;
+  }
+  
+  .dropdown-expand-enter-active {
+    max-height: 200px;
+    opacity: 1;
+    transition: max-height 300ms ease-out, opacity 300ms ease-out;
+  }
+  
+  .dropdown-expand-exit {
+    max-height: 200px;
+    opacity: 1;
+  }
+  
+  .dropdown-expand-exit-active {
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 300ms ease-in, opacity 300ms ease-in;
+  }
 }

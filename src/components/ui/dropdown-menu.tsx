@@ -1,12 +1,71 @@
+
 import * as React from "react"
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
 import { Check, ChevronRight, Circle } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
-const DropdownMenu = DropdownMenuPrimitive.Root
+const DropdownMenu = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Root>
+>(({ children, ...props }, ref) => (
+  <DropdownMenuPrimitive.Root {...props} ref={ref}>
+    {children}
+  </DropdownMenuPrimitive.Root>
+))
+DropdownMenu.displayName = DropdownMenuPrimitive.Root.displayName
 
-const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger
+const DropdownMenuTrigger = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.Trigger>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Trigger>
+>(({ className, children, ...props }, ref) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
+  const triggerRef = React.useRef<HTMLButtonElement | null>(null);
+  
+  // Handle mouse enter event
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+  };
+  
+  // Handle mouse leave event
+  const handleMouseLeave = () => {
+    if (window.innerWidth >= 1024) { // Only on desktop
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      
+      timeoutRef.current = setTimeout(() => {
+        if (triggerRef.current) {
+          const event = new Event('click', { bubbles: true });
+          triggerRef.current.dispatchEvent(event);
+        }
+      }, 300);
+    }
+  };
+  
+  return (
+    <DropdownMenuPrimitive.Trigger
+      ref={(el) => {
+        triggerRef.current = el;
+        if (typeof ref === 'function') {
+          ref(el);
+        } else if (ref) {
+          ref.current = el;
+        }
+      }}
+      className={cn("focus:outline-none", className)}
+      onMouseEnter={handleMouseEnter}
+      {...props}
+    >
+      {children}
+    </DropdownMenuPrimitive.Trigger>
+  );
+})
+DropdownMenuTrigger.displayName = DropdownMenuPrimitive.Trigger.displayName
 
 const DropdownMenuGroup = DropdownMenuPrimitive.Group
 
@@ -57,19 +116,60 @@ DropdownMenuSubContent.displayName =
 const DropdownMenuContent = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>
->(({ className, sideOffset = 4, ...props }, ref) => (
-  <DropdownMenuPrimitive.Portal>
-    <DropdownMenuPrimitive.Content
-      ref={ref}
-      sideOffset={sideOffset}
-      className={cn(
-        "z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-        className
-      )}
-      {...props}
-    />
-  </DropdownMenuPrimitive.Portal>
-))
+>(({ className, sideOffset = 4, ...props }, ref) => {
+  const contentRef = React.useRef<HTMLDivElement | null>(null);
+  
+  const handleMouseEnter = () => {
+    const parentMenu = contentRef.current?.parentElement;
+    if (parentMenu) {
+      const trigger = parentMenu.querySelector('[data-state="open"]');
+      if (trigger && trigger instanceof HTMLElement) {
+        // Simulate mouse enter on the trigger
+        trigger.dispatchEvent(new MouseEvent('mouseenter', { 
+          bubbles: true,
+          cancelable: true
+        }));
+      }
+    }
+  };
+  
+  const handleMouseLeave = () => {
+    const parentMenu = contentRef.current?.parentElement;
+    if (parentMenu) {
+      const trigger = parentMenu.querySelector('[data-state="open"]');
+      if (trigger && trigger instanceof HTMLElement) {
+        // Simulate mouse leave on the trigger
+        trigger.dispatchEvent(new MouseEvent('mouseleave', { 
+          bubbles: true,
+          cancelable: true
+        }));
+      }
+    }
+  };
+  
+  return (
+    <DropdownMenuPrimitive.Portal>
+      <DropdownMenuPrimitive.Content
+        ref={(el) => {
+          contentRef.current = el;
+          if (typeof ref === 'function') {
+            ref(el);
+          } else if (ref) {
+            ref.current = el;
+          }
+        }}
+        sideOffset={sideOffset}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        className={cn(
+          "z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+          className
+        )}
+        {...props}
+      />
+    </DropdownMenuPrimitive.Portal>
+  )
+})
 DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName
 
 const DropdownMenuItem = React.forwardRef<
