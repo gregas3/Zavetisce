@@ -85,7 +85,7 @@ const VirtualCorner = () => {
               <CardHeader>
                 <div className="flex items-center gap-2 mb-2">
                   <Cat className="text-teal-600" />
-                  <CardTitle className="text-2xl font-bold text-teal-800">Mačji svet skozi oči mačke</CardTitle>
+                  <CardTitle className="text-2xl font-bold text-teal-800">Doživite zavetišče skozi mačje oči (360° izkušnja)</CardTitle>
                 </div>
                 <CardDescription className="text-base">
                   Vstopite v svet naših mačk in raziščite njihov življenjski prostor z edinstvene perspektive – skozi njihove oči. Kliknite za 360° izkušnjo! 🐾
