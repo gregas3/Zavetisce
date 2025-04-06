@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, ChevronDown, Dog, Cat, Heart, Calendar, Users, Phone, HelpCircle, FileQuestion, PawPrint, AlertCircle, Stethoscope, Scissors, Sparkles, Quote, Newspaper } from "lucide-react";
@@ -66,17 +65,21 @@ export const MobileNavigation = ({
                       <Cat size={15} className="text-teal-500" />
                       <span className="font-medium text-sm">Mačke</span>
                     </Link>
+                    <Link to="/termini" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
+                      <Calendar size={15} className="text-teal-500" />
+                      <span className="font-medium text-sm">Prijava na ogled</span>
+                    </Link>
+                    <Link to="/vprasalnik" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
+                      <FileQuestion size={15} className="text-teal-500" />
+                      <span className="font-medium text-sm">Izpolni vprašalnik</span>
+                    </Link>
                     <Link to="/posvojitev/postopek" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
                       <Heart size={15} className="text-teal-500" />
                       <span className="font-medium text-sm">Postopek posvojitve</span>
                     </Link>
-                    <Link to="/termini" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
-                      <Calendar size={15} className="text-teal-500" />
-                      <span className="font-medium text-sm">Ogledi</span>
-                    </Link>
-                    <Link to="/vprasalnik" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
-                      <FileQuestion size={15} className="text-teal-500" />
-                      <span className="font-medium text-sm">Vprašalnik</span>
+                    <Link to="/posvojitev/napotki" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
+                      <Heart size={15} className="text-teal-500" />
+                      <span className="font-medium text-sm">Napotki po posvojitvi</span>
                     </Link>
                   </MobileNavItem>
                 </AnimatedWrapper>

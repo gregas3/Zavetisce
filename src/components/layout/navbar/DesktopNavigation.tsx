@@ -50,14 +50,6 @@ export const DesktopNavigation = ({
                   </li>
                   <li>
                     <NavigationMenuLink asChild>
-                      <Link to="/posvojitev/postopek" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
-                        <Heart size={16} className="text-teal-500" />
-                        <span>Postopek posvojitve</span>
-                      </Link>
-                    </NavigationMenuLink>
-                  </li>
-                  <li>
-                    <NavigationMenuLink asChild>
                       <Link to="/termini" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
                         <Calendar size={16} className="text-teal-500" />
                         <span>Prijava na ogled</span>
@@ -68,7 +60,23 @@ export const DesktopNavigation = ({
                     <NavigationMenuLink asChild>
                       <Link to="/vprasalnik" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
                         <FileQuestion size={16} className="text-teal-500" />
-                        <span>Vprašalnik</span>
+                        <span>Izpolni vprašalnik</span>
+                      </Link>
+                    </NavigationMenuLink>
+                  </li>
+                  <li>
+                    <NavigationMenuLink asChild>
+                      <Link to="/posvojitev/postopek" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
+                        <Heart size={16} className="text-teal-500" />
+                        <span>Postopek posvojitve</span>
+                      </Link>
+                    </NavigationMenuLink>
+                  </li>
+                  <li>
+                    <NavigationMenuLink asChild>
+                      <Link to="/posvojitev/napotki" className="flex items-center gap-2 p-2 text-teal-800 hover:bg-teal-50 rounded-md transition-normal" onClick={closeMenu}>
+                        <Heart size={16} className="text-teal-500" />
+                        <span>Napotki po posvojitvi</span>
                       </Link>
                     </NavigationMenuLink>
                   </li>

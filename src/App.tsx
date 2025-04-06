@@ -16,6 +16,7 @@ import CatProfile from "./pages/CatProfile";
 import Appointments from "./pages/Appointments";
 import Questionnaire from "./pages/Questionnaire";
 import AdoptionProcess from "./pages/AdoptionProcess";
+import AdoptionTips from "./pages/AdoptionTips";
 import Donations from "./pages/Donations";
 import Volunteer from "./pages/Volunteer";
 import Kontakt from "./pages/Kontakt";
@@ -55,6 +56,7 @@ const App = () => {
             <Route path="/posvojitev/mačke" element={<CatsAdoption />} />
             <Route path="/posvojitev/mačke/:id" element={<CatProfile />} />
             <Route path="/posvojitev/postopek" element={<AdoptionProcess />} />
+            <Route path="/posvojitev/napotki" element={<AdoptionTips />} />
             
             {/* Questionnaire route - adding both paths for compatibility */}
             <Route path="/vprasalnik" element={<Questionnaire />} />
