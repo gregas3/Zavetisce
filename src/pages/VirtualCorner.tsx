@@ -6,61 +6,8 @@ import Section from "@/components/shared/Section";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
-import { useEffect, useRef, useState } from "react";
 
 const VirtualCorner = () => {
-  const dogVideoRef = useRef<HTMLDivElement>(null);
-  const catVideoRef = useRef<HTMLDivElement>(null);
-  const [is360Loaded, setIs360Loaded] = useState(false);
-  const [isCat360Loaded, setIsCat360Loaded] = useState(false);
-  
-  useEffect(() => {
-    // Load Kuula embeds after component mounts
-    // Dog video embed
-    if (dogVideoRef.current) {
-      dogVideoRef.current.innerHTML = ''; // Clear any existing content
-      
-      // Create an iframe for better rendering control
-      const iframe = document.createElement('iframe');
-      iframe.src = 'https://kuula.co/share/hFQst?logo=1&info=1&fs=1&vr=1&gyro=1&alpha=0.60&keys=0&sd=1&thumbs=1';
-      iframe.width = '100%';
-      iframe.height = '100%';
-      iframe.style.border = 'none';
-      iframe.allowFullscreen = true;
-      iframe.allow = 'xr-spatial-tracking; gyroscope; accelerometer; magnetometer';
-      iframe.onload = () => setIs360Loaded(true);
-      
-      dogVideoRef.current.appendChild(iframe);
-    }
-    
-    // Cat video embed
-    if (catVideoRef.current) {
-      catVideoRef.current.innerHTML = ''; // Clear any existing content
-      
-      // Create an iframe for better rendering control
-      const iframe = document.createElement('iframe');
-      iframe.src = 'https://kuula.co/share/hFQwW?logo=1&info=1&fs=1&vr=1&gyro=1&alpha=0.60&keys=0&sd=1&thumbs=1';
-      iframe.width = '100%';
-      iframe.height = '100%';
-      iframe.style.border = 'none';
-      iframe.allowFullscreen = true;
-      iframe.allow = 'xr-spatial-tracking; gyroscope; accelerometer; magnetometer';
-      iframe.onload = () => setIsCat360Loaded(true);
-      
-      catVideoRef.current.appendChild(iframe);
-    }
-    
-    // Cleanup function
-    return () => {
-      if (dogVideoRef.current) {
-        dogVideoRef.current.innerHTML = '';
-      }
-      if (catVideoRef.current) {
-        catVideoRef.current.innerHTML = '';
-      }
-    };
-  }, []);
-
   return (
     <Layout>
       <Helmet>
@@ -92,18 +39,26 @@ const VirtualCorner = () => {
                   Ta edinstvena izkušnja ljudem pomaga razumeti realnost življenja živali in spodbuja empatijo ter podporo.
                 </p>
                 
-                {/* 360° Video Embed */}
-                <div className="aspect-video w-full rounded-lg overflow-hidden shadow-inner border border-teal-100 relative bg-teal-50/50">
-                  {!is360Loaded && (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-teal-500"></div>
-                    </div>
-                  )}
-                  <div 
-                    ref={dogVideoRef}
-                    className="w-full h-full min-h-[400px] md:min-h-[500px]" 
-                    aria-label="360° pogled iz pasje perspektive v zavetišču"
-                  />
+                {/* Video Viewer */}
+                <div className="aspect-video w-full bg-black/5 rounded-lg overflow-hidden shadow-inner flex items-center justify-center border border-teal-100">
+                  <div className="text-center p-8">
+                    <Video className="w-16 h-16 mx-auto text-teal-500 mb-4 opacity-70" />
+                    <p className="text-teal-700 font-medium">360° video bo kmalu na voljo.</p>
+                    <p className="text-sm text-teal-600 mt-2">Preverite ponovno v nekaj dneh!</p>
+                  </div>
+                  
+                  {/* Placeholder for actual 360° video iframe */}
+                  {/* 
+                   <iframe 
+                    width="100%" 
+                    height="100%" 
+                    src="https://www.youtube.com/embed/VIDEO_ID" 
+                    title="360° pogled iz pasje perspektive v zavetišču" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowFullScreen
+                   ></iframe> 
+                   */}
                 </div>
                 
                 <div className="bg-teal-50 p-4 rounded-lg">
@@ -114,13 +69,9 @@ const VirtualCorner = () => {
               </CardContent>
               
               <CardFooter className="flex justify-center border-t border-teal-100 pt-6">
-                <Button 
-                  variant="outline" 
-                  className="text-teal-700 border-teal-200"
-                  onClick={() => window.open('https://kuula.co/share/hFQst?logo=1&info=1&fs=1&vr=1&gyro=1', '_blank')}
-                >
+                <Button variant="outline" className="text-teal-700 border-teal-200" disabled>
                   <ExternalLink size={18} className="mr-2" />
-                  Ogled v celozaslonskem načinu
+                  Ogled v celozaslonskem načinu bo kmalu na voljo
                 </Button>
               </CardFooter>
             </Card>
@@ -146,18 +97,26 @@ const VirtualCorner = () => {
                   Zahvaljujoč 360° kameri lahko doživite zavetišče iz perspektive mačke. Doživite njihovo igrivo naravo in vsakodnevne aktivnosti iz prve roke.
                 </p>
                 
-                {/* 360° Video Embed */}
-                <div className="aspect-video w-full rounded-lg overflow-hidden shadow-inner border border-teal-100 relative bg-teal-50/50">
-                  {!isCat360Loaded && (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-teal-500"></div>
-                    </div>
-                  )}
-                  <div 
-                    ref={catVideoRef}
-                    className="w-full h-full min-h-[400px] md:min-h-[500px]" 
-                    aria-label="360° pogled iz mačje perspektive v zavetišču"
-                  />
+                {/* Video Viewer */}
+                <div className="aspect-video w-full bg-black/5 rounded-lg overflow-hidden shadow-inner flex items-center justify-center border border-teal-100">
+                  <div className="text-center p-8">
+                    <Video className="w-16 h-16 mx-auto text-teal-500 mb-4 opacity-70" />
+                    <p className="text-teal-700 font-medium">360° video bo kmalu na voljo.</p>
+                    <p className="text-sm text-teal-600 mt-2">Preverite ponovno v nekaj dneh!</p>
+                  </div>
+                  
+                  {/* Placeholder for actual 360° video iframe */}
+                  {/* 
+                   <iframe 
+                    width="100%" 
+                    height="100%" 
+                    src="https://www.youtube.com/embed/VIDEO_ID" 
+                    title="360° pogled iz mačje perspektive v zavetišču" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowFullScreen
+                   ></iframe> 
+                   */}
                 </div>
                 
                 <div className="bg-teal-50 p-4 rounded-lg">
@@ -168,13 +127,9 @@ const VirtualCorner = () => {
               </CardContent>
               
               <CardFooter className="flex justify-center border-t border-teal-100 pt-6">
-                <Button 
-                  variant="outline" 
-                  className="text-teal-700 border-teal-200"
-                  onClick={() => window.open('https://kuula.co/share/hFQwW?logo=1&info=1&fs=1&vr=1&gyro=1', '_blank')}
-                >
+                <Button variant="outline" className="text-teal-700 border-teal-200" disabled>
                   <ExternalLink size={18} className="mr-2" />
-                  Ogled v celozaslonskem načinu
+                  Ogled v celozaslonskem načinu bo kmalu na voljo
                 </Button>
               </CardFooter>
             </Card>
