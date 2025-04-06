@@ -46,12 +46,11 @@ const sponsors = [
   },
   {
     id: 4,
-    name: "SKB banka d.d.",
-    logoUrl: "/lovable-uploads/26024ab8-81da-451e-96d2-00032e7c132e.png",
-    logoPosition: "75% 0%",
-    description: "Pomagali so z donacijami hrane in prostovoljsko pomočjo pri urejanju okolice.",
-    supportType: "Materialna donacija in prostovoljstvo",
-    website: "https://www.skb.si",
+    name: "Mr. Pet",
+    logoUrl: "/lovable-uploads/812e6cb5-60e9-4796-a0d3-401d64242705.png",
+    description: "Trgovina za male živali, ki redno donira hrano in opremo za živali v zavetišču.",
+    supportType: "Materialna donacija",
+    website: "https://www.mrpet.si",
     delay: 450,
   },
   {
@@ -89,29 +88,8 @@ export default function SponsorsSection() {
                   >
                     <Card className="h-full transition-all duration-300 hover:shadow-md hover:scale-105 flex flex-col border border-teal-200 bg-white/80">
                       <CardContent className="p-4 flex flex-col items-center justify-center flex-grow">
-                        {sponsor.id === 1 ? (
-                          // Use the new Zavarovalnica Sava logo
-                          <img 
-                            src={sponsor.logoUrl} 
-                            alt={`Logo ${sponsor.name}`}
-                            className="w-full h-24 mb-2 object-contain"
-                          />
-                        ) : sponsor.id === 2 ? (
-                          // Use the new Priori Zavarovanje logo
-                          <img 
-                            src={sponsor.logoUrl} 
-                            alt={`Logo ${sponsor.name}`}
-                            className="w-full h-24 mb-2 object-contain"
-                          />
-                        ) : sponsor.id === 3 ? (
-                          // Use the new OTP Banka logo
-                          <img 
-                            src={sponsor.logoUrl} 
-                            alt={`Logo ${sponsor.name}`}
-                            className="w-full h-24 mb-2 object-contain"
-                          />
-                        ) : sponsor.id === 5 ? (
-                          // Use the new Marprom logo
+                        {sponsor.id === 1 || sponsor.id === 2 || sponsor.id === 3 || sponsor.id === 4 || sponsor.id === 5 ? (
+                          // Use the direct image for these sponsors
                           <img 
                             src={sponsor.logoUrl} 
                             alt={`Logo ${sponsor.name}`}
@@ -166,29 +144,8 @@ export default function SponsorsSection() {
                     >
                       <Card className="h-full transition-all duration-300 hover:shadow-md border border-teal-200 bg-white/80">
                         <CardContent className="p-3 flex flex-col items-center justify-center">
-                          {sponsor.id === 1 ? (
-                            // Use the new Zavarovalnica Sava logo for mobile too
-                            <img 
-                              src={sponsor.logoUrl} 
-                              alt={`Logo ${sponsor.name}`}
-                              className="w-full h-16 mb-1 object-contain"
-                            />
-                          ) : sponsor.id === 2 ? (
-                            // Use the new Priori Zavarovanje logo for mobile too
-                            <img 
-                              src={sponsor.logoUrl} 
-                              alt={`Logo ${sponsor.name}`}
-                              className="w-full h-16 mb-1 object-contain"
-                            />
-                          ) : sponsor.id === 3 ? (
-                            // Use the new OTP Banka logo for mobile too
-                            <img 
-                              src={sponsor.logoUrl} 
-                              alt={`Logo ${sponsor.name}`}
-                              className="w-full h-16 mb-1 object-contain"
-                            />
-                          ) : sponsor.id === 5 ? (
-                            // Use the new Marprom logo for mobile too
+                          {sponsor.id === 1 || sponsor.id === 2 || sponsor.id === 3 || sponsor.id === 4 || sponsor.id === 5 ? (
+                            // Use direct image for these sponsors on mobile too
                             <img 
                               src={sponsor.logoUrl} 
                               alt={`Logo ${sponsor.name}`}
