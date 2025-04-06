@@ -4,7 +4,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
 } from "@/components/ui/card";
 import {
   Tooltip,
@@ -109,9 +108,6 @@ export default function SponsorsSection() {
                           {sponsor.name}
                         </div>
                       </CardContent>
-                      <CardFooter className="p-2 bg-teal-50/50 flex justify-end">
-                        <ExternalLink size={14} className="text-teal-600" />
-                      </CardFooter>
                     </Card>
                   </a>
                 </HoverCardTrigger>
