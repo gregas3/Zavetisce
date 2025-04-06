@@ -10,20 +10,18 @@ import Section from "@/components/shared/Section";
 import Layout from "@/components/layout/Layout";
 import DogWalkerForm from '@/components/volunteer/DogWalkerForm';
 import { useIsMobile } from "@/hooks/use-mobile";
-
 const Volunteer = () => {
   const [showDogWalkerForm, setShowDogWalkerForm] = useState(false);
   const isMobile = useIsMobile();
-  
   return <Layout>
       <Helmet>
         <title>Prostovoljstvo | Zavetišče za živali Maribor</title>
         <meta name="description" content="Postanite prostovoljec v Zavetišču za živali Maribor in pomagajte živalim do boljšega življenja. Sprehajanje psov, pomoč pri oskrbi, sodelovanje na dogodkih in druge možnosti prostovoljstva." />
       </Helmet>
       
-      <main className="min-h-screen pt-20 md:pt-24">
+      <main className="min-h-screen pt-20 md:pt-24 py-[37px]">
         {/* Hero Section */}
-        <section className="bg-gradient-to-b from-teal-50 to-white py-12 md:py-24">
+        <section className="bg-gradient-to-b from-teal-50 to-white py-12 md:py-[77px] my-0">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-3xl md:text-5xl font-bold text-teal-800 mb-6">Prostovoljstvo</h1>
