@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Helmet } from "react-helmet";
 import { PawPrint, Cat, Heart, Info, FileText } from "lucide-react";
@@ -79,20 +80,18 @@ export default function StrayCats() {
 
             <div className="md:col-span-5">
               <AnimatedWrapper animation="slide-up" delay={100}>
-                <div className="bg-teal-50 p-6 border border-teal-100 shadow-sm mx-0 my-[192px] rounded-xl">
-                  <img alt="Prostoživeče mačke" className="w-full h-auto rounded-lg mb-6 shadow-md" src="/lovable-uploads/0efce035-d33a-4772-a4ae-0c1609c5ad97.jpg" />
-                  
-                  
+                <div className="bg-teal-50 p-6 border border-teal-100 shadow-sm rounded-xl">
+                  <img alt="Prostoživeče mačke" className="w-full h-auto rounded-lg shadow-md" src="/lovable-uploads/0efce035-d33a-4772-a4ae-0c1609c5ad97.jpg" />
                 </div>
               </AnimatedWrapper>
             </div>
           </div>
 
-          <div className="mt-16">
+          <div className="mt-10 md:mt-12">
             <AnimatedWrapper animation="fade-in" delay={150}>
-              <div className="text-center mb-8">
+              <div className="text-center mb-5">
                 <h2 className="text-2xl md:text-3xl font-bold text-teal-800">Prijavite prostoživeče mačke</h2>
-                <p className="text-slate-600 mt-2">
+                <p className="text-slate-600 mt-2 max-w-2xl mx-auto">
                   Izpolnite spodnji obrazec za prijavo potrebe po odlovu prostoživečih mačk
                 </p>
               </div>
