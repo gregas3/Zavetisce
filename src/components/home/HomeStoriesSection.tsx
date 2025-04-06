@@ -31,7 +31,7 @@ export default function HomeStoriesSection() {
   const displayImage = stories[activeIndex].animalImage || stories[activeIndex].image;
 
   return (
-    <Section className="bg-gradient-to-b from-[#f0f9f7]/90 to-[#e8f6f4]/90">
+    <Section className="bg-gradient-to-b from-[#dcebe9]/80 to-[#d9e9e7]/80">
       <div className="max-w-4xl mx-auto">
         <AnimatedWrapper animation="fade-in">
           <div className="text-center mb-8 md:mb-10">
