@@ -75,13 +75,13 @@ export default function HeroSection() {
             </p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12 md:mb-20 max-w-xl mx-auto sm:mx-0">
-              {/* First row: "Posvoji me" buttons */}
-              <Button size="lg" variant="teal" asChild className="button-pulse glow-button rounded-full font-medium text-base w-full">
+              {/* First row: "Posvoji me" buttons with enhanced glow effect */}
+              <Button size="lg" variant="teal" asChild className="button-pulse adopt-glow rounded-full font-medium text-base w-full">
                 <Link to="/posvojitev/psi">
                   <span>Posvoji me</span> <Dog className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button size="lg" variant="teal" asChild className="button-pulse glow-button rounded-full font-medium text-base w-full">
+              <Button size="lg" variant="teal" asChild className="button-pulse adopt-glow rounded-full font-medium text-base w-full">
                 <Link to="/posvojitev/mačke">
                   <span>Posvoji me</span> <Cat className="ml-2 h-5 w-5" />
                 </Link>
