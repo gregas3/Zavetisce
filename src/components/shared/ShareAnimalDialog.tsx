@@ -113,7 +113,7 @@ const ShareAnimalDialog = ({
       },
     },
     {
-      name: "Kopiraj povezavo",
+      name: "Kopiraj",
       icon: <Copy size={20} />,
       color: "bg-gray-600",
       action: (url) => {
