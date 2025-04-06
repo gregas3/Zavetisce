@@ -1,5 +1,5 @@
 
-import { ArrowRight, ChevronDown, Dog, Cat } from "lucide-react";
+import { ArrowRight, ChevronDown, Dog, Cat, Heart, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import AnimatedWrapper from "../shared/AnimatedWrapper";
@@ -67,20 +67,28 @@ export default function HeroSection() {
               Vsaka žival si zasluži ljubeč dom in z vašo pomočjo lahko to uresničimo.
             </p>
             
-            <div className="flex flex-wrap gap-4 mb-12 md:mb-20">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12 md:mb-20 max-w-xl mx-auto sm:mx-0">
+              {/* First row: "Posvoji me" buttons */}
+              <Button size="lg" variant="teal" asChild className="button-pulse rounded-full font-medium text-base">
+                <Link to="/posvojitev/psi">
+                  Posvoji me <Dog className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+              <Button size="lg" variant="teal" asChild className="button-pulse rounded-full font-medium text-base">
+                <Link to="/posvojitev/mačke">
+                  Posvoji me <Cat className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+              
+              {/* Second row: "Podpri zavetišče" and "Postani član" buttons */}
               <Button size="lg" variant="darkTeal" asChild className="rounded-full font-medium text-base">
                 <Link to="/donacije">
-                  Podpri zavetišče
+                  Podpri zavetišče <Heart className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button size="lg" variant="teal" asChild className="rounded-full font-medium text-base">
-                <Link to="/posvojitev/psi">
-                  Posvoji me: <Dog className="ml-2 h-8 w-8" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="teal" asChild className="rounded-full font-medium text-base">
-                <Link to="/posvojitev/mačke">
-                  Posvoji me: <Cat className="ml-2 h-8 w-8" />
+              <Button size="lg" variant="darkTeal" asChild className="rounded-full font-medium text-base">
+                <Link to="/clanstvo">
+                  Postani član <Users className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
             </div>
