@@ -1,6 +1,6 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Helmet } from 'react-helmet';
+import { useLocation } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -74,6 +74,8 @@ const Donations = () => {
   const [activePaymentMethod, setActivePaymentMethod] = useState<'card' | 'bank'>('card');
   const [paymentInProgress, setPaymentInProgress] = useState(false);
   const [bankDetailsCopied, setBankDetailsCopied] = useState<string | null>(null);
+  const [highlightMembership, setHighlightMembership] = useState(false);
+  const location = useLocation();
   
   const bankDetails = {
     recipient: 'Javno podjetje Snaga d.o.o.',
@@ -81,6 +83,19 @@ const Donations = () => {
     purposeCode: 'CHAR',
     reference: 'Donacija zavetišču'
   };
+
+  useEffect(() => {
+    if (location.hash === '#clanarina') {
+      const membershipSection = document.getElementById('clanarina');
+      if (membershipSection) {
+        setTimeout(() => {
+          membershipSection.scrollIntoView({ behavior: 'smooth' });
+          setHighlightMembership(true);
+          setTimeout(() => setHighlightMembership(false), 2000);
+        }, 100);
+      }
+    }
+  }, [location.hash]);
 
   const handleCopy = (text: string, type: string) => {
     navigator.clipboard.writeText(text);
@@ -396,8 +411,15 @@ const Donations = () => {
           </Tabs>
           
           <AnimatedWrapper animation="fade-in" delay={300}>
-            <Card className="mt-16 overflow-hidden relative max-w-4xl mx-auto border-teal-100 bg-white/95">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-300 to-teal-500" />
+            <Card 
+              id="clanarina" 
+              className={`mt-16 overflow-hidden relative max-w-4xl mx-auto border-teal-100 bg-white/95 transition-all duration-1000 ${
+                highlightMembership ? 'shadow-xl shadow-teal-200/60 border-teal-300 ring-2 ring-teal-300/50' : ''
+              }`}
+            >
+              <div className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-300 to-teal-500 ${
+                highlightMembership ? 'h-2' : ''
+              }`} />
               
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-2xl font-bold text-teal-800">
@@ -433,11 +455,13 @@ const Donations = () => {
                   </div>
                   
                   <div className="flex justify-center py-6">
-                    <div className="relative group membership-badge">
+                    <div className={`relative group membership-badge ${highlightMembership ? 'animate-bounce-once' : ''}`}>
                       <img 
                         src="/public/lovable-uploads/d4c898dd-8689-4de6-9053-b74fc8b74810.png" 
                         alt="Official 2025 Member Badge – Animal Shelter Maribor" 
-                        className="w-[200px] md:w-[240px] max-w-full h-auto transition-transform duration-300"
+                        className={`w-[200px] md:w-[240px] max-w-full h-auto transition-transform duration-300 ${
+                          highlightMembership ? 'scale-110' : ''
+                        }`}
                       />
                       <div className="absolute inset-0 rounded-full bg-teal-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
@@ -451,8 +475,18 @@ const Donations = () => {
                     100% { transform: scale(1); }
                   }
                   
+                  @keyframes bounce-once {
+                    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+                    40% { transform: translateY(-20px); }
+                    60% { transform: translateY(-10px); }
+                  }
+                  
                   .membership-badge {
                     animation: gentle-pulse 3s infinite ease-in-out;
+                  }
+                  
+                  .animate-bounce-once {
+                    animation: bounce-once 1.5s ease-in-out;
                   }
                   
                   .membership-badge:hover {

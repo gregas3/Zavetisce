@@ -38,7 +38,7 @@ const links = [
     title: "Članstvo",
     description: "Postani član zavetišča in podpri naše poslanstvo",
     icon: Users,
-    link: "/about/virtualni-koticek",
+    link: "/donacije#clanarina",
     color: "bg-indigo-50 text-indigo-600 border-indigo-100",
     hoverColor: "group-hover:bg-indigo-100 group-hover:text-indigo-700",
     delay: 300,

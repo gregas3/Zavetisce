@@ -32,6 +32,13 @@ export default function HeroSection() {
     }
   };
   
+  // Function to scroll to membership section on donations page
+  const scrollToMembership = (e: React.MouseEvent) => {
+    e.preventDefault();
+    // Navigate to donations page and then scroll to membership section
+    window.location.href = '/donacije#clanarina';
+  };
+  
   return (
     <div className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background image with overlay */}
@@ -87,7 +94,7 @@ export default function HeroSection() {
                 </Link>
               </Button>
               <Button size="lg" variant="darkTeal" asChild className="rounded-full font-medium text-base">
-                <Link to="/clanstvo">
+                <Link to="/donacije#clanarina">
                   Postani član <Users className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
