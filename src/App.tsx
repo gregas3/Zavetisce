@@ -1,96 +1,61 @@
+import { Routes, Route } from "react-router-dom";
+import Index from "@/pages/Index";
+import AboutUs from "@/pages/AboutUs";
+import Kontakt from "@/pages/Kontakt";
+import DogsAdoption from "@/pages/DogsAdoption";
+import CatsAdoption from "@/pages/CatsAdoption";
+import DogProfile from "@/pages/DogProfile";
+import CatProfile from "@/pages/CatProfile";
+import Volunteer from "@/pages/Volunteer";
+import Donations from "@/pages/Donations";
+import ZgodbeLjudi from "@/pages/ZgodbeLjudi";
+import AdoptionProcess from "@/pages/AdoptionProcess";
+import Questionnaire from "@/pages/Questionnaire";
+import LostAndFound from "@/pages/LostAndFound";
+import VirtualCorner from "@/pages/VirtualCorner";
+import VeterinaryCorner from "@/pages/VeterinaryCorner";
+import StrayCats from "@/pages/StrayCats";
+import AnimalCare from "@/pages/AnimalCare";
+import Appointments from "@/pages/Appointments";
+import SearchResults from "@/pages/SearchResults"; // Add this import
+import NotFound from "@/pages/NotFound";
+import "./App.css";
 
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Helmet } from 'react-helmet';
-import ScrollToTop from "./components/shared/ScrollToTop";
-import Layout from "./components/layout/Layout";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
-import DogsAdoption from "./pages/DogsAdoption";
-import DogProfile from "./pages/DogProfile";
-import CatsAdoption from "./pages/CatsAdoption";
-import CatProfile from "./pages/CatProfile";
-import Appointments from "./pages/Appointments";
-import Questionnaire from "./pages/Questionnaire";
-import AdoptionProcess from "./pages/AdoptionProcess";
-import Donations from "./pages/Donations";
-import Volunteer from "./pages/Volunteer";
-import Kontakt from "./pages/Kontakt";
-import AboutUs from "./pages/AboutUs";
-import LostAndFound from "./pages/LostAndFound";
-import StrayCats from "./pages/StrayCats";
-import VeterinaryCorner from "./pages/VeterinaryCorner";
-import AnimalCare from "./pages/AnimalCare";
-import VirtualCorner from "./pages/VirtualCorner";
-import ZgodbeLjudi from "./pages/ZgodbeLjudi";
-
-const queryClient = new QueryClient();
-
-const App = () => {
-  // Set up scroll restoration to 'manual' at app level
-  if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-  }
-
+function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <Helmet>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=SF+Pro+Display:wght@400;500;600;700&display=swap" />
-      </Helmet>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            
-            {/* Adoption routes */}
-            <Route path="/posvojitev/psi" element={<DogsAdoption />} />
-            <Route path="/posvojitev/psi/:id" element={<DogProfile />} />
-            <Route path="/posvojitev/mačke" element={<CatsAdoption />} />
-            <Route path="/posvojitev/mačke/:id" element={<CatProfile />} />
-            <Route path="/posvojitev/postopek" element={<AdoptionProcess />} />
-            
-            {/* Questionnaire route - adding both paths for compatibility */}
-            <Route path="/vprasalnik" element={<Questionnaire />} />
-            <Route path="/posvojitev/vprašalnik" element={<Questionnaire />} />
-            
-            {/* Stray cats route */}
-            <Route path="/prostozivece-macke" element={<StrayCats />} />
-            
-            {/* Appointments route */}
-            <Route path="/termini" element={<Appointments />} />
-            
-            {/* Donations route */}
-            <Route path="/donacije" element={<Donations />} />
-            
-            {/* Volunteer route */}
-            <Route path="/prostovoljstvo" element={<Volunteer />} />
-            
-            {/* Contact route */}
-            <Route path="/kontakt" element={<Kontakt />} />
-            
-            {/* About us routes */}
-            <Route path="/o-nas" element={<AboutUs />} />
-            <Route path="/about/veterinarski-koticek" element={<VeterinaryCorner />} />
-            <Route path="/about/oskrba-zivali" element={<AnimalCare />} />
-            <Route path="/about/virtualni-koticek" element={<VirtualCorner />} />
-            <Route path="/about/zgodbe-ljudi" element={<ZgodbeLjudi />} />
-            
-            {/* Lost and Found route */}
-            <Route path="/izgubljeni-najdeni" element={<LostAndFound />} />
-            
-            {/* Catch-all route */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
+    <Routes>
+      <Route path="/" element={<Index />} />
+      <Route path="/o-nas" element={<AboutUs />} />
+      <Route path="/kontakt" element={<Kontakt />} />
+      
+      {/* Adoption Routes */}
+      <Route path="/posvojitev-psov" element={<DogsAdoption />} />
+      <Route path="/posvojitev-mack" element={<CatsAdoption />} />
+      <Route path="/postopek-posvojitve" element={<AdoptionProcess />} />
+      <Route path="/vprasalnik" element={<Questionnaire />} />
+      
+      {/* Animal Profiles */}
+      <Route path="/pes/:id" element={<DogProfile />} />
+      <Route path="/macka/:id" element={<CatProfile />} />
+      
+      {/* Other Features */}
+      <Route path="/prostovoljstvo" element={<Volunteer />} />
+      <Route path="/donacije" element={<Donations />} />
+      <Route path="/zgodbe-ljudi" element={<ZgodbeLjudi />} />
+      <Route path="/izgubljeni-najdeni" element={<LostAndFound />} />
+      <Route path="/virtualni-koticek" element={<VirtualCorner />} />
+      <Route path="/veterinarski-koticek" element={<VeterinaryCorner />} />
+      <Route path="/proste-macke" element={<StrayCats />} />
+      <Route path="/oskrba-zivali" element={<AnimalCare />} />
+      <Route path="/termini" element={<Appointments />} />
+      
+      {/* Search Results */}
+      <Route path="/iskanje" element={<SearchResults />} />
+      
+      {/* 404 Page */}
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
-};
+}
 
 export default App;
