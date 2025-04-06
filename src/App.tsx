@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import ScrollToTop from "@/components/shared/ScrollToTop";
 import Index from "@/pages/Index";
 import AboutUs from "@/pages/AboutUs";
 import Kontakt from "@/pages/Kontakt";
@@ -17,44 +18,47 @@ import VeterinaryCorner from "@/pages/VeterinaryCorner";
 import StrayCats from "@/pages/StrayCats";
 import AnimalCare from "@/pages/AnimalCare";
 import Appointments from "@/pages/Appointments";
-import SearchResults from "@/pages/SearchResults"; // Add this import
+import SearchResults from "@/pages/SearchResults";
 import NotFound from "@/pages/NotFound";
 import "./App.css";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Index />} />
-      <Route path="/o-nas" element={<AboutUs />} />
-      <Route path="/kontakt" element={<Kontakt />} />
-      
-      {/* Adoption Routes */}
-      <Route path="/posvojitev-psov" element={<DogsAdoption />} />
-      <Route path="/posvojitev-mack" element={<CatsAdoption />} />
-      <Route path="/postopek-posvojitve" element={<AdoptionProcess />} />
-      <Route path="/vprasalnik" element={<Questionnaire />} />
-      
-      {/* Animal Profiles */}
-      <Route path="/pes/:id" element={<DogProfile />} />
-      <Route path="/macka/:id" element={<CatProfile />} />
-      
-      {/* Other Features */}
-      <Route path="/prostovoljstvo" element={<Volunteer />} />
-      <Route path="/donacije" element={<Donations />} />
-      <Route path="/zgodbe-ljudi" element={<ZgodbeLjudi />} />
-      <Route path="/izgubljeni-najdeni" element={<LostAndFound />} />
-      <Route path="/virtualni-koticek" element={<VirtualCorner />} />
-      <Route path="/veterinarski-koticek" element={<VeterinaryCorner />} />
-      <Route path="/proste-macke" element={<StrayCats />} />
-      <Route path="/oskrba-zivali" element={<AnimalCare />} />
-      <Route path="/termini" element={<Appointments />} />
-      
-      {/* Search Results */}
-      <Route path="/iskanje" element={<SearchResults />} />
-      
-      {/* 404 Page */}
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Index />} />
+        <Route path="/o-nas" element={<AboutUs />} />
+        <Route path="/kontakt" element={<Kontakt />} />
+        
+        {/* Adoption Routes */}
+        <Route path="/posvojitev-psov" element={<DogsAdoption />} />
+        <Route path="/posvojitev-mack" element={<CatsAdoption />} />
+        <Route path="/postopek-posvojitve" element={<AdoptionProcess />} />
+        <Route path="/vprasalnik" element={<Questionnaire />} />
+        
+        {/* Animal Profiles */}
+        <Route path="/pes/:id" element={<DogProfile />} />
+        <Route path="/macka/:id" element={<CatProfile />} />
+        
+        {/* Other Features */}
+        <Route path="/prostovoljstvo" element={<Volunteer />} />
+        <Route path="/donacije" element={<Donations />} />
+        <Route path="/zgodbe-ljudi" element={<ZgodbeLjudi />} />
+        <Route path="/izgubljeni-najdeni" element={<LostAndFound />} />
+        <Route path="/virtualni-koticek" element={<VirtualCorner />} />
+        <Route path="/veterinarski-koticek" element={<VeterinaryCorner />} />
+        <Route path="/proste-macke" element={<StrayCats />} />
+        <Route path="/oskrba-zivali" element={<AnimalCare />} />
+        <Route path="/termini" element={<Appointments />} />
+        
+        {/* Search Results */}
+        <Route path="/iskanje" element={<SearchResults />} />
+        
+        {/* 404 Page */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   );
 }
 
