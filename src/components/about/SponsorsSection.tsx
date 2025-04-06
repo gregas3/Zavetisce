@@ -20,8 +20,7 @@ const sponsors = [
   {
     id: 1,
     name: "Zavarovalnica Sava",
-    logoUrl: "/lovable-uploads/26024ab8-81da-451e-96d2-00032e7c132e.png", 
-    logoPosition: "0% 0%",
+    logoUrl: "/lovable-uploads/54435c79-63fc-48aa-aaf6-5e634fe2ae99.png",
     description: "Velika slovenska zavarovalnica, ki je zavetišču donirala 5.000 € v praznični kampanji.",
     supportType: "Finančna donacija",
     website: "https://www.zav-sava.si",
@@ -93,15 +92,24 @@ export default function SponsorsSection() {
                   >
                     <Card className="h-full transition-all duration-300 hover:shadow-md hover:scale-105 flex flex-col border border-teal-200 bg-white/80">
                       <CardContent className="p-4 flex flex-col items-center justify-center flex-grow">
-                        {/* Logo with image sprite technique */}
-                        <div 
-                          className="w-full h-24 mb-2 bg-contain bg-no-repeat bg-center"
-                          style={{ 
-                            backgroundImage: `url(${sponsor.logoUrl})`,
-                            backgroundPosition: sponsor.logoPosition 
-                          }}
-                          aria-label={`Logo ${sponsor.name}`}
-                        />
+                        {sponsor.id === 1 ? (
+                          // Use the new Zavarovalnica Sava logo
+                          <img 
+                            src={sponsor.logoUrl} 
+                            alt={`Logo ${sponsor.name}`}
+                            className="w-full h-24 mb-2 object-contain"
+                          />
+                        ) : (
+                          // For other sponsors, use the sprite technique
+                          <div 
+                            className="w-full h-24 mb-2 bg-contain bg-no-repeat bg-center"
+                            style={{ 
+                              backgroundImage: `url(${sponsor.logoUrl})`,
+                              backgroundPosition: sponsor.logoPosition 
+                            }}
+                            aria-label={`Logo ${sponsor.name}`}
+                          />
+                        )}
                         <div className="text-center text-sm font-medium text-teal-700 mt-2">
                           {sponsor.name}
                         </div>
@@ -140,15 +148,24 @@ export default function SponsorsSection() {
                     >
                       <Card className="h-full transition-all duration-300 hover:shadow-md border border-teal-200 bg-white/80">
                         <CardContent className="p-3 flex flex-col items-center justify-center">
-                          {/* Logo with image sprite technique */}
-                          <div 
-                            className="w-full h-16 mb-1 bg-contain bg-no-repeat bg-center"
-                            style={{ 
-                              backgroundImage: `url(${sponsor.logoUrl})`,
-                              backgroundPosition: sponsor.logoPosition 
-                            }}
-                            aria-label={`Logo ${sponsor.name}`}
-                          />
+                          {sponsor.id === 1 ? (
+                            // Use the new Zavarovalnica Sava logo for mobile too
+                            <img 
+                              src={sponsor.logoUrl} 
+                              alt={`Logo ${sponsor.name}`}
+                              className="w-full h-16 mb-1 object-contain"
+                            />
+                          ) : (
+                            // For other sponsors, use the sprite technique
+                            <div 
+                              className="w-full h-16 mb-1 bg-contain bg-no-repeat bg-center"
+                              style={{ 
+                                backgroundImage: `url(${sponsor.logoUrl})`,
+                                backgroundPosition: sponsor.logoPosition 
+                              }}
+                              aria-label={`Logo ${sponsor.name}`}
+                            />
+                          )}
                           <div className="text-center text-xs font-medium text-teal-700 mt-1">
                             {sponsor.name}
                           </div>
