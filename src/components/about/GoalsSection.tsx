@@ -1,7 +1,7 @@
 
 import React from 'react';
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
-import { BookOpen, Users } from "lucide-react";
+import { BookOpen, Users, Building, Syringe } from "lucide-react";
 
 const GoalsSection = () => {
   return (
@@ -10,7 +10,7 @@ const GoalsSection = () => {
         <div className="flex gap-4 p-6 bg-white rounded-lg shadow-sm border border-teal-100">
           <div className="mt-1">
             <div className="bg-teal-100 p-2 rounded-full">
-              <img src="/lovable-uploads/0674c8f5-b223-455c-8b15-0fa594099fad.png" alt="" className="w-5 h-5" />
+              <Syringe className="w-5 h-5 text-teal-600" />
             </div>
           </div>
           <div>
@@ -58,7 +58,7 @@ const GoalsSection = () => {
         <div className="flex gap-4 p-6 bg-white rounded-lg shadow-sm border border-teal-100">
           <div className="mt-1">
             <div className="bg-teal-100 p-2 rounded-full">
-              <img src="/lovable-uploads/0674c8f5-b223-455c-8b15-0fa594099fad.png" alt="" className="w-5 h-5" />
+              <Building className="w-5 h-5 text-teal-600" />
             </div>
           </div>
           <div>
