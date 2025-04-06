@@ -26,7 +26,7 @@ const ToggleGroup = React.forwardRef<
       ref={ref}
       className={cn(
         "flex items-center justify-center gap-2",
-        isMobile ? "flex-wrap" : "",
+        isMobile ? "flex-wrap w-full" : "",
         className
       )}
       {...props}
@@ -56,7 +56,7 @@ const ToggleGroupItem = React.forwardRef<
           variant: context.variant || variant,
           size: context.size || size,
         }),
-        isMobile ? "flex-grow h-10 min-h-10 min-w-[80px] my-1" : "",
+        isMobile ? "flex-grow h-auto min-h-10 py-3 my-1 text-center text-wrap" : "",
         className
       )}
       {...props}

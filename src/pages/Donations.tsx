@@ -149,24 +149,42 @@ const Donations = () => {
           className="pt-12 pb-8"
         >
           <Tabs defaultValue="material" className="w-full max-w-4xl mx-auto">
-            <TabsList className="w-full mb-8 h-auto p-1 flex flex-wrap">
-              <TabsTrigger value="material" className="flex-1 py-3">
-                <ShoppingBag className="mr-2 h-4 w-4" />
-                Materialne donacije
-              </TabsTrigger>
-              <TabsTrigger value="financial" className="flex-1 py-3">
-                <Heart className="mr-2 h-4 w-4" />
-                Finančne donacije
-              </TabsTrigger>
-              <TabsTrigger value="sms" className="flex-1 py-3">
-                <SmartphoneNfc className="mr-2 h-4 w-4" />
-                SMS donacije
-              </TabsTrigger>
-              <TabsTrigger value="crypto" className="flex-1 py-3">
-                <Bitcoin className="mr-2 h-4 w-4" />
-                Kripto donacije
-              </TabsTrigger>
-            </TabsList>
+            <div className="overflow-x-hidden w-full">
+              <TabsList className="w-full mb-8 p-1.5 flex flex-wrap gap-2">
+                <TabsTrigger 
+                  value="material" 
+                  className="flex-1 min-w-[120px] py-3 px-2 sm:px-4 transition-all duration-200"
+                  aria-label="Materialne donacije"
+                >
+                  <ShoppingBag className="mr-2 h-4 w-4 shrink-0" />
+                  <span className="text-nowrap">Materialne donacije</span>
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="financial" 
+                  className="flex-1 min-w-[120px] py-3 px-2 sm:px-4 transition-all duration-200"
+                  aria-label="Finančne donacije"
+                >
+                  <Heart className="mr-2 h-4 w-4 shrink-0" />
+                  <span className="text-nowrap">Finančne donacije</span>
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="sms" 
+                  className="flex-1 min-w-[120px] py-3 px-2 sm:px-4 transition-all duration-200"
+                  aria-label="SMS donacije"
+                >
+                  <SmartphoneNfc className="mr-2 h-4 w-4 shrink-0" />
+                  <span className="text-nowrap">SMS donacije</span>
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="crypto" 
+                  className="flex-1 min-w-[120px] py-3 px-2 sm:px-4 transition-all duration-200"
+                  aria-label="Kripto donacije"
+                >
+                  <Bitcoin className="mr-2 h-4 w-4 shrink-0" />
+                  <span className="text-nowrap">Kripto donacije</span>
+                </TabsTrigger>
+              </TabsList>
+            </div>
             
             <AnimatedWrapper animation="fade-in">
               <TabsContent value="material">
