@@ -1,5 +1,6 @@
+
 import { Helmet } from 'react-helmet';
-import { Video, ExternalLink } from 'lucide-react';
+import { Video, ExternalLink, Cat, Eye } from 'lucide-react';
 import Layout from "@/components/layout/Layout";
 import Section from "@/components/shared/Section";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -83,11 +84,11 @@ const VirtualCorner = () => {
               
               <CardHeader>
                 <div className="flex items-center gap-2 mb-2">
-                  <Video className="text-teal-600" />
-                  <CardTitle className="text-2xl font-bold text-teal-800">Cat's World Through Feline Eyes</CardTitle>
+                  <Cat className="text-teal-600" />
+                  <CardTitle className="text-2xl font-bold text-teal-800">Mačji svet skozi oči mačke</CardTitle>
                 </div>
                 <CardDescription className="text-base">
-                  Step into the world of our cats and explore their living space from a unique perspective – through their eyes. Click to experience the 360° view!
+                  Vstopite v svet naših mačk in raziščite njihov življenjski prostor z edinstvene perspektive – skozi njihove oči. Kliknite za 360° izkušnjo! 🐾
                 </CardDescription>
               </CardHeader>
               
