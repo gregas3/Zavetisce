@@ -11,6 +11,7 @@ import Section from "@/components/shared/Section";
 import { toast } from "@/components/ui/use-toast";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import CardDonationForm from "@/components/donations/CardDonationForm";
+import SponsorsSection from "@/components/about/SponsorsSection";
 import { Separator } from "@/components/ui/separator";
 
 const DonationNeeds = [
@@ -573,6 +574,15 @@ const Donations = () => {
               </CardContent>
             </Card>
           </AnimatedWrapper>
+        </Section>
+        
+        <Section 
+          className="bg-teal-50/50" 
+          title="Sponzorji" 
+          animation="fade-in"
+          description="Zahvala sponzorjem Zavetišča za živali Maribor"
+        >
+          <SponsorsSection />
         </Section>
       </main>
     </Layout>
