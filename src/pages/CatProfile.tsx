@@ -4,7 +4,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Calendar, FileText, Share, Cat } from "lucide-react";
+import { Calendar, FileText, Cat } from "lucide-react";
 import { toast } from "@/components/ui/use-toast";
 import Layout from "@/components/layout/Layout";
 import Section from "@/components/shared/Section";
@@ -19,13 +19,8 @@ import CatProfileSkeleton from "@/components/cats/CatProfileSkeleton";
 import CatProfileError from "@/components/cats/CatProfileError";
 import { Badge } from "@/components/ui/badge";
 import { Cat as CatType, cats } from "@/data/catsData";
-import {
-  ContextMenu,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuTrigger,
-} from "@/components/ui/context-menu";
 import { useToast } from "@/components/ui/use-toast";
+import ShareAnimalDialog from "@/components/shared/ShareAnimalDialog";
 
 const CatProfile = () => {
   const { id } = useParams<{ id: string }>();
@@ -85,44 +80,6 @@ const CatProfile = () => {
     navigate('/prostovoljstvo');
   };
 
-  const handleShare = (platform: string) => {
-    if (!cat) return;
-    
-    const url = window.location.href;
-    const text = `Spoznajte ${cat.name}, mačko, ki išče nov dom v Zavetišču za živali Maribor.`;
-    
-    switch (platform) {
-      case 'facebook':
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`);
-        break;
-      case 'x':
-        window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`);
-        break;
-      case 'instagram':
-        toast({
-          title: "Instagram sharing",
-          description: "Za Instagram deljenje uporabite mobilno aplikacijo in kopirajte povezavo."
-        });
-        break;
-      case 'whatsapp':
-        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + url)}`);
-        break;
-      case 'viber':
-        window.open(`viber://forward?text=${encodeURIComponent(text + ' ' + url)}`);
-        break;
-      case 'copy':
-        navigator.clipboard.writeText(url).then(() => {
-          toast({
-            title: "Povezava kopirana",
-            description: "Povezava do profila mačke je bila kopirana v odložišče."
-          });
-        });
-        break;
-      default:
-        break;
-    }
-  };
-
   if (loading) return <CatProfileSkeleton />;
   if (error || !cat) return <CatProfileError />;
 
@@ -146,33 +103,12 @@ const CatProfile = () => {
                 <div className="flex justify-between items-center mb-4">
                   <CatProfileHeader name={cat.name} status="Na voljo za posvojitev" />
                   
-                  <ContextMenu>
-                    <ContextMenuTrigger asChild>
-                      <Button variant="outline" size="icon" className="rounded-full">
-                        <Share className="h-4 w-4" />
-                      </Button>
-                    </ContextMenuTrigger>
-                    <ContextMenuContent className="w-48">
-                      <ContextMenuItem onClick={() => handleShare('facebook')}>
-                        Deli na Facebook
-                      </ContextMenuItem>
-                      <ContextMenuItem onClick={() => handleShare('instagram')}>
-                        Deli na Instagram
-                      </ContextMenuItem>
-                      <ContextMenuItem onClick={() => handleShare('x')}>
-                        Deli na X
-                      </ContextMenuItem>
-                      <ContextMenuItem onClick={() => handleShare('whatsapp')}>
-                        Pošlji preko WhatsApp
-                      </ContextMenuItem>
-                      <ContextMenuItem onClick={() => handleShare('viber')}>
-                        Pošlji preko Viber
-                      </ContextMenuItem>
-                      <ContextMenuItem onClick={() => handleShare('copy')}>
-                        Kopiraj povezavo
-                      </ContextMenuItem>
-                    </ContextMenuContent>
-                  </ContextMenu>
+                  <ShareAnimalDialog
+                    animalName={cat.name}
+                    animalType="mačka"
+                    animalId={cat.id}
+                    triggerClassName="ml-2"
+                  />
                 </div>
                 
                 <CatImageCarousel 
