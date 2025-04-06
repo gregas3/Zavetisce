@@ -9,6 +9,7 @@ import {
   CardDescription, 
   CardContent
 } from "@/components/ui/card";
+import TikTokIcon from "@/components/shared/TikTokIcon";
 
 interface CatContactInfoProps {
   name: string;
@@ -17,28 +18,6 @@ interface CatContactInfoProps {
     email: string;
   };
 }
-
-// TikTok icon SVG component to match Lucide icon style
-const TikTokIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className="h-4 w-4"
-  >
-    <path d="M9 12a4 4 0 1 0 0 8a4 4 0 0 0 0-8z"></path>
-    <path d="M16 8v8"></path>
-    <path d="M12 16v-8"></path>
-    <path d="M20 12V8h-4"></path>
-    <path d="M16 4.99v0.01"></path>
-  </svg>
-);
 
 const CatContactInfo = ({ 
   name, 
@@ -87,7 +66,7 @@ const CatContactInfo = ({
             </svg>
           </a>
           <a href="https://www.tiktok.com/@zavetisce" target="_blank" rel="noreferrer" className="rounded-full p-2 bg-background hover:bg-secondary transition-colors">
-            <TikTokIcon />
+            <TikTokIcon className="h-4 w-4" />
           </a>
         </div>
       </CardContent>

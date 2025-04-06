@@ -7,6 +7,7 @@ import Section from "@/components/shared/Section";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import Layout from "@/components/layout/Layout";
 import { useIsMobile } from "@/hooks/use-mobile";
+import TikTokIcon from "@/components/shared/TikTokIcon";
 
 export default function Kontakt() {
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -145,7 +146,7 @@ export default function Kontakt() {
                       rel="noopener noreferrer"
                       className="bg-teal-100 p-2 rounded-full hover:bg-teal-200 transition-colors"
                     >
-                      <TikTokIcon />
+                      <TikTokIcon className="w-5 h-5 text-teal-600" />
                     </a>
                   </div>
                 </div>
