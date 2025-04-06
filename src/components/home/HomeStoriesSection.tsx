@@ -27,21 +27,24 @@ export default function HomeStoriesSection() {
 
   if (stories.length === 0) return null;
 
+  // Choose the right image to display - prefer animal image if available
+  const displayImage = stories[activeIndex].animalImage || stories[activeIndex].image;
+
   return (
     <Section className="bg-gradient-to-b from-[#f0f9f7]/90 to-[#e8f6f4]/90">
       <div className="max-w-4xl mx-auto">
         <AnimatedWrapper animation="fade-in">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-teal-800">Zgodbe ljudi</h2>
-            <p className="text-lg text-teal-700/90 max-w-3xl mx-auto">
+          <div className="text-center mb-8 md:mb-10">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4 text-teal-800">Zgodbe ljudi</h2>
+            <p className="text-base md:text-lg text-teal-700/90 max-w-3xl mx-auto">
               Spoznajte resnične zgodbe ljudi, ki so posvojili živali iz našega zavetišča ali pomagajo kot prostovoljci.
             </p>
           </div>
         </AnimatedWrapper>
 
-        <div className="relative bg-white rounded-xl p-8 md:p-10 shadow-sm border border-teal-100">
+        <div className="relative bg-white rounded-xl p-6 md:p-10 shadow-sm border border-teal-100">
           <Quote 
-            size={70} 
+            size={60} 
             className="absolute top-8 left-8 text-primary/10 -z-10" 
             strokeWidth={1}
           />
@@ -52,12 +55,25 @@ export default function HomeStoriesSection() {
             className="text-center"
           >
             <div className="mb-8">
-              <img 
-                src={stories[activeIndex].image} 
-                alt={stories[activeIndex].name}
-                className="w-20 h-20 rounded-full mx-auto border-4 border-primary/10 object-cover"
-              />
+              <div className="relative w-24 h-24 mx-auto">
+                <img 
+                  src={displayImage} 
+                  alt={stories[activeIndex].animalImage 
+                    ? `Animal adopted by ${stories[activeIndex].name}` 
+                    : stories[activeIndex].name}
+                  className="w-full h-full rounded-full object-cover border-4 border-primary/10"
+                />
+                
+                <div className="absolute -bottom-2 -right-2 w-10 h-10 rounded-full overflow-hidden border-2 border-white">
+                  <img 
+                    src={stories[activeIndex].image} 
+                    alt={stories[activeIndex].name} 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
             </div>
+            
             <p className="text-lg md:text-xl italic mb-6 text-foreground">
               "{stories[activeIndex].text}"
             </p>
@@ -65,12 +81,13 @@ export default function HomeStoriesSection() {
           </AnimatedWrapper>
           
           {stories.length > 1 && (
-            <div className="flex justify-center gap-4 mt-8">
+            <div className="flex justify-center gap-4 mt-6 md:mt-8">
               <Button
                 variant="outline"
                 size="icon"
                 className="rounded-full shadow-sm"
                 onClick={prevStory}
+                aria-label="Previous story"
               >
                 <ChevronLeft size={20} />
                 <span className="sr-only">Prejšnja</span>
@@ -94,6 +111,7 @@ export default function HomeStoriesSection() {
                 size="icon"
                 className="rounded-full shadow-sm"
                 onClick={nextStory}
+                aria-label="Next story"
               >
                 <ChevronRight size={20} />
                 <span className="sr-only">Naslednja</span>

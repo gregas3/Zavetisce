@@ -18,9 +18,9 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-teal-800 text-white py-12">
+    <footer className="bg-teal-800 text-white py-10 md:py-12">
       <div className="container mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-6">
           {/* Column 1: About */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Zavetišče za živali Maribor</h3>
@@ -48,6 +48,7 @@ export default function Footer() {
               <button 
                 onClick={navigateToLocation}
                 className="flex items-start gap-2 hover:text-teal-300 transition-colors text-left w-full"
+                aria-label="Get directions to our location"
               >
                 <MapPin size={18} className="text-teal-300 shrink-0 mt-1" />
                 <div>
@@ -60,6 +61,7 @@ export default function Footer() {
               <a 
                 href="tel:024801660" 
                 className="flex items-center gap-2 hover:text-teal-300 transition-colors"
+                aria-label="Call our main phone number"
               >
                 <Phone size={18} className="text-teal-300 shrink-0" />
                 <div>
@@ -70,6 +72,7 @@ export default function Footer() {
               <a 
                 href="tel:031788822" 
                 className="flex items-center gap-2 hover:text-teal-300 transition-colors"
+                aria-label="Call our emergency phone number"
               >
                 <Phone size={18} className="text-teal-300 shrink-0" />
                 <div>
@@ -80,6 +83,7 @@ export default function Footer() {
               <a 
                 href="mailto:zavetisce.mb@snaga-mb.si" 
                 className="flex items-center gap-2 hover:text-teal-300 transition-colors"
+                aria-label="Email us"
               >
                 <Mail size={18} className="text-teal-300 shrink-0" />
                 <span>zavetisce.mb@snaga-mb.si</span>
@@ -88,31 +92,31 @@ export default function Footer() {
           </div>
 
           {/* Column 3: Quick Links */}
-          <div>
+          <div className="sm:mt-0 mt-2">
             <h3 className="text-lg font-semibold mb-4">Povezani</h3>
             <ul className="space-y-2 text-gray-300 text-sm">
               <li>
-                <Link to="/posvojitev/psi" className="hover:text-teal-300 transition-colors">
+                <Link to="/posvojitev/psi" className="hover:text-teal-300 transition-colors inline-block py-1">
                   Psi za posvojitev
                 </Link>
               </li>
               <li>
-                <Link to="/posvojitev/mačke" className="hover:text-teal-300 transition-colors">
+                <Link to="/posvojitev/mačke" className="hover:text-teal-300 transition-colors inline-block py-1">
                   Mačke za posvojitev
                 </Link>
               </li>
               <li>
-                <Link to="/izgubljeni-najdeni" className="hover:text-teal-300 transition-colors">
+                <Link to="/izgubljeni-najdeni" className="hover:text-teal-300 transition-colors inline-block py-1">
                   Izgubljeni in najdeni
                 </Link>
               </li>
               <li>
-                <Link to="/prostovoljstvo" className="hover:text-teal-300 transition-colors">
+                <Link to="/prostovoljstvo" className="hover:text-teal-300 transition-colors inline-block py-1">
                   Prostovoljstvo
                 </Link>
               </li>
               <li>
-                <Link to="/donacije" className="hover:text-teal-300 transition-colors">
+                <Link to="/donacije" className="hover:text-teal-300 transition-colors inline-block py-1">
                   Donacije
                 </Link>
               </li>
@@ -120,7 +124,7 @@ export default function Footer() {
           </div>
 
           {/* Column 4: Working Hours */}
-          <div>
+          <div className="sm:mt-0 mt-2">
             <h3 className="text-lg font-semibold mb-4">Delovni čas</h3>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
@@ -143,7 +147,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <Separator className="my-8 bg-teal-700" />
+        <Separator className="my-6 md:my-8 bg-teal-700" />
         
         <div className="text-center text-gray-400 text-sm">
           © 2025 Zavetišče za živali Maribor. Vse pravice pridržane.

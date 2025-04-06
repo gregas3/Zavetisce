@@ -29,7 +29,12 @@ export const MobileNavigation = ({
         
         <NavbarActions toggleSearch={toggleSearch} handleHomeClick={handleHomeClick} isMobile={true} />
         
-        <button className="text-white p-2 rounded-full hover:bg-teal-600/50 transition-normal" onClick={toggleMenu} aria-label={isOpen ? "Zapri meni" : "Odpri meni"}>
+        <button 
+          className="text-white p-2 rounded-full hover:bg-teal-600/50 transition-normal" 
+          onClick={toggleMenu} 
+          aria-label={isOpen ? "Zapri meni" : "Odpri meni"}
+          aria-expanded={isOpen}
+        >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
@@ -38,9 +43,15 @@ export const MobileNavigation = ({
       <div className={`lg:hidden fixed inset-0 z-40 transition-all duration-300 ease-in-out ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
         <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]" onClick={closeMenu}></div>
         
-        <div className={`absolute top-[60px] right-0 bottom-0 w-[70%] max-w-[250px] bg-gradient-to-b from-white to-teal-50 rounded-l-2xl shadow-xl transition-transform duration-300 overflow-hidden ${isOpen ? "translate-x-0" : "translate-x-full"}`} style={{
-        height: "calc(100vh - 60px)"
-      }}>
+        <div 
+          className={`absolute top-[60px] right-0 bottom-0 w-[85%] max-w-[320px] bg-gradient-to-b from-white to-teal-50 rounded-l-2xl shadow-xl transition-transform duration-300 overflow-hidden ${isOpen ? "translate-x-0" : "translate-x-full"}`} 
+          style={{
+            height: "calc(100vh - 60px)"
+          }}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigation menu"
+        >
           <nav className="flex flex-col h-full overflow-y-auto">
             <div className="flex flex-col space-y-0.5 flex-1 px-0 py-[6px] bg-green-100 rounded-sm my-0">
               <AnimatedWrapper animation="fade-in" delay={50} className="mb-1">
@@ -132,4 +143,3 @@ export const MobileNavigation = ({
       </div>
     </>;
 };
-

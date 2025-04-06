@@ -73,7 +73,7 @@ export default function Navbar() {
       setLastScrollY(currentScrollY);
     };
     
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       window.removeEventListener("scroll", handleScroll);
       if (scrollTimeout.current) {
@@ -101,7 +101,7 @@ export default function Navbar() {
   const handleHomeClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (location.pathname === '/') {
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
       navigate('/');
     }
@@ -136,7 +136,7 @@ export default function Navbar() {
       }`}
       style={{ borderBottom: 'none' }}
     >
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4" role="navigation" aria-label="Main Navigation">
         <div className="flex items-center justify-between">
           <NavbarLogo closeMenu={closeMenu} />
 

@@ -66,7 +66,7 @@ export default function HeroSection() {
               </AnimatedWrapper>
             </div>
 
-            <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-3 text-white">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-3 text-white">
               Pomagajte nam ustvariti srečne zgodbe za zapuščene živali
             </h1>
             <p className="text-sm md:text-base text-teal-100/80 mb-5 max-w-xl">
@@ -76,26 +76,26 @@ export default function HeroSection() {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12 md:mb-20 max-w-xl mx-auto sm:mx-0">
               {/* First row: "Posvoji me" buttons */}
-              <Button size="lg" variant="teal" asChild className="button-pulse glow-button rounded-full font-medium text-base">
+              <Button size="lg" variant="teal" asChild className="button-pulse glow-button rounded-full font-medium text-base w-full">
                 <Link to="/posvojitev/psi">
-                  Posvoji me <Dog className="ml-2 h-5 w-5" />
+                  <span>Posvoji me</span> <Dog className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button size="lg" variant="teal" asChild className="button-pulse glow-button rounded-full font-medium text-base">
+              <Button size="lg" variant="teal" asChild className="button-pulse glow-button rounded-full font-medium text-base w-full">
                 <Link to="/posvojitev/mačke">
-                  Posvoji me <Cat className="ml-2 h-5 w-5" />
+                  <span>Posvoji me</span> <Cat className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
               
               {/* Second row: "Podpri zavetišče" and "Postani član" buttons */}
-              <Button size="lg" variant="darkTeal" asChild className="rounded-full font-medium text-base">
+              <Button size="lg" variant="darkTeal" asChild className="rounded-full font-medium text-base w-full">
                 <Link to="/donacije">
-                  Podpri zavetišče <Heart className="ml-2 h-5 w-5" />
+                  <span>Podpri zavetišče</span> <Heart className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button size="lg" variant="darkTeal" asChild className="rounded-full font-medium text-base">
+              <Button size="lg" variant="darkTeal" asChild className="rounded-full font-medium text-base w-full">
                 <Link to="/donacije#clanarina">
-                  Postani član <Users className="ml-2 h-5 w-5" />
+                  <span>Postani član</span> <Users className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
             </div>

@@ -21,6 +21,25 @@ const Layout = ({ children, className = '' }: LayoutProps) => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
   
+  // Handle hash scroll after page loads
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.substring(1);
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+          // Add highlight animation
+          element.classList.add('highlight-section');
+          // Remove highlight animation after it completes
+          setTimeout(() => {
+            element.classList.remove('highlight-section');
+          }, 2000);
+        }, 300);
+      }
+    }
+  }, [location]);
+  
   return (
     <div className={`flex flex-col min-h-screen w-full overflow-x-hidden ${className}`}>
       <Navbar />

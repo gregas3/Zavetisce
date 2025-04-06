@@ -52,6 +52,9 @@ const StoryCard = ({ story }: StoryCardProps) => {
     }
   };
   
+  // Use the story's animalImage for the card display if available, otherwise use the regular image
+  const displayImage = story.animalImage || story.image;
+  
   return (
     <AnimatedWrapper animation="fade-in">
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -63,8 +66,8 @@ const StoryCard = ({ story }: StoryCardProps) => {
             <div className="relative">
               <div className="overflow-hidden" style={{ height: '200px' }}>
                 <img 
-                  src={story.image} 
-                  alt={story.name}
+                  src={displayImage} 
+                  alt={`Animal related to ${story.name}'s story`}
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                 />
               </div>
@@ -100,7 +103,7 @@ const StoryCard = ({ story }: StoryCardProps) => {
           </Card>
         </DialogTrigger>
         
-        <DialogContent className="sm:max-w-2xl">
+        <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <div className="mb-4">

@@ -88,11 +88,11 @@ const links = [
 
 export default function QuickLinks() {
   return (
-    <div className="py-12 bg-gradient-to-b from-[#dfecea]/80 to-[#dcebe9]/80 backdrop-blur-sm">
+    <div className="py-10 md:py-12 bg-gradient-to-b from-[#dfecea]/80 to-[#dcebe9]/80 backdrop-blur-sm">
       <div className="container mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-teal-800">Naše storitve</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-6 md:mb-8 text-teal-800">Naše storitve</h2>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
           {links.map((link, index) => (
             <AnimatedWrapper
               key={index}
@@ -105,18 +105,18 @@ export default function QuickLinks() {
                 className="group flex flex-col h-full overflow-hidden relative shadow-sm hover:shadow-lg transition-all duration-300"
                 aria-label={link.ariaLabel}
               >
-                <div className="bg-white/90 backdrop-blur-sm border border-teal-500/20 rounded-xl p-6 md:p-7 h-full flex flex-col hover:-translate-y-1 transition-all duration-300">
-                  <div className={`p-3.5 rounded-lg w-fit ${link.color} border mb-4 transition-all duration-300 ${link.hoverColor} transform group-hover:scale-110`}>
-                    <link.icon size={24} />
+                <div className="bg-white/90 backdrop-blur-sm border border-teal-500/20 rounded-xl p-5 md:p-6 h-full flex flex-col hover:-translate-y-1 transition-all duration-300">
+                  <div className={`p-3 rounded-lg w-fit ${link.color} border mb-3 md:mb-4 transition-all duration-300 ${link.hoverColor} transform group-hover:scale-110`}>
+                    <link.icon size={22} />
                   </div>
                   
-                  <h3 className="text-xl font-bold mb-2 text-teal-900 transition-all duration-300 group-hover:text-primary">
+                  <h3 className="text-lg md:text-xl font-bold mb-1 md:mb-2 text-teal-900 transition-all duration-300 group-hover:text-primary">
                     {link.title}
                   </h3>
                   
                   <p className="text-muted-foreground text-sm">{link.description}</p>
                   
-                  <div className="absolute bottom-0 right-0 w-24 h-24 -m-8 bg-gradient-to-br from-teal-50/80 to-teal-100/50 rounded-full opacity-0 group-hover:opacity-70 transition-all duration-300"></div>
+                  <div className="absolute bottom-0 right-0 w-20 h-20 -m-6 bg-gradient-to-br from-teal-50/80 to-teal-100/50 rounded-full opacity-0 group-hover:opacity-70 transition-all duration-300"></div>
                 </div>
               </Link>
             </AnimatedWrapper>
