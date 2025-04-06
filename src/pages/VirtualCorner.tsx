@@ -15,9 +15,9 @@ const VirtualCorner = () => {
         <meta name="description" content="Doživite zavetišče skozi oči psa s 360° izkušnjo." />
       </Helmet>
 
-      <main className="min-h-screen py-4">
+      <main className="min-h-screen">
         {/* Hero Section */}
-        <Section title="Virtualen kotiček" description="Doživite zavetišče na nov način" centered className="pt-10 md:pt-12" animation="fade-in-up">
+        <Section title="Virtualen kotiček" description="Doživite zavetišče na nov način" centered className="pt-6 md:pt-8" animation="fade-in-up">
           {/* 360° Dog Experience */}
           <AnimatedWrapper animation="fade-in" delay={300} className="mb-16">
             <Card className="glass-card overflow-hidden relative max-w-5xl mx-auto">
