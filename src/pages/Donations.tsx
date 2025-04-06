@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Helmet } from 'react-helmet';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -410,19 +411,28 @@ const Donations = () => {
               
               <CardContent className="space-y-6">
                 <div className="flex flex-col gap-6 items-center">
-                  <div className="bg-teal-50/70 p-5 rounded-lg w-full">
-                    <p className="text-lg mb-4">
-                      Vaša letna članarina v višini 30€ neposredno podpira oskrbo, hrano in zdravljenje naših živali v zavetišču.
-                    </p>
-                    <div className="flex items-center gap-3 bg-teal-100/50 p-3 rounded-md">
-                      <Gift className="text-teal-600 flex-shrink-0" />
-                      <p className="font-medium">
-                        Ob včlanitvi vsak član prejme darilno majico z logotipom našega zavetišča kot znak zahvale.
-                      </p>
+                  <div className="bg-gradient-to-br from-teal-50 to-teal-100 p-6 rounded-lg w-full border border-teal-200 shadow-sm">
+                    <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+                      <div className="bg-teal-600 text-white px-5 py-6 rounded-lg text-center shadow-md">
+                        <div className="font-bold text-4xl">30€</div>
+                        <div className="text-sm uppercase mt-1 font-medium">Letna članarina</div>
+                      </div>
+                      
+                      <div className="flex-1">
+                        <p className="text-lg font-medium text-teal-800 mb-3">
+                          Vaša letna članarina neposredno podpira oskrbo, hrano in zdravljenje naših živali v zavetišču.
+                        </p>
+                        <div className="flex items-center gap-3 bg-white p-3 rounded-md border border-teal-200">
+                          <Gift className="text-teal-600 flex-shrink-0 h-5 w-5" />
+                          <p className="text-sm font-medium text-teal-700">
+                            Ob včlanitvi vsak član prejme <span className="font-bold">darilno majico</span> z logotipom našega zavetišča kot znak zahvale.
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   
-                  <div className="flex justify-center py-4">
+                  <div className="flex justify-center py-6">
                     <div className="relative group membership-badge">
                       <img 
                         src="/public/lovable-uploads/d4c898dd-8689-4de6-9053-b74fc8b74810.png" 
@@ -434,7 +444,7 @@ const Donations = () => {
                   </div>
                 </div>
                 
-                <style jsx global>{`
+                <style>{`
                   @keyframes gentle-pulse {
                     0% { transform: scale(1); }
                     50% { transform: scale(1.05); }
