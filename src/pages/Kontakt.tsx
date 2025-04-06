@@ -35,6 +35,28 @@ export default function Kontakt() {
       window.open('https://www.google.com/maps/place/Avtomobilska+ulica+25,+2000+Maribor,+Slovenia', '_blank');
     }
   };
+
+  // TikTok icon SVG component to match Lucide icon style
+  const TikTokIcon = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="w-5 h-5 text-teal-600"
+    >
+      <path d="M9 12a4 4 0 1 0 0 8a4 4 0 0 0 0-8z"></path>
+      <path d="M16 8v8"></path>
+      <path d="M12 16v-8"></path>
+      <path d="M20 12V8h-4"></path>
+      <path d="M16 4.99v0.01"></path>
+    </svg>
+  );
   
   return <Layout>
       <Section id="kontakt-hero" title="Kontakt" description="Stopite v stik z nami za vse informacije o posvojitvah, prostovoljstvu ali drugih vprašanjih." centered className="pt-24 md:pt-32" animation="fade-in-up">
@@ -97,6 +119,33 @@ export default function Kontakt() {
                       className="font-medium hover:text-teal-600 transition-colors"
                     >
                       <p className="font-medium">zavetisce.mb@snaga-mb.si</p>
+                    </a>
+                  </div>
+
+                  <div className="flex gap-3 mt-3">
+                    <a 
+                      href="https://www.facebook.com/profile.php?id=100064510547105" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="bg-teal-100 p-2 rounded-full hover:bg-teal-200 transition-colors"
+                    >
+                      <Facebook className="w-5 h-5 text-teal-600" />
+                    </a>
+                    <a 
+                      href="https://www.instagram.com/zavetisce_za_zivali_maribor/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="bg-teal-100 p-2 rounded-full hover:bg-teal-200 transition-colors"
+                    >
+                      <Instagram className="w-5 h-5 text-teal-600" />
+                    </a>
+                    <a 
+                      href="https://www.tiktok.com/@zavetisce" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="bg-teal-100 p-2 rounded-full hover:bg-teal-200 transition-colors"
+                    >
+                      <TikTokIcon />
                     </a>
                   </div>
                 </div>

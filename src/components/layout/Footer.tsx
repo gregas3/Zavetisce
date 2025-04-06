@@ -17,6 +17,27 @@ export default function Footer() {
     }
   };
 
+  // TikTok icon SVG component to match Lucide icon style
+  const TikTokIcon = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M9 12a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"></path>
+      <path d="M16 8v8"></path>
+      <path d="M12 16v-8"></path>
+      <path d="M20 12V8h-4"></path>
+      <path d="M16 4.99v0.01"></path>
+    </svg>
+  );
+
   return (
     <footer className="bg-teal-800 text-white py-10 md:py-12">
       <div className="container mx-auto px-4 md:px-8">
@@ -34,6 +55,9 @@ export default function Footer() {
               </a>
               <a href="https://www.instagram.com/zavetisce_za_zivali_maribor/" target="_blank" rel="noopener noreferrer" className="text-teal-300 hover:text-white transition-colors" aria-label="Instagram">
                 <Instagram size={20} />
+              </a>
+              <a href="https://www.tiktok.com/@zavetisce" target="_blank" rel="noopener noreferrer" className="text-teal-300 hover:text-white transition-colors" aria-label="TikTok">
+                <TikTokIcon />
               </a>
               <a href="mailto:zavetisce.mb@snaga-mb.si" className="text-teal-300 hover:text-white transition-colors" aria-label="Email">
                 <Mail size={20} />
