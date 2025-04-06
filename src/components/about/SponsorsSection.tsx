@@ -20,7 +20,8 @@ const sponsors = [
   {
     id: 1,
     name: "Zavarovalnica Sava",
-    logoUrl: "/lovable-uploads/sponsor-sava.svg", // Placeholder, we'll use a div with text for now
+    logoUrl: "/lovable-uploads/26024ab8-81da-451e-96d2-00032e7c132e.png", 
+    logoPosition: "0% 0%",
     description: "Velika slovenska zavarovalnica, ki je zavetišču donirala 5.000 € v praznični kampanji.",
     supportType: "Finančna donacija",
     website: "https://www.zav-sava.si",
@@ -29,7 +30,8 @@ const sponsors = [
   {
     id: 2,
     name: "Priori Zavarovanje d.o.o.",
-    logoUrl: "/lovable-uploads/sponsor-priori.svg", // Placeholder
+    logoUrl: "/lovable-uploads/26024ab8-81da-451e-96d2-00032e7c132e.png",
+    logoPosition: "25% 0%",
     description: "Lokalni zavarovalni posrednik, ki je podprl zavetišče z nakupom veterinarske opreme.",
     supportType: "Finančna donacija za opremo",
     website: "https://www.priori.si",
@@ -37,17 +39,19 @@ const sponsors = [
   },
   {
     id: 3,
-    name: "Nova KBM d.d.",
-    logoUrl: "/lovable-uploads/sponsor-nkbm.svg", // Placeholder
+    name: "OTP Banka",
+    logoUrl: "/lovable-uploads/26024ab8-81da-451e-96d2-00032e7c132e.png",
+    logoPosition: "50% 0%",
     description: "Zaposleni banke so donirali hrano in pomagali pri zasaditvi dreves v zavetišču.",
     supportType: "Materialna donacija in prostovoljstvo",
-    website: "https://www.nkbm.si",
+    website: "https://www.otpbanka.si",
     delay: 300,
   },
   {
     id: 4,
     name: "SKB banka d.d.",
-    logoUrl: "/lovable-uploads/sponsor-skb.svg", // Placeholder
+    logoUrl: "/lovable-uploads/26024ab8-81da-451e-96d2-00032e7c132e.png",
+    logoPosition: "75% 0%",
     description: "Pomagali so z donacijami hrane in prostovoljsko pomočjo pri urejanju okolice.",
     supportType: "Materialna donacija in prostovoljstvo",
     website: "https://www.skb.si",
@@ -56,7 +60,8 @@ const sponsors = [
   {
     id: 5,
     name: "Marprom d.o.o.",
-    logoUrl: "/lovable-uploads/sponsor-marprom.svg", // Placeholder
+    logoUrl: "/lovable-uploads/26024ab8-81da-451e-96d2-00032e7c132e.png",
+    logoPosition: "100% 0%",
     description: "Mestni prevoznik, ki je postal boter živali v zavetišču in doniral hrano ter opremo.",
     supportType: "Botrstvo, materialna pomoč, prostovoljstvo",
     website: "https://www.marprom.si",
@@ -87,9 +92,17 @@ export default function SponsorsSection() {
                     aria-label={`Obiščite spletno stran ${sponsor.name}`}
                   >
                     <Card className="h-full transition-all duration-300 hover:shadow-md hover:scale-105 flex flex-col border border-teal-200 bg-white/80">
-                      <CardContent className="p-4 flex items-center justify-center flex-grow">
-                        {/* Logo placeholder - In a real app, use actual images */}
-                        <div className="w-full h-24 bg-teal-50/70 rounded-md flex items-center justify-center text-teal-700 font-medium text-center px-2">
+                      <CardContent className="p-4 flex flex-col items-center justify-center flex-grow">
+                        {/* Logo with image sprite technique */}
+                        <div 
+                          className="w-full h-24 mb-2 bg-contain bg-no-repeat bg-center"
+                          style={{ 
+                            backgroundImage: `url(${sponsor.logoUrl})`,
+                            backgroundPosition: sponsor.logoPosition 
+                          }}
+                          aria-label={`Logo ${sponsor.name}`}
+                        />
+                        <div className="text-center text-sm font-medium text-teal-700 mt-2">
                           {sponsor.name}
                         </div>
                       </CardContent>
@@ -126,8 +139,17 @@ export default function SponsorsSection() {
                       aria-label={`Obiščite spletno stran ${sponsor.name}`}
                     >
                       <Card className="h-full transition-all duration-300 hover:shadow-md border border-teal-200 bg-white/80">
-                        <CardContent className="p-3 flex items-center justify-center">
-                          <div className="w-full h-20 bg-teal-50/70 rounded-md flex items-center justify-center text-teal-700 font-medium text-center px-2 text-sm">
+                        <CardContent className="p-3 flex flex-col items-center justify-center">
+                          {/* Logo with image sprite technique */}
+                          <div 
+                            className="w-full h-16 mb-1 bg-contain bg-no-repeat bg-center"
+                            style={{ 
+                              backgroundImage: `url(${sponsor.logoUrl})`,
+                              backgroundPosition: sponsor.logoPosition 
+                            }}
+                            aria-label={`Logo ${sponsor.name}`}
+                          />
+                          <div className="text-center text-xs font-medium text-teal-700 mt-1">
                             {sponsor.name}
                           </div>
                         </CardContent>
