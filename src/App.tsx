@@ -23,6 +23,7 @@ import Kontakt from "./pages/Kontakt";
 import AboutUs from "./pages/AboutUs";
 import LostAndFound from "./pages/LostAndFound";
 import StrayCats from "./pages/StrayCats";
+import SterilizacijaKastracija from "./pages/SterilizacijaKastracija";
 import VeterinaryCorner from "./pages/VeterinaryCorner";
 import AnimalCare from "./pages/AnimalCare";
 import VirtualCorner from "./pages/VirtualCorner";
@@ -62,8 +63,9 @@ const App = () => {
             <Route path="/vprasalnik" element={<Questionnaire />} />
             <Route path="/posvojitev/vprašalnik" element={<Questionnaire />} />
             
-            {/* Stray cats route */}
+            {/* Stray cats routes */}
             <Route path="/prostozivece-macke" element={<StrayCats />} />
+            <Route path="/steriliziraj-kastriraj" element={<SterilizacijaKastracija />} />
             
             {/* Appointments route */}
             <Route path="/termini" element={<Appointments />} />

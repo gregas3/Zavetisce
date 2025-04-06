@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X, ChevronDown, Dog, Cat, Heart, Calendar, Users, Phone, HelpCircle, FileQuestion, PawPrint, AlertCircle, Stethoscope, Scissors, Sparkles, Quote, Newspaper } from "lucide-react";
@@ -92,10 +93,16 @@ export const MobileNavigation = ({
                 </AnimatedWrapper>
                 
                 <AnimatedWrapper animation="fade-in" delay={150}>
-                  <Link to="/prostozivece-macke" className="flex items-center gap-2 text-sm py-2.5 px-3 font-medium text-teal-800 hover:text-teal-600 rounded-lg hover:bg-teal-50/80 transition-normal" onClick={closeMenu}>
-                    <Cat size={16} className="text-teal-500" />
-                    <span>Prostoživeče mačke</span>
-                  </Link>
+                  <MobileNavItem title="Prostoživeče mačke" hasSubmenu icon={<Cat size={16} className="text-teal-500" />}>
+                    <Link to="/prostozivece-macke" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
+                      <Cat size={15} className="text-teal-500" />
+                      <span className="font-medium text-sm">Prostoživeče mačke</span>
+                    </Link>
+                    <Link to="/steriliziraj-kastriraj" onClick={closeMenu} className="flex items-center gap-2 py-1.5 px-3 transition-normal text-teal-700 hover:text-teal-500 rounded-lg hover:bg-teal-50/80">
+                      <Scissors size={15} className="text-teal-500" />
+                      <span className="font-medium text-sm">Steriliziraj & kastriraj</span>
+                    </Link>
+                  </MobileNavItem>
                 </AnimatedWrapper>
                 
                 <AnimatedWrapper animation="fade-in" delay={200}>
