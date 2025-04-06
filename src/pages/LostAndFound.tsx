@@ -14,6 +14,7 @@ import Section from "@/components/shared/Section";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import LostAnimalForm from "@/components/forms/LostAnimalForm";
 import FoundAnimalForm from "@/components/forms/FoundAnimalForm";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const lostPets = [
   {
@@ -100,6 +101,7 @@ export default function LostAndFound() {
   const [activeTab, setActiveTab] = useState("listings");
   const [isLostFormOpen, setIsLostFormOpen] = useState(false);
   const [isFoundFormOpen, setIsFoundFormOpen] = useState(false);
+  const isMobile = useIsMobile();
   
   const filteredLostPets = lostPets.filter(pet => {
     const matchesQuery = pet.name?.toLowerCase().includes(searchQuery.toLowerCase()) || 
@@ -238,16 +240,36 @@ export default function LostAndFound() {
                   </div>
                 </div>
                 <div className="w-full">
-                  <ToggleGroup type="single" value={filterType} onValueChange={(value) => value && setFilterType(value)} className="flex flex-wrap gap-2 justify-center">
-                    <ToggleGroupItem value="all" variant="outline" size="sm" className={`flex items-center gap-1 h-11 min-w-24 px-4 rounded-md ${filterType === 'all' ? 'bg-teal-100 text-teal-800 border-teal-200' : 'bg-white'}`}>
+                  <ToggleGroup 
+                    type="single" 
+                    value={filterType} 
+                    onValueChange={(value) => value && setFilterType(value)} 
+                    className={`flex ${isMobile ? 'flex-wrap justify-center' : 'gap-2 justify-center'}`}
+                  >
+                    <ToggleGroupItem 
+                      value="all" 
+                      variant="outline" 
+                      size="sm" 
+                      className={`flex items-center gap-1 ${isMobile ? 'flex-grow my-1 min-w-[110px] h-11' : 'min-w-24 px-4 rounded-md'} ${filterType === 'all' ? 'bg-teal-100 text-teal-800 border-teal-200' : 'bg-white'}`}
+                    >
                       <PawPrint size={16} />
                       <span>Vse živali</span>
                     </ToggleGroupItem>
-                    <ToggleGroupItem value="dog" variant="outline" size="sm" className={`flex items-center gap-1 h-11 min-w-24 px-4 rounded-md ${filterType === 'dog' ? 'bg-teal-100 text-teal-800 border-teal-200' : 'bg-white'}`}>
+                    <ToggleGroupItem 
+                      value="dog" 
+                      variant="outline" 
+                      size="sm" 
+                      className={`flex items-center gap-1 ${isMobile ? 'flex-grow my-1 min-w-[110px] h-11' : 'min-w-24 px-4 rounded-md'} ${filterType === 'dog' ? 'bg-teal-100 text-teal-800 border-teal-200' : 'bg-white'}`}
+                    >
                       <Dog size={16} />
                       <span>Psi</span>
                     </ToggleGroupItem>
-                    <ToggleGroupItem value="cat" variant="outline" size="sm" className={`flex items-center gap-1 h-11 min-w-24 px-4 rounded-md ${filterType === 'cat' ? 'bg-teal-100 text-teal-800 border-teal-200' : 'bg-white'}`}>
+                    <ToggleGroupItem 
+                      value="cat" 
+                      variant="outline" 
+                      size="sm" 
+                      className={`flex items-center gap-1 ${isMobile ? 'flex-grow my-1 min-w-[110px] h-11' : 'min-w-24 px-4 rounded-md'} ${filterType === 'cat' ? 'bg-teal-100 text-teal-800 border-teal-200' : 'bg-white'}`}
+                    >
                       <Cat size={16} />
                       <span>Mačke</span>
                     </ToggleGroupItem>
@@ -260,11 +282,17 @@ export default function LostAndFound() {
               <div className="mb-8">
                 <Tabs defaultValue="lost" className="w-full">
                   <ScrollArea className="pb-2">
-                    <TabsList className="w-full inline-flex mb-6 bg-teal-50 overflow-x-auto">
-                      <TabsTrigger value="lost" className="flex-1 py-3 data-[state=active]:bg-teal-100 data-[state=active]:text-teal-800">
+                    <TabsList className="w-full inline-flex mb-6 bg-teal-50">
+                      <TabsTrigger 
+                        value="lost" 
+                        className={`flex-1 py-3 ${isMobile ? 'min-w-[150px]' : ''} data-[state=active]:bg-teal-100 data-[state=active]:text-teal-800`}
+                      >
                         Izgubljene živali
                       </TabsTrigger>
-                      <TabsTrigger value="found" className="flex-1 py-3 data-[state=active]:bg-teal-100 data-[state=active]:text-teal-800">
+                      <TabsTrigger 
+                        value="found" 
+                        className={`flex-1 py-3 ${isMobile ? 'min-w-[150px]' : ''} data-[state=active]:bg-teal-100 data-[state=active]:text-teal-800`}
+                      >
                         Najdene živali
                       </TabsTrigger>
                     </TabsList>
