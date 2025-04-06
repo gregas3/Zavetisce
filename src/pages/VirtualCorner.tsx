@@ -6,6 +6,7 @@ import Section from "@/components/shared/Section";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
+import PanoramaViewer from "@/components/shared/PanoramaViewer";
 
 const VirtualCorner = () => {
   return (
@@ -25,7 +26,7 @@ const VirtualCorner = () => {
               
               <CardHeader>
                 <div className="flex items-center gap-2 mb-2">
-                  <Video className="text-teal-600" />
+                  <Eye className="text-teal-600" />
                   <CardTitle className="text-2xl font-bold text-teal-800">Doživite zavetišče skozi pasje oči (360° izkušnja)</CardTitle>
                 </div>
                 <CardDescription className="text-base">
@@ -35,31 +36,15 @@ const VirtualCorner = () => {
               
               <CardContent className="space-y-6">
                 <p className="text-lg">
-                  Zahvaljujoč 360° kameri lahko doživite zavetišče iz perspektive psa, tudi znotraj njihovega boksa.
-                  Ta edinstvena izkušnja ljudem pomaga razumeti realnost življenja živali in spodbuja empatijo ter podporo.
+                  Zahvaljujoč 360° pogledu lahko doživite zavetišče iz perspektive psa. Povlecite sliko levo ali desno za raziskovanje prostora.
                 </p>
                 
-                {/* Video Viewer */}
-                <div className="aspect-video w-full bg-black/5 rounded-lg overflow-hidden shadow-inner flex items-center justify-center border border-teal-100">
-                  <div className="text-center p-8">
-                    <Video className="w-16 h-16 mx-auto text-teal-500 mb-4 opacity-70" />
-                    <p className="text-teal-700 font-medium">360° video bo kmalu na voljo.</p>
-                    <p className="text-sm text-teal-600 mt-2">Preverite ponovno v nekaj dneh!</p>
-                  </div>
-                  
-                  {/* Placeholder for actual 360° video iframe */}
-                  {/* 
-                   <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/VIDEO_ID" 
-                    title="360° pogled iz pasje perspektive v zavetišču" 
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                   ></iframe> 
-                   */}
-                </div>
+                {/* 360° Panorama Viewer */}
+                <PanoramaViewer 
+                  imagePath="/lovable-uploads/9adef243-bcd0-48c8-bb6d-1fcd2f8d5762.png" 
+                  alt="360° panoramski pogled iz pasje perspektive v zavetišču"
+                  className="aspect-video w-full rounded-lg overflow-hidden border border-teal-100 shadow-inner"
+                />
                 
                 <div className="bg-teal-50 p-4 rounded-lg">
                   <p className="text-teal-700">
@@ -69,9 +54,9 @@ const VirtualCorner = () => {
               </CardContent>
               
               <CardFooter className="flex justify-center border-t border-teal-100 pt-6">
-                <Button variant="outline" className="text-teal-700 border-teal-200" disabled>
+                <Button variant="outline" className="text-teal-700 border-teal-200">
                   <ExternalLink size={18} className="mr-2" />
-                  Ogled v celozaslonskem načinu bo kmalu na voljo
+                  Oglej si v celozaslonskem načinu
                 </Button>
               </CardFooter>
             </Card>
@@ -104,19 +89,6 @@ const VirtualCorner = () => {
                     <p className="text-teal-700 font-medium">360° video bo kmalu na voljo.</p>
                     <p className="text-sm text-teal-600 mt-2">Preverite ponovno v nekaj dneh!</p>
                   </div>
-                  
-                  {/* Placeholder for actual 360° video iframe */}
-                  {/* 
-                   <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/VIDEO_ID" 
-                    title="360° pogled iz mačje perspektive v zavetišču" 
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                   ></iframe> 
-                   */}
                 </div>
                 
                 <div className="bg-teal-50 p-4 rounded-lg">
