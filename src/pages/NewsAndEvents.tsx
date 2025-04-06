@@ -1,9 +1,8 @@
-
 import React, { useState } from 'react';
 import Layout from "@/components/layout/Layout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Calendar, CalendarCheck, CalendarDays, Newspaper, PawPrint } from "lucide-react";
+import { Calendar, CalendarCheck, CalendarDays, Newspaper, PawPrint, ExternalLink } from "lucide-react";
 import Section from "@/components/shared/Section";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
 import { Button } from "@/components/ui/button";
@@ -16,6 +15,10 @@ interface NewsOrEventItem {
   title: string;
   summary: string;
   id: string;
+  source?: {
+    name: string;
+    url: string;
+  };
 }
 
 const NewsAndEvents = () => {
@@ -50,19 +53,31 @@ const NewsAndEvents = () => {
       date: "Marec 2025",
       title: "Zavetišče opozarja na spremembe zakona",
       summary: "Vodstvo zavetišča opozarja, da nove zakonske spremembe lahko ogrozijo zaščito živali in kakovost posvojitev.",
-      id: "news-1"
+      id: "news-1",
+      source: {
+        name: "Večer",
+        url: "https://www.vecer.com/slovenija/zavetisce-pozor-zakon-2025"
+      }
     },
     {
       date: "Februar 2025",
       title: "Kritike glede posvojitev",
       summary: "V medijih so se pojavile kritike na dolge postopke posvojitev. Zavetišče je pojasnilo, da gre za zagotavljanje varnosti in zdravja živali.",
-      id: "news-2"
+      id: "news-2",
+      source: {
+        name: "Maribor24",
+        url: "https://maribor24.si/lokalno/kritike-na-posvojitve-psi-maribor"
+      }
     },
     {
       date: "Julij 2024",
       title: "Prenapolnjenost z mačkami",
       summary: "V zavetišču je bilo več kot 67 mačk – dvakrat več od zmogljivosti. Zavetišče je začasno omejilo sprejem novih mačk.",
-      id: "news-3"
+      id: "news-3",
+      source: {
+        name: "Lokalec",
+        url: "https://www.lokalec.si/novice/zavetisce-maribor-polno-mack/"
+      }
     },
     {
       date: "Julij 2024",
@@ -278,6 +293,19 @@ const NewsAndEvents = () => {
                               </div>
                               <h3 className="text-lg font-bold mt-1 mb-2">{item.title}</h3>
                               <p className="text-gray-700">{item.summary}</p>
+                              
+                              {item.source && (
+                                <a 
+                                  href={item.source.url} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer"
+                                  className="mt-2 mb-3 inline-flex items-center text-teal-600 hover:text-teal-800 hover:font-semibold transition-all"
+                                >
+                                  <Newspaper className="w-4 h-4 mr-1" />
+                                  Vir: {item.source.name}
+                                  <ExternalLink className="w-3 h-3 ml-1" />
+                                </a>
+                              )}
                             </div>
                           </div>
                           <div className="mt-3 flex space-x-2">
