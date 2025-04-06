@@ -6,22 +6,36 @@ import Section from "@/components/shared/Section";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import AnimatedWrapper from "@/components/shared/AnimatedWrapper";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const VirtualCorner = () => {
   const dogVideoRef = useRef<HTMLDivElement>(null);
+  const [is360Loaded, setIs360Loaded] = useState(false);
   
   useEffect(() => {
     // Load Kuula embed script after component mounts
     if (dogVideoRef.current) {
-      const script = document.createElement('script');
-      script.src = 'https://static.kuula.io/embed.js';
-      script.setAttribute('data-kuula', 'https://kuula.co/share/hFQst?logo=1&info=1&fs=1&vr=0&sd=1&thumbs=1');
-      script.setAttribute('data-width', '100%');
-      script.setAttribute('data-height', '640px');
       dogVideoRef.current.innerHTML = ''; // Clear any existing content
-      dogVideoRef.current.appendChild(script);
+      
+      // Create an iframe for better rendering control
+      const iframe = document.createElement('iframe');
+      iframe.src = 'https://kuula.co/share/hFQst?logo=1&info=1&fs=1&vr=1&gyro=1&alpha=0.60&keys=0&sd=1&thumbs=1';
+      iframe.width = '100%';
+      iframe.height = '100%';
+      iframe.style.border = 'none';
+      iframe.allowFullscreen = true;
+      iframe.allow = 'xr-spatial-tracking; gyroscope; accelerometer; magnetometer';
+      iframe.onload = () => setIs360Loaded(true);
+      
+      dogVideoRef.current.appendChild(iframe);
     }
+    
+    // Cleanup function
+    return () => {
+      if (dogVideoRef.current) {
+        dogVideoRef.current.innerHTML = '';
+      }
+    };
   }, []);
 
   return (
@@ -56,7 +70,12 @@ const VirtualCorner = () => {
                 </p>
                 
                 {/* 360° Video Embed */}
-                <div className="aspect-video w-full rounded-lg overflow-hidden shadow-inner border border-teal-100">
+                <div className="aspect-video w-full rounded-lg overflow-hidden shadow-inner border border-teal-100 relative bg-teal-50/50">
+                  {!is360Loaded && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-teal-500"></div>
+                    </div>
+                  )}
                   <div 
                     ref={dogVideoRef}
                     className="w-full h-full min-h-[400px] md:min-h-[500px]" 
@@ -75,7 +94,7 @@ const VirtualCorner = () => {
                 <Button 
                   variant="outline" 
                   className="text-teal-700 border-teal-200"
-                  onClick={() => window.open('https://kuula.co/share/hFQst?logo=1&info=1&fs=1&vr=0&sd=1&thumbs=1', '_blank')}
+                  onClick={() => window.open('https://kuula.co/share/hFQst?logo=1&info=1&fs=1&vr=1&gyro=1', '_blank')}
                 >
                   <ExternalLink size={18} className="mr-2" />
                   Ogled v celozaslonskem načinu
