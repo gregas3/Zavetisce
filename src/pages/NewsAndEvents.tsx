@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Layout } from "@/components/layout";
+import Layout from "@/components/layout/Layout";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Calendar, CalendarCheck, CalendarDays, Newspaper, PawPrint } from "lucide-react";
