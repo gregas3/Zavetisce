@@ -24,7 +24,7 @@ const stats = [
   },
   {
     icon: Users,
-    value: "30+",
+    value: "5+",
     label: "Aktivnih prostovoljcev",
     color: "text-teal-600",
     bgColor: "bg-teal-50",
