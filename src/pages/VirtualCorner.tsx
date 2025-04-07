@@ -77,7 +77,7 @@ const VirtualCorner = () => {
                 
                 {/* 360° Cat Panorama Viewer */}
                 <PanoramaViewer 
-                  imagePath="/lovable-uploads/d396c8b6-246b-44fd-b2d6-19b9ba164804.png" 
+                  imagePath="/lovable-uploads/99306117-866d-44a1-8f2c-55bb72a92ef7.png" 
                   alt="360° panoramski pogled iz mačje perspektive v zavetišču"
                   className="aspect-video w-full rounded-lg overflow-hidden border border-teal-100 shadow-inner"
                 />

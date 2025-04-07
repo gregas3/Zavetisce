@@ -205,7 +205,7 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
       >
         <img 
           ref={imageRef}
-          src="/lovable-uploads/15207a8a-8146-4ffc-9666-89fdceeea46c.png" 
+          src={imagePath} 
           alt={alt}
           className="h-auto min-w-max object-cover"
           style={{ maxHeight: "500px" }}
@@ -214,7 +214,7 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
       </div>
       
       <div className="text-center mt-2 text-sm text-teal-600 font-medium">
-        Povlecite za ogled 360° pogleda zavetišča skozi pasje oči
+        Povlecite ali zavrtite telefon za ogled 360° pogleda zavetišča
       </div>
 
       {/* Fullscreen button */}
@@ -270,7 +270,7 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
             >
               <img 
                 ref={fullscreenImageRef}
-                src="/lovable-uploads/15207a8a-8146-4ffc-9666-89fdceeea46c.png" 
+                src={imagePath}
                 alt={alt}
                 className="h-full min-w-max object-cover"
               />
