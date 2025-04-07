@@ -41,7 +41,7 @@ const VirtualCorner = () => {
                 
                 {/* 360° Panorama Viewer */}
                 <PanoramaViewer 
-                  imagePath="/lovable-uploads/9adef243-bcd0-48c8-bb6d-1fcd2f8d5762.png" 
+                  imagePath="/lovable-uploads/15207a8a-8146-4ffc-9666-89fdceeea46c.png" 
                   alt="360° panoramski pogled iz pasje perspektive v zavetišču"
                   className="aspect-video w-full rounded-lg overflow-hidden border border-teal-100 shadow-inner"
                 />
@@ -52,13 +52,6 @@ const VirtualCorner = () => {
                   </p>
                 </div>
               </CardContent>
-              
-              <CardFooter className="flex justify-center border-t border-teal-100 pt-6">
-                <Button variant="outline" className="text-teal-700 border-teal-200">
-                  <ExternalLink size={18} className="mr-2" />
-                  Oglej si v celozaslonskem načinu
-                </Button>
-              </CardFooter>
             </Card>
           </AnimatedWrapper>
 
