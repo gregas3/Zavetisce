@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -215,27 +214,6 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
       
       <div className="text-center mt-2 text-sm text-teal-600 font-medium">
         Povlecite ali zavrtite telefon za ogled 360° pogleda zavetišča
-      </div>
-
-      {/* Fullscreen button */}
-      <div className="mt-4 flex justify-center">
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button 
-                variant="outline" 
-                className="flex items-center gap-2 text-teal-700 border-teal-200"
-                onClick={openFullscreen}
-              >
-                <Expand size={18} />
-                Ogled si v celozaslonskem načinu
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Kliknite za celozaslonski način</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
       </div>
 
       {/* Fullscreen Dialog */}

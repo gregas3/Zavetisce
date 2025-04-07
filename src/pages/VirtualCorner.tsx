@@ -92,13 +92,6 @@ const VirtualCorner = () => {
                   </p>
                 </div>
               </CardContent>
-              
-              <CardFooter className="flex justify-center border-t border-teal-100 pt-6">
-                <Button variant="outline" className="text-teal-700 border-teal-200" onClick={() => {}}>
-                  <ExternalLink size={18} className="mr-2" />
-                  Ogled v celozaslonskem načinu
-                </Button>
-              </CardFooter>
             </Card>
           </AnimatedWrapper>
         </Section>
