@@ -75,13 +75,15 @@ const VirtualCorner = () => {
                   Zahvaljujoč 360° kameri lahko doživite zavetišče iz perspektive mačke. Doživite njihovo igrivo naravo in vsakodnevne aktivnosti iz prve roke.
                 </p>
                 
-                {/* Video Viewer */}
-                <div className="aspect-video w-full bg-black/5 rounded-lg overflow-hidden shadow-inner flex items-center justify-center border border-teal-100">
-                  <div className="text-center p-8">
-                    <Video className="w-16 h-16 mx-auto text-teal-500 mb-4 opacity-70" />
-                    <p className="text-teal-700 font-medium">360° video bo kmalu na voljo.</p>
-                    <p className="text-sm text-teal-600 mt-2">Preverite ponovno v nekaj dneh!</p>
-                  </div>
+                {/* 360° Cat Panorama Viewer */}
+                <PanoramaViewer 
+                  imagePath="/lovable-uploads/d396c8b6-246b-44fd-b2d6-19b9ba164804.png" 
+                  alt="360° panoramski pogled iz mačje perspektive v zavetišču"
+                  className="aspect-video w-full rounded-lg overflow-hidden border border-teal-100 shadow-inner"
+                />
+                
+                <div className="text-center mt-2 text-sm text-teal-600 font-medium">
+                  Povlecite ali zavrtite telefon za ogled 360° pogleda zavetišča skozi mačje oči
                 </div>
                 
                 <div className="bg-teal-50 p-4 rounded-lg">
@@ -92,9 +94,9 @@ const VirtualCorner = () => {
               </CardContent>
               
               <CardFooter className="flex justify-center border-t border-teal-100 pt-6">
-                <Button variant="outline" className="text-teal-700 border-teal-200" disabled>
+                <Button variant="outline" className="text-teal-700 border-teal-200" onClick={() => {}}>
                   <ExternalLink size={18} className="mr-2" />
-                  Ogled v celozaslonskem načinu bo kmalu na voljo
+                  Ogled v celozaslonskem načinu
                 </Button>
               </CardFooter>
             </Card>
