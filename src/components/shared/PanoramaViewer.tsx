@@ -112,7 +112,7 @@ const PanoramaViewer: React.FC<PanoramaViewerProps> = ({
       >
         <img 
           ref={imageRef}
-          src={imagePath} 
+          src="/lovable-uploads/15207a8a-8146-4ffc-9666-89fdceeea46c.png" 
           alt={alt}
           className="h-auto min-w-max object-cover"
           style={{ maxHeight: "500px" }}
